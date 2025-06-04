@@ -3,12 +3,6 @@
 #include <iostream>
 #include <string>
 
-#include <algorithm>
-#include <cmath>
-#include <iostream>
-#include <vector>
- 
-
 BnbJob::BnbJob(const Parameters& params, const JobSetup& setup, AppMessageTable& table)
     : Job(params, setup, table) {
 }
