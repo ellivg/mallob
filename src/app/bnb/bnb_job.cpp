@@ -29,7 +29,7 @@ void BnbJob::appl_start() {
     //initialize empty solution
     std::vector<std::vector<int>> cores(_nr_cores, std::vector<int>(1, 0));
 
-    //print beginning (just for debug purposes)
+    //print beginning (preliminary)
     std::cout << "\n";
     print("Beginning", processes, cores);
 
@@ -38,8 +38,7 @@ void BnbJob::appl_start() {
 
     print("End", processes, solution);
     
-
-    //insert return here
+    //insert JobResult here
 }
 
 std::vector<std::vector<int>> BnbJob::compute(std::vector<int> processes, std::vector<std::vector<int>> cores) {
@@ -53,11 +52,11 @@ std::vector<std::vector<int>> BnbJob::compute(std::vector<int> processes, std::v
     std::vector<int> new_processes = processes;
     new_processes.erase(new_processes.begin());
 
-    //for eval
+
     std::vector<int> lengths(_nr_cores, -1);
-    //yes, don't judge me, i will make this prettier
     std::vector<std::vector<std::vector<int>>> solutions(_nr_cores, cores);
-    //add newest process to all cores
+
+    //add newest process to all cores and branch
     for (int i = 0; i < _nr_cores; i ++) {
         std::vector<std::vector<int>> cores_new = cores;
 
@@ -77,8 +76,6 @@ std::vector<std::vector<int>> BnbJob::compute(std::vector<int> processes, std::v
     std::vector<int>::iterator min_length = std::min_element(lengths.begin(), lengths.end());
     int index = std::distance(lengths.begin(), min_length);
 
-    //print
-    //print("End of Compute", new_processes, solutions.at(index));
     return solutions.at(index);
 }
 
@@ -116,10 +113,6 @@ void BnbJob::print(std::string reason, std::vector<int> processes, std::vector<s
     std::cout << "Cores:\n";
     for(int i = 0; i < _nr_cores; ++i) {
         std::cout << "Core Nr. " << i << ": ";
-        //if (cores[i].empty()) {
-        //    std::cout << "emtpy\n";
-        //    continue;
-        //}
         for( int j = 0; j < cores[i].size(); j++) {
             std::cout << cores[i][j] << " ";
         }
