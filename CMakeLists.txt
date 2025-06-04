@@ -172,6 +172,10 @@ endif()
 #    register_mallob_app("yourapp")
 #endif()
 # ...
+# BRANCH AND BOUND
+if(MALLOB_APP_BNB) 
+    register_mallob_app("bnb")
+endif()
 publish_app_registry_changes()
 
 

@@ -41,7 +41,7 @@ All options defined after this definition and before the next group definition a
 
 ## `register.hpp`
 
-A typical `register.hpp` for a **regular** application engine looks as follows:
+A typical `register.hpp` looks as follows:
 
 ```C++
 #pragma once
@@ -54,7 +54,7 @@ void register_mallob_app_yourappkey() {
     // The latter expects a ClientSideProgramCreator instead of a JobCreator.
     // See `src/app/app_registry.hpp` for details.
     app_registry::registerApplication(
-        // your key in all caps (!) goes here
+        // your key in all caps goes here
         "YOURAPPKEY", 
 
         // Job reader: Given a number of input files and a JobDescription instance,

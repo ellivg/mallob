@@ -1,0 +1,130 @@
+#include "bnb_job.hpp"
+
+#include <iostream>
+#include <string>
+
+#include <algorithm>
+#include <cmath>
+#include <iostream>
+#include <vector>
+ 
+
+BnbJob::BnbJob(const Parameters& params, const JobSetup& setup, AppMessageTable& table)
+    : Job(params, setup, table) {
+}
+
+void BnbJob::appl_start() {
+    //get problem
+    size_t problem_size = getDescription().getFormulaPayloadSize(0);
+    int const *problem = getDescription().getFormulaPayload(0);
+
+    //divide into categories
+    _nr_processes = problem[0];
+    _nr_cores = problem[1];
+    std::vector<int> processes;
+    for(int i = 0; i < _nr_processes; ++i) {
+        processes.push_back(problem[i+2]);
+    }
+    
+    //initialize empty solution
+    std::vector<std::vector<int>> cores(_nr_cores, std::vector<int>(1, 0));
+
+    //print beginning (just for debug purposes)
+    std::cout << "\n";
+    print("Beginning", processes, cores);
+
+    //insert solver here
+    std::vector<std::vector<int>> solution = compute(processes, cores);
+
+    print("End", processes, solution);
+    
+
+    //insert return here
+}
+
+std::vector<std::vector<int>> BnbJob::compute(std::vector<int> processes, std::vector<std::vector<int>> cores) {
+    std::vector<int> core_length = compute_core_length(cores);
+
+    //if no new processes
+    if (processes.empty()) return cores;
+
+    //get current process
+    int curr_process = processes[0];
+    std::vector<int> new_processes = processes;
+    new_processes.erase(new_processes.begin());
+
+    //for eval
+    std::vector<int> lengths(_nr_cores, -1);
+    //yes, don't judge me, i will make this prettier
+    std::vector<std::vector<std::vector<int>>> solutions(_nr_cores, cores);
+    //add newest process to all cores
+    for (int i = 0; i < _nr_cores; i ++) {
+        std::vector<std::vector<int>> cores_new = cores;
+
+        cores_new[i].pop_back();
+        cores_new[i].push_back(curr_process);
+        cores_new[i].push_back(0);
+
+        std::vector<std::vector<int>> solution = compute(new_processes, cores_new);
+        
+        //find length of solution
+        std::vector<int> new_core_length = compute_core_length(solution);
+        lengths[i] = *std::max_element(new_core_length.begin(), new_core_length.end());
+        solutions[i] = solution;
+    }
+
+    //find index of solution with shortest length
+    std::vector<int>::iterator min_length = std::min_element(lengths.begin(), lengths.end());
+    int index = std::distance(lengths.begin(), min_length);
+
+    //print
+    //print("End of Compute", new_processes, solutions.at(index));
+    return solutions.at(index);
+}
+
+std::vector<int> BnbJob::compute_core_length(std::vector<std::vector<int>> cores) {
+    std::vector<int> core_length;
+    for (int i = 0; i < _nr_cores; i++) {
+        int curr_length = 0;
+        int j = 0;
+        while(cores[i][j] != 0) {
+            curr_length += cores[i][j];
+            j++;
+        }
+        core_length.push_back(curr_length);
+    }
+    return core_length;
+}
+
+void BnbJob::print(std::string reason, std::vector<int> processes, std::vector<std::vector<int>> cores) {
+    std::cout << reason << "\n";
+    std::cout << "Nr Processes: " << _nr_processes << "\n";
+    std::cout << "Nr Cores: " << _nr_cores << "\n";
+
+    std::cout << "Processes: ";
+    for(int i = 0; i < processes.size(); ++i) {
+        std::cout << processes.at(i) << " ";
+    }
+    std::cout << "\n";
+
+    std::cout << "Core Lengths: ";
+    for(int i = 0; i < _nr_cores; i++) {
+        std::cout << compute_core_length(cores).at(i) << " ";
+    }
+    std::cout << "\n";
+
+    std::cout << "Cores:\n";
+    for(int i = 0; i < _nr_cores; ++i) {
+        std::cout << "Core Nr. " << i << ": ";
+        //if (cores[i].empty()) {
+        //    std::cout << "emtpy\n";
+        //    continue;
+        //}
+        for( int j = 0; j < cores[i].size(); j++) {
+            std::cout << cores[i][j] << " ";
+        }
+        std:: cout << "\n";
+    }
+
+    std::cout << "\n\n";
+}
