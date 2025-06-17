@@ -14,6 +14,10 @@ private:
     JobResult _result;
     size_t _nr_processes;
     int _nr_cores;
+    struct Task{
+        std::vector<int> processes;
+        std::vector<std::vector<int>> cores;
+    };
 
 public:
     BnbJob(const Parameters& params, const JobSetup& setup, AppMessageTable& table);
@@ -29,9 +33,9 @@ public:
     bool appl_isDestructible() override {return true;}
     void appl_memoryPanic() override {}
 
-    std::vector<std::vector<int>> compute(std::vector<int> processes, std::vector<std::vector<int>> cores);
+    std::vector<std::vector<int>> compute(Task task);
     std::vector<int> compute_core_length(std::vector<std::vector<int>> cores);
-    void log(std::string reason, std::vector<int> processes, std::vector<std::vector<int>> cores);
+    void log(std::string reason, Task task);
 };
 
 #endif
