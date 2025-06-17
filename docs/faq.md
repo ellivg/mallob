@@ -61,6 +61,10 @@ As of yet, no.
 
 You need to compile Mallob with support for a higher maximum number of solver threads per process. Set `-DMALLOB_MAX_N_APPTHREADS_PER_PROCESS` to a number that is at least as high as $t$.
 
+#### I try running $t$ solver threads per Mallob process and get an error "Option t: $t$ > 32(max)!"
+
+You need to compile Mallob with support for a higher maximum number of solver threads per process. Set `-DMALLOB_MAX_N_APPTHREADS_PER_PROCESS` to a number that is at least as high as $t$.
+
 #### Mallob performs badly and does not scale at all.
 
 * Make sure that you use an appropriate number of threads per process (`-t`) and appropriate MPI options (including the number of processes and the mapping of processes to cores).
