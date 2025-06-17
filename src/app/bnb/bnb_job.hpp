@@ -4,6 +4,8 @@
 
 #include "app/job.hpp"
 
+#include <queue>
+
 /*
 Minimally compiling example "application" for a Mallob job. 
 Edit and extend for your application. 
@@ -14,10 +16,14 @@ private:
     JobResult _result;
     size_t _nr_processes;
     int _nr_cores;
+    
     struct Task{
+        bool completed;
         std::vector<int> processes;
         std::vector<std::vector<int>> cores;
     };
+
+    std::queue<Task> _task_queue;
 
 public:
     BnbJob(const Parameters& params, const JobSetup& setup, AppMessageTable& table);
@@ -33,7 +39,7 @@ public:
     bool appl_isDestructible() override {return true;}
     void appl_memoryPanic() override {}
 
-    std::vector<std::vector<int>> compute(Task task);
+    Task compute(Task task);
     std::vector<int> compute_core_length(std::vector<std::vector<int>> cores);
     void log(std::string reason, Task task);
 };

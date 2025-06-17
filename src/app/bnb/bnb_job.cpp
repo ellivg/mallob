@@ -20,58 +20,75 @@ void BnbJob::appl_start() {
         processes.push_back(problem[i+2]);
     }
     
-    //initialize empty solution
+    //initial task
     std::vector<std::vector<int>> cores(_nr_cores, std::vector<int>(1, 0));
-    Task task = {processes, cores};
+    Task task = {0, processes, cores};
+    _task_queue.push(task);
 
     //print beginning
     log("Beginning", task);
 
     //insert solver here
-    std::vector<std::vector<int>> solution = compute(task);
+    Task best_solution;
+    int best_length = -1;
 
-    log("End", {processes, solution});
+    while(!_task_queue.empty()) {
+        Task curr_task = _task_queue.front();
+        _task_queue.pop();
+
+        Task solution = compute(curr_task);
+
+                
+        //compare solutions
+        if (solution.completed == 1) {
+            //find length of solution
+            int new_length = -1;
+            std::vector<int> new_core_length = compute_core_length(solution.cores);
+            new_length = *std::max_element(new_core_length.begin(), new_core_length.end());
+        
+            if (best_length == -1 || new_length < best_length) {
+                //log("NEWWWWW", curr_task);
+                best_solution = solution;
+                best_length = new_length;
+            }        
+        }
+
+    }
+
+
+    log("End", best_solution);
     
     //insert JobResult here
 }
 
-std::vector<std::vector<int>> BnbJob::compute(Task task) {
+BnbJob::Task BnbJob::compute(Task task) {
+
     std::vector<int> core_length = compute_core_length(task.cores);
 
     //if no new processes
-    if (task.processes.empty()) return task.cores;
+    if (task.processes.empty()) {
+        task.completed = 1;
+        return task;
+    }
 
     //get current process
-    int curr_process = task.processes[0];
     std::vector<int> new_processes = task.processes;
+    int curr_process = new_processes[0];
     new_processes.erase(new_processes.begin());
-
-
-    std::vector<int> lengths(_nr_cores, -1);
-    std::vector<std::vector<std::vector<int>>> solutions(_nr_cores, task.cores);
 
     //add newest process to all cores and branch
     for (int i = 0; i < _nr_cores; i ++) {
-        std::vector<std::vector<int>> cores_new = task.cores;
+        std::vector<std::vector<int>> new_cores = task.cores;
 
-        cores_new[i].pop_back();
-        cores_new[i].push_back(curr_process);
-        cores_new[i].push_back(0);
+        new_cores[i].pop_back();
+        new_cores[i].push_back(curr_process);
+        new_cores[i].push_back(0);
               
-        Task new_task = {new_processes, cores_new};
-        std::vector<std::vector<int>> solution = compute(new_task);
-
-        //find length of solution
-        std::vector<int> new_core_length = compute_core_length(solution);
-        lengths[i] = *std::max_element(new_core_length.begin(), new_core_length.end());
-        solutions[i] = solution;
+        Task new_task = {0, new_processes, new_cores};
+        _task_queue.push(new_task);  
     }
 
-    //find index of solution with shortest length
-    std::vector<int>::iterator min_length = std::min_element(lengths.begin(), lengths.end());
-    int index = std::distance(lengths.begin(), min_length);
-
-    return solutions.at(index);
+    return task;
 }
 
 std::vector<int> BnbJob::compute_core_length(std::vector<std::vector<int>> cores) {
@@ -108,6 +125,6 @@ void BnbJob::log(std::string reason, Task task) {
         }
     }
 
-    LOG(V2_INFO, "%s: (Nr Processes: %i) (Nr Cores: %i) (Processes:%s) (Core Lengths:%s) (Cores:%s)\n",
-        reason.c_str(), _nr_processes, _nr_cores, str_processes.c_str(), str_core_lengths.c_str(), str_cores.c_str());
+    LOG(V2_INFO, "%s: (Completion: %i) (Nr Processes: %i) (Nr Cores: %i) (Processes:%s) (Core Lengths:%s) (Cores:%s)\n",
+        reason.c_str(), task.completed, _nr_processes, _nr_cores, str_processes.c_str(), str_core_lengths.c_str(), str_cores.c_str());
 }
