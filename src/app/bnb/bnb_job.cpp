@@ -23,8 +23,7 @@ void BnbJob::appl_start() {
     //initialize empty solution
     std::vector<std::vector<int>> cores(_nr_cores, std::vector<int>(1, 0));
 
-    //print beginning (preliminary)
-    LOG(V2_INFO, "Test\n");
+    //print beginning
     log("Beginning", processes, cores);
 
     //insert solver here
