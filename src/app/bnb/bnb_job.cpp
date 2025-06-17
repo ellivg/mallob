@@ -24,13 +24,13 @@ void BnbJob::appl_start() {
     std::vector<std::vector<int>> cores(_nr_cores, std::vector<int>(1, 0));
 
     //print beginning (preliminary)
-    std::cout << "\n";
-    print("Beginning", processes, cores);
+    LOG(V2_INFO, "Test\n");
+    log("Beginning", processes, cores);
 
     //insert solver here
     std::vector<std::vector<int>> solution = compute(processes, cores);
 
-    print("End", processes, solution);
+    log("End", processes, solution);
     
     //insert JobResult here
 }
@@ -87,31 +87,26 @@ std::vector<int> BnbJob::compute_core_length(std::vector<std::vector<int>> cores
     return core_length;
 }
 
-void BnbJob::print(std::string reason, std::vector<int> processes, std::vector<std::vector<int>> cores) {
-    std::cout << reason << "\n";
-    std::cout << "Nr Processes: " << _nr_processes << "\n";
-    std::cout << "Nr Cores: " << _nr_cores << "\n";
-
-    std::cout << "Processes: ";
+void BnbJob::log(std::string reason, std::vector<int> processes, std::vector<std::vector<int>> cores) {
+    // turn vectors to strings
+    std::string str_processes = "";
     for(int i = 0; i < processes.size(); ++i) {
-        std::cout << processes.at(i) << " ";
+        str_processes.append(" ");
+        str_processes.append(std::to_string(processes.at(i)));
     }
-    std::cout << "\n";
-
-    std::cout << "Core Lengths: ";
+    std::string str_core_lengths = "";
     for(int i = 0; i < _nr_cores; i++) {
-        std::cout << compute_core_length(cores).at(i) << " ";
+        str_core_lengths.append(" ");
+        str_core_lengths.append(std::to_string(compute_core_length(cores).at(i)));
     }
-    std::cout << "\n";
-
-    std::cout << "Cores:\n";
+    std::string str_cores = "";
     for(int i = 0; i < _nr_cores; ++i) {
-        std::cout << "Core Nr. " << i << ": ";
         for( int j = 0; j < cores[i].size(); j++) {
-            std::cout << cores[i][j] << " ";
+            str_cores.append(" ");
+            str_cores.append(std::to_string(cores[i][j]));
         }
-        std:: cout << "\n";
     }
 
-    std::cout << "\n\n";
+    LOG(V2_INFO, "%s: (Nr Processes: %i) (Nr Cores: %i) (Processes:%s) (Core Lengths:%s) (Cores:%s)\n",
+        reason.c_str(), _nr_processes, _nr_cores, str_processes.c_str(), str_core_lengths.c_str(), str_cores.c_str());
 }

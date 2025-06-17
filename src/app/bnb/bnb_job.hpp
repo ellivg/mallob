@@ -31,7 +31,7 @@ public:
 
     std::vector<std::vector<int>> compute(std::vector<int> processes, std::vector<std::vector<int>> cores);
     std::vector<int> compute_core_length(std::vector<std::vector<int>> cores);
-    void print(std::string reason, std::vector<int> processes, std::vector<std::vector<int>> cores);
+    void log(std::string reason, std::vector<int> processes, std::vector<std::vector<int>> cores);
 };
 
 #endif
