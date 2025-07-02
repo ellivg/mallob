@@ -24,6 +24,20 @@ private:
     };
 
     std::queue<Task> _task_queue;
+    Task _best_solution;
+    int _best_length;
+
+    static const int MSG_ROUNDTRIP = 1; // internal message tag for our round-trip messages
+    static const int NUM_WORKERS = 2; // # workers we request and require
+
+    // Represents a pseudo-random permutation of a set of integers [0..n).
+    AdjustablePermutation _perm;
+
+    // Whether we already started our roundtrip.
+    bool _started_roundtrip {false};
+
+    void insertResult(int resultCode, const std::vector<int>& solution);
+    void advancePingPongMessage(JobMessage& msg);
 
 public:
     BnbJob(const Parameters& params, const JobSetup& setup, AppMessageTable& table);
@@ -31,15 +45,17 @@ public:
     void appl_suspend() override {}
     void appl_resume() override {}
     void appl_terminate() override {}
-    int appl_solved() override {return -1;}
-    JobResult&& appl_getResult() override {return std::move(_result);}
-    void appl_communicate() override {}
-    void appl_communicate(int source, int mpiTag, JobMessage& msg) override {}
+    int appl_solved();
+    JobResult&& appl_getResult() override;
+    void appl_communicate();
+    void appl_communicate(int source, int mpiTag, JobMessage& msg);
     void appl_dumpStats() override {}
     bool appl_isDestructible() override {return true;}
     void appl_memoryPanic() override {}
 
-    Task compute(Task task);
+    int getDemand() const override;
+
+    Task branch(Task task);
     std::vector<int> compute_core_length(std::vector<std::vector<int>> cores);
     void log(std::string reason, Task task);
 };
