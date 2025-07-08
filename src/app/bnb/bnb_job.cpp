@@ -1,5 +1,3 @@
-#pragma once
-
 #include "bnb_job.hpp"
 
 #include <iostream>
@@ -11,6 +9,7 @@
 #include "data/job_transfer.hpp"
 #include "util/logger.hpp"
 #include "util/permutation.hpp"
+#include "util/sys/thread_pool.hpp"
 
 BnbJob::BnbJob(const Parameters& params, const JobSetup& setup, AppMessageTable& table)
     : Job(params, setup, table) {
@@ -30,34 +29,60 @@ void BnbJob::appl_start() {
     // use the 1st integer in the job's payload as a random seed
     _perm = AdjustablePermutation(NUM_WORKERS, getDescription().getFormulaPayload(0)[0]);
 
+    LOG(V2_INFO, "myRank: %i myIndex: %i\n", getJobTree().getRank(), getJobTree().getIndex());
+
 
     //this only needs to get done once in the root
+    if(getJobTree().isRoot()) init();
+
+    ProcessWideThreadPool::get().addTask([this]() {loop();});
+
     if(getJobTree().isRoot()) {
-        LOG(V2_INFO, "This is root.\n");
-
-        //get problem
-        size_t problem_size = getDescription().getFormulaPayloadSize(0);
-        int const *problem = getDescription().getFormulaPayload(0);
-
-        //divide into categories
-        _nr_processes = problem[0];
-        _nr_cores = problem[1];
-        std::vector<int> processes;
-        for(int i = 0; i < _nr_processes; ++i) {
-            processes.push_back(problem[i+2]);
+        std::vector<int> _internal_solution;
+        for(int i = 0; i < _best_solution.cores.size(); i++) {
+            for(int j = 0; j < _best_solution.cores.at(i).size(); j++) {
+                _internal_solution.push_back(_best_solution.cores[i][j]);
+            }
         }
-    
-        //initial task
-        std::vector<std::vector<int>> cores(_nr_cores, std::vector<int>(1, 0));
-        Task task = {0, processes, cores};
-        _task_queue.push(task);
+        _result.result = 0;
+        _result.setSolution(std::move(_internal_solution));
 
-        //print beginning
-        log("Beginning", task);
-
-        //insert solver here
-        _best_length = -1;
+        log("End", _best_solution);
     }
+    
+    //insert JobResult here
+}
+
+void BnbJob::init() {
+    LOG(V2_INFO, "This is root.\n");
+
+    //get problem
+    size_t problem_size = getDescription().getFormulaPayloadSize(0);
+    int const *problem = getDescription().getFormulaPayload(0);
+
+    //divide into categories
+    _nr_processes = problem[0];
+    _nr_cores = problem[1];
+    std::vector<int> processes;
+    for(int i = 0; i < _nr_processes; ++i) {
+        processes.push_back(problem[i+2]);
+    }
+
+    //initial task
+    std::vector<std::vector<int>> cores(_nr_cores, std::vector<int>(1, 0));
+    Task task = {0, processes, cores};
+    _task_queue.push(task);
+
+    //print beginning
+    log("Beginning", task);
+
+    //insert solver here
+    _best_length = -1;
+}
+
+void BnbJob::loop() {
+
+    LOG(V2_INFO, "myRank: %i myIndex: %i\n", getJobTree().getRank(), getJobTree().getIndex());
 
     if(!(getJobTree().isRoot())) {
         LOG(V2_INFO, "I am also here.\n");
@@ -78,29 +103,82 @@ void BnbJob::appl_start() {
             new_length = *std::max_element(new_core_length.begin(), new_core_length.end());
         
             if (_best_length == -1 || new_length < _best_length) {
-                LOG(V2_INFO, "%i\n", getJobTree().getIndex());
-                log("NEWWWWW", curr_task);
+                //LOG(V2_INFO, "%i\n", getJobTree().getIndex());
+                //log("NEWWWWW", curr_task);
                 _best_solution = solution;
                 _best_length = new_length;
             }        
         }
 
     }
+}
 
-    if(getJobTree().isRoot()) {
-        std::vector<int> _internal_solution;
-        for(int i = 0; i < _best_solution.cores.size(); i++) {
-            for(int j = 0; j < _best_solution.cores.at(i).size(); j++) {
-                _internal_solution.push_back(_best_solution.cores[i][j]);
-            }
-        }
-        _result.result = 0;
-        _result.setSolution(std::move(_internal_solution));
+BnbJob::Task BnbJob::branch(Task task) {
 
-        log("End", _best_solution);
+    std::vector<int> core_length = compute_core_length(task.cores);
+
+    //if no new processes
+    if (task.processes.empty()) {
+        task.completed = 1;
+        return task;
     }
-    
-    //insert JobResult here
+
+    //get current process
+    std::vector<int> new_processes = task.processes;
+    int curr_process = new_processes[0];
+    new_processes.erase(new_processes.begin());
+
+    //add newest process to all cores and branch
+    for (int i = 0; i < _nr_cores; i ++) {
+        std::vector<std::vector<int>> new_cores = task.cores;
+
+        new_cores[i].pop_back();
+        new_cores[i].push_back(curr_process);
+        new_cores[i].push_back(0);
+              
+        Task new_task = {0, new_processes, new_cores};
+        _task_queue.push(new_task);  
+    }
+
+    return task;
+}
+
+std::vector<int> BnbJob::compute_core_length(std::vector<std::vector<int>> cores) {
+    std::vector<int> core_length;
+    for (int i = 0; i < _nr_cores; i++) {
+        int curr_length = 0;
+        int j = 0;
+        while(cores[i][j] != 0) {
+            curr_length += cores[i][j];
+            j++;
+        }
+        core_length.push_back(curr_length);
+    }
+    return core_length;
+}
+
+void BnbJob::log(std::string reason, Task task) {
+    // turn vectors to strings
+    std::string str_processes = "";
+    for(int i = 0; i < task.processes.size(); ++i) {
+        str_processes.append(" ");
+        str_processes.append(std::to_string(task.processes.at(i)));
+    }
+    std::string str_core_lengths = "";
+    for(int i = 0; i < _nr_cores; i++) {
+        str_core_lengths.append(" ");
+        str_core_lengths.append(std::to_string(compute_core_length(task.cores).at(i)));
+    }
+    std::string str_cores = "";
+    for(int i = 0; i < _nr_cores; ++i) {
+        for( int j = 0; j < task.cores[i].size(); j++) {
+            str_cores.append(" ");
+            str_cores.append(std::to_string(task.cores[i][j]));
+        }
+    }
+
+    LOG(V2_INFO, "%s: (Completion: %i) (Nr Processes: %i) (Nr Cores: %i) (Processes:%s) (Core Lengths:%s) (Cores:%s)\n",
+        reason.c_str(), task.completed, _nr_processes, _nr_cores, str_processes.c_str(), str_core_lengths.c_str(), str_cores.c_str());
 }
 
 int BnbJob::getDemand() const {
@@ -193,72 +271,4 @@ int BnbJob::appl_solved() {
 
 JobResult&& BnbJob::appl_getResult() {
     return std::move(_result);
-}
-
-BnbJob::Task BnbJob::branch(Task task) {
-
-    std::vector<int> core_length = compute_core_length(task.cores);
-
-    //if no new processes
-    if (task.processes.empty()) {
-        task.completed = 1;
-        return task;
-    }
-
-    //get current process
-    std::vector<int> new_processes = task.processes;
-    int curr_process = new_processes[0];
-    new_processes.erase(new_processes.begin());
-
-    //add newest process to all cores and branch
-    for (int i = 0; i < _nr_cores; i ++) {
-        std::vector<std::vector<int>> new_cores = task.cores;
-
-        new_cores[i].pop_back();
-        new_cores[i].push_back(curr_process);
-        new_cores[i].push_back(0);
-              
-        Task new_task = {0, new_processes, new_cores};
-        _task_queue.push(new_task);  
-    }
-
-    return task;
-}
-
-std::vector<int> BnbJob::compute_core_length(std::vector<std::vector<int>> cores) {
-    std::vector<int> core_length;
-    for (int i = 0; i < _nr_cores; i++) {
-        int curr_length = 0;
-        int j = 0;
-        while(cores[i][j] != 0) {
-            curr_length += cores[i][j];
-            j++;
-        }
-        core_length.push_back(curr_length);
-    }
-    return core_length;
-}
-
-void BnbJob::log(std::string reason, Task task) {
-    // turn vectors to strings
-    std::string str_processes = "";
-    for(int i = 0; i < task.processes.size(); ++i) {
-        str_processes.append(" ");
-        str_processes.append(std::to_string(task.processes.at(i)));
-    }
-    std::string str_core_lengths = "";
-    for(int i = 0; i < _nr_cores; i++) {
-        str_core_lengths.append(" ");
-        str_core_lengths.append(std::to_string(compute_core_length(task.cores).at(i)));
-    }
-    std::string str_cores = "";
-    for(int i = 0; i < _nr_cores; ++i) {
-        for( int j = 0; j < task.cores[i].size(); j++) {
-            str_cores.append(" ");
-            str_cores.append(std::to_string(task.cores[i][j]));
-        }
-    }
-
-    LOG(V2_INFO, "%s: (Completion: %i) (Nr Processes: %i) (Nr Cores: %i) (Processes:%s) (Core Lengths:%s) (Cores:%s)\n",
-        reason.c_str(), task.completed, _nr_processes, _nr_cores, str_processes.c_str(), str_core_lengths.c_str(), str_cores.c_str());
 }

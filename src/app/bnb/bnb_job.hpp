@@ -55,6 +55,8 @@ public:
 
     int getDemand() const override;
 
+    void init();
+    void loop();
     Task branch(Task task);
     std::vector<int> compute_core_length(std::vector<std::vector<int>> cores);
     void log(std::string reason, Task task);
