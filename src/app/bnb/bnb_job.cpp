@@ -36,19 +36,6 @@ void BnbJob::appl_start() {
     if(getJobTree().isRoot()) init();
 
     ProcessWideThreadPool::get().addTask([this]() {loop();});
-
-    if(getJobTree().isRoot()) {
-        std::vector<int> _internal_solution;
-        for(int i = 0; i < _best_solution.cores.size(); i++) {
-            for(int j = 0; j < _best_solution.cores.at(i).size(); j++) {
-                _internal_solution.push_back(_best_solution.cores[i][j]);
-            }
-        }
-        _result.result = 0;
-        _result.setSolution(std::move(_internal_solution));
-
-        log("End", _best_solution);
-    }
     
     //insert JobResult here
 }
@@ -266,6 +253,19 @@ void BnbJob::advancePingPongMessage(JobMessage& msg) {
 }
 
 int BnbJob::appl_solved() {
+    if(!_task_queue.empty()) return -1;
+    if(getJobTree().isRoot()) {
+        std::vector<int> _internal_solution;
+        for(int i = 0; i < _best_solution.cores.size(); i++) {
+            for(int j = 0; j < _best_solution.cores.at(i).size(); j++) {
+                _internal_solution.push_back(_best_solution.cores[i][j]);
+            }
+        }
+        _result.result = 0;
+        _result.setSolution(std::move(_internal_solution));
+
+        log("End", _best_solution);
+    }
     return _result.result;
 }
 
