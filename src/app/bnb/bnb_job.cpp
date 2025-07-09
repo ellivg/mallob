@@ -29,21 +29,14 @@ void BnbJob::appl_start() {
     // use the 1st integer in the job's payload as a random seed
     _perm = AdjustablePermutation(NUM_WORKERS, getDescription().getFormulaPayload(0)[0]);
 
-    LOG(V2_INFO, "myRank: %i myIndex: %i\n", getJobTree().getRank(), getJobTree().getIndex());
+    LOG(V5_DEBG, "myRank: %i myIndex: %i\n", getJobTree().getRank(), getJobTree().getIndex());
 
-
-    //this only needs to get done once in the root
     if(getJobTree().isRoot()) init();
 
     ProcessWideThreadPool::get().addTask([this]() {loop();});
-    
-    //insert JobResult here
 }
 
 void BnbJob::init() {
-    LOG(V2_INFO, "This is root.\n");
-
-    //get problem
     size_t problem_size = getDescription().getFormulaPayloadSize(0);
     int const *problem = getDescription().getFormulaPayload(0);
 
@@ -59,28 +52,17 @@ void BnbJob::init() {
     std::vector<std::vector<int>> cores(_nr_cores, std::vector<int>(1, 0));
     Task task = {0, processes, cores};
     _task_queue.push(task);
-
-    //print beginning
-    log("Beginning", task);
-
-    //insert solver here
     _best_length = -1;
+
+    log("Beginning", task);
 }
 
 void BnbJob::loop() {
-
-    LOG(V2_INFO, "myRank: %i myIndex: %i\n", getJobTree().getRank(), getJobTree().getIndex());
-
-    if(!(getJobTree().isRoot())) {
-        LOG(V2_INFO, "I am also here.\n");
-    }
-
     while(!_task_queue.empty()) {
         Task curr_task = _task_queue.front();
         _task_queue.pop();
 
         Task solution = branch(curr_task);
-
                 
         //compare solutions
         if (solution.completed == 1) {
@@ -90,8 +72,6 @@ void BnbJob::loop() {
             new_length = *std::max_element(new_core_length.begin(), new_core_length.end());
         
             if (_best_length == -1 || new_length < _best_length) {
-                //LOG(V2_INFO, "%i\n", getJobTree().getIndex());
-                //log("NEWWWWW", curr_task);
                 _best_solution = solution;
                 _best_length = new_length;
             }        
@@ -101,7 +81,6 @@ void BnbJob::loop() {
 }
 
 BnbJob::Task BnbJob::branch(Task task) {
-
     std::vector<int> core_length = compute_core_length(task.cores);
 
     //if no new processes
@@ -175,7 +154,6 @@ int BnbJob::getDemand() const {
 
 // Called periodically by the main thread to allow the worker to emit messages.
 void BnbJob::appl_communicate() {
-
     // Not enough workers available?
     if (getJobTree().isRoot() && !_started_roundtrip && getVolume() < NUM_WORKERS) {
         if (getAgeSinceActivation() < 1) return; // wait for up to 1s after appl_start
