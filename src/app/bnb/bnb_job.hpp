@@ -26,8 +26,12 @@ private:
     std::queue<Task> _task_queue;
     Task _best_solution;
     int _best_length;
+    Mutex solution_mtx;
+    Mutex queue_mtx;
 
     static const int MSG_ROUNDTRIP = 1; // internal message tag for our round-trip messages
+    static const int MSG_TEST = 2;
+    static const int MSG_QUEUE_EMPTY = 3;
     static const int NUM_WORKERS = 2; // # workers we request and require
 
     // Represents a pseudo-random permutation of a set of integers [0..n).
@@ -37,7 +41,8 @@ private:
     bool _started_roundtrip {false};
 
     void insertResult(int resultCode, const std::vector<int>& solution);
-    void advancePingPongMessage(JobMessage& msg);
+    std::vector<int> splitQueue();
+    void addToQueue(std::vector<int> message);
 
 public:
     BnbJob(const Parameters& params, const JobSetup& setup, AppMessageTable& table);

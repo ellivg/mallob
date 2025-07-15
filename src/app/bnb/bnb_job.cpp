@@ -49,6 +49,7 @@ void BnbJob::init() {
     }
 
     //initial task
+    auto lock = queue_mtx.getLock();
     std::vector<std::vector<int>> cores(_nr_cores, std::vector<int>(1, 0));
     Task task = {0, processes, cores};
     _task_queue.push(task);
@@ -59,6 +60,7 @@ void BnbJob::init() {
 
 void BnbJob::loop() {
     while(!_task_queue.empty()) {
+        auto lock = queue_mtx.getLock();
         Task curr_task = _task_queue.front();
         _task_queue.pop();
 
@@ -72,6 +74,7 @@ void BnbJob::loop() {
             new_length = *std::max_element(new_core_length.begin(), new_core_length.end());
         
             if (_best_length == -1 || new_length < _best_length) {
+                auto lock = solution_mtx.getLock();
                 _best_solution = solution;
                 _best_length = new_length;
             }        
@@ -96,6 +99,7 @@ BnbJob::Task BnbJob::branch(Task task) {
 
     //add newest process to all cores and branch
     for (int i = 0; i < _nr_cores; i ++) {
+        auto lock = queue_mtx.getLock();
         std::vector<std::vector<int>> new_cores = task.cores;
 
         new_cores[i].pop_back();
@@ -165,30 +169,58 @@ void BnbJob::appl_communicate() {
         return;
     }
 
-    // Workers available and valid job communicator present?
-    if (getJobTree().isRoot() && !_started_roundtrip && getVolume() == NUM_WORKERS
-            && getJobComm().getWorldRankOrMinusOne(NUM_WORKERS-1) >= 0) {
-
-        // craft a message to ping-pong around
-        _started_roundtrip = true;
+    if(!getJobTree().isRoot() && _task_queue.empty()) {
         JobMessage msg = getMessageTemplate();
-        msg.tag = MSG_ROUNDTRIP;
-        msg.payload = {0}; // indicates the number of bounces so far
-        LOG(V2_INFO, "[dummy] starting round trip\n");
-        advancePingPongMessage(msg);
+        msg.tag = MSG_QUEUE_EMPTY;
+        msg.payload = {3}; // irrelevant
+        // Send
+        getJobTree().sendToRoot(msg);
+        LOG(V2_INFO, "Task queue is empty.\n");
     }
 }
 
-// React to an incoming message. (This becomes relevant only if you send custom messages)
+// React to an incoming message.
 void BnbJob::appl_communicate(int source, int mpiTag, JobMessage& msg) {
-    int depth = msg.payload[0];
-    LOG(V2_INFO, "[dummy] received round trip msg: %i bounces\n", depth);
-    if (depth == NUM_WORKERS) {
-        LOG(V2_INFO, "[dummy] round trip finished!\n");
-        insertResult(10, std::vector<int>(msg.payload.begin()+1, msg.payload.end()));
-    } else {
-        advancePingPongMessage(msg);
+    LOG(V2_INFO, "Message %i with Payload %i from %i received.\n", msg.tag, msg.payload[0], source);   
+
+    if (getJobTree().isRoot()) {
+        msg.payload = splitQueue();
+        msg.returnToSender(source, mpiTag);
+        LOG(V2_INFO, "Message returned to sender.\n");
     }
+
+    if(!(getJobTree().isRoot())) {
+        addToQueue(msg.payload);
+        LOG(V2_INFO, "Message processed\n");
+    }
+}
+
+std::vector<int> BnbJob::splitQueue() {
+    auto lock = queue_mtx.getLock();
+    std::vector<int> sendQueue;
+
+    if (_task_queue.size() < 2) {
+        sendQueue.push_back(-1);
+    } else {
+        int length = _task_queue.size();
+        int sendLength = length / 2;
+        for (int i = 0; i < sendLength; i++) {
+            Task task_front = _task_queue.front();
+            std::vector<int> vector_front;
+
+            vector_front.push_back(task_front.completed);
+            vector_front.push_back(-2); // -2 is inside task and -3 (see later) between tasks as just one delimiter is not enough
+            vector_front.insert(vector_front.end(), task_front.processes.begin(), task_front.processes.end());
+            vector_front.push_back(-2);
+            for (int i = 0; i < task_front.cores.size(); i++) vector_front.insert(vector_front.end(), task_front.processes.begin(), task_front.processes.end());
+        }
+    }
+
+    return sendQueue;
+}
+
+void BnbJob::addToQueue(std::vector<int> message) {
+
 }
 
 // Mark the job as done, with the provided result code and solution.
@@ -197,37 +229,6 @@ void BnbJob::insertResult(int resultCode, const std::vector<int>& solution) {
     _result.revision = getRevision();
     _result.result = resultCode;
     _result.setSolutionToSerialize(solution.data(), solution.size());
-}
-
-// Process an incoming (or internally crafted) round-trip message and,
-// if possible, advance it by one more bounce.
-void BnbJob::advancePingPongMessage(JobMessage& msg) {
-
-    // msg.payload[0] is the number of bounces the message already did
-    int permutedIndex = _perm.get(msg.payload[0]);
-    // Use our JobComm to convert the tree index into an addressable MPI rank.
-    int recvRank = getJobComm().getWorldRankOrMinusOne(permutedIndex);
-    LOG(V2_INFO, "[dummy] next job tree index of round trip: %i, rank: %i\n", permutedIndex, recvRank);
-
-    if (recvRank == -1) {
-        // The job communicator has no valid rank for this job tree index!
-        // Reset the round-trip by sending a fresh message to the root.
-        msg.payload = {0};
-        getJobTree().sendToRoot(msg);
-    } else {
-        // Found a valid rank!
-        // Add this process to the history, but not if it's the very first one (the root)
-        if (msg.payload[0] > 0) msg.payload.push_back(getJobTree().getRank());
-        msg.payload[0]++; // add one bounce
-        // We need to add these addressing values to the message explicitly because we're
-        // messaging an arbitrary worker in the tree. For direct relatives, it is easier
-        // to use the according convenience methods like getJobTree().sendToParent(msg).
-        msg.treeIndexOfDestination = permutedIndex;
-        msg.contextIdOfDestination = getJobComm().getContextIdOrZero(permutedIndex);
-        assert(msg.contextIdOfDestination != 0);
-        // Send
-        getJobTree().send(recvRank, MSG_SEND_APPLICATION_MESSAGE, msg);
-    }
 }
 
 int BnbJob::appl_solved() {
