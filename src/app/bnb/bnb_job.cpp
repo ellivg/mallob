@@ -41,17 +41,17 @@ void BnbJob::init() {
     int const *problem = getDescription().getFormulaPayload(0);
 
     //divide into categories
-    _nr_processes = problem[0];
+    _nr_tasks = problem[0];
     _nr_cores = problem[1];
-    std::vector<int> processes;
-    for(int i = 0; i < _nr_processes; ++i) {
-        processes.push_back(problem[i+2]);
+    std::vector<int> tasks;
+    for(int i = 0; i < _nr_tasks; ++i) {
+        tasks.push_back(problem[i+2]);
     }
 
     //initial work
     auto lock = queue_mtx.getLock();
     std::vector<std::vector<int>> cores(_nr_cores, std::vector<int>(1, 0));
-    Work work = {0, processes, cores};
+    Work work = {0, tasks, cores};
     _work_queue.push(work);
     _best_length = -1;
 
@@ -86,27 +86,27 @@ void BnbJob::loop() {
 BnbJob::Work BnbJob::branch(Work work) {
     std::vector<int> core_length = compute_core_length(work.cores);
 
-    //if no new processes
-    if (work.processes.empty()) {
+    //if no new tasks
+    if (work.tasks.empty()) {
         work.completed = 1;
         return work;
     }
 
-    //get current process
-    std::vector<int> new_processes = work.processes;
-    int curr_process = new_processes[0];
-    new_processes.erase(new_processes.begin());
+    //get current task
+    std::vector<int> new_tasks = work.tasks;
+    int curr_task = new_tasks[0];
+    new_tasks.erase(new_tasks.begin());
 
-    //add newest process to all cores and branch
+    //add newest task to all cores and branch
     for (int i = 0; i < _nr_cores; i ++) {
         auto lock = queue_mtx.getLock();
         std::vector<std::vector<int>> new_cores = work.cores;
 
         new_cores[i].pop_back();
-        new_cores[i].push_back(curr_process);
+        new_cores[i].push_back(curr_task);
         new_cores[i].push_back(0);
               
-        Work new_work = {0, new_processes, new_cores};
+        Work new_work = {0, new_tasks, new_cores};
         _work_queue.push(new_work);  
     }
 
@@ -129,10 +129,10 @@ std::vector<int> BnbJob::compute_core_length(std::vector<std::vector<int>> cores
 
 void BnbJob::log(std::string reason, Work work) {
     // turn vectors to strings
-    std::string str_processes = "";
-    for(int i = 0; i < work.processes.size(); ++i) {
-        str_processes.append(" ");
-        str_processes.append(std::to_string(work.processes.at(i)));
+    std::string str_tasks = "";
+    for(int i = 0; i < work.tasks.size(); ++i) {
+        str_tasks.append(" ");
+        str_tasks.append(std::to_string(work.tasks.at(i)));
     }
     std::string str_core_lengths = "";
     for(int i = 0; i < _nr_cores; i++) {
@@ -147,8 +147,8 @@ void BnbJob::log(std::string reason, Work work) {
         }
     }
 
-    LOG(V2_INFO, "%s: (Completion: %i) (Nr Processes: %i) (Nr Cores: %i) (Processes:%s) (Core Lengths:%s) (Cores:%s)\n",
-        reason.c_str(), work.completed, _nr_processes, _nr_cores, str_processes.c_str(), str_core_lengths.c_str(), str_cores.c_str());
+    LOG(V2_INFO, "%s: (Completion: %i) (Nr Tasks: %i) (Nr Cores: %i) (Tasks:%s) (Core Lengths:%s) (Cores:%s)\n",
+        reason.c_str(), work.completed, _nr_tasks, _nr_cores, str_tasks.c_str(), str_core_lengths.c_str(), str_cores.c_str());
 }
 
 int BnbJob::getDemand() const {
@@ -210,9 +210,9 @@ std::vector<int> BnbJob::splitQueue() {
 
             vector_front.push_back(work_front.completed);
             vector_front.push_back(-2); // -2 is inside work and -3 (see later) between works as just one delimiter is not enough
-            vector_front.insert(vector_front.end(), work_front.processes.begin(), work_front.processes.end());
+            vector_front.insert(vector_front.end(), work_front.tasks.begin(), work_front.tasks.end());
             vector_front.push_back(-2);
-            for (int i = 0; i < work_front.cores.size(); i++) vector_front.insert(vector_front.end(), work_front.processes.begin(), work_front.processes.end());
+            for (int i = 0; i < work_front.cores.size(); i++) vector_front.insert(vector_front.end(), work_front.tasks.begin(), work_front.tasks.end());
         }
     }
 

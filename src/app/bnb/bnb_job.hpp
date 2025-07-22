@@ -14,12 +14,12 @@ class BnbJob : public Job {
 
 private:
     JobResult _result;
-    size_t _nr_processes;
+    size_t _nr_tasks;
     int _nr_cores;
     
     struct Work{
         bool completed;
-        std::vector<int> processes;
+        std::vector<int> tasks;
         std::vector<std::vector<int>> cores;
     };
 
