@@ -17,14 +17,14 @@ private:
     size_t _nr_processes;
     int _nr_cores;
     
-    struct Task{
+    struct Work{
         bool completed;
         std::vector<int> processes;
         std::vector<std::vector<int>> cores;
     };
 
-    std::queue<Task> _task_queue;
-    Task _best_solution;
+    std::queue<Work> _work_queue;
+    Work _best_solution;
     int _best_length;
     Mutex solution_mtx;
     Mutex queue_mtx;
@@ -62,9 +62,9 @@ public:
 
     void init();
     void loop();
-    Task branch(Task task);
+    Work branch(Work work);
     std::vector<int> compute_core_length(std::vector<std::vector<int>> cores);
-    void log(std::string reason, Task task);
+    void log(std::string reason, Work work);
 };
 
 #endif
