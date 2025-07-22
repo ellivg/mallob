@@ -74,18 +74,18 @@ void BnbJob::loop() {
             _work_queue.pop();
         }
         
-        Work solution = branch(curr_work);
+        branch(curr_work);
          
         //compare solutions
-        if (solution.completed == 1) {
+        if (curr_work.completed == 1) {
             //find length of solution
             int new_length = -1;
-            std::vector<int> new_processor_length = compute_processor_length(solution.processors);
+            std::vector<int> new_processor_length = compute_processor_length(curr_work.processors);
             new_length = *std::max_element(new_processor_length.begin(), new_processor_length.end());
         
             if (_best_length == -1 || new_length < _best_length) {
                 auto lock = solution_mtx.getLock();
-                _best_solution = solution;
+                _best_solution = curr_work;
                 _best_length = new_length;
             }        
         }
@@ -97,7 +97,7 @@ void BnbJob::loop() {
     }
 }
 
-BnbJob::Work BnbJob::branch(Work work) {
+BnbJob::Work BnbJob::branch(Work& work) {
     std::vector<int> processor_length = compute_processor_length(work.processors);
     
     //if no new tasks
@@ -127,7 +127,7 @@ BnbJob::Work BnbJob::branch(Work work) {
     return work;
 }
 
-std::vector<int> BnbJob::compute_processor_length(std::vector<std::vector<int>> processors) {
+std::vector<int> BnbJob::compute_processor_length(std::vector<std::vector<int>>& processors) {
     std::vector<int> processor_length;
     for (int i = 0; i < _nr_processors; i++) {
         int curr_length = 0;
@@ -141,7 +141,7 @@ std::vector<int> BnbJob::compute_processor_length(std::vector<std::vector<int>> 
     return processor_length;
 }
 
-void BnbJob::log(std::string reason, Work work) {
+void BnbJob::log(std::string reason, Work& work) {
     // turn vectors to strings
     std::string str_tasks = "";
     for(int i = 0; i < work.tasks.size(); ++i) {

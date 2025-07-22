@@ -62,9 +62,9 @@ public:
 
     void init();
     void loop();
-    Work branch(Work work);
-    std::vector<int> compute_processor_length(std::vector<std::vector<int>> processors);
-    void log(std::string reason, Work work);
+    Work branch(Work& work);
+    std::vector<int> compute_processor_length(std::vector<std::vector<int>>& processors);
+    void log(std::string reason, Work& work);
 };
 
 #endif
