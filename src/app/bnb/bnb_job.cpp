@@ -32,7 +32,7 @@ void BnbJob::appl_start() {
     LOG(V5_DEBG, "myRank: %i myIndex: %i\n", getJobTree().getRank(), getJobTree().getIndex());
 
     if(getJobTree().isRoot()) init();
-
+    
     ProcessWideThreadPool::get().addTask([this]() {loop();});
 }
 
@@ -59,13 +59,23 @@ void BnbJob::init() {
 }
 
 void BnbJob::loop() {
-    while(!_work_queue.empty()) {
+    //subject to change
+    bool empty;
+    {
         auto lock = queue_mtx.getLock();
-        Work curr_work = _work_queue.front();
-        _work_queue.pop();
-
+        empty = _work_queue.empty();
+    }
+    
+    while(!empty) {
+        Work curr_work;
+        {
+            auto lock = queue_mtx.getLock();
+            curr_work = _work_queue.front();
+            _work_queue.pop();
+        }
+        
         Work solution = branch(curr_work);
-                
+         
         //compare solutions
         if (solution.completed == 1) {
             //find length of solution
@@ -80,28 +90,32 @@ void BnbJob::loop() {
             }        
         }
 
+        {
+            auto lock = queue_mtx.getLock();
+            empty = _work_queue.empty();
+        } 
     }
 }
 
 BnbJob::Work BnbJob::branch(Work work) {
     std::vector<int> processor_length = compute_processor_length(work.processors);
-
+    
     //if no new tasks
     if (work.tasks.empty()) {
         work.completed = 1;
         return work;
     }
-
+    
     //get current task
     std::vector<int> new_tasks = work.tasks;
     int curr_task = new_tasks[0];
     new_tasks.erase(new_tasks.begin());
-
+    
     //add newest task to all processors and branch
     for (int i = 0; i < _nr_processors; i ++) {
         auto lock = queue_mtx.getLock();
         std::vector<std::vector<int>> new_processors = work.processors;
-
+        
         new_processors[i].pop_back();
         new_processors[i].push_back(curr_task);
         new_processors[i].push_back(0);
@@ -109,7 +123,7 @@ BnbJob::Work BnbJob::branch(Work work) {
         Work new_work = {0, new_tasks, new_processors};
         _work_queue.push(new_work);  
     }
-
+    
     return work;
 }
 
@@ -169,7 +183,14 @@ void BnbJob::appl_communicate() {
         return;
     }
 
-    if(!getJobTree().isRoot() && _work_queue.empty()) {
+    //subject to change
+    bool empty;
+    {
+        auto lock = queue_mtx.getLock();
+        empty = _work_queue.empty();
+    }
+
+    if(!getJobTree().isRoot() && empty) {
         JobMessage msg = getMessageTemplate();
         msg.tag = MSG_QUEUE_EMPTY;
         msg.payload = {3}; // irrelevant
@@ -232,8 +253,15 @@ void BnbJob::insertResult(int resultCode, const std::vector<int>& solution) {
 }
 
 int BnbJob::appl_solved() {
-    if(!_work_queue.empty()) return -1;
+    bool empty;
+    {
+        auto lock = queue_mtx.getLock();
+        empty = _work_queue.empty();
+    }
+
+    if(!empty) return -1;
     if(getJobTree().isRoot()) {
+        auto lock = solution_mtx.getLock();
         std::vector<int> _internal_solution;
         for(int i = 0; i < _best_solution.processors.size(); i++) {
             for(int j = 0; j < _best_solution.processors.at(i).size(); j++) {
