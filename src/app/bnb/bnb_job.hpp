@@ -28,6 +28,7 @@ private:
     int _best_length;
     Mutex solution_mtx;
     Mutex queue_mtx;
+    bool _working;
 
     static const int MSG_ROUNDTRIP = 1; // internal message tag for our round-trip messages
     static const int MSG_TEST = 2;

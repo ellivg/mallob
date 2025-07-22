@@ -22,6 +22,7 @@ BnbJob::BnbJob(const Parameters& params, const JobSetup& setup, AppMessageTable&
             " you must explicitly enable job communicators with the -jcup option, e.g., -jcup=0.1\n"));
         // no result present
         _result.result = -1;
+        _working = 0;
 }
 
 void BnbJob::appl_start() {
@@ -54,19 +55,13 @@ void BnbJob::init() {
     Work work = {0, tasks, processors};
     _work_queue.push(work);
     _best_length = -1;
+    _working = 1;
 
     log("Beginning", work);
 }
 
 void BnbJob::loop() {
-    //subject to change
-    bool empty;
-    {
-        auto lock = queue_mtx.getLock();
-        empty = _work_queue.empty();
-    }
-    
-    while(!empty) {
+    while(_working) {
         Work curr_work;
         {
             auto lock = queue_mtx.getLock();
@@ -90,10 +85,16 @@ void BnbJob::loop() {
             }        
         }
 
+        bool empty;
         {
             auto lock = queue_mtx.getLock();
             empty = _work_queue.empty();
-        } 
+        }
+
+        if(empty) {
+            _working = 0;
+            usleep(1000); //1 milliseconds
+        }
     }
 }
 
@@ -242,6 +243,7 @@ std::vector<int> BnbJob::splitQueue() {
 
 void BnbJob::addToQueue(std::vector<int> message) {
 
+    _working = 1;
 }
 
 // Mark the job as done, with the provided result code and solution.
