@@ -15,12 +15,12 @@ class BnbJob : public Job {
 private:
     JobResult _result;
     size_t _nr_tasks;
-    int _nr_cores;
+    int _nr_processors;
     
     struct Work{
         bool completed;
         std::vector<int> tasks;
-        std::vector<std::vector<int>> cores;
+        std::vector<std::vector<int>> processors;
     };
 
     std::queue<Work> _work_queue;
@@ -63,7 +63,7 @@ public:
     void init();
     void loop();
     Work branch(Work work);
-    std::vector<int> compute_core_length(std::vector<std::vector<int>> cores);
+    std::vector<int> compute_processor_length(std::vector<std::vector<int>> processors);
     void log(std::string reason, Work work);
 };
 

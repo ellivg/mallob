@@ -42,7 +42,7 @@ void BnbJob::init() {
 
     //divide into categories
     _nr_tasks = problem[0];
-    _nr_cores = problem[1];
+    _nr_processors = problem[1];
     std::vector<int> tasks;
     for(int i = 0; i < _nr_tasks; ++i) {
         tasks.push_back(problem[i+2]);
@@ -50,8 +50,8 @@ void BnbJob::init() {
 
     //initial work
     auto lock = queue_mtx.getLock();
-    std::vector<std::vector<int>> cores(_nr_cores, std::vector<int>(1, 0));
-    Work work = {0, tasks, cores};
+    std::vector<std::vector<int>> processors(_nr_processors, std::vector<int>(1, 0));
+    Work work = {0, tasks, processors};
     _work_queue.push(work);
     _best_length = -1;
 
@@ -70,8 +70,8 @@ void BnbJob::loop() {
         if (solution.completed == 1) {
             //find length of solution
             int new_length = -1;
-            std::vector<int> new_core_length = compute_core_length(solution.cores);
-            new_length = *std::max_element(new_core_length.begin(), new_core_length.end());
+            std::vector<int> new_processor_length = compute_processor_length(solution.processors);
+            new_length = *std::max_element(new_processor_length.begin(), new_processor_length.end());
         
             if (_best_length == -1 || new_length < _best_length) {
                 auto lock = solution_mtx.getLock();
@@ -84,7 +84,7 @@ void BnbJob::loop() {
 }
 
 BnbJob::Work BnbJob::branch(Work work) {
-    std::vector<int> core_length = compute_core_length(work.cores);
+    std::vector<int> processor_length = compute_processor_length(work.processors);
 
     //if no new tasks
     if (work.tasks.empty()) {
@@ -97,34 +97,34 @@ BnbJob::Work BnbJob::branch(Work work) {
     int curr_task = new_tasks[0];
     new_tasks.erase(new_tasks.begin());
 
-    //add newest task to all cores and branch
-    for (int i = 0; i < _nr_cores; i ++) {
+    //add newest task to all processors and branch
+    for (int i = 0; i < _nr_processors; i ++) {
         auto lock = queue_mtx.getLock();
-        std::vector<std::vector<int>> new_cores = work.cores;
+        std::vector<std::vector<int>> new_processors = work.processors;
 
-        new_cores[i].pop_back();
-        new_cores[i].push_back(curr_task);
-        new_cores[i].push_back(0);
+        new_processors[i].pop_back();
+        new_processors[i].push_back(curr_task);
+        new_processors[i].push_back(0);
               
-        Work new_work = {0, new_tasks, new_cores};
+        Work new_work = {0, new_tasks, new_processors};
         _work_queue.push(new_work);  
     }
 
     return work;
 }
 
-std::vector<int> BnbJob::compute_core_length(std::vector<std::vector<int>> cores) {
-    std::vector<int> core_length;
-    for (int i = 0; i < _nr_cores; i++) {
+std::vector<int> BnbJob::compute_processor_length(std::vector<std::vector<int>> processors) {
+    std::vector<int> processor_length;
+    for (int i = 0; i < _nr_processors; i++) {
         int curr_length = 0;
         int j = 0;
-        while(cores[i][j] != 0) {
-            curr_length += cores[i][j];
+        while(processors[i][j] != 0) {
+            curr_length += processors[i][j];
             j++;
         }
-        core_length.push_back(curr_length);
+        processor_length.push_back(curr_length);
     }
-    return core_length;
+    return processor_length;
 }
 
 void BnbJob::log(std::string reason, Work work) {
@@ -134,21 +134,21 @@ void BnbJob::log(std::string reason, Work work) {
         str_tasks.append(" ");
         str_tasks.append(std::to_string(work.tasks.at(i)));
     }
-    std::string str_core_lengths = "";
-    for(int i = 0; i < _nr_cores; i++) {
-        str_core_lengths.append(" ");
-        str_core_lengths.append(std::to_string(compute_core_length(work.cores).at(i)));
+    std::string str_processor_lengths = "";
+    for(int i = 0; i < _nr_processors; i++) {
+        str_processor_lengths.append(" ");
+        str_processor_lengths.append(std::to_string(compute_processor_length(work.processors).at(i)));
     }
-    std::string str_cores = "";
-    for(int i = 0; i < _nr_cores; ++i) {
-        for( int j = 0; j < work.cores[i].size(); j++) {
-            str_cores.append(" ");
-            str_cores.append(std::to_string(work.cores[i][j]));
+    std::string str_processors = "";
+    for(int i = 0; i < _nr_processors; ++i) {
+        for( int j = 0; j < work.processors[i].size(); j++) {
+            str_processors.append(" ");
+            str_processors.append(std::to_string(work.processors[i][j]));
         }
     }
 
-    LOG(V2_INFO, "%s: (Completion: %i) (Nr Tasks: %i) (Nr Cores: %i) (Tasks:%s) (Core Lengths:%s) (Cores:%s)\n",
-        reason.c_str(), work.completed, _nr_tasks, _nr_cores, str_tasks.c_str(), str_core_lengths.c_str(), str_cores.c_str());
+    LOG(V2_INFO, "%s: (Completion: %i) (Nr Tasks: %i) (Nr Processors: %i) (Tasks:%s) (Processor Lengths:%s) (Processors:%s)\n",
+        reason.c_str(), work.completed, _nr_tasks, _nr_processors, str_tasks.c_str(), str_processor_lengths.c_str(), str_processors.c_str());
 }
 
 int BnbJob::getDemand() const {
@@ -212,7 +212,7 @@ std::vector<int> BnbJob::splitQueue() {
             vector_front.push_back(-2); // -2 is inside work and -3 (see later) between works as just one delimiter is not enough
             vector_front.insert(vector_front.end(), work_front.tasks.begin(), work_front.tasks.end());
             vector_front.push_back(-2);
-            for (int i = 0; i < work_front.cores.size(); i++) vector_front.insert(vector_front.end(), work_front.tasks.begin(), work_front.tasks.end());
+            for (int i = 0; i < work_front.processors.size(); i++) vector_front.insert(vector_front.end(), work_front.tasks.begin(), work_front.tasks.end());
         }
     }
 
@@ -235,9 +235,9 @@ int BnbJob::appl_solved() {
     if(!_work_queue.empty()) return -1;
     if(getJobTree().isRoot()) {
         std::vector<int> _internal_solution;
-        for(int i = 0; i < _best_solution.cores.size(); i++) {
-            for(int j = 0; j < _best_solution.cores.at(i).size(); j++) {
-                _internal_solution.push_back(_best_solution.cores[i][j]);
+        for(int i = 0; i < _best_solution.processors.size(); i++) {
+            for(int j = 0; j < _best_solution.processors.at(i).size(); j++) {
+                _internal_solution.push_back(_best_solution.processors[i][j]);
             }
         }
         _result.result = 0;
