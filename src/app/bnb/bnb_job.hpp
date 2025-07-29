@@ -38,8 +38,8 @@ private:
     // Represents a pseudo-random permutation of a set of integers [0..n).
     AdjustablePermutation _perm;
 
-    // Whether we already started our roundtrip.
-    bool _started_roundtrip {false};
+    // Whether we can send messages
+    bool _send_messages {false};
 
     void insertResult(int resultCode, const std::vector<int>& solution);
     std::vector<int> splitQueue();
@@ -65,7 +65,7 @@ public:
     void loop();
     Work branch(Work& work);
     std::vector<int> compute_processor_length(std::vector<std::vector<int>>& processors);
-    void log(std::string reason, Work& work);
+    void log(const std::string& reason, Work& work);
 };
 
 #endif

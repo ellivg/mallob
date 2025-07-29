@@ -61,7 +61,20 @@ void BnbJob::init() {
 }
 
 void BnbJob::loop() {
-    while(_working) {
+    
+    while(_working && Timer::elapsedSeconds() <= 5) {
+
+        bool empty;
+        {
+            auto lock = queue_mtx.getLock();
+            empty = _work_queue.empty();
+        }
+
+        if(empty) {
+            usleep(1000); // 1 milliseconds
+            continue;
+        }
+
         Work curr_work;
         {
             auto lock = queue_mtx.getLock();
@@ -83,17 +96,6 @@ void BnbJob::loop() {
                 _best_solution = curr_work;
                 _best_length = new_length;
             }        
-        }
-
-        bool empty;
-        {
-            auto lock = queue_mtx.getLock();
-            empty = _work_queue.empty();
-        }
-
-        if(empty) {
-            _working = 0;
-            usleep(1000); //1 milliseconds
         }
     }
 }
@@ -142,7 +144,7 @@ std::vector<int> BnbJob::compute_processor_length(std::vector<std::vector<int>>&
     return processor_length;
 }
 
-void BnbJob::log(std::string reason, Work& work) {
+void BnbJob::log(const std::string& reason, Work& work) {
     // turn vectors to strings
     std::string str_tasks = "";
     for(int i = 0; i < work.tasks.size(); ++i) {
@@ -174,14 +176,22 @@ int BnbJob::getDemand() const {
 // Called periodically by the main thread to allow the worker to emit messages.
 void BnbJob::appl_communicate() {
     // Not enough workers available?
-    if (getJobTree().isRoot() && !_started_roundtrip && getVolume() < NUM_WORKERS) {
+    if (getJobTree().isRoot() && !_send_messages && getVolume() < NUM_WORKERS) {
         if (getAgeSinceActivation() < 1) return; // wait for up to 1s after appl_start
 
         LOG(V2_INFO, "[dummy] Unable to get %i workers within 1 second - giving up\n", NUM_WORKERS);
         // Report an "unknown" result (code 0)
         insertResult(0, {-1});
-        _started_roundtrip = true;
+        _send_messages= true;
         return;
+    }
+
+    if (!_send_messages && getVolume() == NUM_WORKERS
+            && getJobComm().getWorldRankOrMinusOne(NUM_WORKERS-1) >= 0) {
+
+        // figure out new text here
+        _send_messages = true;
+        LOG(V2_INFO, "HERE\n");
     }
 
     //subject to change
@@ -191,7 +201,12 @@ void BnbJob::appl_communicate() {
         empty = _work_queue.empty();
     }
 
-    if(!getJobTree().isRoot() && empty) {
+    if(empty) {
+        if (!_send_messages) {
+            LOG(V2_INFO, "Not ready yet: %i\n", _send_messages);
+            usleep(1000*100);
+            return;
+        }
         JobMessage msg = getMessageTemplate();
         msg.tag = MSG_QUEUE_EMPTY;
         msg.payload = {3}; // irrelevant
