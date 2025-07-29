@@ -130,7 +130,7 @@ BnbJob::Work BnbJob::branch(Work& work) {
     return work;
 }
 
-std::vector<int> BnbJob::compute_processor_length(std::vector<std::vector<int>>& processors) {
+std::vector<int> BnbJob::compute_processor_length(const std::vector<std::vector<int>>& processors) {
     std::vector<int> processor_length;
     for (int i = 0; i < _nr_processors; i++) {
         int curr_length = 0;
@@ -144,7 +144,7 @@ std::vector<int> BnbJob::compute_processor_length(std::vector<std::vector<int>>&
     return processor_length;
 }
 
-void BnbJob::log(const std::string& reason, Work& work) {
+void BnbJob::log(const std::string& reason, const Work& work) {
     // turn vectors to strings
     std::string str_tasks = "";
     for(int i = 0; i < work.tasks.size(); ++i) {
@@ -256,7 +256,7 @@ std::vector<int> BnbJob::splitQueue() {
     return sendQueue;
 }
 
-void BnbJob::addToQueue(std::vector<int> message) {
+void BnbJob::addToQueue(std::vector<int>& message) {
 
     _working = 1;
 }
