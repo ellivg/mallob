@@ -3,6 +3,7 @@
 #define DOMPASCH_MALLOB_BNB_JOB_HPP
 
 #include "app/job.hpp"
+#include "util/sys/threading.hpp"
 
 #include <queue>
 
@@ -28,6 +29,7 @@ private:
     int _best_length;
     Mutex solution_mtx;
     Mutex queue_mtx;
+    ConditionVariable _loop_cond_var;
     bool _working;
 
     static const int MSG_ROUNDTRIP = 1; // internal message tag for our round-trip messages

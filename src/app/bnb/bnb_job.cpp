@@ -73,6 +73,7 @@ void BnbJob::loop() {
         if(empty) {
             usleep(1000); // 1 milliseconds
             continue;
+            _loop_cond_var.wait(queue_mtx, [&]() {return _working;});
         }
 
         Work curr_work;
@@ -259,6 +260,7 @@ std::vector<int> BnbJob::splitQueue() {
 void BnbJob::addToQueue(std::vector<int>& message) {
 
     _working = 1;
+    _loop_cond_var.notify();
 }
 
 // Mark the job as done, with the provided result code and solution.
