@@ -57,7 +57,8 @@ void BnbJob::init() {
     _best_length = -1;
     _working = 1;
 
-    log("Beginning", work);
+    const std::string log_string = transform_for_log("Beginning", work);
+    LOG(V2_INFO, "%s", log_string);
 }
 
 void BnbJob::loop() {
@@ -82,6 +83,8 @@ void BnbJob::loop() {
             curr_work = _work_queue.front();
             _work_queue.pop();
         }
+        const std::string log_string = transform_for_log("Loop", curr_work);
+        LOG(V5_DEBG, "%s", log_string);
         
         branch(curr_work);
          
@@ -145,7 +148,7 @@ std::vector<int> BnbJob::compute_processor_length(const std::vector<std::vector<
     return processor_length;
 }
 
-void BnbJob::log(const std::string& reason, const Work& work) {
+std::string BnbJob::transform_for_log(const std::string& reason, const Work& work) {
     // turn vectors to strings
     std::string str_tasks = "";
     for(int i = 0; i < work.tasks.size(); ++i) {
@@ -165,8 +168,23 @@ void BnbJob::log(const std::string& reason, const Work& work) {
         }
     }
 
-    LOG(V2_INFO, "%s: (Completion: %i) (Nr Tasks: %i) (Nr Processors: %i) (Tasks:%s) (Processor Lengths:%s) (Processors:%s)\n",
-        reason.c_str(), work.completed, _nr_tasks, _nr_processors, str_tasks.c_str(), str_processor_lengths.c_str(), str_processors.c_str());
+    //assemble and is there a better way??
+    std::string log_string = reason.c_str();
+    log_string.append(": (Completion: ");
+    log_string.append(std::to_string(work.completed));
+    log_string.append(") (Nr Tasks: ");
+    log_string.append(std::to_string(_nr_tasks));
+    log_string.append(") (Nr Processors: ");
+    log_string.append(std::to_string(_nr_processors));
+    log_string.append(") (Tasks:");
+    log_string.append(str_tasks.c_str());
+    log_string.append(") (Processor Lengths:");
+    log_string.append(str_processor_lengths.c_str());
+    log_string.append(") (Processors:");
+    log_string.append(str_processors.c_str());
+    log_string.append(")\n");
+
+    return log_string;
 }
 
 int BnbJob::getDemand() const {
@@ -290,7 +308,8 @@ int BnbJob::appl_solved() {
         _result.result = 0;
         _result.setSolution(std::move(_internal_solution));
 
-        log("End", _best_solution);
+        const std::string log_string = transform_for_log("End", _best_solution);
+        LOG(V2_INFO, "%s", log_string);
     }
     return _result.result;
 }

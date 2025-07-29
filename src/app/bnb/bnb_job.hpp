@@ -67,7 +67,7 @@ public:
     void loop();
     Work branch(Work& work);
     std::vector<int> compute_processor_length(const std::vector<std::vector<int>>& processors);
-    void log(const std::string& reason, const Work& work);
+    std::string transform_for_log(const std::string& reason, const Work& work);
 };
 
 #endif
