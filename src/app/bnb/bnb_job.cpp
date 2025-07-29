@@ -57,8 +57,7 @@ void BnbJob::init() {
     _best_length = -1;
     _working = 1;
 
-    const std::string log_string = transform_for_log("Beginning", work);
-    LOG(V2_INFO, "%s", log_string);
+    LOG(V2_INFO, "%s", transform_for_log("Beginning", work).c_str());
 }
 
 void BnbJob::loop() {
@@ -83,8 +82,7 @@ void BnbJob::loop() {
             curr_work = _work_queue.front();
             _work_queue.pop();
         }
-        const std::string log_string = transform_for_log("Loop", curr_work);
-        LOG(V5_DEBG, "%s", log_string);
+        LOG(V5_DEBG, "%s", transform_for_log("Loop", curr_work).c_str());
         
         branch(curr_work);
          
@@ -210,7 +208,6 @@ void BnbJob::appl_communicate() {
 
         // figure out new text here
         _send_messages = true;
-        LOG(V2_INFO, "HERE\n");
     }
 
     //subject to change
@@ -223,7 +220,7 @@ void BnbJob::appl_communicate() {
     if(empty) {
         if (!_send_messages) {
             LOG(V2_INFO, "Not ready yet: %i\n", _send_messages);
-            usleep(1000*100);
+            usleep(1000*100); //add cond_var here too?
             return;
         }
         JobMessage msg = getMessageTemplate();
@@ -231,7 +228,7 @@ void BnbJob::appl_communicate() {
         msg.payload = {3}; // irrelevant
         // Send
         getJobTree().sendToRoot(msg);
-        LOG(V2_INFO, "Work queue is empty.\n");
+        LOG(V2_INFO, "Work queue is empty. Message sent.\n");
     }
 }
 
@@ -240,9 +237,21 @@ void BnbJob::appl_communicate(int source, int mpiTag, JobMessage& msg) {
     LOG(V2_INFO, "Message %i with Payload %i from %i received.\n", msg.tag, msg.payload[0], source);   
 
     if (getJobTree().isRoot()) {
-        msg.payload = splitQueue();
-        msg.returnToSender(source, mpiTag);
-        LOG(V2_INFO, "Message returned to sender.\n");
+        // Use our JobComm to convert the tree index into an addressable MPI rank.
+        int recvRank = getJobComm().getWorldRankOrMinusOne(source);
+
+        if (recvRank == -1) {
+            LOG(V2_INFO, "AHHHHHHH\n");
+        } else {
+            // Found a valid rank!
+            msg.payload = splitQueue();
+            msg.treeIndexOfDestination = source;
+            msg.contextIdOfDestination = getJobComm().getContextIdOrZero(source);
+            assert(msg.contextIdOfDestination != 0);
+            // Send
+            getJobTree().send(recvRank, MSG_SEND_APPLICATION_MESSAGE, msg);
+        }
+        LOG(V2_INFO, "Message returned to sender %i.\n", recvRank);
     }
 
     if(!(getJobTree().isRoot())) {
@@ -308,8 +317,7 @@ int BnbJob::appl_solved() {
         _result.result = 0;
         _result.setSolution(std::move(_internal_solution));
 
-        const std::string log_string = transform_for_log("End", _best_solution);
-        LOG(V2_INFO, "%s", log_string);
+        LOG(V2_INFO, "%s", transform_for_log("End", _best_solution).c_str());
     }
     return _result.result;
 }
