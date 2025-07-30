@@ -230,6 +230,25 @@ void BnbJob::appl_communicate() {
         getJobTree().sendToRoot(msg);
         LOG(V2_INFO, "Work queue is empty. Message sent.\n");
     }
+
+    if(getJobTree().isRoot() && _send_messages) {
+        // Use our JobComm to convert the tree index into an addressable MPI rank.
+        int recvRank = getJobComm().getWorldRankOrMinusOne(1);
+
+        if (recvRank == -1) {
+            LOG(V2_INFO, "AHHHHHHH\n");
+        } else {
+            // Found a valid rank!
+            JobMessage msg = getMessageTemplate();
+            msg.payload = {787};
+            msg.treeIndexOfDestination = 1;
+            msg.contextIdOfDestination = getJobComm().getContextIdOrZero(1);
+            assert(msg.contextIdOfDestination != 0);
+            // Send
+            getJobTree().send(recvRank, MSG_SEND_APPLICATION_MESSAGE, msg);
+            LOG(V2_INFO, "Message returned to sender %i.\n", recvRank);
+    }
+}
 }
 
 // React to an incoming message.
@@ -244,7 +263,7 @@ void BnbJob::appl_communicate(int source, int mpiTag, JobMessage& msg) {
             LOG(V2_INFO, "AHHHHHHH\n");
         } else {
             // Found a valid rank!
-            msg.payload = splitQueue();
+            msg.payload = {333};
             msg.treeIndexOfDestination = source;
             msg.contextIdOfDestination = getJobComm().getContextIdOrZero(source);
             assert(msg.contextIdOfDestination != 0);
