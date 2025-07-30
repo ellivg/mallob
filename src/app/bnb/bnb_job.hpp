@@ -31,6 +31,7 @@ private:
     Mutex queue_mtx;
     ConditionVariable _loop_cond_var;
     bool _working;
+    bool _waiting;
 
     static const int MSG_ROUNDTRIP = 1; // internal message tag for our round-trip messages
     static const int MSG_TEST = 2;

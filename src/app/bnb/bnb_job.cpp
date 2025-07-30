@@ -223,12 +223,18 @@ void BnbJob::appl_communicate() {
             usleep(1000*100); //add cond_var here too?
             return;
         }
+        if (_waiting) {
+            LOG(V2_INFO, "Waiting\n");
+            usleep(1000*100); //add cond_var here too?
+            return;
+        }
         JobMessage msg = getMessageTemplate();
         msg.tag = MSG_QUEUE_EMPTY;
-        msg.payload = {3}; // irrelevant
+        msg.payload = {0}; // irrelevant
         // Send
         getJobTree().sendToRoot(msg);
         LOG(V2_INFO, "Work queue is empty. Message sent.\n");
+        _waiting = 1;
     }
 
     if(getJobTree().isRoot() && _send_messages) {
@@ -245,15 +251,16 @@ void BnbJob::appl_communicate() {
             msg.contextIdOfDestination = getJobComm().getContextIdOrZero(1);
             assert(msg.contextIdOfDestination != 0);
             // Send
-            getJobTree().send(recvRank, MSG_SEND_APPLICATION_MESSAGE, msg);
-            LOG(V2_INFO, "Message returned to sender %i.\n", recvRank);
+            //getJobTree().send(recvRank, MSG_SEND_APPLICATION_MESSAGE, msg);
+            //LOG(V2_INFO, "Message returned to sender %i.\n", recvRank);
     }
 }
 }
 
 // React to an incoming message.
 void BnbJob::appl_communicate(int source, int mpiTag, JobMessage& msg) {
-    LOG(V2_INFO, "Message %i with Payload %i from %i received.\n", msg.tag, msg.payload[0], source);   
+    LOG(V2_INFO, "Message %i with Payload %i from %i received.\n", msg.tag, msg.payload[0], source);  
+    usleep(1000*100); // for easy reading purposes 
 
     if (getJobTree().isRoot()) {
         // Use our JobComm to convert the tree index into an addressable MPI rank.
@@ -263,7 +270,7 @@ void BnbJob::appl_communicate(int source, int mpiTag, JobMessage& msg) {
             LOG(V2_INFO, "AHHHHHHH\n");
         } else {
             // Found a valid rank!
-            msg.payload = {333};
+            msg.payload = splitQueue();
             msg.treeIndexOfDestination = source;
             msg.contextIdOfDestination = getJobComm().getContextIdOrZero(source);
             assert(msg.contextIdOfDestination != 0);
@@ -288,8 +295,10 @@ std::vector<int> BnbJob::splitQueue() {
     } else {
         int length = _work_queue.size();
         int sendLength = length / 2;
+        if (sendLength > 100) sendLength = 100; //this seems to be a bottleneck, so maybe change way for sending entirely
         for (int i = 0; i < sendLength; i++) {
             Work work_front = _work_queue.front();
+            _work_queue.pop();
             std::vector<int> vector_front;
 
             vector_front.push_back(work_front.completed);
@@ -297,6 +306,8 @@ std::vector<int> BnbJob::splitQueue() {
             vector_front.insert(vector_front.end(), work_front.tasks.begin(), work_front.tasks.end());
             vector_front.push_back(-2);
             for (int i = 0; i < work_front.processors.size(); i++) vector_front.insert(vector_front.end(), work_front.tasks.begin(), work_front.tasks.end());
+            
+            sendQueue.insert(sendQueue.end(), vector_front.begin(), vector_front.end());
         }
     }
 
@@ -306,6 +317,7 @@ std::vector<int> BnbJob::splitQueue() {
 void BnbJob::addToQueue(std::vector<int>& message) {
 
     _working = 1;
+    _waiting = 0;
     _loop_cond_var.notify();
 }
 
