@@ -293,6 +293,11 @@ std::vector<int> BnbJob::splitQueue() {
     if (_work_queue.size() < 2) {
         sendQueue.push_back(-1);
     } else {
+        //we have to send the nr of tasks and processors too (maybe change to root broadcast later on)
+        sendQueue.push_back(_nr_tasks);
+        sendQueue.push_back(_nr_processors);
+        sendQueue.push_back(-3);
+
         int length = _work_queue.size();
         int sendLength = length / 2;
         if (sendLength > 100) sendLength = 100; //this seems to be a bottleneck, so maybe change way for sending entirely
@@ -321,12 +326,28 @@ std::vector<int> BnbJob::splitQueue() {
 void BnbJob::addToQueue(std::vector<int>& message) {
     auto lock = queue_mtx.getLock();
 
+    //get nr of tasks and processors first
+    int next;
+    
+    next = message.front();
+    message.erase(message.begin());
+    assert(next >= 0);
+    _nr_tasks = next;
+
+    next = message.front();
+    message.erase(message.begin());
+    assert(next >= 0);
+    _nr_processors = next;
+
+    next = message.front();
+    message.erase(message.begin());
+    assert(next == -3);
+
     //add one work at a time
     //it has to look like this:
     // (0/1) (-2) (tasks: (0/...)_nr_tasks) (-2) (processors: (0/...)_nr_processors) (-3)
     //clean up??
     while (!message.empty()) {
-        int next;
         Work work;
 
         //completed
@@ -340,20 +361,18 @@ void BnbJob::addToQueue(std::vector<int>& message) {
         message.erase(message.begin());
         assert(next == -2);
 
-        std::cout << "\nTASKS:";
         //tasks (is there a function to not do this in a loop?)
-        for (int i = 0; i < _nr_tasks; i++) {
-            next = message.front();
-            message.erase(message.begin());
-            assert(next > 0);
-            work.tasks.push_back(next);
-            std::cout << " " << next;
-        }
-        std::cout << "\n\n";
-
-        //-2
         next = message.front();
         message.erase(message.begin());
+        while (next != -2) {
+            assert(next > 0);
+            work.tasks.push_back(next);
+
+            next = message.front();
+            message.erase(message.begin());
+        }
+
+        //-2
         assert(next == -2);
 
         //processors
@@ -366,6 +385,9 @@ void BnbJob::addToQueue(std::vector<int>& message) {
                 next = message.front();
                 message.erase(message.begin()); 
             }
+
+            //-2
+            assert(next == -2);
         }
 
         //-3
