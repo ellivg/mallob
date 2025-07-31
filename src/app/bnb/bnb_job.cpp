@@ -282,7 +282,7 @@ void BnbJob::appl_communicate(int source, int mpiTag, JobMessage& msg) {
 
     if(!(getJobTree().isRoot())) {
         addToQueue(msg.payload);
-        LOG(V2_INFO, "Message processed\n");
+        LOG(V2_INFO, "Work queue is filled.\n");
     }
 }
 
@@ -376,11 +376,12 @@ void BnbJob::addToQueue(std::vector<int>& message) {
         assert(next == -2);
 
         //processors
+        std::vector<std::vector<int>> processors(_nr_processors, std::vector<int>(1, 0));
         for (int i = 0; i < _nr_processors; i++) {
             next = message.front();
             message.erase(message.begin());
             while(next != -2) {
-                work.processors.at(i).push_back(next);    
+                processors.at(i).push_back(next);    
 
                 next = message.front();
                 message.erase(message.begin()); 
@@ -389,6 +390,7 @@ void BnbJob::addToQueue(std::vector<int>& message) {
             //-2
             assert(next == -2);
         }
+        work.processors = processors;
 
         //-3
         next = message.front();
