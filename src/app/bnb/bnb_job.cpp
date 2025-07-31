@@ -305,7 +305,11 @@ std::vector<int> BnbJob::splitQueue() {
             vector_front.push_back(-2); // -2 is inside work and -3 (see later) between works as just one delimiter is not enough
             vector_front.insert(vector_front.end(), work_front.tasks.begin(), work_front.tasks.end());
             vector_front.push_back(-2);
-            for (int i = 0; i < work_front.processors.size(); i++) vector_front.insert(vector_front.end(), work_front.tasks.begin(), work_front.tasks.end());
+            for (int i = 0; i < work_front.processors.size(); i++) {
+                vector_front.insert(vector_front.end(), work_front.processors.at(i).begin(), work_front.processors.at(i).end());
+                vector_front.push_back(-2);
+            }
+            vector_front.push_back(-3);
             
             sendQueue.insert(sendQueue.end(), vector_front.begin(), vector_front.end());
         }
@@ -315,6 +319,62 @@ std::vector<int> BnbJob::splitQueue() {
 }
 
 void BnbJob::addToQueue(std::vector<int>& message) {
+    auto lock = queue_mtx.getLock();
+
+    //add one work at a time
+    //it has to look like this:
+    // (0/1) (-2) (tasks: (0/...)_nr_tasks) (-2) (processors: (0/...)_nr_processors) (-3)
+    //clean up??
+    while (!message.empty()) {
+        int next;
+        Work work;
+
+        //completed
+        next = message.front();
+        message.erase(message.begin());
+        assert(next == 0 || next == 1);
+        work.completed = next;
+
+        //-2
+        next = message.front();
+        message.erase(message.begin());
+        assert(next == -2);
+
+        std::cout << "\nTASKS:";
+        //tasks (is there a function to not do this in a loop?)
+        for (int i = 0; i < _nr_tasks; i++) {
+            next = message.front();
+            message.erase(message.begin());
+            assert(next > 0);
+            work.tasks.push_back(next);
+            std::cout << " " << next;
+        }
+        std::cout << "\n\n";
+
+        //-2
+        next = message.front();
+        message.erase(message.begin());
+        assert(next == -2);
+
+        //processors
+        for (int i = 0; i < _nr_processors; i++) {
+            next = message.front();
+            message.erase(message.begin());
+            while(next != -2) {
+                work.processors.at(i).push_back(next);    
+
+                next = message.front();
+                message.erase(message.begin()); 
+            }
+        }
+
+        //-3
+        next = message.front();
+        message.erase(message.begin());
+        assert(next == -3);
+
+        _work_queue.push(work);
+    }
 
     _working = 1;
     _waiting = 0;
