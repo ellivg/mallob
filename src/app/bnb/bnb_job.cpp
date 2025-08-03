@@ -61,19 +61,41 @@ void BnbJob::init() {
 }
 
 void BnbJob::loop() {
+//loop doesn't start if _working = 0 from the beginning
+    if (!_working) {
+        bool empty;
+        {
+            auto lock = queue_mtx.getLock();
+            empty = _work_queue.empty();
+
+            if(empty) {
+                LOG(V2_INFO, "Stopping Loop\n");
+                _working = 0;
+                _loop_cond_var.waitWithLockedMutex(lock, [&]() {return _working;});
+                LOG(V2_INFO, "Restarting loop\n");
+            }
+        }
+    }
+
     
-    while(_working && Timer::elapsedSeconds() <= 5) {
+    while(_working) {
 
         bool empty;
         {
             auto lock = queue_mtx.getLock();
             empty = _work_queue.empty();
-        }
 
-        if(empty) {
-            usleep(1000); // 1 milliseconds
-            continue;
-            _loop_cond_var.wait(queue_mtx, [&]() {return _working;});
+            if(empty) {
+                LOG(V2_INFO, "Stopping Loop\n");
+                _working = 0;
+                _loop_cond_var.waitWithLockedMutex(lock, [&]() {return _working;});
+                LOG(V2_INFO, "Restarting loop\n");
+            }
+
+            {
+                usleep(1000*100);
+                LOG(V2_INFO, "In loop. Jobs left: %i\n", _work_queue.size());
+            }
         }
 
         Work curr_work;
@@ -420,7 +442,7 @@ int BnbJob::appl_solved() {
         empty = _work_queue.empty();
     }
 
-    if(!empty) return -1;
+    if(!empty || _working) return -1;
     if(getJobTree().isRoot()) {
         auto lock = solution_mtx.getLock();
         std::vector<int> _internal_solution;
