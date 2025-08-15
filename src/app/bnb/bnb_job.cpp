@@ -24,6 +24,7 @@ BnbJob::BnbJob(const Parameters& params, const JobSetup& setup, AppMessageTable&
         _result.result = -1;
         _working = 0;
         _waiting = 0;
+        _finished = 0;
 }
 
 void BnbJob::appl_start() {
@@ -251,13 +252,27 @@ void BnbJob::appl_communicate() {
             usleep(1000*100); //add cond_var here too?
             return;
         }
+
         JobMessage msg = getMessageTemplate();
         msg.tag = MSG_QUEUE_EMPTY;
         msg.payload = {0}; // irrelevant
+
         // Send
-        getJobTree().sendToRoot(msg);
-        LOG(V2_INFO, "Work queue is empty. Message sent.\n");
-        _waiting = 1;
+        int randomIndex = rand() % NUM_WORKERS;
+        // Use our JobComm to convert the tree index into an addressable MPI rank.
+        int recvRank = getJobComm().getWorldRankOrMinusOne(randomIndex);
+        
+        if (recvRank == -1 || getJobTree().getRank() == randomIndex) {
+            LOG(V2_INFO, "AHHHHHHH\n");
+        } else {
+            msg.treeIndexOfDestination = randomIndex;
+            msg.contextIdOfDestination = getJobComm().getContextIdOrZero(randomIndex);
+            assert(msg.contextIdOfDestination != 0);
+            // Send
+            getJobTree().send(recvRank, MSG_SEND_APPLICATION_MESSAGE, msg);
+            LOG(V2_INFO, "[msg] Work queue is empty. Message sent to %i.\n", recvRank);
+            _waiting = 1;
+        }
     }
 
     if(getJobTree().isRoot() && _send_messages) {
@@ -282,10 +297,11 @@ void BnbJob::appl_communicate() {
 
 // React to an incoming message.
 void BnbJob::appl_communicate(int source, int mpiTag, JobMessage& msg) {
-    LOG(V2_INFO, "Message %i with Payload %i from %i received.\n", msg.tag, msg.payload[0], source);  
+    LOG(V2_INFO, "[msg] Message %i with Payload %i from %i received.\n", msg.tag, msg.payload[0], source);  
     usleep(1000*100); // for easy reading purposes 
 
-    if (getJobTree().isRoot()) {
+    if (msg.tag == MSG_QUEUE_EMPTY) {
+        LOG(V2_INFO, "Processing\n");
         // Use our JobComm to convert the tree index into an addressable MPI rank.
         int recvRank = getJobComm().getWorldRankOrMinusOne(source);
 
@@ -294,18 +310,21 @@ void BnbJob::appl_communicate(int source, int mpiTag, JobMessage& msg) {
         } else {
             // Found a valid rank!
             msg.payload = splitQueue();
+            msg.tag = MSG_QUEUE_FILLED;
             msg.treeIndexOfDestination = source;
             msg.contextIdOfDestination = getJobComm().getContextIdOrZero(source);
             assert(msg.contextIdOfDestination != 0);
             // Send
             getJobTree().send(recvRank, MSG_SEND_APPLICATION_MESSAGE, msg);
         }
-        LOG(V2_INFO, "Message returned to sender %i.\n", recvRank);
+        LOG(V2_INFO, "[msg] Message returned to sender %i.\n", recvRank);
+        return;
     }
 
-    if(!(getJobTree().isRoot())) {
+    if(msg.tag == MSG_QUEUE_FILLED) {
+        LOG(V2_INFO, "[msg] Filling work queue.\n");
         addToQueue(msg.payload);
-        LOG(V2_INFO, "Work queue is filled.\n");
+        LOG(V2_INFO, "[msg] Work queue is filled.\n", source, msg.tag, msg.payload[0]);
     }
 }
 
@@ -347,6 +366,10 @@ std::vector<int> BnbJob::splitQueue() {
 }
 
 void BnbJob::addToQueue(std::vector<int>& message) {
+    if(message[0] == -1) {
+        _finished = 1;
+    }
+    
     auto lock = queue_mtx.getLock();
 
     //get nr of tasks and processors first
@@ -442,6 +465,8 @@ int BnbJob::appl_solved() {
         auto lock = queue_mtx.getLock();
         empty = _work_queue.empty();
     }
+
+    if(!_finished) return -1;
 
     if(!empty || _working) return -1;
     if(getJobTree().isRoot()) {
