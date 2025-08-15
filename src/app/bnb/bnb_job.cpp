@@ -23,6 +23,7 @@ BnbJob::BnbJob(const Parameters& params, const JobSetup& setup, AppMessageTable&
         // no result present
         _result.result = -1;
         _working = 0;
+        _waiting = 0;
 }
 
 void BnbJob::appl_start() {
