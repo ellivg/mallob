@@ -93,11 +93,6 @@ void BnbJob::loop() {
                 _loop_cond_var.waitWithLockedMutex(lock, [&]() {return _working;});
                 LOG(V2_INFO, "Restarting loop\n");
             }
-
-            {
-                usleep(1000*100);
-                LOG(V2_INFO, "In loop. Jobs left: %i\n", _work_queue.size());
-            }
         }
 
         Work curr_work;
@@ -106,7 +101,9 @@ void BnbJob::loop() {
             curr_work = _work_queue.front();
             _work_queue.pop();
         }
-        LOG(V5_DEBG, "%s", transform_for_log("Loop", curr_work).c_str());
+        usleep(1000*100);
+        LOG(V2_INFO, "In loop. Jobs left: %i\n", _work_queue.size());
+        LOG(V5_DEBG, "%s", transform_for_log("In Loop. Currently at:", curr_work));
         
         branch(curr_work);
          
@@ -368,6 +365,8 @@ std::vector<int> BnbJob::splitQueue() {
 void BnbJob::addToQueue(std::vector<int>& message) {
     if(message[0] == -1) {
         _finished = 1;
+        _waiting = 0;
+        return;
     }
     
     auto lock = queue_mtx.getLock();
@@ -426,6 +425,7 @@ void BnbJob::addToQueue(std::vector<int>& message) {
         for (int i = 0; i < _nr_processors; i++) {
             next = message.front();
             message.erase(message.begin());
+            processors.at(i).pop_back(); // delete initial 0
             while(next != -2) {
                 processors.at(i).push_back(next);    
 
@@ -469,7 +469,7 @@ int BnbJob::appl_solved() {
     if(!_finished) return -1;
 
     if(!empty || _working) return -1;
-    if(getJobTree().isRoot()) {
+    {
         auto lock = solution_mtx.getLock();
         std::vector<int> _internal_solution;
         for(int i = 0; i < _best_solution.processors.size(); i++) {
