@@ -34,7 +34,7 @@ void BnbJob::appl_start() {
 
     LOG(V5_DEBG, "myRank: %i myIndex: %i\n", getJobTree().getRank(), getJobTree().getIndex());
 
-    if(getJobTree().isRoot()) init();
+    init();
     
     ProcessWideThreadPool::get().addTask([this]() {loop();});
 }
@@ -50,6 +50,8 @@ void BnbJob::init() {
     for(int i = 0; i < _nr_tasks; ++i) {
         tasks.push_back(problem[i+2]);
     }
+
+    if(!getJobTree().isRoot()) return;
 
     //initial work
     auto lock = queue_mtx.getLock();
@@ -337,11 +339,6 @@ std::vector<int> BnbJob::splitQueue() {
     if (_work_queue.size() < 2) {
         sendQueue.push_back(-1);
     } else {
-        //we have to send the nr of tasks and processors too (maybe change to root broadcast later on)
-        sendQueue.push_back(_nr_tasks);
-        sendQueue.push_back(_nr_processors);
-        sendQueue.push_back(-3);
-
         int length = _work_queue.size();
         int sendLength = length / 2;
         LOG(V5_DEBG, "[msg] Work queue is: %i\n", _work_queue.size());
@@ -371,23 +368,7 @@ std::vector<int> BnbJob::splitQueue() {
 void BnbJob::addToQueue(std::vector<int>& message) {
     
     auto lock = queue_mtx.getLock();
-
-    //get nr of tasks and processors first
     int next;
-    
-    next = message.front();
-    message.erase(message.begin());
-    assert(next >= 0);
-    _nr_tasks = next;
-
-    next = message.front();
-    message.erase(message.begin());
-    assert(next >= 0);
-    _nr_processors = next;
-
-    next = message.front();
-    message.erase(message.begin());
-    assert(next == -3);
 
     //add one work at a time
     //it has to look like this:
