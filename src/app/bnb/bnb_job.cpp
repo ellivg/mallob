@@ -71,7 +71,7 @@ void BnbJob::loop() {
             empty = _work_queue.empty();
 
             if(empty) {
-                LOG(V2_INFO, "Stopping Loop\n");
+                LOG(V2_INFO, "[queue] Queue empty. Waiting\n");
                 _working = 0;
                 _loop_cond_var.waitWithLockedMutex(lock, [&]() {return _working;});
                 LOG(V2_INFO, "Restarting loop\n");
@@ -303,7 +303,7 @@ void BnbJob::appl_communicate(int source, int mpiTag, JobMessage& msg) {
         int recvRank = getJobComm().getWorldRankOrMinusOne(source);
 
         if (recvRank == -1) {
-            LOG(V2_INFO, "AHHHHHHH\n");
+            LOG(V2_INFO, "[msg] Message couldn't be send. Try again\n");
         } else {
             // Found a valid rank!
             msg.payload = splitQueue();
@@ -319,9 +319,14 @@ void BnbJob::appl_communicate(int source, int mpiTag, JobMessage& msg) {
     }
 
     if(msg.tag == MSG_WORK_STEALING_ANSWER) {
-        LOG(V2_INFO, "[msg] Filling work queue.\n");
-        addToQueue(msg.payload);
-        LOG(V2_INFO, "[msg] Work queue is filled.\n", source, msg.tag, msg.payload[0]);
+        if(msg.payload[0] == -1) {
+           // _finished = 1;
+            _waiting = 0;
+        } else {
+            LOG(V2_INFO, "[msg] Filling work queue.\n");
+            addToQueue(msg.payload);
+            LOG(V2_INFO, "[msg] Work queue is filled.\n", source, msg.tag, msg.payload[0]);
+        } 
     }
 }
 
@@ -339,6 +344,7 @@ std::vector<int> BnbJob::splitQueue() {
 
         int length = _work_queue.size();
         int sendLength = length / 2;
+        LOG(V5_DEBG, "[msg] Work queue is: %i\n", _work_queue.size());
         if (sendLength > 100) sendLength = 100; //this seems to be a bottleneck, so maybe change way for sending entirely
         for (int i = 0; i < sendLength; i++) {
             Work work_front = _work_queue.front();
@@ -363,11 +369,6 @@ std::vector<int> BnbJob::splitQueue() {
 }
 
 void BnbJob::addToQueue(std::vector<int>& message) {
-    if(message[0] == -1) {
-        _finished = 1;
-        _waiting = 0;
-        return;
-    }
     
     auto lock = queue_mtx.getLock();
 

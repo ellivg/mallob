@@ -38,8 +38,8 @@ private:
     static const int MSG_TEST = 2;
     static const int MSG_WORK_STEALING_QUERY = 31;
     static const int MSG_WORK_STEALING_ANSWER = 32;
-    
-    static const int NUM_WORKERS = 2; // # workers we request and require
+
+    static const int NUM_WORKERS = 3; // # workers we request and require
 
     // Represents a pseudo-random permutation of a set of integers [0..n).
     AdjustablePermutation _perm;
