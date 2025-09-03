@@ -251,7 +251,7 @@ void BnbJob::appl_communicate() {
         }
 
         JobMessage msg = getMessageTemplate();
-        msg.tag = MSG_QUEUE_EMPTY;
+        msg.tag = MSG_WORK_STEALING_QUERY;
         msg.payload = {0}; // irrelevant
 
         // Send
@@ -297,7 +297,7 @@ void BnbJob::appl_communicate(int source, int mpiTag, JobMessage& msg) {
     LOG(V2_INFO, "[msg] Message %i with Payload %i from %i received.\n", msg.tag, msg.payload[0], source);  
     usleep(1000*100); // for easy reading purposes 
 
-    if (msg.tag == MSG_QUEUE_EMPTY) {
+    if (msg.tag == MSG_WORK_STEALING_QUERY) {
         LOG(V2_INFO, "Processing\n");
         // Use our JobComm to convert the tree index into an addressable MPI rank.
         int recvRank = getJobComm().getWorldRankOrMinusOne(source);
@@ -307,7 +307,7 @@ void BnbJob::appl_communicate(int source, int mpiTag, JobMessage& msg) {
         } else {
             // Found a valid rank!
             msg.payload = splitQueue();
-            msg.tag = MSG_QUEUE_FILLED;
+            msg.tag = MSG_WORK_STEALING_ANSWER;
             msg.treeIndexOfDestination = source;
             msg.contextIdOfDestination = getJobComm().getContextIdOrZero(source);
             assert(msg.contextIdOfDestination != 0);
@@ -318,7 +318,7 @@ void BnbJob::appl_communicate(int source, int mpiTag, JobMessage& msg) {
         return;
     }
 
-    if(msg.tag == MSG_QUEUE_FILLED) {
+    if(msg.tag == MSG_WORK_STEALING_ANSWER) {
         LOG(V2_INFO, "[msg] Filling work queue.\n");
         addToQueue(msg.payload);
         LOG(V2_INFO, "[msg] Work queue is filled.\n", source, msg.tag, msg.payload[0]);

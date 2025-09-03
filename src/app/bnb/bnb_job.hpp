@@ -36,8 +36,9 @@ private:
 
     static const int MSG_ROUNDTRIP = 1; // internal message tag for our round-trip messages
     static const int MSG_TEST = 2;
-    static const int MSG_QUEUE_EMPTY = 3;
-    static const int MSG_QUEUE_FILLED = 4;
+    static const int MSG_WORK_STEALING_QUERY = 31;
+    static const int MSG_WORK_STEALING_ANSWER = 32;
+    
     static const int NUM_WORKERS = 2; // # workers we request and require
 
     // Represents a pseudo-random permutation of a set of integers [0..n).
