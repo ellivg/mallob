@@ -130,38 +130,40 @@ void BnbJob::appl_communicate() {
 // React to an incoming message.
 void BnbJob::appl_communicate(int source, int mpiTag, JobMessage& msg) {
     LOG(V2_INFO, "[msg] Message %i with Payload %i from %i received.\n", msg.tag, msg.payload[0], source);  
-    usleep(1000*100); // for easy reading purposes 
 
     if (msg.tag == MSG_WORK_STEALING_QUERY) {
-        LOG(V2_INFO, "Processing\n");
+        LOG(V2_INFO, "[msg] Processing work stealing query from %i\n", source);
+
         // Use our JobComm to convert the tree index into an addressable MPI rank.
         int recvRank = getJobComm().getWorldRankOrMinusOne(source);
 
         if (recvRank == -1) {
-            LOG(V2_INFO, "[msg] Message couldn't be send. Try again\n");
+            LOG(V2_INFO, "[msg] Work stealing query couldn't be answered as requesting rank is invalid\n");
         } else {
-            // Found a valid rank!
-            msg.payload = splitQueue();
+            // Returning work
             msg.tag = MSG_WORK_STEALING_ANSWER;
+            msg.payload = splitQueue();
+            
+            //Send
             msg.treeIndexOfDestination = source;
             msg.contextIdOfDestination = getJobComm().getContextIdOrZero(source);
             assert(msg.contextIdOfDestination != 0);
-            // Send
             getJobTree().send(recvRank, MSG_SEND_APPLICATION_MESSAGE, msg);
+            LOG(V2_INFO, "[msg] Message returned to sender %i.\n", recvRank);
         }
-        LOG(V2_INFO, "[msg] Message returned to sender %i.\n", recvRank);
         return;
     }
 
     if(msg.tag == MSG_WORK_STEALING_ANSWER) {
         if(msg.payload[0] == -1) {
-           // _finished = 1;
+           // _finished = 1; TODO HERE
             _waiting = 0;
         } else {
-            LOG(V2_INFO, "[msg] Filling work queue.\n");
+            LOG(V2_INFO, "[msg] Work stealing query successful. Filling work queue.\n");
             addToQueue(msg.payload);
             LOG(V2_INFO, "[msg] Work queue is filled.\n", source, msg.tag, msg.payload[0]);
-        } 
+        }
+        return;
     }
 }
 
