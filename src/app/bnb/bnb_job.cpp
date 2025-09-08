@@ -175,6 +175,7 @@ int BnbJob::getDemand() const {
 //PRIVATE METHODS
 
 void BnbJob::init() {
+    //read problem
     size_t problem_size = getDescription().getFormulaPayloadSize(0);
     int const *problem = getDescription().getFormulaPayload(0);
 
@@ -186,9 +187,9 @@ void BnbJob::init() {
         tasks.push_back(problem[i+2]);
     }
 
+    //initial work (only done by root)
     if(!getJobTree().isRoot()) return;
 
-    //initial work
     auto lock = queue_mtx.getLock();
     std::vector<std::vector<int>> processors(_nr_processors, std::vector<int>(1, 0));
     Work work = {0, tasks, processors};
@@ -200,35 +201,17 @@ void BnbJob::init() {
 }
 
 void BnbJob::loop() {
-//loop doesn't start if _working = 0 from the beginning
-    if (!_working) {
+    do {
         bool empty;
         {
             auto lock = queue_mtx.getLock();
             empty = _work_queue.empty();
 
             if(empty) {
-                LOG(V2_INFO, "[queue] Queue empty. Waiting\n");
+                LOG(V2_INFO, "[queue] Queue empty. Stopping Loop\n");
                 _working = 0;
                 _loop_cond_var.waitWithLockedMutex(lock, [&]() {return _working;});
-                LOG(V2_INFO, "Restarting loop\n");
-            }
-        }
-    }
-
-    
-    while(_working) {
-
-        bool empty;
-        {
-            auto lock = queue_mtx.getLock();
-            empty = _work_queue.empty();
-
-            if(empty) {
-                LOG(V2_INFO, "Stopping Loop\n");
-                _working = 0;
-                _loop_cond_var.waitWithLockedMutex(lock, [&]() {return _working;});
-                LOG(V2_INFO, "Restarting loop\n");
+                LOG(V2_INFO, "[queue] Restarting loop\n");
             }
         }
 
@@ -238,9 +221,8 @@ void BnbJob::loop() {
             curr_work = _work_queue.front();
             _work_queue.pop();
         }
-        usleep(1000*100);
-        LOG(V2_INFO, "In loop. Jobs left: %i\n", _work_queue.size());
-        LOG(V5_DEBG, "%s", transform_for_log("In Loop. Currently at:", curr_work));
+        LOG(V2_INFO, "[queue] In loop. Jobs left: %i\n", _work_queue.size());
+        LOG(V5_DEBG, "%s", transform_for_log("[queue] In Loop. Currently at:", curr_work));
         
         branch(curr_work);
          
@@ -257,7 +239,7 @@ void BnbJob::loop() {
                 _best_length = new_length;
             }        
         }
-    }
+    } while(_working);
 }
 
 BnbJob::Work BnbJob::branch(Work& work) {
