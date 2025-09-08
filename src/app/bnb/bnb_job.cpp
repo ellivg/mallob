@@ -56,7 +56,7 @@ int BnbJob::appl_solved() { //TODO CHANGES HERE
         _result.result = 0;
         _result.setSolution(std::move(_internal_solution));
 
-        LOG(V2_INFO, "%s", transform_for_log("End", _best_solution).c_str());
+        LOG(V2_INFO, "%s", transform_for_log("[solved] End", _best_solution).c_str());
     }
     return _result.result;
 }
@@ -197,7 +197,7 @@ void BnbJob::init() {
     _best_length = -1;
     _working = 1;
 
-    LOG(V2_INFO, "%s", transform_for_log("Beginning", work).c_str());
+    LOG(V2_INFO, "%s", transform_for_log("[start] Beginning", work).c_str());
 }
 
 void BnbJob::loop() {
@@ -316,7 +316,6 @@ void BnbJob::addToQueue(std::vector<int>& message) {
     //add one work at a time
     //it has to look like this:
     // (0/1) (-2) (tasks: (0/...)_nr_tasks) (-2) (processors: (0/...)_nr_processors) (-3)
-    //clean up??
     while (!message.empty()) {
         Work work;
 
@@ -331,7 +330,7 @@ void BnbJob::addToQueue(std::vector<int>& message) {
         message.erase(message.begin());
         assert(next == -2);
 
-        //tasks (is there a function to not do this in a loop?)
+        //tasks
         next = message.front();
         message.erase(message.begin());
         while (next != -2) {
