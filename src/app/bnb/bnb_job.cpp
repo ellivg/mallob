@@ -35,7 +35,7 @@ void BnbJob::appl_start() {
     ProcessWideThreadPool::get().addTask([this]() {loop();});
 }
 
-int BnbJob::appl_solved() {
+int BnbJob::appl_solved() { //TODO CHANGES HERE
     bool empty;
     {
         auto lock = queue_mtx.getLock();
@@ -67,83 +67,64 @@ JobResult&& BnbJob::appl_getResult() {
 
 // Called periodically by the main thread to allow the worker to emit messages.
 void BnbJob::appl_communicate() {
-    // Not enough workers available?
+    // Are enough workers available?
     if (getJobTree().isRoot() && !_send_messages && getVolume() < NUM_WORKERS) {
         if (getAgeSinceActivation() < 1) return; // wait for up to 1s after appl_start
 
-        LOG(V2_INFO, "[dummy] Unable to get %i workers within 1 second - giving up\n", NUM_WORKERS);
+        LOG(V2_INFO, "[msg] Unable to get %i workers within 1 second - giving up\n", NUM_WORKERS);
         // Report an "unknown" result (code 0)
         insertResult(0, {-1});
-        _send_messages= true;
         return;
     }
 
+    //Allow messages after conditions are met
     if (!_send_messages && getVolume() == NUM_WORKERS
             && getJobComm().getWorldRankOrMinusOne(NUM_WORKERS-1) >= 0) {
 
-        // figure out new text here
+        LOG(V2_INFO, "[msg] Messages allowed starting now\n");
         _send_messages = true;
     }
 
-    //subject to change
+    //Check if new work needs to be requested and request if possible
     bool empty;
     {
         auto lock = queue_mtx.getLock();
         empty = _work_queue.empty();
     }
-
     if(empty) {
         if (!_send_messages) {
-            LOG(V2_INFO, "Not ready yet: %i\n", _send_messages);
-            usleep(1000*100); //add cond_var here too?
+            LOG(V2_INFO, "[msg] Tried requesting work but messages are not allowed\n");
+            usleep(1000*1000); //wait 1s (until {giving up message} is sent) until trying again
             return;
         }
         if (_waiting) {
-            LOG(V2_INFO, "Waiting\n");
-            usleep(1000*100); //add cond_var here too?
+            LOG(V2_INFO, "[msg] Waiting\n");
+            usleep(1000*100); //wait 0.1s to account for operations to fill queue (TODO maybe change?)
             return;
         }
-
+        
+        //Request work
         JobMessage msg = getMessageTemplate();
         msg.tag = MSG_WORK_STEALING_QUERY;
         msg.payload = {0}; // irrelevant
 
-        // Send
+        // Check if request can be sent
         int randomIndex = rand() % NUM_WORKERS;
         // Use our JobComm to convert the tree index into an addressable MPI rank.
         int recvRank = getJobComm().getWorldRankOrMinusOne(randomIndex);
-        
         if (recvRank == -1 || getJobTree().getRank() == randomIndex) {
-            LOG(V2_INFO, "AHHHHHHH\n");
+            LOG(V2_INFO, "[msg] Tried requesting work but receiving rank was invalid or my own: %i\n", recvRank);
         } else {
+            //Send
             msg.treeIndexOfDestination = randomIndex;
             msg.contextIdOfDestination = getJobComm().getContextIdOrZero(randomIndex);
             assert(msg.contextIdOfDestination != 0);
-            // Send
+
             getJobTree().send(recvRank, MSG_SEND_APPLICATION_MESSAGE, msg);
-            LOG(V2_INFO, "[msg] Work queue is empty. Message sent to %i.\n", recvRank);
+            LOG(V2_INFO, "[msg] Requested work stealing from: %i\n", recvRank);
             _waiting = 1;
         }
     }
-
-    if(getJobTree().isRoot() && _send_messages) {
-        // Use our JobComm to convert the tree index into an addressable MPI rank.
-        int recvRank = getJobComm().getWorldRankOrMinusOne(1);
-
-        if (recvRank == -1) {
-            LOG(V2_INFO, "AHHHHHHH\n");
-        } else {
-            // Found a valid rank!
-            JobMessage msg = getMessageTemplate();
-            msg.payload = {787};
-            msg.treeIndexOfDestination = 1;
-            msg.contextIdOfDestination = getJobComm().getContextIdOrZero(1);
-            assert(msg.contextIdOfDestination != 0);
-            // Send
-            //getJobTree().send(recvRank, MSG_SEND_APPLICATION_MESSAGE, msg);
-            //LOG(V2_INFO, "Message returned to sender %i.\n", recvRank);
-    }
-}
 }
 
 // React to an incoming message.
