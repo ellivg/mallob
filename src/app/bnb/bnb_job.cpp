@@ -20,11 +20,8 @@ BnbJob::BnbJob(const Parameters& params, const JobSetup& setup, AppMessageTable&
         // we need a JobComm instance to be constructed for us in the background.
         assert(_params.jobCommUpdatePeriod() > 0 || log_return_false("[ERROR] For this application to work,"
             " you must explicitly enable job communicators with the -jcup option, e.g., -jcup=0.1\n"));
-        // no result present
-        _result.result = -1;
-        _working = 0;
-        _waiting = 0;
-        _finished = 0;
+        
+        _result.result = -1; // no result present at initilization
 }
 
 void BnbJob::appl_start() {
@@ -35,7 +32,6 @@ void BnbJob::appl_start() {
     LOG(V5_DEBG, "myRank: %i myIndex: %i\n", getJobTree().getRank(), getJobTree().getIndex());
 
     init();
-    
     ProcessWideThreadPool::get().addTask([this]() {loop();});
 }
 

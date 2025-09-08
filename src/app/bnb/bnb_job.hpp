@@ -36,9 +36,9 @@ private:
     Mutex queue_mtx;
     ConditionVariable _loop_cond_var;
 
-    bool _working;
-    bool _waiting;
-    bool _finished;
+    bool _working {false};
+    bool _waiting {false};
+    bool _finished {false};
     bool _send_messages {false}; // Whether we can send messages
 
     static const int MSG_ROUNDTRIP = 1; // internal message tag for our round-trip messages
