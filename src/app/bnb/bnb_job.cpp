@@ -202,6 +202,7 @@ void BnbJob::init() {
 
 void BnbJob::loop() {
     do {
+        //check if queue is empty and stop working if necessary
         bool empty;
         {
             auto lock = queue_mtx.getLock();
@@ -215,12 +216,14 @@ void BnbJob::loop() {
             }
         }
 
+        //else: work
         Work curr_work;
         {
             auto lock = queue_mtx.getLock();
             curr_work = _work_queue.front();
             _work_queue.pop();
         }
+        usleep(1000*10); //TODO work on removing
         LOG(V2_INFO, "[queue] In loop. Jobs left: %i\n", _work_queue.size());
         LOG(V5_DEBG, "%s", transform_for_log("[queue] In Loop. Currently at:", curr_work));
         
@@ -281,8 +284,8 @@ std::vector<int> BnbJob::splitQueue() {
     } else {
         int length = _work_queue.size();
         int sendLength = length / 2;
-        LOG(V5_DEBG, "[msg] Work queue is: %i\n", _work_queue.size());
-        if (sendLength > 100) sendLength = 100; //this seems to be a bottleneck, so maybe change way for sending entirely
+        LOG(V5_DEBG, "[msg] Work queue is: %i\n", length);
+
         for (int i = 0; i < sendLength; i++) {
             Work work_front = _work_queue.front();
             _work_queue.pop();
