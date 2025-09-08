@@ -35,178 +35,34 @@ void BnbJob::appl_start() {
     ProcessWideThreadPool::get().addTask([this]() {loop();});
 }
 
-void BnbJob::init() {
-    size_t problem_size = getDescription().getFormulaPayloadSize(0);
-    int const *problem = getDescription().getFormulaPayload(0);
-
-    //divide into categories
-    _nr_tasks = problem[0];
-    _nr_processors = problem[1];
-    std::vector<int> tasks;
-    for(int i = 0; i < _nr_tasks; ++i) {
-        tasks.push_back(problem[i+2]);
-    }
-
-    if(!getJobTree().isRoot()) return;
-
-    //initial work
-    auto lock = queue_mtx.getLock();
-    std::vector<std::vector<int>> processors(_nr_processors, std::vector<int>(1, 0));
-    Work work = {0, tasks, processors};
-    _work_queue.push(work);
-    _best_length = -1;
-    _working = 1;
-
-    LOG(V2_INFO, "%s", transform_for_log("Beginning", work).c_str());
-}
-
-void BnbJob::loop() {
-//loop doesn't start if _working = 0 from the beginning
-    if (!_working) {
-        bool empty;
-        {
-            auto lock = queue_mtx.getLock();
-            empty = _work_queue.empty();
-
-            if(empty) {
-                LOG(V2_INFO, "[queue] Queue empty. Waiting\n");
-                _working = 0;
-                _loop_cond_var.waitWithLockedMutex(lock, [&]() {return _working;});
-                LOG(V2_INFO, "Restarting loop\n");
-            }
-        }
-    }
-
-    
-    while(_working) {
-
-        bool empty;
-        {
-            auto lock = queue_mtx.getLock();
-            empty = _work_queue.empty();
-
-            if(empty) {
-                LOG(V2_INFO, "Stopping Loop\n");
-                _working = 0;
-                _loop_cond_var.waitWithLockedMutex(lock, [&]() {return _working;});
-                LOG(V2_INFO, "Restarting loop\n");
-            }
-        }
-
-        Work curr_work;
-        {
-            auto lock = queue_mtx.getLock();
-            curr_work = _work_queue.front();
-            _work_queue.pop();
-        }
-        usleep(1000*100);
-        LOG(V2_INFO, "In loop. Jobs left: %i\n", _work_queue.size());
-        LOG(V5_DEBG, "%s", transform_for_log("In Loop. Currently at:", curr_work));
-        
-        branch(curr_work);
-         
-        //compare solutions
-        if (curr_work.completed == 1) {
-            //find length of solution
-            int new_length = -1;
-            std::vector<int> new_processor_length = compute_processor_length(curr_work.processors);
-            new_length = *std::max_element(new_processor_length.begin(), new_processor_length.end());
-        
-            if (_best_length == -1 || new_length < _best_length) {
-                auto lock = solution_mtx.getLock();
-                _best_solution = curr_work;
-                _best_length = new_length;
-            }        
-        }
-    }
-}
-
-BnbJob::Work BnbJob::branch(Work& work) {
-    std::vector<int> processor_length = compute_processor_length(work.processors);
-    
-    //if no new tasks
-    if (work.tasks.empty()) {
-        work.completed = 1;
-        return work;
-    }
-    
-    //get current task
-    std::vector<int> new_tasks = work.tasks;
-    int curr_task = new_tasks[0];
-    new_tasks.erase(new_tasks.begin());
-    
-    //add newest task to all processors and branch
-    for (int i = 0; i < _nr_processors; i ++) {
+int BnbJob::appl_solved() {
+    bool empty;
+    {
         auto lock = queue_mtx.getLock();
-        std::vector<std::vector<int>> new_processors = work.processors;
-        
-        new_processors[i].pop_back();
-        new_processors[i].push_back(curr_task);
-        new_processors[i].push_back(0);
-              
-        Work new_work = {0, new_tasks, new_processors};
-        _work_queue.push(new_work);  
+        empty = _work_queue.empty();
     }
-    
-    return work;
-}
 
-std::vector<int> BnbJob::compute_processor_length(const std::vector<std::vector<int>>& processors) {
-    std::vector<int> processor_length;
-    for (int i = 0; i < _nr_processors; i++) {
-        int curr_length = 0;
-        int j = 0;
-        while(processors[i][j] != 0) {
-            curr_length += processors[i][j];
-            j++;
+    if(!_finished) return -1;
+
+    if(!empty || _working) return -1;
+    {
+        auto lock = solution_mtx.getLock();
+        std::vector<int> _internal_solution;
+        for(int i = 0; i < _best_solution.processors.size(); i++) {
+            for(int j = 0; j < _best_solution.processors.at(i).size(); j++) {
+                _internal_solution.push_back(_best_solution.processors[i][j]);
+            }
         }
-        processor_length.push_back(curr_length);
+        _result.result = 0;
+        _result.setSolution(std::move(_internal_solution));
+
+        LOG(V2_INFO, "%s", transform_for_log("End", _best_solution).c_str());
     }
-    return processor_length;
+    return _result.result;
 }
 
-std::string BnbJob::transform_for_log(const std::string& reason, const Work& work) {
-    // turn vectors to strings
-    std::string str_tasks = "";
-    for(int i = 0; i < work.tasks.size(); ++i) {
-        str_tasks.append(" ");
-        str_tasks.append(std::to_string(work.tasks.at(i)));
-    }
-    std::string str_processor_lengths = "";
-    for(int i = 0; i < _nr_processors; i++) {
-        str_processor_lengths.append(" ");
-        str_processor_lengths.append(std::to_string(compute_processor_length(work.processors).at(i)));
-    }
-    std::string str_processors = "";
-    for(int i = 0; i < _nr_processors; ++i) {
-        for( int j = 0; j < work.processors[i].size(); j++) {
-            str_processors.append(" ");
-            str_processors.append(std::to_string(work.processors[i][j]));
-        }
-    }
-
-    //assemble and is there a better way??
-    std::string log_string = reason.c_str();
-    log_string.append(": (Completion: ");
-    log_string.append(std::to_string(work.completed));
-    log_string.append(") (Nr Tasks: ");
-    log_string.append(std::to_string(_nr_tasks));
-    log_string.append(") (Nr Processors: ");
-    log_string.append(std::to_string(_nr_processors));
-    log_string.append(") (Tasks:");
-    log_string.append(str_tasks.c_str());
-    log_string.append(") (Processor Lengths:");
-    log_string.append(str_processor_lengths.c_str());
-    log_string.append(") (Processors:");
-    log_string.append(str_processors.c_str());
-    log_string.append(")\n");
-
-    return log_string;
-}
-
-int BnbJob::getDemand() const {
-    // return Job::getDemand();
-    return NUM_WORKERS; // we strictly want this number of workers
+JobResult&& BnbJob::appl_getResult() {
+    return std::move(_result);
 }
 
 // Called periodically by the main thread to allow the worker to emit messages.
@@ -328,6 +184,129 @@ void BnbJob::appl_communicate(int source, int mpiTag, JobMessage& msg) {
     }
 }
 
+int BnbJob::getDemand() const {
+    // return Job::getDemand();
+    return NUM_WORKERS; // we strictly want this number of workers
+}
+
+//PRIVATE METHODS
+
+void BnbJob::init() {
+    size_t problem_size = getDescription().getFormulaPayloadSize(0);
+    int const *problem = getDescription().getFormulaPayload(0);
+
+    //divide into categories
+    _nr_tasks = problem[0];
+    _nr_processors = problem[1];
+    std::vector<int> tasks;
+    for(int i = 0; i < _nr_tasks; ++i) {
+        tasks.push_back(problem[i+2]);
+    }
+
+    if(!getJobTree().isRoot()) return;
+
+    //initial work
+    auto lock = queue_mtx.getLock();
+    std::vector<std::vector<int>> processors(_nr_processors, std::vector<int>(1, 0));
+    Work work = {0, tasks, processors};
+    _work_queue.push(work);
+    _best_length = -1;
+    _working = 1;
+
+    LOG(V2_INFO, "%s", transform_for_log("Beginning", work).c_str());
+}
+
+void BnbJob::loop() {
+//loop doesn't start if _working = 0 from the beginning
+    if (!_working) {
+        bool empty;
+        {
+            auto lock = queue_mtx.getLock();
+            empty = _work_queue.empty();
+
+            if(empty) {
+                LOG(V2_INFO, "[queue] Queue empty. Waiting\n");
+                _working = 0;
+                _loop_cond_var.waitWithLockedMutex(lock, [&]() {return _working;});
+                LOG(V2_INFO, "Restarting loop\n");
+            }
+        }
+    }
+
+    
+    while(_working) {
+
+        bool empty;
+        {
+            auto lock = queue_mtx.getLock();
+            empty = _work_queue.empty();
+
+            if(empty) {
+                LOG(V2_INFO, "Stopping Loop\n");
+                _working = 0;
+                _loop_cond_var.waitWithLockedMutex(lock, [&]() {return _working;});
+                LOG(V2_INFO, "Restarting loop\n");
+            }
+        }
+
+        Work curr_work;
+        {
+            auto lock = queue_mtx.getLock();
+            curr_work = _work_queue.front();
+            _work_queue.pop();
+        }
+        usleep(1000*100);
+        LOG(V2_INFO, "In loop. Jobs left: %i\n", _work_queue.size());
+        LOG(V5_DEBG, "%s", transform_for_log("In Loop. Currently at:", curr_work));
+        
+        branch(curr_work);
+         
+        //compare solutions
+        if (curr_work.completed == 1) {
+            //find length of solution
+            int new_length = -1;
+            std::vector<int> new_processor_length = compute_processor_length(curr_work.processors);
+            new_length = *std::max_element(new_processor_length.begin(), new_processor_length.end());
+        
+            if (_best_length == -1 || new_length < _best_length) {
+                auto lock = solution_mtx.getLock();
+                _best_solution = curr_work;
+                _best_length = new_length;
+            }        
+        }
+    }
+}
+
+BnbJob::Work BnbJob::branch(Work& work) {
+    std::vector<int> processor_length = compute_processor_length(work.processors);
+    
+    //if no new tasks
+    if (work.tasks.empty()) {
+        work.completed = 1;
+        return work;
+    }
+    
+    //get current task
+    std::vector<int> new_tasks = work.tasks;
+    int curr_task = new_tasks[0];
+    new_tasks.erase(new_tasks.begin());
+    
+    //add newest task to all processors and branch
+    for (int i = 0; i < _nr_processors; i ++) {
+        auto lock = queue_mtx.getLock();
+        std::vector<std::vector<int>> new_processors = work.processors;
+        
+        new_processors[i].pop_back();
+        new_processors[i].push_back(curr_task);
+        new_processors[i].push_back(0);
+              
+        Work new_work = {0, new_tasks, new_processors};
+        _work_queue.push(new_work);  
+    }
+    
+    return work;
+}
+
 std::vector<int> BnbJob::splitQueue() {
     auto lock = queue_mtx.getLock();
     std::vector<int> sendQueue;
@@ -437,32 +416,55 @@ void BnbJob::insertResult(int resultCode, const std::vector<int>& solution) {
     _result.setSolutionToSerialize(solution.data(), solution.size());
 }
 
-int BnbJob::appl_solved() {
-    bool empty;
-    {
-        auto lock = queue_mtx.getLock();
-        empty = _work_queue.empty();
-    }
-
-    if(!_finished) return -1;
-
-    if(!empty || _working) return -1;
-    {
-        auto lock = solution_mtx.getLock();
-        std::vector<int> _internal_solution;
-        for(int i = 0; i < _best_solution.processors.size(); i++) {
-            for(int j = 0; j < _best_solution.processors.at(i).size(); j++) {
-                _internal_solution.push_back(_best_solution.processors[i][j]);
-            }
+std::vector<int> BnbJob::compute_processor_length(const std::vector<std::vector<int>>& processors) {
+    std::vector<int> processor_length;
+    for (int i = 0; i < _nr_processors; i++) {
+        int curr_length = 0;
+        int j = 0;
+        while(processors[i][j] != 0) {
+            curr_length += processors[i][j];
+            j++;
         }
-        _result.result = 0;
-        _result.setSolution(std::move(_internal_solution));
-
-        LOG(V2_INFO, "%s", transform_for_log("End", _best_solution).c_str());
+        processor_length.push_back(curr_length);
     }
-    return _result.result;
+    return processor_length;
 }
 
-JobResult&& BnbJob::appl_getResult() {
-    return std::move(_result);
+std::string BnbJob::transform_for_log(const std::string& reason, const Work& work) {
+    // turn vectors to strings
+    std::string str_tasks = "";
+    for(int i = 0; i < work.tasks.size(); ++i) {
+        str_tasks.append(" ");
+        str_tasks.append(std::to_string(work.tasks.at(i)));
+    }
+    std::string str_processor_lengths = "";
+    for(int i = 0; i < _nr_processors; i++) {
+        str_processor_lengths.append(" ");
+        str_processor_lengths.append(std::to_string(compute_processor_length(work.processors).at(i)));
+    }
+    std::string str_processors = "";
+    for(int i = 0; i < _nr_processors; ++i) {
+        for( int j = 0; j < work.processors[i].size(); j++) {
+            str_processors.append(" ");
+            str_processors.append(std::to_string(work.processors[i][j]));
+        }
+    }
+
+    //assemble and is there a better way??
+    std::string log_string = reason.c_str();
+    log_string.append(": (Completion: ");
+    log_string.append(std::to_string(work.completed));
+    log_string.append(") (Nr Tasks: ");
+    log_string.append(std::to_string(_nr_tasks));
+    log_string.append(") (Nr Processors: ");
+    log_string.append(std::to_string(_nr_processors));
+    log_string.append(") (Tasks:");
+    log_string.append(str_tasks.c_str());
+    log_string.append(") (Processor Lengths:");
+    log_string.append(str_processor_lengths.c_str());
+    log_string.append(") (Processors:");
+    log_string.append(str_processors.c_str());
+    log_string.append(")\n");
+
+    return log_string;
 }
