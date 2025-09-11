@@ -126,7 +126,6 @@ void BnbJob::appl_communicate() {
         }
     }
 
-    // Root: Update job tree snapshot in case your children changed
     if (_periodic_reduction.ready()) {
         // See below for individual communication methods.
         tryStartReduction();
