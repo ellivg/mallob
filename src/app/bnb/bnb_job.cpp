@@ -95,37 +95,35 @@ void BnbJob::appl_communicate() {
         if (!_send_messages) {
             LOG(V2_INFO, "[msg] Tried requesting work but messages are not allowed\n");
             usleep(1000*1000); //wait 1s (until {giving up message} is sent) until trying again
-            return;
-        }
-        if (_waiting) {
+        } else if (_waiting) {
             LOG(V2_INFO, "[msg] Waiting\n");
             usleep(1000*100); //wait 0.1s to account for operations to fill queue (TODO maybe change?)
-            return;
-        }
-        
-        //Request work
-        JobMessage msg = getMessageTemplate();
-        msg.tag = MSG_WORK_STEALING_QUERY;
-        msg.payload = {0}; // irrelevant
-
-        // Check if request can be sent
-        int randomIndex = rand() % NUM_WORKERS;
-        // Use our JobComm to convert the tree index into an addressable MPI rank.
-        int recvRank = getJobComm().getWorldRankOrMinusOne(randomIndex);
-        if (recvRank == -1 || getJobTree().getRank() == randomIndex) {
-            LOG(V2_INFO, "[msg] Tried requesting work but receiving rank was invalid or my own: %i\n", recvRank);
         } else {
-            //Send
-            msg.treeIndexOfDestination = randomIndex;
-            msg.contextIdOfDestination = getJobComm().getContextIdOrZero(randomIndex);
-            assert(msg.contextIdOfDestination != 0);
+            //Request work
+            JobMessage msg = getMessageTemplate();
+            msg.tag = MSG_WORK_STEALING_QUERY;
+            msg.payload = {0}; // irrelevant
 
-            getJobTree().send(recvRank, MSG_SEND_APPLICATION_MESSAGE, msg);
-            LOG(V2_INFO, "[msg] Requested work stealing from: %i\n", recvRank);
-            _waiting = 1;
+            // Check if request can be sent
+            int randomIndex = rand() % NUM_WORKERS;
+            // Use our JobComm to convert the tree index into an addressable MPI rank.
+            int recvRank = getJobComm().getWorldRankOrMinusOne(randomIndex);
+            if (recvRank == -1 || getJobTree().getRank() == randomIndex) {
+                LOG(V2_INFO, "[msg] Tried requesting work but receiving rank was invalid or my own: %i\n", recvRank);
+            } else {
+                //Send
+                msg.treeIndexOfDestination = randomIndex;
+                msg.contextIdOfDestination = getJobComm().getContextIdOrZero(randomIndex);
+                assert(msg.contextIdOfDestination != 0);
+
+                getJobTree().send(recvRank, MSG_SEND_APPLICATION_MESSAGE, msg);
+                LOG(V2_INFO, "[msg] Requested work stealing from: %i\n", recvRank);
+                _waiting = 1;
+            }
         }
     }
 
+    // Periodic All-Reduction to determine if all threads are waiting and have not sent work -> program is finished
     if (_periodic_reduction.ready()) tryStartReduction();
     tryEndReduction();
 
@@ -153,20 +151,44 @@ void BnbJob::appl_communicate(int source, int mpiTag, JobMessage& msg) {
             msg.contextIdOfDestination = getJobComm().getContextIdOrZero(source);
             assert(msg.contextIdOfDestination != 0);
             getJobTree().send(recvRank, MSG_SEND_APPLICATION_MESSAGE, msg);
-            LOG(V2_INFO, "[msg] Message returned to sender %i.\n", recvRank);
+            if(msg.payload[0] != -1) _sent_work = true;
+            LOG(V2_INFO, "[msg] Message returned to sender %i with payload[0] = %i and _sent_work = %i\n", recvRank, msg.payload[0], _sent_work);
         }
         return;
     }
 
     if(msg.tag == MSG_WORK_STEALING_ANSWER) {
         if(msg.payload[0] == -1) {
-           // _finished = 1; TODO HERE
             _waiting = 0;
         } else {
             LOG(V2_INFO, "[msg] Work stealing query successful. Filling work queue.\n");
             addToQueue(msg.payload);
             LOG(V2_INFO, "[msg] Work queue is filled.\n", source, msg.tag, msg.payload[0]);
+
+        // Confirm work is received
+        // Use our JobComm to convert the tree index into an addressable MPI rank.
+        int recvRank = getJobComm().getWorldRankOrMinusOne(source);
+
+        if (recvRank == -1) {
+            LOG(V2_INFO, "[msg] Work stealing confirmation couldn't be answered as answering rank is invalid\n");
+        } else {
+            // Returning work
+            msg.tag = MSG_WORK_STEALING_DONE;
+            msg.payload = {0}; //irrelevant
+            
+            //Send
+            msg.treeIndexOfDestination = source;
+            msg.contextIdOfDestination = getJobComm().getContextIdOrZero(source);
+            assert(msg.contextIdOfDestination != 0);
+            getJobTree().send(recvRank, MSG_SEND_APPLICATION_MESSAGE, msg);
+            LOG(V2_INFO, "[msg] Message returned to sender %i.\n", recvRank);
         }
+        }
+        return;
+    }
+
+    if(msg.tag == MSG_WORK_STEALING_DONE) {
+        _sent_work = false;
         return;
     }
 }
@@ -448,7 +470,10 @@ void BnbJob::tryStartReduction() {
         for (auto& contrib : contribs) sum += contrib.at(0);
         return std::vector<int>(1, sum);
     }));
-    const int contrib = getJobTree().getRank();
+
+    // Contribution: 0 if finished a.k.a. waiting (not working) and not sent work
+    LOG(V2_INFO, "[red] _waiting = %i & _sent_work = %i & _working = %i\n", _waiting, _sent_work, _working);
+    const int contrib = !(_waiting && (!_sent_work));
     LOG(V2_INFO, "[red] contribute %i to all-reduction\n", contrib);
     _red->contribute({contrib});
 }
@@ -458,9 +483,15 @@ void BnbJob::tryEndReduction() {
     if (!_red->advance().hasResult()) return;
 
     LOG(V2_INFO, "[red] all-reduction complete\n");
+
     auto result = _red->extractResult();
-/*     LOG(V2_INFO, "Result has been found\n");
-    LOG(V2_INFO, "Result is: %i\n", result); */
+    int res = *result.data();
+    LOG(V5_DEBG, "[red] Result has been found\n");
+    LOG(V2_INFO, "[red] Result is: %i\n", res);
+
+    if(res == 0) {
+        _finished = true;
+    }
 
     // Conclude the all-reduction, allowing for this worker to be destructed later
     _red.reset();

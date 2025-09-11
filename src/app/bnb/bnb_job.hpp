@@ -43,6 +43,7 @@ private:
     bool _waiting {false};
     bool _finished {false};
     bool _send_messages {false}; // Whether we can send messages
+    bool _sent_work {false}; // Whether we have sent work to another thread
 
     // A JobTreeBroadcast instance represents one single, plain broadcast along the job tree.
     std::unique_ptr<JobTreeBroadcast> _bcast;
@@ -60,6 +61,7 @@ private:
     static const int MSG_TEST = 2;
     static const int MSG_WORK_STEALING_QUERY = 31;
     static const int MSG_WORK_STEALING_ANSWER = 32;
+    static const int MSG_WORK_STEALING_DONE = 33;
 
     static const int NUM_WORKERS = 2; // # workers we request and require   
     
