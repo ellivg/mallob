@@ -126,11 +126,8 @@ void BnbJob::appl_communicate() {
         }
     }
 
-    if (_periodic_reduction.ready()) {
-        // See below for individual communication methods.
-        tryStartReduction();
-        tryEndReduction();
-    }
+    if (_periodic_reduction.ready()) tryStartReduction();
+    tryEndReduction();
 
 }
 

@@ -54,7 +54,7 @@ private:
     static const int BCAST_INIT {1};
     static const int ALLRED {2};
 
-    PeriodicEvent<5000> _periodic_reduction;
+    PeriodicEvent<2000> _periodic_reduction;
 
     static const int MSG_ROUNDTRIP = 1; // internal message tag for our round-trip messages
     static const int MSG_TEST = 2;
