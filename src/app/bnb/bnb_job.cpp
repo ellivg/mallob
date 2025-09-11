@@ -125,6 +125,14 @@ void BnbJob::appl_communicate() {
             _waiting = 1;
         }
     }
+
+    // Root: Update job tree snapshot in case your children changed
+    if (_periodic_reduction.ready()) {
+        // See below for individual communication methods.
+        tryStartReduction();
+        tryEndReduction();
+    }
+
 }
 
 // React to an incoming message.
@@ -224,7 +232,7 @@ void BnbJob::loop() {
             _work_queue.pop();
         }
         usleep(1000*10); //TODO work on removing
-        LOG(V2_INFO, "[queue] In loop. Jobs left: %i\n", _work_queue.size());
+        LOG(V5_DEBG, "[queue] In loop. Jobs left: %i\n", _work_queue.size());
         LOG(V5_DEBG, "%s", transform_for_log("[queue] In Loop. Currently at:", curr_work));
         
         branch(curr_work);
@@ -434,4 +442,30 @@ std::string BnbJob::transform_for_log(const std::string& reason, const Work& wor
     log_string.append(")\n");
 
     return log_string;
+}
+
+void BnbJob::tryStartReduction() {
+    JobMessage baseMsg = getMessageTemplate();
+    baseMsg.tag = ALLRED;
+    _red.reset(new JobTreeAllReduction(getJobTree().getSnapshot(), baseMsg, std::vector<int>(), [](std::list<std::vector<int>>& contribs) {
+        int sum = 0;
+        for (auto& contrib : contribs) sum += contrib.at(0);
+        return std::vector<int>(1, sum);
+    }));
+    const int contrib = getJobTree().getRank();
+    LOG(V2_INFO, "[red] contribute %i to all-reduction\n", contrib);
+    _red->contribute({contrib});
+}
+
+void BnbJob::tryEndReduction() {
+    if (!_red) return;
+    if (!_red->advance().hasResult()) return;
+
+    LOG(V2_INFO, "[red] all-reduction complete\n");
+    auto result = _red->extractResult();
+/*     LOG(V2_INFO, "Result has been found\n");
+    LOG(V2_INFO, "Result is: %i\n", result); */
+
+    // Conclude the all-reduction, allowing for this worker to be destructed later
+    _red.reset();
 }

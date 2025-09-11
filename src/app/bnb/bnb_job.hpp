@@ -4,6 +4,9 @@
 
 #include "app/job.hpp"
 #include "util/sys/threading.hpp"
+#include "util/periodic_event.hpp"
+#include "comm/job_tree_broadcast.hpp"
+#include "comm/job_tree_all_reduction.hpp"
 
 #include <queue>
 
@@ -41,6 +44,18 @@ private:
     bool _finished {false};
     bool _send_messages {false}; // Whether we can send messages
 
+    // A JobTreeBroadcast instance represents one single, plain broadcast along the job tree.
+    std::unique_ptr<JobTreeBroadcast> _bcast;
+    // A JobTreeAllReduction instance represents one single all-reduction along the job tree.
+    std::unique_ptr<JobTreeAllReduction> _red;
+
+    // Internal message tags which must be different for each pair of potentially concurrent
+    // or directly adjacent collective operations.
+    static const int BCAST_INIT {1};
+    static const int ALLRED {2};
+
+    PeriodicEvent<5000> _periodic_reduction;
+
     static const int MSG_ROUNDTRIP = 1; // internal message tag for our round-trip messages
     static const int MSG_TEST = 2;
     static const int MSG_WORK_STEALING_QUERY = 31;
@@ -59,6 +74,10 @@ private:
     std::vector<int> compute_processor_length(const std::vector<std::vector<int>>& processors);
     std::string transform_for_log(const std::string& reason, const Work& work);
 
+    void tryStartReduction();
+
+    void tryEndReduction();
+
     void insertResult(int resultCode, const std::vector<int>& solution);
 
 public:
@@ -72,7 +91,19 @@ public:
     void appl_communicate();
     void appl_communicate(int source, int mpiTag, JobMessage& msg);
     void appl_dumpStats() override {}
-    bool appl_isDestructible() override {return true;}
+
+    // Return whether this worker can be cleaned up without any blocking or waiting.
+    // In our case, this is the case when no background task is pending.
+    // Note that, as long as this returns false, 
+    bool appl_isDestructible() override {
+        // you can, and need to, advance communication at this point
+        // so that everything that is still going on can conclude nicely
+        appl_communicate();
+        if (_bcast) return false;
+        if (_red) return false;
+        return true; // all communication and background computation concluded
+    }
+
     void appl_memoryPanic() override {}
 
     int getDemand() const override;    
