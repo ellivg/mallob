@@ -98,7 +98,7 @@ void BnbJob::appl_communicate() {
         } else if (_waiting) {
             LOG(V2_INFO, "[msg] Waiting\n");
             usleep(1000*100); //wait 0.1s to account for operations to fill queue (TODO maybe change?)
-        } else {
+        } else if (!_finished) {
             //Request work
             JobMessage msg = getMessageTemplate();
             msg.tag = MSG_WORK_STEALING_QUERY;
@@ -131,7 +131,12 @@ void BnbJob::appl_communicate() {
 
 // React to an incoming message.
 void BnbJob::appl_communicate(int source, int mpiTag, JobMessage& msg) {
-    LOG(V2_INFO, "[msg] Message %i with Payload %i from %i received.\n", msg.tag, msg.payload[0], source);  
+    LOG(V2_INFO, "[msg] Message %i with Payload %i from %i received.\n", msg.tag, msg.payload[0], source);
+
+    if(_finished) {
+        LOG(V2_INFO, "[msg] Message will not be processed as program is finished\n");
+        return;
+    }
 
     if (msg.tag == MSG_WORK_STEALING_QUERY) {
         LOG(V2_INFO, "[msg] Processing work stealing query from %i\n", source);
@@ -473,7 +478,7 @@ void BnbJob::tryStartReduction() {
 
     // Contribution: 0 if finished a.k.a. waiting (not working) and not sent work
     LOG(V2_INFO, "[red] _waiting = %i & _sent_work = %i & _working = %i\n", _waiting, _sent_work, _working);
-    const int contrib = !(_waiting && (!_sent_work));
+    const int contrib = !((!_working) && (!_sent_work));
     LOG(V2_INFO, "[red] contribute %i to all-reduction\n", contrib);
     _red->contribute({contrib});
 }
