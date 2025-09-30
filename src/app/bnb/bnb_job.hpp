@@ -33,7 +33,7 @@ private:
     AdjustablePermutation _perm; // Represents a pseudo-random permutation of a set of integers [0..n).
 
     Work _best_solution;
-    int _best_length;
+    int _curr_lower_bound {-1}; //current best length found
 
     Mutex solution_mtx;
     Mutex queue_mtx;

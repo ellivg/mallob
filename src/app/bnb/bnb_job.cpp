@@ -225,7 +225,6 @@ void BnbJob::init() {
     std::vector<std::vector<int>> processors(_nr_processors, std::vector<int>(1, 0));
     Work work = {0, tasks, processors};
     _work_queue.push(work);
-    _best_length = -1;
     _working = 1;
 
     LOG(V2_INFO, "%s", transform_for_log("[start] Beginning", work).c_str());
@@ -267,10 +266,10 @@ void BnbJob::loop() {
             std::vector<int> new_processor_length = compute_processor_length(curr_work.processors);
             new_length = *std::max_element(new_processor_length.begin(), new_processor_length.end());
         
-            if (_best_length == -1 || new_length < _best_length) {
+            if (_curr_lower_bound == -1 || new_length < _curr_lower_bound) {
                 auto lock = solution_mtx.getLock();
                 _best_solution = curr_work;
-                _best_length = new_length;
+                _curr_lower_bound = new_length;
             }        
         }
     } while(_working);
@@ -471,16 +470,26 @@ void BnbJob::tryStartReduction() {
     JobMessage baseMsg = getMessageTemplate();
     baseMsg.tag = ALLRED;
     _red.reset(new JobTreeAllReduction(getJobTree().getSnapshot(), baseMsg, std::vector<int>(), [](std::list<std::vector<int>>& contribs) {
-        int sum = 0;
-        for (auto& contrib : contribs) sum += contrib.at(0);
-        return std::vector<int>(1, sum);
+        
+        int sum = 0; //contrib.at(0) is whether worker is finished
+        int all_lower_bound = -1; //contrib.at(1) is current lower bound
+
+        for (auto& contrib : contribs) {
+            LOG(V5_DEBG, "Contribution: %i, %i\n", contrib.at(0), contrib.at(1));
+            sum += contrib.at(0);
+            if(all_lower_bound == -1 || contrib.at(1) < all_lower_bound) all_lower_bound = contrib.at(1);
+        }
+
+        std::vector<int> contrib = {sum, all_lower_bound};
+        return contrib;
     }));
 
     // Contribution: 0 if finished a.k.a. waiting (not working) and not sent work
     LOG(V2_INFO, "[red] _waiting = %i & _sent_work = %i & _working = %i\n", _waiting, _sent_work, _working);
-    const int contrib = !((!_working) && (!_sent_work));
-    LOG(V2_INFO, "[red] contribute %i to all-reduction\n", contrib);
-    _red->contribute({contrib});
+    const int contrib0 = !((!_working) && (!_sent_work));
+    const int contrib1 = _curr_lower_bound;
+    LOG(V2_INFO, "[red] contribute {%i, %i} to all-reduction\n", contrib0, contrib1);
+    _red->contribute({contrib0, contrib1});
 }
 
 void BnbJob::tryEndReduction() {
@@ -490,11 +499,12 @@ void BnbJob::tryEndReduction() {
     LOG(V2_INFO, "[red] all-reduction complete\n");
 
     auto result = _red->extractResult();
-    int res = *result.data();
+    int res0 = *result.data();
+    int res1 = *(result.data()+1);
     LOG(V5_DEBG, "[red] Result has been found\n");
-    LOG(V2_INFO, "[red] Result is: %i\n", res);
+    LOG(V2_INFO, "[red] Result is: %i, %i\n", res0, res1);
 
-    if(res == 0) {
+    if(res0 == 0) {
         _finished = true;
     }
 
