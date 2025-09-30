@@ -473,14 +473,16 @@ void BnbJob::tryStartReduction() {
         
         int sum = 0; //contrib.at(0) is whether worker is finished
         int all_lower_bound = -1; //contrib.at(1) is current lower bound
+        int all_upper_bound = -1; //contrib.at(2) is current upper bound
 
         for (auto& contrib : contribs) {
             LOG(V5_DEBG, "Contribution: %i, %i\n", contrib.at(0), contrib.at(1));
             sum += contrib.at(0);
             if(all_lower_bound == -1 || contrib.at(1) < all_lower_bound) all_lower_bound = contrib.at(1);
+            if(all_lower_bound == -1 || contrib.at(1) > all_lower_bound) all_upper_bound = contrib.at(2);
         }
 
-        std::vector<int> contrib = {sum, all_lower_bound};
+        std::vector<int> contrib = {sum, all_lower_bound, all_upper_bound};
         return contrib;
     }));
 
@@ -488,8 +490,9 @@ void BnbJob::tryStartReduction() {
     LOG(V2_INFO, "[red] _waiting = %i & _sent_work = %i & _working = %i\n", _waiting, _sent_work, _working);
     const int contrib0 = !((!_working) && (!_sent_work));
     const int contrib1 = _curr_lower_bound;
-    LOG(V2_INFO, "[red] contribute {%i, %i} to all-reduction\n", contrib0, contrib1);
-    _red->contribute({contrib0, contrib1});
+    const int contrib2 = _curr_upper_bound;
+    LOG(V2_INFO, "[red] contribute {%i, %i, %i} to all-reduction\n", contrib0, contrib1, contrib2);
+    _red->contribute({contrib0, contrib1, contrib2});
 }
 
 void BnbJob::tryEndReduction() {
@@ -501,8 +504,9 @@ void BnbJob::tryEndReduction() {
     auto result = _red->extractResult();
     int res0 = *result.data();
     int res1 = *(result.data()+1);
+    int res2 = *(result.data()+2);
     LOG(V5_DEBG, "[red] Result has been found\n");
-    LOG(V2_INFO, "[red] Result is: %i, %i\n", res0, res1);
+    LOG(V2_INFO, "[red] Result is: %i, %i, %i\n", res0, res1, res2);
 
     if(res0 == 0) {
         _finished = true;

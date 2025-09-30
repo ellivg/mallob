@@ -34,6 +34,7 @@ private:
 
     Work _best_solution;
     int _curr_lower_bound {-1}; //current best length found
+    int _curr_upper_bound {-1}; //current upper bound
 
     Mutex solution_mtx;
     Mutex queue_mtx;
