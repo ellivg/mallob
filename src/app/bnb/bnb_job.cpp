@@ -235,6 +235,9 @@ void BnbJob::init() {
     average_size /= tasks.size();
     if (_curr_lower_bound < average_size) _curr_lower_bound = average_size;
 
+    int possible_lower_bound = tasks[_nr_processors] + tasks[_nr_processors+1];
+    if(_curr_lower_bound < possible_lower_bound) _curr_lower_bound = possible_lower_bound;
+
     LOG(V2_INFO, "%s", transform_for_log("[start] Beginning", work).c_str());
 }
 
