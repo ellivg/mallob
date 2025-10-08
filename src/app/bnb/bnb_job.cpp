@@ -227,9 +227,13 @@ void BnbJob::init() {
     _work_queue.push(work);
     _working = 1;
 
-    //the jobs are sorted by length, so longest job is at tasks[0]
-    //it is also a lower bound
+    //initialize lower bound
     _curr_lower_bound = tasks[0];
+
+    int average_size = 0;
+    for (int i = 0; i < tasks.size(); i++) average_size += tasks[i];
+    average_size /= tasks.size();
+    if (_curr_lower_bound < average_size) _curr_lower_bound = average_size;
 
     LOG(V2_INFO, "%s", transform_for_log("[start] Beginning", work).c_str());
 }
@@ -258,7 +262,7 @@ void BnbJob::loop() {
             _work_queue.pop();
         }
         usleep(1000*10); //TODO work on removing
-        LOG(V2_INFO, "[queue] In loop. Jobs left: %i\n", _work_queue.size()+1);
+        LOG(V5_DEBG, "[queue] In loop. Jobs left: %i\n", _work_queue.size()+1);
         LOG(V5_DEBG, "%s", transform_for_log("[queue] In Loop. Currently at:", curr_work));
         
         branch(curr_work);
@@ -495,10 +499,10 @@ void BnbJob::tryStartReduction() {
         int all_upper_bound = -1; //contrib.at(2) is current upper bound
 
         for (auto& contrib : contribs) {
-            LOG(V5_DEBG, "Contribution: %i, %i\n", contrib.at(0), contrib.at(1));
+            LOG(V5_DEBG, "Contribution: %i, %i, %i\n", contrib.at(0), contrib.at(1), contrib.at(2));
             sum += contrib.at(0);
-            if(all_lower_bound == -1 || contrib.at(1) < all_lower_bound) all_lower_bound = contrib.at(1);
-            if(all_lower_bound == -1 || contrib.at(1) > all_lower_bound) all_upper_bound = contrib.at(2);
+            if(contrib.at(1) != -1 && (all_lower_bound == -1 || contrib.at(1) < all_lower_bound)) all_lower_bound = contrib.at(1);
+            if(contrib.at(2) != -1 && (all_upper_bound == -1 || contrib.at(1) > all_upper_bound)) all_upper_bound = contrib.at(2);
         }
 
         std::vector<int> contrib = {sum, all_lower_bound, all_upper_bound};
