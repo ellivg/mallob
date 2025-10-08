@@ -227,6 +227,10 @@ void BnbJob::init() {
     _work_queue.push(work);
     _working = 1;
 
+    //the jobs are sorted by length, so longest job is at tasks[0]
+    //it is also a lower bound
+    _curr_lower_bound = tasks[0];
+
     LOG(V2_INFO, "%s", transform_for_log("[start] Beginning", work).c_str());
 }
 
