@@ -266,10 +266,10 @@ void BnbJob::loop() {
             std::vector<int> new_processor_length = compute_processor_length(curr_work.processors);
             new_length = *std::max_element(new_processor_length.begin(), new_processor_length.end());
         
-            if (_curr_lower_bound == -1 || new_length < _curr_lower_bound) {
+            if (_curr_upper_bound == -1 || new_length < _curr_upper_bound) {
                 auto lock = solution_mtx.getLock();
                 _best_solution = curr_work;
-                _curr_lower_bound = new_length;
+                _curr_upper_bound = new_length;
             }        
         }
     } while(_working);
