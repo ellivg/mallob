@@ -295,6 +295,17 @@ BnbJob::Work BnbJob::branch(Work& work) {
     
     //add newest task to all processors and branch
     for (int i = 0; i < _nr_processors; i ++) {
+        //PRUNING
+        bool prune = false;
+
+        //if multiple processors with same length
+        for (int j = 0; j < i; j++) {
+            if (processor_length[i] == processor_length[j]) prune = true;
+        }
+
+        //END PRUNING
+        if (prune) continue;
+
         auto lock = queue_mtx.getLock();
         std::vector<std::vector<int>> new_processors = work.processors;
         
