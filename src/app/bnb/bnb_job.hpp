@@ -26,6 +26,7 @@ private:
         bool completed;
         std::vector<int> tasks;
         std::vector<std::vector<int>> processors;
+        std::array<int, 2> last_assigned; //The length of the job which was assigned last and where it was assigned to
     };
 
     std::queue<Work> _work_queue;

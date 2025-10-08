@@ -223,7 +223,7 @@ void BnbJob::init() {
 
     auto lock = queue_mtx.getLock();
     std::vector<std::vector<int>> processors(_nr_processors, std::vector<int>(1, 0));
-    Work work = {0, tasks, processors};
+    Work work = {0, tasks, processors, {-1, -1}};
     _work_queue.push(work);
     _working = 1;
 
@@ -258,7 +258,7 @@ void BnbJob::loop() {
             _work_queue.pop();
         }
         usleep(1000*10); //TODO work on removing
-        LOG(V5_DEBG, "[queue] In loop. Jobs left: %i\n", _work_queue.size());
+        LOG(V2_INFO, "[queue] In loop. Jobs left: %i\n", _work_queue.size()+1);
         LOG(V5_DEBG, "%s", transform_for_log("[queue] In Loop. Currently at:", curr_work));
         
         branch(curr_work);
@@ -303,6 +303,10 @@ BnbJob::Work BnbJob::branch(Work& work) {
             if (processor_length[i] == processor_length[j]) prune = true;
         }
 
+        //prune if length of last assigned job equal length of current job
+        //if ((work.last_assigned[0] == curr_task) && (work.last_assigned[1] != -1) && (work.last_assigned[1] < i)) prune = true;
+        
+
         //END PRUNING
         if (prune) continue;
 
@@ -313,7 +317,7 @@ BnbJob::Work BnbJob::branch(Work& work) {
         new_processors[i].push_back(curr_task);
         new_processors[i].push_back(0);
               
-        Work new_work = {0, new_tasks, new_processors};
+        Work new_work = {0, new_tasks, new_processors, {curr_task, i}};
         _work_queue.push(new_work);  
     }
     
