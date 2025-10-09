@@ -5,6 +5,7 @@
 #include "app/job.hpp"
 #include "util/sys/threading.hpp"
 #include "util/periodic_event.hpp"
+#include "util/sys/timer.hpp"
 #include "comm/job_tree_broadcast.hpp"
 #include "comm/job_tree_all_reduction.hpp"
 
@@ -28,6 +29,16 @@ private:
         std::vector<std::vector<int>> processors;
         std::array<int, 2> last_assigned; //The length of the job which was assigned last and where it was assigned to
     };
+
+    struct Tracker{
+        float activation_time;
+        float time_since_activation;
+        float work_start_time;
+        float time_spent_working;
+        float perc_working;
+    };
+
+    Tracker tracker = {-1, 0, -1, 0, -1};
 
     std::queue<Work> _work_queue;
 

@@ -58,6 +58,12 @@ int BnbJob::appl_solved() { //TODO CHANGES HERE
 
         LOG(V2_INFO, "%s", transform_for_log("[solved] End", _best_solution).c_str());
     }
+
+    //tracker
+    tracker.time_since_activation = (Timer::elapsedSeconds()  - tracker.activation_time);
+    tracker.perc_working = tracker.time_spent_working / tracker.time_since_activation;
+    LOG(V2_INFO, "[tracking] Percentage of time spent working: %f\n", tracker.perc_working);
+
     return _result.result;
 }
 
@@ -219,26 +225,30 @@ void BnbJob::init() {
     }
 
     //initial work (only done by root)
-    if(!getJobTree().isRoot()) return;
+    if(getJobTree().isRoot()) {
+        auto lock = queue_mtx.getLock();
+        std::vector<std::vector<int>> processors(_nr_processors, std::vector<int>(1, 0));
+        Work work = {0, tasks, processors, {-1, -1}};
+        _work_queue.push(work);
+        _working = 1;
 
-    auto lock = queue_mtx.getLock();
-    std::vector<std::vector<int>> processors(_nr_processors, std::vector<int>(1, 0));
-    Work work = {0, tasks, processors, {-1, -1}};
-    _work_queue.push(work);
-    _working = 1;
+        //initialize lower bound
+        _curr_lower_bound = tasks[0];
 
-    //initialize lower bound
-    _curr_lower_bound = tasks[0];
+        int average_size = 0;
+        for (int i = 0; i < tasks.size(); i++) average_size += tasks[i];
+        average_size /= tasks.size();
+        if (_curr_lower_bound < average_size) _curr_lower_bound = average_size;
 
-    int average_size = 0;
-    for (int i = 0; i < tasks.size(); i++) average_size += tasks[i];
-    average_size /= tasks.size();
-    if (_curr_lower_bound < average_size) _curr_lower_bound = average_size;
+        int possible_lower_bound = tasks[_nr_processors] + tasks[_nr_processors+1];
+        if(_curr_lower_bound < possible_lower_bound) _curr_lower_bound = possible_lower_bound;
 
-    int possible_lower_bound = tasks[_nr_processors] + tasks[_nr_processors+1];
-    if(_curr_lower_bound < possible_lower_bound) _curr_lower_bound = possible_lower_bound;
+        LOG(V2_INFO, "%s", transform_for_log("[start] Beginning", work).c_str());
+    }
 
-    LOG(V2_INFO, "%s", transform_for_log("[start] Beginning", work).c_str());
+    //start tracking time
+    tracker.activation_time = Timer::elapsedSeconds();
+    tracker.work_start_time = tracker.activation_time;
 }
 
 void BnbJob::loop() {
@@ -252,8 +262,15 @@ void BnbJob::loop() {
             if(empty) {
                 LOG(V2_INFO, "[queue] Queue empty. Stopping Loop\n");
                 _working = 0;
+
+                //tracker
+                tracker.time_spent_working += (Timer::elapsedSeconds() - tracker.work_start_time);
+
                 _loop_cond_var.waitWithLockedMutex(lock, [&]() {return _working;});
                 LOG(V2_INFO, "[queue] Restarting loop\n");
+
+                //tracker
+                tracker.work_start_time = Timer::elapsedSeconds();
             }
         }
 
