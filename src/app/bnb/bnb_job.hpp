@@ -36,9 +36,17 @@ private:
         float work_start_time;
         float time_spent_working;
         float perc_working;
+
+        int num_expl_nodes;
+
+        int num_queries;
+        int num_succ_queries;
+        int num_nonsucc_nomsg;
+        int num_nonsucc_rankinvld;
+        int num_nonsucc_empty;
     };
 
-    Tracker tracker = {-1, 0, -1, 0, -1};
+    Tracker tracker = {-1, 0, -1, 0, -1, 0, 0, 0, 0, 0};
 
     std::queue<Work> _work_queue;
 
@@ -76,7 +84,7 @@ private:
     static const int MSG_WORK_STEALING_ANSWER = 32;
     static const int MSG_WORK_STEALING_DONE = 33;
 
-    static const int NUM_WORKERS = 2; // # workers we request and require   
+    static const int NUM_WORKERS = 4; // # workers we request and require   
     
     void init();
     void loop();

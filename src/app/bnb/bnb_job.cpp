@@ -63,6 +63,10 @@ int BnbJob::appl_solved() { //TODO CHANGES HERE
     tracker.time_since_activation = (Timer::elapsedSeconds()  - tracker.activation_time);
     tracker.perc_working = tracker.time_spent_working / tracker.time_since_activation;
     LOG(V2_INFO, "[tracking] Percentage of time spent working: %f\n", tracker.perc_working);
+    LOG(V2_INFO, "[tracking] Number of explored nodes: %i\n", tracker.num_expl_nodes);
+    LOG(V2_INFO, 
+        "[tracking] Number of queries in total: %i - succesful: %i - before msgs allowed: %i - rank invalid: %i - reply empty: %i\n", 
+        tracker.num_queries, tracker.num_succ_queries,  tracker.num_nonsucc_nomsg, tracker.num_nonsucc_rankinvld, tracker.num_nonsucc_empty);
 
     return _result.result;
 }
@@ -98,12 +102,16 @@ void BnbJob::appl_communicate() {
         empty = _work_queue.empty();
     }
     if(empty) {
+        tracker.num_queries++;
+
         if (!_send_messages) {
             LOG(V2_INFO, "[msg] Tried requesting work but messages are not allowed\n");
+            tracker.num_nonsucc_nomsg++;
             usleep(1000*1000); //wait 1s (until {giving up message} is sent) until trying again
         } else if (_waiting) {
             LOG(V2_INFO, "[msg] Waiting\n");
             usleep(1000*100); //wait 0.1s to account for operations to fill queue (TODO maybe change?)
+            tracker.num_queries--; //because were still waiting on the last one to be filled
         } else if (!_finished) {
             //Request work
             JobMessage msg = getMessageTemplate();
@@ -116,6 +124,7 @@ void BnbJob::appl_communicate() {
             int recvRank = getJobComm().getWorldRankOrMinusOne(randomIndex);
             if (recvRank == -1 || getJobTree().getRank() == randomIndex) {
                 LOG(V2_INFO, "[msg] Tried requesting work but receiving rank was invalid or my own: %i\n", recvRank);
+                tracker.num_nonsucc_rankinvld++;
             } else {
                 //Send
                 msg.treeIndexOfDestination = randomIndex;
@@ -125,7 +134,7 @@ void BnbJob::appl_communicate() {
                 getJobTree().send(recvRank, MSG_SEND_APPLICATION_MESSAGE, msg);
                 LOG(V2_INFO, "[msg] Requested work stealing from: %i\n", recvRank);
                 _waiting = 1;
-            }
+            }            
         }
     }
 
@@ -152,6 +161,7 @@ void BnbJob::appl_communicate(int source, int mpiTag, JobMessage& msg) {
 
         if (recvRank == -1) {
             LOG(V2_INFO, "[msg] Work stealing query couldn't be answered as requesting rank is invalid\n");
+            tracker.num_nonsucc_rankinvld++;
         } else {
             // Returning work
             msg.tag = MSG_WORK_STEALING_ANSWER;
@@ -171,10 +181,12 @@ void BnbJob::appl_communicate(int source, int mpiTag, JobMessage& msg) {
     if(msg.tag == MSG_WORK_STEALING_ANSWER) {
         if(msg.payload[0] == -1) {
             _waiting = 0;
+            tracker.num_nonsucc_empty++;
         } else {
             LOG(V2_INFO, "[msg] Work stealing query successful. Filling work queue.\n");
             addToQueue(msg.payload);
             LOG(V2_INFO, "[msg] Work queue is filled.\n", source, msg.tag, msg.payload[0]);
+            tracker.num_succ_queries++;
 
         // Confirm work is received
         // Use our JobComm to convert the tree index into an addressable MPI rank.
@@ -286,6 +298,7 @@ void BnbJob::loop() {
         LOG(V5_DEBG, "%s", transform_for_log("[queue] In Loop. Currently at:", curr_work));
         
         branch(curr_work);
+        tracker.num_expl_nodes++;
          
         //compare solutions
         if (curr_work.completed == 1) {
