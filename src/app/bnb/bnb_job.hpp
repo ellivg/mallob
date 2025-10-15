@@ -37,8 +37,6 @@ private:
         float time_spent_working;
         float perc_working;
 
-        int num_expl_nodes;
-
         int num_queries;
         int num_succ_queries;
         int num_nonsucc_nomsg;
@@ -46,7 +44,10 @@ private:
         int num_nonsucc_empty;
     };
 
-    Tracker tracker = {-1, 0, -1, 0, -1, 0, 0, 0, 0, 0};
+    Tracker tracker = {-1, 0, -1, 0, -1, 0, 0, 0, 0};
+
+    int appr_amount_of_expl; //approximation of amount of explorations (2^nr tasks)
+    int num_expl_nodes;
 
     std::queue<Work> _work_queue;
 
@@ -83,6 +84,7 @@ private:
     static const int MSG_WORK_STEALING_QUERY = 31;
     static const int MSG_WORK_STEALING_ANSWER = 32;
     static const int MSG_WORK_STEALING_DONE = 33;
+    static const int MSG_FINISHED = 4;
 
     static const int NUM_WORKERS = 4; // # workers we request and require   
     

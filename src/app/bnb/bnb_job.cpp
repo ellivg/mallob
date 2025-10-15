@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <string>
+#include <cmath>
 
 #include "app/job.hpp"
 #include "app/job_tree.hpp"
@@ -63,7 +64,7 @@ int BnbJob::appl_solved() { //TODO CHANGES HERE
     tracker.time_since_activation = (Timer::elapsedSeconds()  - tracker.activation_time);
     tracker.perc_working = tracker.time_spent_working / tracker.time_since_activation;
     LOG(V2_INFO, "[tracking] Percentage of time spent working: %f\n", tracker.perc_working);
-    LOG(V2_INFO, "[tracking] Number of explored nodes: %i\n", tracker.num_expl_nodes);
+    LOG(V2_INFO, "[tracking] Number of explored nodes: %i\n", num_expl_nodes);
     LOG(V2_INFO, 
         "[tracking] Number of queries in total: %i - succesful: %i - before msgs allowed: %i - rank invalid: %i - reply empty: %i\n", 
         tracker.num_queries, tracker.num_succ_queries,  tracker.num_nonsucc_nomsg, tracker.num_nonsucc_rankinvld, tracker.num_nonsucc_empty);
@@ -149,7 +150,26 @@ void BnbJob::appl_communicate(int source, int mpiTag, JobMessage& msg) {
     LOG(V2_INFO, "[msg] Message %i with Payload %i from %i received.\n", msg.tag, msg.payload[0], source);
 
     if(_finished) {
-        LOG(V2_INFO, "[msg] Message will not be processed as program is finished\n");
+        LOG(V2_INFO, "[msg] Message will not be entirely processed as program is finished\n");
+
+        // Use our JobComm to convert the tree index into an addressable MPI rank.
+        int recvRank = getJobComm().getWorldRankOrMinusOne(source);
+
+        if (recvRank == -1) {
+            LOG(V2_INFO, "[msg] Message couldn't be answered as requesting rank is invalid\n");
+            tracker.num_nonsucc_rankinvld++;
+        } else {
+            // Returning work
+            msg.tag = MSG_FINISHED;
+            
+            //Send
+            msg.treeIndexOfDestination = source;
+            msg.contextIdOfDestination = getJobComm().getContextIdOrZero(source);
+            assert(msg.contextIdOfDestination != 0);
+            getJobTree().send(recvRank, MSG_SEND_APPLICATION_MESSAGE, msg);
+            if(msg.payload[0] != -1) _sent_work = true;
+            LOG(V2_INFO, "[msg] Message returned to sender %i with tag %i\n", msg.tag);
+        }
         return;
     }
 
@@ -214,6 +234,11 @@ void BnbJob::appl_communicate(int source, int mpiTag, JobMessage& msg) {
         _sent_work = false;
         return;
     }
+
+    if(msg.tag == MSG_FINISHED) {
+        _finished = 1;
+        return;
+    }
 }
 
 int BnbJob::getDemand() const {
@@ -235,6 +260,8 @@ void BnbJob::init() {
     for(int i = 0; i < _nr_tasks; ++i) {
         tasks.push_back(problem[i+2]);
     }
+
+    appr_amount_of_expl = pow(2.0, _nr_tasks);
 
     //initial work (only done by root)
     if(getJobTree().isRoot()) {
@@ -298,7 +325,7 @@ void BnbJob::loop() {
         LOG(V5_DEBG, "%s", transform_for_log("[queue] In Loop. Currently at:", curr_work));
         
         branch(curr_work);
-        tracker.num_expl_nodes++;
+        num_expl_nodes++;
          
         //compare solutions
         if (curr_work.completed == 1) {
@@ -364,8 +391,8 @@ BnbJob::Work BnbJob::branch(Work& work) {
 std::vector<int> BnbJob::splitQueue() {
     auto lock = queue_mtx.getLock();
     std::vector<int> sendQueue;
-
-    if (_work_queue.size() < 2) {
+    
+    if (_work_queue.size() < 2 || (appr_amount_of_expl - num_expl_nodes) < 100) {
         sendQueue.push_back(-1);
     } else {
         int length = _work_queue.size();
