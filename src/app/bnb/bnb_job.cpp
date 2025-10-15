@@ -302,14 +302,9 @@ void BnbJob::loop() {
                 LOG(V2_INFO, "[queue] Queue empty. Stopping Loop\n");
                 _working = 0;
 
-                //tracker
-                tracker.time_spent_working += (Timer::elapsedSeconds() - tracker.work_start_time);
-
                 _loop_cond_var.waitWithLockedMutex(lock, [&]() {return _working;});
                 LOG(V2_INFO, "[queue] Restarting loop\n");
 
-                //tracker
-                tracker.work_start_time = Timer::elapsedSeconds();
             }
         }
 
@@ -323,9 +318,15 @@ void BnbJob::loop() {
         usleep(1000*10); //TODO work on removing
         LOG(V5_DEBG, "[queue] In loop. Jobs left: %i\n", _work_queue.size()+1);
         LOG(V5_DEBG, "%s", transform_for_log("[queue] In Loop. Currently at:", curr_work));
-        
+
+        //tracker
+        tracker.work_start_time = Timer::elapsedSeconds();
+
         branch(curr_work);
         num_expl_nodes++;
+
+        //tracker
+        tracker.time_spent_working += (Timer::elapsedSeconds() - tracker.work_start_time);
          
         //compare solutions
         if (curr_work.completed == 1) {
