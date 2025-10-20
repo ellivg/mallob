@@ -596,6 +596,10 @@ void BnbJob::tryEndReduction() {
         _finished = true;
     }
 
+    if(res2 != -1 && res2 == _curr_lower_bound) {
+        _finished = true;
+    }
+
     // Conclude the all-reduction, allowing for this worker to be destructed later
     _red.reset();
 }
