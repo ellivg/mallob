@@ -49,9 +49,9 @@ int BnbJob::appl_solved() { //TODO CHANGES HERE
     {
         auto lock = solution_mtx.getLock();
         std::vector<int> _internal_solution;
-        for(int i = 0; i < _best_solution.processors.size(); i++) {
-            for(int j = 0; j < _best_solution.processors.at(i).size(); j++) {
-                _internal_solution.push_back(_best_solution.processors[i][j]);
+        for(int i = 0; i < _best_solution.machines.size(); i++) {
+            for(int j = 0; j < _best_solution.machines.at(i).size(); j++) {
+                _internal_solution.push_back(_best_solution.machines[i][j]);
             }
         }
         _result.result = 0;
@@ -255,7 +255,7 @@ void BnbJob::init() {
 
     //divide into categories
     _nr_tasks = problem[0];
-    _nr_processors = problem[1];
+    _nr_machines = problem[1];
     std::vector<int> tasks;
     for(int i = 0; i < _nr_tasks; ++i) {
         tasks.push_back(problem[i+2]);
@@ -266,8 +266,8 @@ void BnbJob::init() {
     //initial work (only done by root)
     if(getJobTree().isRoot()) {
         auto lock = queue_mtx.getLock();
-        std::vector<std::vector<int>> processors(_nr_processors, std::vector<int>(1, 0));
-        Work work = {0, tasks, processors, {-1, -1}};
+        std::vector<std::vector<int>> machines(_nr_machines, std::vector<int>(1, 0));
+        Work work = {0, tasks, machines, {-1, -1}};
         _work_queue.push(work);
         _working = 1;
 
@@ -279,7 +279,7 @@ void BnbJob::init() {
         average_size /= tasks.size();
         if (_curr_lower_bound < average_size) _curr_lower_bound = average_size;
 
-        int possible_lower_bound = tasks[_nr_processors] + tasks[_nr_processors+1];
+        int possible_lower_bound = tasks[_nr_machines] + tasks[_nr_machines+1];
         if(_curr_lower_bound < possible_lower_bound) _curr_lower_bound = possible_lower_bound;
 
         LOG(V2_INFO, "%s", transform_for_log("[start] Beginning", work).c_str());
@@ -316,8 +316,8 @@ void BnbJob::loop() {
             _work_queue.pop();
         }
         usleep(1000*10); //TODO work on removing
-        LOG(V5_DEBG, "[queue] In loop. Jobs left: %i\n", _work_queue.size()+1);
         LOG(V5_DEBG, "%s", transform_for_log("[queue] In Loop. Currently at:", curr_work));
+        if (num_expl_nodes % 1000 == 0) LOG(V2_INFO, "[queue] In loop. Jobs left: %i\n", _work_queue.size()+1);
 
         //tracker
         tracker.work_start_time = Timer::elapsedSeconds();
@@ -332,8 +332,8 @@ void BnbJob::loop() {
         if (curr_work.completed == 1) {
             //find length of solution
             int new_length = -1;
-            std::vector<int> new_processor_length = compute_processor_length(curr_work.processors);
-            new_length = *std::max_element(new_processor_length.begin(), new_processor_length.end());
+            std::vector<int> new_machine_workload = machine_workloads(curr_work.machines);
+            new_length = *std::max_element(new_machine_workload.begin(), new_machine_workload.end());
         
             if (_curr_upper_bound == -1 || new_length < _curr_upper_bound) {
                 auto lock = solution_mtx.getLock();
@@ -345,7 +345,7 @@ void BnbJob::loop() {
 }
 
 BnbJob::Work BnbJob::branch(Work& work) {
-    std::vector<int> processor_length = compute_processor_length(work.processors);
+    std::vector<int> machine_workload = machine_workloads(work.machines);
     
     //if no new tasks
     if (work.tasks.empty()) {
@@ -358,14 +358,14 @@ BnbJob::Work BnbJob::branch(Work& work) {
     int curr_task = new_tasks[0];
     new_tasks.erase(new_tasks.begin());
     
-    //add newest task to all processors and branch
-    for (int i = 0; i < _nr_processors; i ++) {
+    //add newest task to all machines and branch
+    for (int i = 0; i < _nr_machines; i ++) {
         //PRUNING
         bool prune = false;
 
-        //if multiple processors with same length
+        //if multiple machines with same length
         for (int j = 0; j < i; j++) {
-            if (processor_length[i] == processor_length[j]) prune = true;
+            if (machine_workload[i] == machine_workload[j]) prune = true;
         }
 
         //prune if length of last assigned job equal length of current job
@@ -376,13 +376,13 @@ BnbJob::Work BnbJob::branch(Work& work) {
         if (prune) continue;
 
         auto lock = queue_mtx.getLock();
-        std::vector<std::vector<int>> new_processors = work.processors;
+        std::vector<std::vector<int>> new_machines = work.machines;
         
-        new_processors[i].pop_back();
-        new_processors[i].push_back(curr_task);
-        new_processors[i].push_back(0);
+        new_machines[i].pop_back();
+        new_machines[i].push_back(curr_task);
+        new_machines[i].push_back(0);
               
-        Work new_work = {0, new_tasks, new_processors, {curr_task, i}};
+        Work new_work = {0, new_tasks, new_machines, {curr_task, i}};
         _work_queue.push(new_work);  
     }
     
@@ -409,8 +409,8 @@ std::vector<int> BnbJob::splitQueue() {
             vector_front.push_back(-2); // -2 is inside work and -3 (see later) between works as just one delimiter is not enough
             vector_front.insert(vector_front.end(), work_front.tasks.begin(), work_front.tasks.end());
             vector_front.push_back(-2);
-            for (int i = 0; i < work_front.processors.size(); i++) {
-                vector_front.insert(vector_front.end(), work_front.processors.at(i).begin(), work_front.processors.at(i).end());
+            for (int i = 0; i < work_front.machines.size(); i++) {
+                vector_front.insert(vector_front.end(), work_front.machines.at(i).begin(), work_front.machines.at(i).end());
                 vector_front.push_back(-2);
             }
             vector_front.push_back(-3);
@@ -429,7 +429,7 @@ void BnbJob::addToQueue(std::vector<int>& message) {
 
     //add one work at a time
     //it has to look like this:
-    // (0/1) (-2) (tasks: (0/...)_nr_tasks) (-2) (processors: (0/...)_nr_processors) (-3)
+    // (0/1) (-2) (tasks: (0/...)_nr_tasks) (-2) (machines: (0/...)_nr_machines) (-3)
     while (!message.empty()) {
         Work work;
 
@@ -458,14 +458,14 @@ void BnbJob::addToQueue(std::vector<int>& message) {
         //-2
         assert(next == -2);
 
-        //processors
-        std::vector<std::vector<int>> processors(_nr_processors, std::vector<int>(1, 0));
-        for (int i = 0; i < _nr_processors; i++) {
+        //machines
+        std::vector<std::vector<int>> machines(_nr_machines, std::vector<int>(1, 0));
+        for (int i = 0; i < _nr_machines; i++) {
             next = message.front();
             message.erase(message.begin());
-            processors.at(i).pop_back(); // delete initial 0
+            machines.at(i).pop_back(); // delete initial 0
             while(next != -2) {
-                processors.at(i).push_back(next);    
+                machines.at(i).push_back(next);    
 
                 next = message.front();
                 message.erase(message.begin()); 
@@ -474,7 +474,7 @@ void BnbJob::addToQueue(std::vector<int>& message) {
             //-2
             assert(next == -2);
         }
-        work.processors = processors;
+        work.machines = machines;
 
         //-3
         next = message.front();
@@ -497,18 +497,18 @@ void BnbJob::insertResult(int resultCode, const std::vector<int>& solution) {
     _result.setSolutionToSerialize(solution.data(), solution.size());
 }
 
-std::vector<int> BnbJob::compute_processor_length(const std::vector<std::vector<int>>& processors) {
-    std::vector<int> processor_length;
-    for (int i = 0; i < _nr_processors; i++) {
+std::vector<int> BnbJob::machine_workloads(const std::vector<std::vector<int>>& machines) {
+    std::vector<int> machine_workload;
+    for (int i = 0; i < _nr_machines; i++) {
         int curr_length = 0;
         int j = 0;
-        while(processors[i][j] != 0) {
-            curr_length += processors[i][j];
+        while(machines[i][j] != 0) {
+            curr_length += machines[i][j];
             j++;
         }
-        processor_length.push_back(curr_length);
+        machine_workload.push_back(curr_length);
     }
-    return processor_length;
+    return machine_workload;
 }
 
 std::string BnbJob::transform_for_log(const std::string& reason, const Work& work) {
@@ -518,16 +518,16 @@ std::string BnbJob::transform_for_log(const std::string& reason, const Work& wor
         str_tasks.append(" ");
         str_tasks.append(std::to_string(work.tasks.at(i)));
     }
-    std::string str_processor_lengths = "";
-    for(int i = 0; i < _nr_processors; i++) {
-        str_processor_lengths.append(" ");
-        str_processor_lengths.append(std::to_string(compute_processor_length(work.processors).at(i)));
+    std::string str_machine_workloads = "";
+    for(int i = 0; i < _nr_machines; i++) {
+        str_machine_workloads.append(" ");
+        str_machine_workloads.append(std::to_string(machine_workloads(work.machines).at(i)));
     }
-    std::string str_processors = "";
-    for(int i = 0; i < _nr_processors; ++i) {
-        for( int j = 0; j < work.processors[i].size(); j++) {
-            str_processors.append(" ");
-            str_processors.append(std::to_string(work.processors[i][j]));
+    std::string str_machines = "";
+    for(int i = 0; i < _nr_machines; ++i) {
+        for( int j = 0; j < work.machines[i].size(); j++) {
+            str_machines.append(" ");
+            str_machines.append(std::to_string(work.machines[i][j]));
         }
     }
 
@@ -537,14 +537,14 @@ std::string BnbJob::transform_for_log(const std::string& reason, const Work& wor
     log_string.append(std::to_string(work.completed));
     log_string.append(") (Nr Tasks: ");
     log_string.append(std::to_string(_nr_tasks));
-    log_string.append(") (Nr Processors: ");
-    log_string.append(std::to_string(_nr_processors));
+    log_string.append(") (Nr Machines: ");
+    log_string.append(std::to_string(_nr_machines));
     log_string.append(") (Tasks:");
     log_string.append(str_tasks.c_str());
-    log_string.append(") (Processor Lengths:");
-    log_string.append(str_processor_lengths.c_str());
-    log_string.append(") (Processors:");
-    log_string.append(str_processors.c_str());
+    log_string.append(") (Machine Workloads:");
+    log_string.append(str_machine_workloads.c_str());
+    log_string.append(") (Machines:");
+    log_string.append(str_machines.c_str());
     log_string.append(")\n");
 
     return log_string;

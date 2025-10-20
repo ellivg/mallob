@@ -21,12 +21,12 @@ private:
     JobResult _result;
 
     size_t _nr_tasks;
-    int _nr_processors;
+    int _nr_machines;
     
     struct Work{
         bool completed;
         std::vector<int> tasks;
-        std::vector<std::vector<int>> processors;
+        std::vector<std::vector<int>> machines;
         std::array<int, 2> last_assigned; //The length of the job which was assigned last and where it was assigned to
     };
 
@@ -46,7 +46,7 @@ private:
 
     Tracker tracker = {-1, 0, -1, 0, -1, 0, 0, 0, 0};
 
-    int appr_amount_of_expl; //approximation of amount of explorations (2^nr tasks)
+    int appr_amount_of_expl; //approximative amount of explorations (2^nr tasks)
     int num_expl_nodes;
 
     std::queue<Work> _work_queue;
@@ -96,11 +96,10 @@ private:
     std::vector<int> splitQueue();
     void addToQueue(std::vector<int>& message);
 
-    std::vector<int> compute_processor_length(const std::vector<std::vector<int>>& processors);
+    std::vector<int> machine_workloads(const std::vector<std::vector<int>>& machines);
     std::string transform_for_log(const std::string& reason, const Work& work);
 
     void tryStartReduction();
-
     void tryEndReduction();
 
     void insertResult(int resultCode, const std::vector<int>& solution);
