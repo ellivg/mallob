@@ -291,6 +291,17 @@ void BnbJob::init() {
 }
 
 void BnbJob::loop() {
+    
+    if(getJobTree().isRoot() && !_send_messages) {
+        LOG(V2_INFO, "Start waiting for other threads: %i\n", _send_messages);
+        int counter = 0;
+        while(!_send_messages) {
+            if (counter % 100000000 == 0) LOG(V2_INFO, "Still waiting:%i\n", _send_messages);
+            counter++;
+        }
+        LOG(V2_INFO, "End waiting: %i\n", _send_messages);
+    }
+
     do {
         //check if queue is empty and stop working if necessary
         bool empty;
@@ -315,7 +326,7 @@ void BnbJob::loop() {
             curr_work = _work_queue.front();
             _work_queue.pop();
         }
-        usleep(1000*10); //TODO work on removing
+        //usleep(1000*10); //TODO work on removing
         LOG(V5_DEBG, "%s", transform_for_log("[queue] In Loop. Currently at:", curr_work));
         if (num_expl_nodes % 1000 == 0) LOG(V2_INFO, "[queue] In loop. Jobs left: %i\n", _work_queue.size()+1);
 
