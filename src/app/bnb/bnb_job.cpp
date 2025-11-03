@@ -113,6 +113,30 @@ void BnbJob::appl_communicate() {
             LOG(V2_INFO, "[msg] Waiting\n");
             usleep(1000*100); //wait 0.1s to account for operations to fill queue (TODO maybe change?)
             tracker.num_queries--; //because were still waiting on the last one to be filled
+        } else if (_first) { // requesting from root
+            //Request work
+            JobMessage msg = getMessageTemplate();
+            msg.tag = MSG_WORK_STEALING_QUERY;
+            msg.payload = {0}; // irrelevant
+
+            // Check if request can be sent
+            int randomIndex = 0;
+            // Use our JobComm to convert the tree index into an addressable MPI rank.
+            int recvRank = getJobComm().getWorldRankOrMinusOne(randomIndex);
+            if (recvRank == -1 || getJobTree().getRank() == randomIndex) {
+                LOG(V2_INFO, "[msg] Tried requesting work but receiving rank was invalid or my own: %i\n", recvRank);
+                tracker.num_nonsucc_rankinvld++;
+            } else {
+                //Send
+                msg.treeIndexOfDestination = randomIndex;
+                msg.contextIdOfDestination = getJobComm().getContextIdOrZero(randomIndex);
+                assert(msg.contextIdOfDestination != 0);
+
+                getJobTree().send(recvRank, MSG_SEND_APPLICATION_MESSAGE, msg);
+                LOG(V2_INFO, "[msg] Requested work stealing from: %i\n", recvRank);
+                _waiting = 1;
+                _first = 0;
+            }            
         } else if (!_finished) {
             //Request work
             JobMessage msg = getMessageTemplate();
@@ -261,7 +285,7 @@ void BnbJob::init() {
         tasks.push_back(problem[i+2]);
     }
 
-    appr_amount_of_expl = pow(2.0, _nr_tasks);
+    appr_amount_of_expl = pow((long double) 2.0, (long double) _nr_tasks);
 
     //initial work (only done by root)
     if(getJobTree().isRoot()) {
@@ -405,10 +429,13 @@ std::vector<int> BnbJob::splitQueue() {
     std::vector<int> sendQueue;
     
     if (_work_queue.size() < 2 || (appr_amount_of_expl - num_expl_nodes) < 100) {
+        LOG(V5_DEBG, "I am not sending work: %i %i\n", appr_amount_of_expl, num_expl_nodes);
         sendQueue.push_back(-1);
     } else {
+        LOG(V5_DEBG, "I am sending work\n");
         int length = _work_queue.size();
         int sendLength = length / 2;
+        if(sendLength > 1000) sendLength = 1000;
         LOG(V5_DEBG, "[msg] Work queue is: %i\n", length);
 
         for (int i = 0; i < sendLength; i++) {
@@ -434,7 +461,6 @@ std::vector<int> BnbJob::splitQueue() {
 }
 
 void BnbJob::addToQueue(std::vector<int>& message) {
-    
     auto lock = queue_mtx.getLock();
     int next;
 

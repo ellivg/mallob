@@ -46,7 +46,7 @@ private:
 
     Tracker tracker = {-1, 0, -1, 0, -1, 0, 0, 0, 0};
 
-    int appr_amount_of_expl; //approximative amount of explorations (2^nr tasks)
+    long appr_amount_of_expl; //approximative amount of explorations (2^nr tasks)
     int num_expl_nodes;
 
     std::queue<Work> _work_queue;
@@ -66,6 +66,8 @@ private:
     bool _finished {false};
     bool _send_messages {false}; // Whether we can send messages
     bool _sent_work {false}; // Whether we have sent work to another thread
+    
+    bool _first {true}; // TODO
 
     // A JobTreeBroadcast instance represents one single, plain broadcast along the job tree.
     std::unique_ptr<JobTreeBroadcast> _bcast;
