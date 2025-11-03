@@ -34,7 +34,7 @@ void BnbJob::appl_start() {
     LOG(V5_DEBG, "myRank: %i myIndex: %i\n", getJobTree().getRank(), getJobTree().getIndex());
 
     init();
-    ProcessWideThreadPool::get().addTask([this]() {loop();});
+    std::future future = ProcessWideThreadPool::get().addTask([this]() {loop();});
 }
 
 int BnbJob::appl_solved() { //TODO CHANGES HERE
