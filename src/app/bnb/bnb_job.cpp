@@ -263,6 +263,7 @@ void BnbJob::appl_communicate(int source, int mpiTag, JobMessage& msg) {
 
     if(msg.tag == MSG_FINISHED) {
         _finished = 1;
+        LOG(V2_INFO, "Finished set to 1\n");
         return;
     }
 }
@@ -325,7 +326,7 @@ void BnbJob::loop() {
         LOG(V2_INFO, "Start waiting for other threads: %i\n", _send_messages);
         int counter = 0;
         while(!_send_messages) {
-            if (counter % 100000000 == 0) LOG(V2_INFO, "Still waiting:%i\n", _send_messages);
+            if (counter % 1000000000 == 0) LOG(V2_INFO, "Still waiting:%i\n", _send_messages);
             counter++;
         }
         LOG(V2_INFO, "End waiting: %i\n", _send_messages);
@@ -342,8 +343,14 @@ void BnbJob::loop() {
                 LOG(V2_INFO, "[queue] Queue empty. Stopping Loop\n");
                 _working = 0;
 
-                _loop_cond_var.waitWithLockedMutex(lock, [&]() {return _working;});
-                LOG(V2_INFO, "[queue] Restarting loop\n");
+                if(_finished)  {
+                    LOG(V2_INFO, "here2\n");
+                    break;
+                }    
+
+                _loop_cond_var.waitWithLockedMutex(lock, [&]() {return (_working || _finished);});
+                LOG(V2_INFO, "working: %i or finished: %i\n", _working, _finished);
+                LOG(V2_INFO, "[queue] Restarting loop: %i\n", _work_queue.size());
 
             }
         }
@@ -638,10 +645,12 @@ void BnbJob::tryEndReduction() {
 
     if(res0 == 0) {
         _finished = true;
+        LOG(V2_INFO, "Finished set to 1\n");
     }
 
     if(res2 != -1 && res2 == _curr_lower_bound) {
         _finished = true;
+        LOG(V2_INFO, "Finished set to 1\n");
     }
 
     // Conclude the all-reduction, allowing for this worker to be destructed later
