@@ -11,6 +11,7 @@
 #include "util/logger.hpp"
 #include "util/permutation.hpp"
 #include "util/sys/thread_pool.hpp"
+#include "util/sys/watchdog.hpp"
 
 BnbJob::BnbJob(const Parameters& params, const JobSetup& setup, AppMessageTable& table)
     : Job(params, setup, table) {
@@ -315,6 +316,9 @@ void BnbJob::init() {
 }
 
 void BnbJob::loop() {
+    Watchdog watchdog(true, 500, true);
+    watchdog.setWarningPeriod(500);
+    watchdog.setAbortPeriod(10'000);
     
     if(getJobTree().isRoot() && !_send_messages) {
         LOG(V2_INFO, "Start waiting for other threads: %i\n", _send_messages);
@@ -376,6 +380,8 @@ void BnbJob::loop() {
                 _curr_upper_bound = new_length;
             }        
         }
+
+        watchdog.reset();
     } while(_working);
 }
 
