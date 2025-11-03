@@ -46,7 +46,8 @@ int BnbJob::appl_solved() { //TODO CHANGES HERE
 
     if(!_finished) return -1;
 
-    if(!empty || _working) return -1;
+    assert(empty && !_working);
+
     {
         auto lock = solution_mtx.getLock();
         std::vector<int> _internal_solution;
@@ -114,7 +115,7 @@ void BnbJob::appl_communicate() {
             LOG(V2_INFO, "[msg] Waiting\n");
             usleep(1000*100); //wait 0.1s to account for operations to fill queue (TODO maybe change?)
             tracker.num_queries--; //because were still waiting on the last one to be filled
-        } else if (_first) { // requesting from root
+        } else if (_first && !getJobTree().isRoot()) { // requesting from root
             //Request work
             JobMessage msg = getMessageTemplate();
             msg.tag = MSG_WORK_STEALING_QUERY;
