@@ -34,7 +34,7 @@ void BnbJob::appl_start() {
     LOG(V5_DEBG, "myRank: %i myIndex: %i\n", getJobTree().getRank(), getJobTree().getIndex());
 
     init();
-    std::future future = ProcessWideThreadPool::get().addTask([this]() {loop();});
+    future = ProcessWideThreadPool::get().addTask([this]() {loop();});
 }
 
 int BnbJob::appl_solved() { //TODO CHANGES HERE
@@ -262,7 +262,11 @@ void BnbJob::appl_communicate(int source, int mpiTag, JobMessage& msg) {
     }
 
     if(msg.tag == MSG_FINISHED) {
-        _finished = 1;
+        {
+            auto lock = queue_mtx.getLock();
+            _finished = true;
+        }
+        _loop_cond_var.notify();
         LOG(V2_INFO, "Finished set to 1\n");
         return;
     }
@@ -343,15 +347,12 @@ void BnbJob::loop() {
                 LOG(V2_INFO, "[queue] Queue empty. Stopping Loop\n");
                 _working = 0;
 
-                if(_finished)  {
-                    LOG(V2_INFO, "here2\n");
-                    break;
-                }    
-
                 _loop_cond_var.waitWithLockedMutex(lock, [&]() {return (_working || _finished);});
-                LOG(V2_INFO, "working: %i or finished: %i\n", _working, _finished);
-                LOG(V2_INFO, "[queue] Restarting loop: %i\n", _work_queue.size());
+                LOG(V5_DEBG, "[queue] working: %i or finished: %i\n", _working, _finished);
+                
+                if(_finished) break;
 
+                LOG(V2_INFO, "[queue] Restarting loop: %i\n", _work_queue.size());
             }
         }
 
@@ -390,7 +391,9 @@ void BnbJob::loop() {
         }
 
         watchdog.reset();
-    } while(_working);
+    } while(_working && !_finished);
+
+    LOG(V2_INFO, "[queue] Succesfully broken out of loop\n");
 }
 
 BnbJob::Work BnbJob::branch(Work& work) {
@@ -644,12 +647,20 @@ void BnbJob::tryEndReduction() {
     LOG(V2_INFO, "[red] Result is: %i, %i, %i\n", res0, res1, res2);
 
     if(res0 == 0) {
-        _finished = true;
+        {
+            auto lock = queue_mtx.getLock();
+            _finished = true;
+        }
+        _loop_cond_var.notify();
         LOG(V2_INFO, "Finished set to 1\n");
     }
 
     if(res2 != -1 && res2 == _curr_lower_bound) {
-        _finished = true;
+        {
+            auto lock = queue_mtx.getLock();
+            _finished = true;
+        }
+        _loop_cond_var.notify();
         LOG(V2_INFO, "Finished set to 1\n");
     }
 
