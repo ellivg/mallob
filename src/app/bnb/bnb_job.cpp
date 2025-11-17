@@ -37,6 +37,15 @@ void BnbJob::appl_start() {
     future = ProcessWideThreadPool::get().addTask([this]() {loop();});
 }
 
+void BnbJob::appl_terminate() {
+    {
+        auto lock = queue_mtx.getLock();
+        _finished = true;
+    }
+    _loop_cond_var.notify();
+    LOG(V2_INFO, "[term] Terminated\n");
+}
+
 int BnbJob::appl_solved() { //TODO CHANGES HERE
     bool empty;
     {
