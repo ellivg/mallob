@@ -373,7 +373,7 @@ void BnbJob::loop() {
             _work_queue.pop();
         }
         //usleep(1000*10); //TODO work on removing
-        LOG(V5_DEBG, "%s", transform_for_log("[queue] In Loop. Currently at:", curr_work));
+        LOG(V5_DEBG, "%s", transform_for_log("[queue] In Loop. Currently at:", curr_work).c_str());
         if (num_expl_nodes % 1000 == 0) LOG(V2_INFO, "[queue] In loop. Jobs left: %i\n", _work_queue.size()+1);
 
         //tracker
@@ -405,13 +405,19 @@ void BnbJob::loop() {
     LOG(V2_INFO, "[queue] Succesfully broken out of loop\n");
 }
 
-BnbJob::Work BnbJob::branch(Work& work) {
+void BnbJob::branch(Work& work) {
     std::vector<int> machine_workload = machine_workloads(work.machines);
     
     //if no new tasks
     if (work.tasks.empty()) {
         work.completed = 1;
-        return work;
+        return;
+    }
+
+    // if three assignments left (Rule No 3)
+    if (work.tasks.size() == 3) {
+        pruning_three_jobs_left(work, machine_workload);
+        return;
     }
     
     //get current task
@@ -424,12 +430,12 @@ BnbJob::Work BnbJob::branch(Work& work) {
         //PRUNING
         bool prune = false;
 
-        //if multiple machines with same length
+        //if multiple machines with same length (Rule No 1)
         for (int j = 0; j < i; j++) {
             if (machine_workload[i] == machine_workload[j]) prune = true;
         }
 
-        //prune if length of last assigned job equal length of current job
+        //prune if length of last assigned job equal length of current job (Rule No 2)
         //if ((work.last_assigned[0] == curr_task) && (work.last_assigned[1] != -1) && (work.last_assigned[1] < i)) prune = true;
         
 
@@ -447,7 +453,68 @@ BnbJob::Work BnbJob::branch(Work& work) {
         _work_queue.push(new_work);  
     }
     
-    return work;
+    return;
+}
+
+void BnbJob::pruning_three_jobs_left(Work& work, std::vector<int>& machine_workload) {
+    // (1) Assign each of the jobs to the least loaded processor respectively
+    {
+        Work curr_work = work;
+        std::vector<int> curr_machine_workload = machine_workload;
+        for (int i = 0; i < 3; i++) {
+            int index_smallest_workload = std::distance(std::begin(curr_machine_workload), std::min_element(std::begin(curr_machine_workload), std::end(curr_machine_workload)));
+
+            std::vector<int> new_tasks = work.tasks;
+            int curr_task = new_tasks[0];
+            new_tasks.erase(new_tasks.begin());
+
+            std::vector<std::vector<int>> new_machines = work.machines;
+            new_machines[index_smallest_workload].pop_back();
+            new_machines[index_smallest_workload].push_back(curr_task);
+            new_machines[index_smallest_workload].push_back(0);
+
+            curr_work = {0, new_tasks, new_machines, {curr_task, index_smallest_workload}};
+            curr_machine_workload = machine_workloads(new_machines);
+        }
+        {
+            auto lock = queue_mtx.getLock();
+            _work_queue.push(curr_work);
+        }
+    }
+
+    // (2) Assign the third-to-last job to the second least loaded processor, then assign the other two jobs as in (1)
+    {
+        Work curr_work = work;
+        std::vector<int> curr_machine_workload = machine_workload;
+        int index_smallest_workload;
+        //SECOND SMALLEST ONLY THIS TIME
+        {
+            std::vector<int> copy_machine_workload = curr_machine_workload;
+            index_smallest_workload = std::distance(copy_machine_workload.begin(), std::min_element(copy_machine_workload.begin(), copy_machine_workload.end()));
+            copy_machine_workload.erase(copy_machine_workload.begin()+index_smallest_workload);
+            auto second_smallest_workload = std::min_element(copy_machine_workload.begin(), copy_machine_workload.end());
+            index_smallest_workload = std::distance(curr_machine_workload.begin(), std::find(curr_machine_workload.begin(), curr_machine_workload.end(), *second_smallest_workload));
+        }
+        for (int i = 0; i < 3; i++) {
+            std::vector<int> new_tasks = work.tasks;
+            int curr_task = new_tasks[0];
+            new_tasks.erase(new_tasks.begin());
+
+            std::vector<std::vector<int>> new_machines = work.machines;
+            new_machines[index_smallest_workload].pop_back();
+            new_machines[index_smallest_workload].push_back(curr_task);
+            new_machines[index_smallest_workload].push_back(0);
+
+            curr_work = {0, new_tasks, new_machines, {curr_task, index_smallest_workload}};
+            curr_machine_workload = machine_workloads(new_machines);
+            int index_smallest_workload = std::distance(std::begin(curr_machine_workload), std::min_element(std::begin(curr_machine_workload), std::end(curr_machine_workload)));
+        }
+        {
+            auto lock = queue_mtx.getLock();
+            _work_queue.push(curr_work);
+        }
+    }
+    
 }
 
 std::vector<int> BnbJob::splitQueue() {

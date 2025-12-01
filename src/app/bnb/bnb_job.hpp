@@ -94,7 +94,8 @@ private:
     void init();
     void loop();
 
-    Work branch(Work& work);
+    void branch(Work& work);
+    void pruning_three_jobs_left(Work& work, std::vector<int>& machine_workload);
 
     std::vector<int> splitQueue();
     void addToQueue(std::vector<int>& message);
