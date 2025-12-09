@@ -419,6 +419,35 @@ void BnbJob::branch(Work& work) {
         pruning_three_jobs_left(work, machine_workload);
         return;
     }
+
+    int max_loop = _nr_machines;
+
+    // if i < m then only the i least loaded processors need to be considered (Rule No 4)
+    if (work.tasks.size() < _nr_machines) {
+        //TODO: fragen ob diese (in place und custom) sortierung fine ist
+        LOG(V5_DEBG, "%s", transform_for_log("before", work).c_str());
+        struct
+        {
+            bool operator()(std::vector<int> a, std::vector<int> b) const { 
+                return (std::accumulate(a.begin(), a.end(), 0)) < (std::accumulate(b.begin(), b.end(), 0));
+            }
+        }
+        customSort;
+    
+        std::sort(work.machines.begin(), work.machines.end(), customSort);
+        LOG(V5_DEBG, "%s", transform_for_log("after", work).c_str());
+
+        max_loop = work.tasks.size();
+    }
+
+    // if there is still a valid solution given the upper bound (Rule No 5)
+    if (work.tasks[0] == work.tasks[work.tasks.size() - 1] && _curr_upper_bound != -1) {
+        int sum = 0;
+        for (int x = 0; x < work.machines.size(); x++) {
+            sum += (_curr_upper_bound - machine_workload[x]) / work.tasks[0];
+        }
+        if (sum < work.tasks.size()) return;
+    }
     
     //get current task
     std::vector<int> new_tasks = work.tasks;
@@ -426,7 +455,7 @@ void BnbJob::branch(Work& work) {
     new_tasks.erase(new_tasks.begin());
     
     //add newest task to all machines and branch
-    for (int i = 0; i < _nr_machines; i ++) {
+    for (int i = 0; i < max_loop; i ++) {
         //PRUNING
         bool prune = false;
 
@@ -514,7 +543,6 @@ void BnbJob::pruning_three_jobs_left(Work& work, std::vector<int>& machine_workl
             _work_queue.push(curr_work);
         }
     }
-    
 }
 
 std::vector<int> BnbJob::splitQueue() {
