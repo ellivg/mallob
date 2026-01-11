@@ -4,7 +4,7 @@ set -eu  #Abort if encounter error or unset variable
 
 MPI_PROCESSES=4 #TODO: Set to desired number 
 THREADS_PER_PROCESS=3 #TODO Set to desired number
-INSTANCES=1 #TODO: Set to desired number (or count paths in paths.txt file)
+INSTANCES=5 #TODO: Set to desired number (or count paths in paths.txt file)
 
 echo "" 
 echo ""
@@ -15,8 +15,8 @@ echo "MPI_PROCESSES: $MPI_PROCESSES"
 echo "THREADS_PER_PROCESS: $THREADS_PER_PROCESS"
 echo "INSTANCES: $INSTANCES"
 
-OUT_DIR="scripts/bnb/out/" #TODO: Set to own paths
-INST_PATHS_TXT="scripts/bnb/in/paths.txt" #TODO: Set to own instances
+OUT_DIR="scripts/server/example_logsntraces/" #TODO: Set to own paths
+INST_PATHS_TXT="scripts/server/example_in/paths.txt" #TODO: Set to own instances
 
 (cd scripts/server/example_in; find "$(pwd)" -type f -name "*.xz" > paths.txt) #TODO remove. We create paths.txt this way only here for the example to have valid full paths
 
@@ -31,7 +31,13 @@ if [[ ! -f "$INST_PATHS_TXT" ]]; then
 fi
 
 MALLOB_OPTIONS=" \
-  -mono-app=bnb \
+  -t=$THREADS_PER_PROCESS \
+  -mono-app=SAT \
+  -v=4 \
+  -satsolver=c \
+  -colors \
+  -os=1 \
+  -q=1 \
 "
 
 echo "MALLOB_OPTIONS"
