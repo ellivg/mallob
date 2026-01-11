@@ -1,7 +1,6 @@
 set -eu  #Abort if encounter error or unset variable
 
 MPI_PROCESSES=4 #TODO: Set to desired number 
-THREADS_PER_PROCESS=3 #TODO Set to desired number
 INSTANCES=1 #TODO: Set to desired number (or count paths in paths.txt file)
 
 echo "" 
@@ -29,7 +28,6 @@ if [[ ! -f "$INST_PATHS_TXT" ]]; then
 fi
 
 MALLOB_OPTIONS=" \
-  -t=$THREADS_PER_PROCESS \
   -mono-app=bnb \
   -jcup=0.1 \
   -pre-cleanup=1
@@ -68,7 +66,7 @@ for ((i=1; i<=INSTANCES; i++)); do
   echo "" 
   echo ""
 
-  mpirun -np $MPI_PROCESSES --bind-to core --map-by ppr:${MPI_PROCESSES}:node:pe=${THREADS_PER_PROCESS} build/mallob $MY_MALLOB_OPTIONS 
+  mpirun -np $MPI_PROCESSES --bind-to core build/mallob $MY_MALLOB_OPTIONS 
 done 
 
 echo ""
