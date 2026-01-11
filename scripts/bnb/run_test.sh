@@ -31,7 +31,6 @@ if [[ ! -f "$INST_PATHS_TXT" ]]; then
 fi
 
 MALLOB_OPTIONS=" \
-  -t=$THREADS_PER_PROCESS \
   -mono-app=BNB \
 "
 
