@@ -33,11 +33,6 @@ fi
 MALLOB_OPTIONS=" \
   -t=$THREADS_PER_PROCESS \
   -mono-app=BNB \
-  -v=4 \
-  -satsolver=c \
-  -colors \
-  -os=1 \
-  -q=1 \
 "
 
 echo "MALLOB_OPTIONS"
