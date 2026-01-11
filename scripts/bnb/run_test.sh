@@ -31,7 +31,7 @@ if [[ ! -f "$INST_PATHS_TXT" ]]; then
 fi
 
 MALLOB_OPTIONS=" \
-  -mono-app=BNB \
+  -mono-app=bnb \
 "
 
 echo "MALLOB_OPTIONS"
