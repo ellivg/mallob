@@ -1,3 +1,5 @@
+#!/bin/bash
+
 set -eu  #Abort if encounter error or unset variable
 
 MPI_PROCESSES=4 #TODO: Set to desired number 
