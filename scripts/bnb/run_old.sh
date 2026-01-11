@@ -1,7 +1,5 @@
 #! /bin/sh
 
-sh scripts/setup/build.sh
-
 files=("bnb_n10_m2.cnf" "bnb_n15_m2.cnf")
 
 echo "Start computing"
