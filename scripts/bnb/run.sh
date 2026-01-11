@@ -45,17 +45,8 @@ for ((i=1; i<=INSTANCES; i++)); do
 
   echo "Processing instance Nr. $i: ($INST_PATH)"
 
-  # create an output dir for each instance
-  MY_LOG="$OUT_DIR/$i/"
-  MY_TMP="$OUT_DIR/$i/tmp/"
-  mkdir -p $MY_LOG
-  mkdir -p $MY_TMP
-
   MY_MALLOB_OPTIONS="$MALLOB_OPTIONS \
     -mono=\"$INST_PATH\" \
-    -log=$MY_LOG \
-    -trace-dir=$MY_LOG \
-    -tmp=$MY_TMP
   "
 
   echo "MY_MALLOB_OPTIONS"
