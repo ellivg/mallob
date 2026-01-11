@@ -9,7 +9,6 @@ echo "Using $((MPI_PROCESSES))/$(nproc) cores"
 echo $(lscpu | grep "Model name")
 
 echo "MPI_PROCESSES: $MPI_PROCESSES"
-echo "THREADS_PER_PROCESS: $THREADS_PER_PROCESS"
 echo "INSTANCES: $INSTANCES"
 
 OUT_DIR="scripts/bnb/out/" #TODO: Set to own paths
