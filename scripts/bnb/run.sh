@@ -5,7 +5,7 @@ INSTANCES=1 #TODO: Set to desired number (or count paths in paths.txt file)
 
 echo "" 
 echo ""
-echo "Using $((MPI_PROCESSES * THREADS_PER_PROCESS))/$(nproc) cores"
+echo "Using $((MPI_PROCESSES))/$(nproc) cores"
 echo $(lscpu | grep "Model name")
 
 echo "MPI_PROCESSES: $MPI_PROCESSES"
