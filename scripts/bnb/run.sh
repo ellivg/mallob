@@ -45,8 +45,8 @@ for ((i=1; i<=INSTANCES; i++)); do
 
   echo "Processing instance Nr. $i: ($INST_PATH)"
 
-  MY_MALLOB_OPTIONS="$MALLOB_OPTIONS \
-    -mono=\"$INST_PATH\" \
+  MY_MALLOB_OPTIONS=" -mono=\"$INST_PATH\" \
+    $MALLOB_OPTIONS \
   "
 
   echo "MY_MALLOB_OPTIONS"
