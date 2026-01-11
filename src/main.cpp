@@ -83,7 +83,6 @@ void introduceMonoJob(Parameters& params, Client& client) {
         monoJobDone = true;
     });
     if (result != JsonInterface::Result::ACCEPT) {
-        LOG(V2_INFO, "%s", result);
         LOG(V0_CRIT, "[ERROR] Cannot introduce mono job!\n");
         abort();
     }
