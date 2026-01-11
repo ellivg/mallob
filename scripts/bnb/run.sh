@@ -67,7 +67,7 @@ for ((i=1; i<=INSTANCES; i++)); do
 
   echo "mpirun -np $MPI_PROCESSES build/mallob $MY_MALLOB_OPTIONS"
 
-  mpirun -np $MPI_PROCESSES --bind-to core build/mallob $MY_MALLOB_OPTIONS 
+  mpirun -np $MPI_PROCESSES build/mallob $MY_MALLOB_OPTIONS 
 done 
 
 echo ""
