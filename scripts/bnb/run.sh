@@ -54,7 +54,7 @@ for ((i=1; i<=INSTANCES; i++)); do
   mkdir -p $MY_TMP
 
   MY_MALLOB_OPTIONS="$MALLOB_OPTIONS \
-    -mono=$INST_PATH \
+    -mono="$INST_PATH" \
     -log=$MY_LOG \
     -trace-dir=$MY_LOG \
     -tmp=$MY_TMP
