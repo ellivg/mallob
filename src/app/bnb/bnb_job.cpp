@@ -47,13 +47,13 @@ void BnbJob::appl_terminate() {
 }
 
 int BnbJob::appl_solved() { //TODO CHANGES HERE
+    if(!_finished) return -1;
+
     bool empty;
     {
         auto lock = queue_mtx.getLock();
         empty = _work_queue.empty();
     }
-
-    if(!_finished) return -1;
 
     assert(empty && !_working);
 
@@ -337,10 +337,12 @@ void BnbJob::loop() {
     
     if(getJobTree().isRoot() && !_send_messages) {
         LOG(V2_INFO, "Start waiting for other threads: %i\n", _send_messages);
-        int counter = 0;
+        float timer = Timer::elapsedSeconds();
         while(!_send_messages) {
-            if (counter % 1000000000 == 0) LOG(V2_INFO, "Still waiting:%i\n", _send_messages);
-            counter++;
+            if(Timer::elapsedSeconds() - timer == 1) {
+                LOG(V2_INFO, "Still waiting:%i\n", _send_messages);
+                timer += 1;
+            }
         }
         LOG(V2_INFO, "End waiting: %i\n", _send_messages);
     }
@@ -372,7 +374,7 @@ void BnbJob::loop() {
             curr_work = _work_queue.front();
             _work_queue.pop();
         }
-        //usleep(1000*10); //TODO work on removing
+        usleep(10); //TODO work on removing
         LOG(V5_DEBG, "%s", transform_for_log("[queue] In Loop. Currently at:", curr_work).c_str());
         if (num_expl_nodes % 1000 == 0) LOG(V2_INFO, "[queue] In loop. Jobs left: %i\n", _work_queue.size()+1);
 
@@ -582,6 +584,7 @@ std::vector<int> BnbJob::splitQueue() {
 }
 
 void BnbJob::addToQueue(std::vector<int>& message) {
+    LOG(V2_INFO, "[adding] Adding starting now\n");
     auto lock = queue_mtx.getLock();
     int next;
 
@@ -645,6 +648,7 @@ void BnbJob::addToQueue(std::vector<int>& message) {
     _working = 1;
     _waiting = 0;
     _loop_cond_var.notify();
+    LOG(V2_INFO, "[adding] Adding ending now\n");
 }
 
 // Mark the job as done, with the provided result code and solution.
@@ -718,7 +722,7 @@ void BnbJob::tryStartReduction() {
         int all_upper_bound = -1; //contrib.at(2) is current upper bound
 
         for (auto& contrib : contribs) {
-            LOG(V5_DEBG, "Contribution: %i, %i, %i\n", contrib.at(0), contrib.at(1), contrib.at(2));
+            LOG(V2_INFO, "[red] Contribution: %i, %i, %i\n", contrib.at(0), contrib.at(1), contrib.at(2));
             sum += contrib.at(0);
             if(contrib.at(1) != -1 && (all_lower_bound == -1 || contrib.at(1) < all_lower_bound)) all_lower_bound = contrib.at(1);
             if(contrib.at(2) != -1 && (all_upper_bound == -1 || contrib.at(1) > all_upper_bound)) all_upper_bound = contrib.at(2);
@@ -739,6 +743,7 @@ void BnbJob::tryStartReduction() {
 
 void BnbJob::tryEndReduction() {
     if (!_red) return;
+    if(!_red->advance().isValid()) LOG(V2_INFO, "[red] all-reduction without validity\n");
     if (!_red->advance().hasResult()) return;
 
     LOG(V2_INFO, "[red] all-reduction complete\n");
