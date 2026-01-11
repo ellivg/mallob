@@ -35,14 +35,14 @@ bool BnbReader::read(const std::vector<std::string>& filenames, JobDescription& 
         return false;
     }
 
-    desc.addPermanentData(nr_processes);
-    desc.addPermanentData(nr_cores);
+    desc.addData(nr_processes);
+    desc.addData(nr_cores);
     
     //parse main file
     for (int curr_process = 0; curr_process < nr_processes; ++curr_process) {
         int p_length = 0;
         ifile >> p_length;
-        desc.addPermanentData(p_length);
+        desc.addData(p_length);
     }
 
     //parse end
