@@ -14,7 +14,7 @@ echo "INSTANCES: $INSTANCES"
 OUT_DIR="scripts/bnb/out/" #TODO: Set to own paths
 INST_PATHS_TXT="scripts/bnb/in/paths.txt" #TODO: Set to own instances
 
-(cd scripts/server/example_in; find "$(pwd)" -type f -name "*.xz" > paths.txt) #TODO remove. We create paths.txt this way only here for the example to have valid full paths
+#(cd scripts/server/example_in; find "$(pwd)" -type f -name "*.xz" > paths.txt) #TODO remove. We create paths.txt this way only here for the example to have valid full paths
 
 #Clean old logs and traces
 : "${OUT_DIR:?ERROR: OUT_DIR is not set or empty}"  #safety measure to not accidentaly rm -rf the whole /* (!!)
