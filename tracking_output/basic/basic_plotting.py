@@ -4,7 +4,7 @@ import math
 import os
 
 # Assign directory
-directory = r"/nfs/home/evongregory/mallob/scripts/bnb/out"
+directory = r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/scripts/bnb/out/"
 
 # Variables
 non_tracking_files = []
@@ -48,7 +48,7 @@ for name in os.listdir(directory):
         finished_values.append(float(line[-1]))
     
     # Decide which values are important for the current plot and add them to the dict
-    label = name.split("_")[1][1:]
+    label = name.split("_")[1]
     for line in finished_values:
         values[label].append(line)
     
@@ -68,9 +68,9 @@ print(values)
 max_value = math.ceil(max(max(sub_list) for sub_list in values[1]))
 min_value = math.floor(min(min(sub_list) for sub_list in values[1]))
 
-plt.boxplot(x=values[1], tick_labels=values[0])
+plt.boxplot(x=values[1], tick_labels=[20,25])
 
-plt.xlim([0, len(values[0])])
+plt.xlim([0, len(values[0])+1])
 plt.ylim([min_value, max_value])
 
 plt.title("Auslastung bei einzigem Unterschied in der Job-Anzahl \n bei gleicher Maschinen- und Threadanzahl (2)")
