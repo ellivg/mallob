@@ -33,7 +33,7 @@ make clean
 make -j 20
 cd ..
 
-bash scripts/bnb/run_basic.sh
+#bash scripts/bnb/run_basic.sh
 
 echo ""
 echo ""
