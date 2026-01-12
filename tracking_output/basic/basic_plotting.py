@@ -4,7 +4,7 @@ import math
 import os
 
 # Assign directory
-directory = r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/basic/files/"
+directory = r"/mallob/scripts/bnb/out"
 
 # Variables
 non_tracking_files = []
@@ -77,4 +77,4 @@ plt.title("Auslastung bei einzigem Unterschied in der Job-Anzahl \n bei gleicher
 plt.xlabel("Jobanzahl")
 plt.ylabel("Auslastung")
 
-plt.savefig("tracking_output/basic/basic_boxplot_new_3.png")
+plt.savefig("tracking_output/basic/basic_boxplot.png")
