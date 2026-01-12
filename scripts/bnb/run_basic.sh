@@ -42,7 +42,7 @@ echo $MALLOB_OPTIONS | tr ' ' '\n'
 # main loop over instances
 INSTANCES_PROCESSED=0
 for ((i=1; i<=INSTANCES; i++)); do
-  if (i < 5); then
+  if (i == 5); then
     continue
   fi
   echo "" 
