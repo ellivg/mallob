@@ -32,6 +32,8 @@ fi
 
 MALLOB_OPTIONS=" \
   -mono-app=bnb \
+  -jcup=0.1 \ 
+  -pre-cleanup=1 \
 "
 
 echo "MALLOB_OPTIONS"
