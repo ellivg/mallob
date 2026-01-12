@@ -39,5 +39,5 @@ echo ""
 echo ""
 echo "Start evaluating"
 pwd
-python -u "/tracking_output/basic/basic_plotting.py"
+python -u "tracking_output/basic/basic_plotting.py"
 echo "End evaluating"

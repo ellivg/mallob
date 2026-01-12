@@ -4,7 +4,7 @@ import math
 import os
 
 # Assign directory
-directory = r"/mallob/scripts/bnb/out"
+directory = r"/nfs/home/evongregory/mallob/scripts/bnb/out"
 
 # Variables
 non_tracking_files = []
