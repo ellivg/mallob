@@ -69,7 +69,7 @@ for ((i=1; i<=INSTANCES; i++)); do
   echo "" 
   echo ""
 
-  for (j=1; j<=3; j++); do
+  for ((j=1; j<=3; j++)); do
     mpirun -np $MPI_PROCESSES --bind-to core --map-by ppr:${MPI_PROCESSES}:node:pe=${THREADS_PER_PROCESS} build/mallob $MY_MALLOB_OPTIONS >scripts/bnb/out/"file_"$i"_"$j".txt"
   done
 done 
