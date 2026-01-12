@@ -38,5 +38,6 @@ cd ..
 echo ""
 echo ""
 echo "Start evaluating"
+pwd
 python -u "/mallob/tracking_output/basic_plotting.py"
 echo "End evaluating"
