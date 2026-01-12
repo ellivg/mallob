@@ -33,11 +33,4 @@ make clean
 make -j 20
 cd ..
 
-#bash scripts/bnb/run_basic.sh
-
-echo ""
-echo ""
-echo "Start evaluating"
-pwd
-python -u "tracking_output/basic/basic_plotting.py"
-echo "End evaluating"
+bash scripts/bnb/run_basic.sh
