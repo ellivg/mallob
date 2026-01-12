@@ -23,7 +23,7 @@ CC=$(which mpicc)
 CXX=$(which mpicxx) 
 cmake -DMALLOB_JEMALLOC_DIR=/nfs/home/$USER/.user_spack/environments/mallob_env/.spack-env/view/lib \
   -DCMAKE_BUILD_TYPE=RELEASE \
-  -DMALLOB_APP_SAT=1 \
+  -DMALLOB_APP_SAT=1 -DMALLOB_APP_BNB=1 \
   -DMALLOB_USE_JEMALLOC=1 \
   -DMALLOB_LOG_VERBOSITY=4 \
   -DMALLOB_ASSERT=1 \
@@ -33,4 +33,4 @@ make clean
 make -j 20
 cd ..
 
-bash scripts/bnb/run_test.sh
+bash scripts/bnb/run.sh
