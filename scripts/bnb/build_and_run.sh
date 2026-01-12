@@ -34,3 +34,9 @@ make -j 20
 cd ..
 
 bash scripts/bnb/run_basic.sh
+
+echo ""
+echo ""
+echo "Start evaluating"
+python -u "/mallob/tracking_output/basic_plotting.py"
+echo "End evaluating"
