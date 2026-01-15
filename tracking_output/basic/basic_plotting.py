@@ -32,7 +32,7 @@ for name in os.listdir(directory):
         # Add all lines relevant for tracking
         for line in file:
             line.strip()
-            if "[tracking]"  in line and not "queries" in line:
+            if "[tracking]"  in line:
                 tracking_lines.append(line)
     
     # Delete line delimiters and [tracking] keyword
@@ -42,6 +42,7 @@ for name in os.listdir(directory):
             line = line.split(" ")
             line = line[1:3] + line[4:]
             tracking_values.append(line)
+            print(line)
 
     # Probably later prettier but in basic the only necessary numbers are the timestamp line[0] and percentage line[-1]
     for line in tracking_values:
@@ -68,10 +69,10 @@ print(values)
 max_value = math.ceil(max(max(sub_list) for sub_list in values[1]))
 min_value = math.floor(min(min(sub_list) for sub_list in values[1]))
 
-plt.boxplot(x=values[1], tick_labels=[20,25])
+plt.boxplot(x=values[1], tick_labels=[10,15])
 
 plt.xlim([0, len(values[0])+1])
-plt.ylim([min_value, max_value])
+plt.ylim([min_value, 0.02])
 
 plt.title("Auslastung bei einzigem Unterschied in der Job-Anzahl \n bei gleicher Maschinen- und Threadanzahl (2)")
 plt.xlabel("Jobanzahl")
