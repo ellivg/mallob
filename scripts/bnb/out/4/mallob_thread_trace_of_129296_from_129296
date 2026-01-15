@@ -1,0 +1,54 @@
+[New LWP 129299]
+[New LWP 129311]
+[New LWP 129313]
+[New LWP 129377]
+[New LWP 129382]
+[New LWP 129385]
+[New LWP 129390]
+[New LWP 129395]
+[New LWP 129401]
+[New LWP 129408]
+[New LWP 129409]
+[New LWP 129420]
+
+This GDB supports auto-downloading debuginfo from the following URLs:
+  <https://debuginfod.centos.org/>
+Enable debuginfod for this session? (y or [n]) [answered N; input not from terminal]
+Debuginfod has been disabled.
+To make this setting permanent, add 'set debuginfod enabled off' to .gdbinit.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib64/libthread_db.so.1".
+
+Thread 1 "MainThread" received signal SIGTSTP, Stopped (user).
+0x00007fc602b5d8ba in __futex_abstimed_wait_common () from /lib64/libc.so.6
+warning: File "/nfs/software/spack-installs/upstream/opt/spack/linux-rocky9-x86_64/gcc-11.4.1/gcc-14.2.0-vo56cu4ajzxtztf6jzpmvjiq3zecjk3c/lib64/libstdc++.so.6.0.33-gdb.py" auto-loading has been declined by your `auto-load safe-path' set to "$debugdir:$datadir/auto-load".
+To enable execution of this file add
+	add-auto-load-safe-path /nfs/software/spack-installs/upstream/opt/spack/linux-rocky9-x86_64/gcc-11.4.1/gcc-14.2.0-vo56cu4ajzxtztf6jzpmvjiq3zecjk3c/lib64/libstdc++.so.6.0.33-gdb.py
+line to your configuration file "/nfs/home/evongregory/.config/gdb/gdbinit".
+To completely disable this security protection add
+	set auto-load safe-path /
+line to your configuration file "/nfs/home/evongregory/.config/gdb/gdbinit".
+For more information about this security protection see the
+"Auto-loading safe path" section in the GDB manual.  E.g., run from the shell:
+	info "(gdb)Auto-loading safe path"
+#0  0x00007fc602b5d8ba in __futex_abstimed_wait_common () from /lib64/libc.so.6
+#1  0x00007fc602b627f3 in __pthread_clockjoin_ex () from /lib64/libc.so.6
+#2  0x00007fc602edb31b in __gthread_join (__threadid=<optimized out>, __value_ptr=0x0) at /tmp/spack/spack-stage/spack-stage-gcc-14.2.0-vo56cu4ajzxtztf6jzpmvjiq3zecjk3c/spack-src/spack-build/x86_64-pc-linux-gnu/libstdc++-v3/include/x86_64-pc-linux-gnu/bits/gthr-default.h:682
+#3  std::thread::join (this=this@entry=0x7ffd26a64420) at /tmp/spack/spack-stage/spack-stage-gcc-14.2.0-vo56cu4ajzxtztf6jzpmvjiq3zecjk3c/spack-src/libstdc++-v3/src/c++11/thread.cc:134
+#4  0x00000000005012cf in Process::writeTrace (tid=<optimized out>) at /nfs/home/evongregory/mallob/src/util/sys/process.cpp:207
+#5  0x00000000005020d3 in handleSignal (signum=6) at /nfs/home/evongregory/mallob/src/util/sys/process.cpp:43
+#6  handleSignal (signum=6) at /nfs/home/evongregory/mallob/src/util/sys/process.cpp:34
+#7  <signal handler called>
+#8  0x00007fc602b62a6c in __pthread_kill_implementation () from /lib64/libc.so.6
+#9  0x00007fc602b15686 in raise () from /lib64/libc.so.6
+#10 0x00007fc602aff833 in abort () from /lib64/libc.so.6
+#11 0x00007fc602aff75b in __assert_fail_base.cold () from /lib64/libc.so.6
+#12 0x00007fc602b0e3c6 in __assert_fail () from /lib64/libc.so.6
+#13 0x0000000000509581 in Job::getResult (this=this@entry=0x7fc6021f5000) at /nfs/home/evongregory/mallob/src/app/job.cpp:228
+#14 0x000000000052b750 in SchedulingManager::checkActiveJob (this=0x7fc602138778) at /nfs/home/evongregory/mallob/src/core/scheduling_manager.cpp:236
+#15 0x000000000049c86f in Worker::checkActiveJob (this=0x7fc602138400) at /nfs/home/evongregory/mallob/src/core/worker.cpp:198
+#16 Worker::checkJobs (this=0x7fc602138400) at /nfs/home/evongregory/mallob/src/core/worker.cpp:181
+#17 Worker::advance (this=this@entry=0x7fc602138400) at /nfs/home/evongregory/mallob/src/core/worker.cpp:91
+#18 0x00000000004b489c in doMainProgram (commWorkers=@0x7ffd26a65850: 0x7fc601b66380, commClients=@0x7ffd26a65848: 0x629700 <ompi_mpi_comm_null>, params=..., distTerm=...) at /nfs/home/evongregory/mallob/src/main.cpp:178
+#19 0x00000000004601ce in main (argc=<optimized out>, argv=<optimized out>) at /nfs/home/evongregory/mallob/src/main.cpp:361
+[Inferior 1 (process 129296) detached]
