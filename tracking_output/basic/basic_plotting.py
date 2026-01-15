@@ -69,7 +69,7 @@ print(values)
 max_value = math.ceil(max(max(sub_list) for sub_list in values[1]))
 min_value = math.floor(min(min(sub_list) for sub_list in values[1]))
 
-plt.boxplot(x=values[1], tick_labels=[10,15])
+plt.boxplot(x=values[1], tick_labels=[20,25])
 
 plt.xlim([0, len(values[0])+1])
 plt.ylim([min_value, 0.02])
@@ -78,4 +78,4 @@ plt.title("Auslastung bei einzigem Unterschied in der Job-Anzahl \n bei gleicher
 plt.xlabel("Jobanzahl")
 plt.ylabel("Auslastung")
 
-plt.savefig("tracking_output/basic/basic_boxplot.png")
+plt.savefig("tracking_output/basic/basic_boxplot_2.png")
