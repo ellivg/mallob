@@ -558,7 +558,7 @@ std::vector<int> BnbJob::splitQueue() {
         LOG(V5_DEBG, "I am sending work\n");
         int length = _work_queue.size();
         int sendLength = length / 2;
-        if(sendLength > 1000) sendLength = 1000;
+        if(sendLength > 2) sendLength = 2;
         LOG(V5_DEBG, "[msg] Work queue is: %i\n", length);
 
         for (int i = 0; i < sendLength; i++) {
