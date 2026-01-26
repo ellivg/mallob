@@ -58,7 +58,7 @@ for ((i=1; i<=INSTANCES; i++)); do
   mkdir -p $MY_TMP
 
   MY_MALLOB_OPTIONS="$MALLOB_OPTIONS \
-    -T=30 \
+    -T=300 \
     -mono=$INST_PATH \
     -log=$MY_LOG \
     -trace-dir=$MY_LOG \
@@ -70,7 +70,10 @@ for ((i=1; i<=INSTANCES; i++)); do
   echo "" 
   echo ""
 
-  mpirun -np $MPI_PROCESSES --bind-to core --map-by ppr:${MPI_PROCESSES}:node:pe=${THREADS_PER_PROCESS} build/mallob $MY_MALLOB_OPTIONS 
+  for ((j=1; j<=10; j++)); do
+    echo "Run Nr $j"
+    mpirun -np $MPI_PROCESSES --bind-to core --map-by ppr:${MPI_PROCESSES}:node:pe=${THREADS_PER_PROCESS} build/mallob $MY_MALLOB_OPTIONS >scripts/bnb/out/"file_"$i"_"$j".txt"
+  done
 done 
 
 echo ""
