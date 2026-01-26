@@ -38,6 +38,15 @@ private:
         float time_spent_working;
         float perc_working;
 
+        float not_work_start_time_empty;
+        float time_spent_not_working_empty;
+        float not_work_start_time_wait;
+        float time_spent_not_working_wait;
+        float not_work_start_time_work;
+        float time_spent_not_working_work;
+        float not_work_start_time_after;
+        float time_spent_not_working_after;
+
         int num_queries;
         int num_succ_queries;
         int num_nonsucc_nomsg;
@@ -45,7 +54,7 @@ private:
         int num_nonsucc_empty;
     };
 
-    Tracker tracker = {-1, 0, -1, 0, -1, 0, 0, 0, 0};
+    Tracker tracker = {-1, 0, -1, 0, -1, -1, 0, -1, 0, -1, 0, -1, 0, 0, 0, 0, 0};
 
     long appr_amount_of_expl; //approximative amount of explorations (2^nr tasks)
     int num_expl_nodes;

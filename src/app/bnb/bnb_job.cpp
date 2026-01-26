@@ -74,11 +74,19 @@ int BnbJob::appl_solved() { //TODO CHANGES HERE
     //tracker
     tracker.time_since_activation = (Timer::elapsedSeconds()  - tracker.activation_time);
     tracker.perc_working = tracker.time_spent_working / tracker.time_since_activation;
-    LOG(V2_INFO, "[tracking] Percentage of time spent working: %f\n", tracker.perc_working);
+    LOG(V2_INFO, "[tracking] Percentage of time spent working: 3 %f\n", tracker.perc_working);
     LOG(V2_INFO, "[tracking] Number of explored nodes: %i\n", num_expl_nodes);
     LOG(V2_INFO, 
         "[tracking] Number of queries in total: %i - succesful: %i - before msgs allowed: %i - rank invalid: %i - reply empty: %i\n", 
         tracker.num_queries, tracker.num_succ_queries,  tracker.num_nonsucc_nomsg, tracker.num_nonsucc_rankinvld, tracker.num_nonsucc_empty);
+    float perc_not_working_empty = tracker.time_spent_not_working_empty / tracker.time_since_activation;
+    LOG(V2_INFO, "[tracking] Time not spent working checking empty: 0 %f\n", perc_not_working_empty);
+    float perc_not_working_wait = tracker.time_spent_not_working_wait / tracker.time_since_activation;
+    LOG(V2_INFO, "[tracking] Time not spent working waiting: 1 %f\n", perc_not_working_wait);
+    float perc_not_working_work = tracker.time_spent_not_working_work / tracker.time_since_activation;
+    LOG(V2_INFO, "[tracking] Time not spent working getting work: 2 %f\n", perc_not_working_work);
+    float perc_not_working_after = tracker.time_spent_not_working_after / tracker.time_since_activation;
+    LOG(V2_INFO, "[tracking] Time not spent working after loop: 4 %f\n", perc_not_working_after);
 
     return _result.result;
 }
@@ -348,11 +356,18 @@ void BnbJob::loop() {
     }
 
     do {
+        //tracker
+        tracker.not_work_start_time_empty = Timer::elapsedSeconds();
+
         //check if queue is empty and stop working if necessary
         bool empty;
         {
             auto lock = queue_mtx.getLock();
             empty = _work_queue.empty();
+
+            //tracker
+            tracker.time_spent_not_working_empty += (Timer::elapsedSeconds() - tracker.not_work_start_time_empty);
+            tracker.not_work_start_time_wait = Timer::elapsedSeconds();
 
             if(empty) {
                 LOG(V2_INFO, "[queue] Queue empty. Stopping Loop\n");
@@ -367,6 +382,10 @@ void BnbJob::loop() {
             }
         }
 
+        //tracker
+        tracker.time_spent_not_working_wait += (Timer::elapsedSeconds() - tracker.not_work_start_time_wait);
+        tracker.not_work_start_time_work = Timer::elapsedSeconds();
+
         //else: work
         Work curr_work;
         {
@@ -374,11 +393,12 @@ void BnbJob::loop() {
             curr_work = _work_queue.front();
             _work_queue.pop();
         }
-        usleep(10); //TODO work on removing
+        usleep(50); //TODO work on removing
         LOG(V5_DEBG, "%s", transform_for_log("[queue] In Loop. Currently at:", curr_work).c_str());
         if (num_expl_nodes % 1000 == 0) LOG(V2_INFO, "[queue] In loop. Jobs left: %i\n", _work_queue.size()+1);
 
         //tracker
+        tracker.time_spent_not_working_work += (Timer::elapsedSeconds() - tracker.not_work_start_time_work);
         tracker.work_start_time = Timer::elapsedSeconds();
 
         branch(curr_work);
@@ -386,6 +406,7 @@ void BnbJob::loop() {
 
         //tracker
         tracker.time_spent_working += (Timer::elapsedSeconds() - tracker.work_start_time);
+        tracker.not_work_start_time_after = Timer::elapsedSeconds();
          
         //compare solutions
         if (curr_work.completed == 1) {
@@ -400,6 +421,9 @@ void BnbJob::loop() {
                 _curr_upper_bound = new_length;
             }        
         }
+
+        //tracker
+        tracker.time_spent_not_working_after += (Timer::elapsedSeconds() - tracker.not_work_start_time_after);
 
         watchdog.reset();
     } while(_working && !_finished);
