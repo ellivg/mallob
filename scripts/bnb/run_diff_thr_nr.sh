@@ -73,7 +73,7 @@ for ((i=1; i<=INSTANCES; i++)); do
 
   for ((j=1; j<=3; j++)); do
     echo "Run Nr $j"
-    mpirun -np $MPI_PROCESSES --bind-to core --map-by ppr:${MPI_PROCESSES}:node:pe=${THREADS_PER_PROCESS} build/mallob $MY_MALLOB_OPTIONS >scripts/bnb/out/"file_"$i"_"$j".txt"
+    mpirun -np $MPI_PROCESSES --bind-to core --map-by ppr:${MPI_PROCESSES}:node:pe=${THREADS_PER_PROCESS} build/mallob $MY_MALLOB_OPTIONS >scripts/bnb/out/"file_"$MPI_PROCESSES"_"$j".txt"
   done
 
   MPI_PROCESSES=4 #TODO: Set to desired number 
@@ -81,7 +81,7 @@ for ((i=1; i<=INSTANCES; i++)); do
 
   for ((j=1; j<=5; j++)); do
     echo "Run Nr $j"
-    mpirun -np $MPI_PROCESSES --bind-to core --map-by ppr:${MPI_PROCESSES}:node:pe=${THREADS_PER_PROCESS} build/mallob $MY_MALLOB_OPTIONS >scripts/bnb/out/"file_"$i"_"$j".txt"
+    mpirun -np $MPI_PROCESSES --bind-to core --map-by ppr:${MPI_PROCESSES}:node:pe=${THREADS_PER_PROCESS} build/mallob $MY_MALLOB_OPTIONS >scripts/bnb/out/"file_"$MPI_PROCESSES"_"$j".txt"
   done
 done 
 
