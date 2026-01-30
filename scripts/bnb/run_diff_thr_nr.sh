@@ -1,6 +1,7 @@
 #!/bin/bash
 
 THREADS_PER_PROCESS=3 #TODO Set to desired number
+MPI_PROCESSES=2 #TODO: Set to desired number 
 INSTANCES=1 #TODO: Set to desired number (or count paths in paths.txt file)
 
 echo "" 
@@ -8,8 +9,7 @@ echo ""
 echo "Using $((MPI_PROCESSES * THREADS_PER_PROCESS))/$(nproc) cores"
 echo $(lscpu | grep "Model name")
 
-echo "MPI_PROCESSES: varying"
-#echo "MPI_PROCESSES: $MPI_PROCESSES"
+echo "MPI_PROCESSES: $MPI_PROCESSES"
 echo "THREADS_PER_PROCESS: $THREADS_PER_PROCESS"
 echo "INSTANCES: $INSTANCES"
 
@@ -34,7 +34,8 @@ MALLOB_OPTIONS=" \
   -pre-cleanup=1 \
 "
 
-echo "MALLOB_OPTIONS"
+echo "MALLOB_OPTIONS"echo "MPI_PROCESSES: $MPI_PROCESSES"
+e
 echo $MALLOB_OPTIONS | tr ' ' '\n'
 
 # main loop over instances
@@ -68,18 +69,7 @@ for ((i=1; i<=INSTANCES; i++)); do
   echo "" 
   echo ""
 
-  MPI_PROCESSES=2 #TODO: Set to desired number 
-  echo "MPI_PROCESSES: $MPI_PROCESSES"
-
   for ((j=1; j<=3; j++)); do
-    echo "Run Nr $j"
-    mpirun -np $MPI_PROCESSES --bind-to core --map-by ppr:${MPI_PROCESSES}:node:pe=${THREADS_PER_PROCESS} build/mallob $MY_MALLOB_OPTIONS >scripts/bnb/out/"file_"$MPI_PROCESSES"_"$j".txt"
-  done
-
-  MPI_PROCESSES=4 #TODO: Set to desired number 
-  echo "MPI_PROCESSES: $MPI_PROCESSES"
-
-  for ((j=1; j<=5; j++)); do
     echo "Run Nr $j"
     mpirun -np $MPI_PROCESSES --bind-to core --map-by ppr:${MPI_PROCESSES}:node:pe=${THREADS_PER_PROCESS} build/mallob $MY_MALLOB_OPTIONS >scripts/bnb/out/"file_"$MPI_PROCESSES"_"$j".txt"
   done
