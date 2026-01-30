@@ -98,7 +98,7 @@ private:
     static const int MSG_WORK_STEALING_DONE = 33;
     static const int MSG_FINISHED = 4;
 
-    static const int NUM_WORKERS = 2; // # workers we request and require   
+    static const int NUM_WORKERS = 4; // # workers we request and require   
     
     void init();
     void loop();

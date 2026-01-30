@@ -1,7 +1,7 @@
 #!/bin/bash
 
 THREADS_PER_PROCESS=3 #TODO Set to desired number
-MPI_PROCESSES=2 #TODO: Set to desired number 
+MPI_PROCESSES=4 #TODO: Set to desired number 
 INSTANCES=1 #TODO: Set to desired number (or count paths in paths.txt file)
 
 echo "" 
@@ -69,7 +69,7 @@ for ((i=1; i<=INSTANCES; i++)); do
   echo "" 
   echo ""
 
-  for ((j=1; j<=3; j++)); do
+  for ((j=1; j<=5; j++)); do
     echo "Run Nr $j"
     mpirun -np $MPI_PROCESSES --bind-to core --map-by ppr:${MPI_PROCESSES}:node:pe=${THREADS_PER_PROCESS} build/mallob $MY_MALLOB_OPTIONS >scripts/bnb/out/"file_"$MPI_PROCESSES"_"$j".txt"
   done
