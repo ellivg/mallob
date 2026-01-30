@@ -1,66 +1,86 @@
 from matplotlib import pyplot as plt
+from collections import defaultdict
 import math
+import os
 
-from tracker_plotting import get_values
+# Assign directory
+dir_list = [r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/diff_thr_nr/thr_2",
+            r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/diff_thr_nr/thr_4"]
 
-textfiles_two = ["diff_thr_nr/output_n15_expl_query_r200_thr2_1.txt", "diff_thr_nr/output_n15_expl_query_r200_thr2_2.txt",
-                 "diff_thr_nr/output_n15_expl_query_r200_thr2_3.txt"]     
-textfiles_four = ["diff_thr_nr/output_n15_expl_query_r200_thr4_1.txt", "diff_thr_nr/output_n15_expl_query_r200_thr4_2.txt",
-                  "diff_thr_nr/output_n15_expl_query_r200_thr4_oldtracker_1.txt", "diff_thr_nr/output_n15_expl_query_r200_thr4_oldtracker_2.txt",
-                  "diff_thr_nr/output_n15_expl_query_r200_thr4_oldtracker_3.txt"]
+# Variables
+non_tracking_files = []
+values = defaultdict(list)
 
-number_two = len(textfiles_two)
-number_four = len(textfiles_four)
+# Iterate over files in directory
+for directory in dir_list:
+    for name in os.listdir(directory):
+        tracking_lines = []
+        tracking_values = []
+        finished_values = []
+        wanted_keyword = "solved"
+        file_path = os.path.join(directory, name)
 
-all_values_temp1_two = []
-all_values_temp1_four = []
-all_values_temp2_two = []
-all_values_temp2_four = []
-all_values = [[], []]
+        if not os.path.isfile(file_path):
+            continue
+        
+        with open(file_path) as file:
+            #print("Opening: "+name)
+            # Delete non-solved files
+            if not "[solved]" in file.read():
+                non_tracking_files.append(name)
+                continue
 
-for i in range(0, number_two):
-    values = get_values(textfiles_two[i])
-    all_values_temp1_two.append(values[0])
+            file.seek(0)
 
-for i in range(0, number_four):
-    values = get_values(textfiles_four[i])
-    all_values_temp1_four.append(values[0])
+            # Add all lines relevant for tracking
+            for line in file:
+                line.strip()
+                if wanted_keyword in line:
+                    tracking_lines.append(line)
+        
+        # print(tracking_lines)
+        
+        # Delete line delimiters and [tracking] keyword
+        for line in tracking_lines:
+            line = line[:-1]
+            line = line.split(" ")
+            line = line[1:3] + line[4:]
+            tracking_values.append(line)
+        
+        # print(tracking_values)
 
-# delete percentage working
-for value_list in all_values_temp1_two:
-    all_values_temp2_two.append(value_list[0])
-    all_values_temp2_two.append(value_list[1])
-    all_values_temp2_two.append(value_list[2])
-    all_values_temp2_two.append(value_list[3])
+        # Probably later prettier but in basic the only necessary numbers are the timestamp line[0] and percentage line[-1]
+        for line in tracking_values:
+            finished_values.append(float(line[0]))
 
-perc = []
-expl = []
-for i  in range(0, len(all_values_temp1_four)):
-    for j in range(0,int(len(all_values_temp1_four[i]) / 2)):
-        perc.append(all_values_temp1_four[i][2*j])
-        expl.append(all_values_temp1_four[i][(2*j)+1])
+        #print(finished_values)
+        
+        # Decide which values are important for the current plot and add them to the dict
+        label = name.split("_")[1]
+        for line in finished_values:
+            values[label].append(line)
+        
+        #print(values)
 
-#max_value = math.ceil(max(max(sub_list) for sub_list in all_values))
-#min_value = math.floor(min(min(sub_list) for sub_list in all_values))
+# Print non solved files
+if not non_tracking_files:
+    print("All files were solved")
+for name in non_tracking_files:
+    print(name+" was not solved")
 
-# sort correctly
-#for value_list in all_values_temp2:
-#    all_values[0].append(value_list[0])
-#    all_values[1].append(value_list[1])
-#print(all_values)
+print(values)
+myList = sorted(values.items())
+x, y = zip(*myList)
+values = list(map(int, x)), y
+print(values)
 
-all_values = [all_values_temp2_two, expl+perc]
-print(all_values)
+max_value = math.ceil(max(max(sub_list) for sub_list in values[1]))
+min_value = math.floor(min(min(sub_list) for sub_list in values[1]))
 
-#middle_two = sum(all_values[0]) / (number_two*4)
-#middle_four = sum(all_values[1]) / (number_four*4)
-#print(middle_two)
-#print(middle_four)
-#all_values=[[middle_two], [middle_four]]
+plt.boxplot(x=values[1], tick_labels=values[0])
 
-plt.boxplot(x=all_values, tick_labels=[2,4])
-plt.ylim([25, 75])
-plt.xlim([0, 3])
+plt.xlim([0, len(values[0])+1])
+plt.ylim([0, max_value])
 
 plt.title("Compare if changing the number of threads \n does anything on a small example")
 plt.ylabel("Time")
