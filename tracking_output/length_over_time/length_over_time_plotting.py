@@ -75,24 +75,13 @@ print(values)
 max_value = math.ceil(max(max(sub_list) for sub_list in values[1]))
 min_value = math.floor(min(min(sub_list) for sub_list in values[1]))
 
-plt.boxplot(x=values[1], tick_labels=values[0])
+plt.boxplot(x=values[1], tick_labels=[10,15,20])
 
 plt.xlim([0, len(values[0])+1])
 plt.ylim([0, max_value])
-
-plt.title("Compare if changing the number of threads \n does anything on a small example")
-plt.ylabel("Time")
-plt.xlabel("Number Of Threads")
-
-max_value = math.ceil(max(max(sub_list) for sub_list in sorted_values))
-min_value = math.floor(min(min(sub_list) for sub_list in sorted_values))
-
-plt.boxplot(x=sorted_values, tick_labels=[10,15,20,25])
-plt.ylim([0, 100])
-plt.xlim([0, 5])
 
 plt.title("Compare computing time for length of input")
 plt.ylabel("Time")
 plt.xlabel("Input Length n")
 
-plt.savefig("length_over_time/length_over_time_plot.png")
+plt.savefig("tracking_output/length_over_time/length_over_time_plot.png")
