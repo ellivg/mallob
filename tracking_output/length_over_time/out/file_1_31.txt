@@ -1,0 +1,2461 @@
+0.000 0 [WARN] Invalid argument "\"
+0.000 0 [WARN] Invalid argument "\"
+0.000 0 [WARN] Invalid argument "\"
+0.000 0 [WARN] Invalid argument "\"
+c 
+c Mallob -- a parallel and distributed platform for job scheduling, load balancing, and SAT solving
+c Copyright (C) 2019-2025 Dominik Schreiber, Karlsruhe Institute of Technology, Germany
+c 
+c 0.001 2 Cleaning up pre-execution
+c 0.001 2 Killing old subprocesses: "killall -9 build/mallob_sat_process 2>/dev/null"
+c 0.001 3 Cleaning up pre-execution
+c 0.001 3 Killing old subprocesses: "killall -9 build/mallob_sat_process 2>/dev/null"
+c 0.001 1 Cleaning up pre-execution
+c 0.001 1 Killing old subprocesses: "killall -9 build/mallob_sat_process 2>/dev/null"
+c 0.002 0 Program options: -0o=0 -J=0 -SJ=0 -T=0 -adc=0 -aim=1 -ajpc=0 -ans=0 -apidir=.api -ba=4 -bem=1 -bicg=4 -br=0 -c=1 -cbbs=0 -cblm=1 -cblp=100000 -cdel=2 -cecpm=0 -cf=0 -cfci=10 -cfm=3 -cg=1 -ch=0 -checksums=0 -cjc=0 -client-app-threads=1 -cm=0 -cmp=0 -colors=0 -compact-proof=0 -cpshm=0 -csm=3 -cusv=1 -dc=0 -decay-distr=1 -decay-max=200 -decay-mean=50 -decay-min=1 -decay-stddev=3 -decpm=0 -delaymonkey=0 -div-elim=0 -div-fanout=0 -div-init-shuffle=0 -div-native=1 -div-noise=0 -div-phases=1 -div-reduce=0 -div-seeds=1 -dpa=1 -ds=0 -evpt=350 -evu=0 -extmem-disk-dir=.disk -fapii=0 -fcll=1 -g=0 -gclls=0 -h=0 -huca=0 -iff=0 -ilbd=0 -inotify=1 -interface-fs=0 -interface-ipc=0 -ipm=1 -ivdh=1 -jc=1 -jcl=0 -jcup=0.1 -jjp=0 -jwl=0 -l=1 -latencymonkey=0 -lbdpi=0 -lbdpo=0 -ljpc=32 -mbt=8388608 -mcips=5 -md=0 -mempanic=1 -mjps=0 -mlbdps=2 -mlpt=50000000 -mmpi=0 -mono=instances/bnb/basic/bnb_n10_m2.cnf -mono-app=bnb -mscf=5 -nec=5 -no-import=0 -os=0 -otfc=0 -otfcm=1 -p=0.1 -pbbm=0 -plain-add-specific=0 -pph=0 -pre-cleanup=1 -prisma=0 -proof-debugging=0 -ps=0 -q=0 -qcll=8 -qlbdl=2 -randlbd=0 -reduce-delta=100 -reduce-max=980 -reduce-mean=700 -reduce-min=300 -reduce-stddev=150 -rlbd=3 -rpa=0 -rs=1 -rspaa=0 -s=0.5 -satsolver=C -scll=60 -scramble-lbds=0 -scsd=0 -seed=0 -sjd=0 -slbdl=60 -sleep=100 -spl=-1 -sswl=0 -t=1 -tmp=/tmp -trace-dir=. -uninvert-proof=1 -v=2 -w=-1 -wam=10000 -warmup=0 -watchdog=1 -y=1 -yield=0 
+c 0.002 0 Cleaning up pre-execution
+c 0.002 0 Killing old subprocesses: "killall -9 build/mallob_sat_process 2>/dev/null"
+c 0.009 3 Killing old subprocesses: "killall -9 build/impcheck_parse 2>/dev/null"
+c 0.009 2 Killing old subprocesses: "killall -9 build/impcheck_parse 2>/dev/null"
+c 0.009 1 Killing old subprocesses: "killall -9 build/impcheck_parse 2>/dev/null"
+c 0.009 0 Killing old subprocesses: "killall -9 build/impcheck_parse 2>/dev/null"
+c 0.011 3 Killing old subprocesses: "killall -9 build/impcheck_check 2>/dev/null"
+c 0.011 2 Killing old subprocesses: "killall -9 build/impcheck_check 2>/dev/null"
+c 0.011 1 Killing old subprocesses: "killall -9 build/impcheck_check 2>/dev/null"
+c 0.011 0 Killing old subprocesses: "killall -9 build/impcheck_check 2>/dev/null"
+c 0.013 3 Killing old subprocesses: "killall -9 build/impcheck_confirm 2>/dev/null"
+c 0.013 1 Killing old subprocesses: "killall -9 build/impcheck_confirm 2>/dev/null"
+c 0.013 2 Killing old subprocesses: "killall -9 build/impcheck_confirm 2>/dev/null"
+c 0.013 0 Killing old subprocesses: "killall -9 build/impcheck_confirm 2>/dev/null"
+c 0.014 3 Remove ./mallob_thread_trace_of_20006_from_20006
+c 0.014 1 Remove ./mallob_thread_trace_of_20006_from_20006
+c 0.014 0 Remove ./mallob_thread_trace_of_20006_from_20006
+c 0.014 2 Remove ./mallob_thread_trace_of_20006_from_20006
+c 0.015 1 Remove ./mallob_thread_trace_of_20007_from_20007
+c 0.015 3 Remove ./mallob_thread_trace_of_20007_from_20007
+c 0.015 0 Remove ./mallob_thread_trace_of_20007_from_20007
+c 0.015 2 Remove ./mallob_thread_trace_of_20007_from_20007
+c 0.016 1 Remove ./mallob_thread_trace_of_20008_from_20008
+c 0.016 3 Remove ./mallob_thread_trace_of_20008_from_20008
+c 0.016 0 Remove ./mallob_thread_trace_of_20008_from_20008
+c 0.016 2 Remove ./mallob_thread_trace_of_20008_from_20008
+c 0.025 0 [WARN] Num bounce alternatives must be at most half the number of workers!
+c 0.025 0 [WARN] Falling back to safe value r=2.
+c 0.026 0 Set up API connector
+c 0.026 1 [WARN] Num bounce alternatives must be at most half the number of workers!
+c 0.026 1 [WARN] Falling back to safe value r=2.
+c 0.026 2 [WARN] Num bounce alternatives must be at most half the number of workers!
+c 0.026 2 [WARN] Falling back to safe value r=2.
+c 0.026 3 [WARN] Num bounce alternatives must be at most half the number of workers!
+c 0.026 3 [WARN] Falling back to safe value r=2.
+c 0.026 2 Machine color 0 with 4 total workers (my rank: 2)
+c 0.026 1 Machine color 0 with 4 total workers (my rank: 1)
+c 0.026 0 Machine color 0 with 4 total workers (my rank: 0)
+c 0.026 0 Assuming application "BNB" for mono job
+c 0.026 3 Machine color 0 with 4 total workers (my rank: 3)
+c 0.026 0 Introducing job #1 rev. 0 : r.#1:0 rev. 0 <- [0] born=0.026 hops=0 epoch=-1 matchId=-1 => [0]
+c 0.027 0 [start] Beginning: (Completion: 0) (Nr Tasks: 10) (Nr Machines: 2) (Tasks: 3 3 3 3 3 3 3 3 3 3) (Machine Workloads: 0 0) (Machines: 0 0)
+c 0.027 0 Start waiting for other threads: 0
+c 0.037 1 [queue] Queue empty. Stopping Loop
+c 0.037 2 [queue] Queue empty. Stopping Loop
+c 0.037 2 [msg] Tried requesting work but messages are not allowed
+c 0.037 1 [msg] Tried requesting work but messages are not allowed
+c 0.126 1 [WARN] Watchdog: No reset for 88 ms (activity=6 recvtag=0 sendtag=0)
+c 0.126 2 [WARN] Watchdog: No reset for 88 ms (activity=6 recvtag=0 sendtag=0)
+c 0.127 0 [red] _waiting = 0 & _sent_work = 0 & _working = 1
+c 0.127 0 [red] contribute {1, 6, -1} to all-reduction
+c 0.226 1 [WARN] Watchdog: No reset for 188 ms (activity=6 recvtag=0 sendtag=0)
+c 0.226 2 [WARN] Watchdog: No reset for 188 ms (activity=6 recvtag=0 sendtag=0)
+c 0.228 0 [red] _waiting = 0 & _sent_work = 0 & _working = 1
+c 0.228 0 [red] contribute {1, 6, -1} to all-reduction
+c 0.326 1 [WARN] Watchdog: No reset for 288 ms (activity=6 recvtag=0 sendtag=0)
+c 0.326 2 [WARN] Watchdog: No reset for 288 ms (activity=6 recvtag=0 sendtag=0)
+c 0.329 0 [red] _waiting = 0 & _sent_work = 0 & _working = 1
+c 0.329 0 [red] contribute {1, 6, -1} to all-reduction
+c 0.426 1 [WARN] Watchdog: No reset for 388 ms (activity=6 recvtag=0 sendtag=0)
+c 0.426 2 [WARN] Watchdog: No reset for 389 ms (activity=6 recvtag=0 sendtag=0)
+c 0.429 0 [red] _waiting = 0 & _sent_work = 0 & _working = 1
+c 0.429 0 [red] contribute {1, 6, -1} to all-reduction
+c 0.526 1 [WARN] Watchdog: No reset for 489 ms (activity=6 recvtag=0 sendtag=0)
+c 0.526 2 [WARN] Watchdog: No reset for 489 ms (activity=6 recvtag=0 sendtag=0)
+c 0.527 0 [WARN] Watchdog: No reset for 501 ms (activity=0 recvtag=0 sendtag=0)
+c 0.530 0 [red] _waiting = 0 & _sent_work = 0 & _working = 1
+c 0.530 0 [red] contribute {1, 6, -1} to all-reduction
+c 0.626 1 [WARN] Watchdog: No reset for 589 ms (activity=6 recvtag=0 sendtag=0)
+c 0.626 2 [WARN] Watchdog: No reset for 589 ms (activity=6 recvtag=0 sendtag=0)
+c 0.631 0 [red] _waiting = 0 & _sent_work = 0 & _working = 1
+c 0.631 0 [red] contribute {1, 6, -1} to all-reduction
+c 0.726 1 [WARN] Watchdog: No reset for 689 ms (activity=6 recvtag=0 sendtag=0)
+c 0.727 2 [WARN] Watchdog: No reset for 689 ms (activity=6 recvtag=0 sendtag=0)
+c 0.732 0 [red] _waiting = 0 & _sent_work = 0 & _working = 1
+c 0.732 0 [red] contribute {1, 6, -1} to all-reduction
+c 0.827 1 [WARN] Watchdog: No reset for 789 ms (activity=6 recvtag=0 sendtag=0)
+c 0.827 2 [WARN] Watchdog: No reset for 789 ms (activity=6 recvtag=0 sendtag=0)
+c 0.833 0 [red] _waiting = 0 & _sent_work = 0 & _working = 1
+c 0.833 0 [red] contribute {1, 6, -1} to all-reduction
+c 0.927 1 [WARN] Watchdog: No reset for 889 ms (activity=6 recvtag=0 sendtag=0)
+c 0.927 2 [WARN] Watchdog: No reset for 889 ms (activity=6 recvtag=0 sendtag=0)
+c 0.933 0 [red] _waiting = 0 & _sent_work = 0 & _working = 1
+c 0.933 0 [red] contribute {1, 6, -1} to all-reduction
+c 1.027 1 [WARN] Watchdog: No reset for 989 ms (activity=6 recvtag=0 sendtag=0)
+c 1.027 2 [WARN] Watchdog: No reset for 989 ms (activity=6 recvtag=0 sendtag=0)
+c 1.027 0 [WARN] Watchdog: No reset for 1001 ms (activity=0 recvtag=0 sendtag=0)
+c 1.034 0 [red] _waiting = 0 & _sent_work = 0 & _working = 1
+c 1.034 0 [red] contribute {1, 6, -1} to all-reduction
+c 1.038 1 [WARN] Watchdog: No reset for 1000 ms (activity=0 recvtag=0 sendtag=0)
+c 1.038 2 [WARN] Watchdog: No reset for 1000 ms (activity=0 recvtag=0 sendtag=0)
+c 1.038 3 [queue] Queue empty. Stopping Loop
+c 1.038 1 [msg] Tried requesting work but messages are not allowed
+c 1.038 3 [msg] Tried requesting work but messages are not allowed
+c 1.038 2 [msg] Tried requesting work but messages are not allowed
+c 1.127 3 [WARN] Watchdog: No reset for 89 ms (activity=6 recvtag=0 sendtag=0)
+c 1.127 1 [WARN] Watchdog: No reset for 90 ms (activity=6 recvtag=0 sendtag=0)
+c 1.127 2 [WARN] Watchdog: No reset for 90 ms (activity=6 recvtag=0 sendtag=0)
+c 1.135 0 [red] _waiting = 0 & _sent_work = 0 & _working = 1
+c 1.135 0 [red] contribute {1, 6, -1} to all-reduction
+c 1.201 0 sysstate entered=1 parsed=1 scheduled=1 processed=0 successful=0
+c 1.227 3 [WARN] Watchdog: No reset for 189 ms (activity=6 recvtag=0 sendtag=0)
+c 1.227 1 [WARN] Watchdog: No reset for 190 ms (activity=6 recvtag=0 sendtag=0)
+c 1.227 2 [WARN] Watchdog: No reset for 190 ms (activity=6 recvtag=0 sendtag=0)
+c 1.236 0 [red] _waiting = 0 & _sent_work = 0 & _working = 1
+c 1.236 0 [red] contribute {1, 6, -1} to all-reduction
+c 1.327 3 [WARN] Watchdog: No reset for 290 ms (activity=6 recvtag=0 sendtag=0)
+c 1.327 1 [WARN] Watchdog: No reset for 290 ms (activity=6 recvtag=0 sendtag=0)
+c 1.328 2 [WARN] Watchdog: No reset for 290 ms (activity=6 recvtag=0 sendtag=0)
+c 1.337 0 [red] _waiting = 0 & _sent_work = 0 & _working = 1
+c 1.337 0 [red] contribute {1, 6, -1} to all-reduction
+c 1.427 3 [WARN] Watchdog: No reset for 390 ms (activity=6 recvtag=0 sendtag=0)
+c 1.428 1 [WARN] Watchdog: No reset for 390 ms (activity=6 recvtag=0 sendtag=0)
+c 1.428 2 [WARN] Watchdog: No reset for 390 ms (activity=6 recvtag=0 sendtag=0)
+c 1.438 0 [red] _waiting = 0 & _sent_work = 0 & _working = 1
+c 1.438 0 [red] contribute {1, 6, -1} to all-reduction
+c 1.527 0 [WARN] Watchdog: No reset for 1501 ms (activity=0 recvtag=0 sendtag=0)
+c 1.527 3 [WARN] Watchdog: No reset for 490 ms (activity=6 recvtag=0 sendtag=0)
+c 1.528 1 [WARN] Watchdog: No reset for 490 ms (activity=6 recvtag=0 sendtag=0)
+c 1.528 2 [WARN] Watchdog: No reset for 490 ms (activity=6 recvtag=0 sendtag=0)
+c 1.538 2 [WARN] Watchdog: No reset for 1500 ms (activity=0 recvtag=0 sendtag=0)
+c 1.538 1 [WARN] Watchdog: No reset for 1500 ms (activity=0 recvtag=0 sendtag=0)
+c 1.539 0 [red] _waiting = 0 & _sent_work = 0 & _working = 1
+c 1.539 0 [red] contribute {1, 6, -1} to all-reduction
+c 1.628 3 [WARN] Watchdog: No reset for 590 ms (activity=6 recvtag=0 sendtag=0)
+c 1.628 1 [WARN] Watchdog: No reset for 591 ms (activity=6 recvtag=0 sendtag=0)
+c 1.628 2 [WARN] Watchdog: No reset for 591 ms (activity=6 recvtag=0 sendtag=0)
+c 1.639 0 [red] _waiting = 0 & _sent_work = 0 & _working = 1
+c 1.639 0 [red] contribute {1, 6, -1} to all-reduction
+c 1.728 3 [WARN] Watchdog: No reset for 690 ms (activity=6 recvtag=0 sendtag=0)
+c 1.728 1 [WARN] Watchdog: No reset for 691 ms (activity=6 recvtag=0 sendtag=0)
+c 1.728 2 [WARN] Watchdog: No reset for 691 ms (activity=6 recvtag=0 sendtag=0)
+c 1.740 0 [red] _waiting = 0 & _sent_work = 0 & _working = 1
+c 1.740 0 [red] contribute {1, 6, -1} to all-reduction
+c 1.828 3 [WARN] Watchdog: No reset for 790 ms (activity=6 recvtag=0 sendtag=0)
+c 1.828 1 [WARN] Watchdog: No reset for 791 ms (activity=6 recvtag=0 sendtag=0)
+c 1.828 2 [WARN] Watchdog: No reset for 791 ms (activity=6 recvtag=0 sendtag=0)
+c 1.841 0 [red] _waiting = 0 & _sent_work = 0 & _working = 1
+c 1.841 0 [red] contribute {1, 6, -1} to all-reduction
+c 1.928 3 [WARN] Watchdog: No reset for 891 ms (activity=6 recvtag=0 sendtag=0)
+c 1.928 1 [WARN] Watchdog: No reset for 891 ms (activity=6 recvtag=0 sendtag=0)
+c 1.928 2 [WARN] Watchdog: No reset for 891 ms (activity=6 recvtag=0 sendtag=0)
+c 1.942 0 [red] _waiting = 0 & _sent_work = 0 & _working = 1
+c 1.942 0 [red] contribute {1, 6, -1} to all-reduction
+c 2.027 0 [WARN] Watchdog: No reset for 2001 ms (activity=0 recvtag=0 sendtag=0)
+c 2.028 3 [WARN] Watchdog: No reset for 991 ms (activity=6 recvtag=0 sendtag=0)
+c 2.028 1 [WARN] Watchdog: No reset for 991 ms (activity=6 recvtag=0 sendtag=0)
+c 2.029 2 [WARN] Watchdog: No reset for 991 ms (activity=6 recvtag=0 sendtag=0)
+c 2.038 2 [WARN] Watchdog: No reset for 2000 ms (activity=0 recvtag=0 sendtag=0)
+c 2.038 1 [WARN] Watchdog: No reset for 2000 ms (activity=0 recvtag=0 sendtag=0)
+c 2.038 1 [red] _waiting = 0 & _sent_work = 0 & _working = 0
+c 2.038 1 [red] contribute {0, -1, -1} to all-reduction
+c 2.038 3 [WARN] Watchdog: No reset for 1001 ms (activity=0 recvtag=0 sendtag=0)
+c 2.038 3 [red] _waiting = 0 & _sent_work = 0 & _working = 0
+c 2.038 3 [red] contribute {0, -1, -1} to all-reduction
+c 2.038 3 [red] Contribution: 0, -1, -1
+c 2.038 0 [WARN] #1:0 job tree has size 0/4
+c 2.038 1 [msg] Tried requesting work but messages are not allowed
+c 2.038 3 [msg] Tried requesting work but messages are not allowed
+c 2.038 2 [red] _waiting = 0 & _sent_work = 0 & _working = 0
+c 2.038 2 [red] contribute {0, -1, -1} to all-reduction
+c 2.038 2 [red] Contribution: 0, -1, -1
+c 2.039 2 [msg] Messages allowed starting now
+c 2.039 2 [msg] Requested work stealing from: 0
+c 2.039 2 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 2.039 2 [red] contribute {0, -1, -1} to all-reduction
+c 2.039 0 [msg] Message 31 with Payload 0 from 2 received.
+c 2.039 0 [msg] Processing work stealing query from 2
+c 2.039 0 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 2.039 2 [red] Contribution: 0, -1, -1
+c 2.039 2 [msg] Message 32 with Payload -1 from 0 received.
+c 2.040 2 [msg] Requested work stealing from: 3
+c 2.040 0 TRY REDUCE 63 0 0 2 2
+c 2.040 0 REDUCE
+c 2.043 2 [msg] Waiting
+c 2.043 0 [msg] Messages allowed starting now
+c 2.043 0 c End waiting: 1
+2.043 0 [red] _waiting = 0 & _sent_work = 0 & _working = 1
+c 2.043 0 [red] contribute {1, 6, -1} to all-reduction
+c 2.043 0 [queue] In loop. Jobs left: 1
+c 2.084 0 [queue] Queue empty. Stopping Loop
+c 2.093 0 [msg] Requested work stealing from: 3
+c 2.103 0 [msg] Waiting
+c 2.129 3 [WARN] Watchdog: No reset for 90 ms (activity=6 recvtag=0 sendtag=0)
+c 2.129 1 [WARN] Watchdog: No reset for 90 ms (activity=6 recvtag=0 sendtag=0)
+c 2.129 2 [WARN] Watchdog: No reset for 86 ms (activity=6 recvtag=0 sendtag=0)
+c 2.143 2 [msg] Waiting
+c 2.203 0 [msg] Waiting
+c 2.229 3 [WARN] Watchdog: No reset for 190 ms (activity=6 recvtag=0 sendtag=0)
+c 2.229 1 [WARN] Watchdog: No reset for 190 ms (activity=6 recvtag=0 sendtag=0)
+c 2.229 2 [WARN] Watchdog: No reset for 86 ms (activity=6 recvtag=0 sendtag=0)
+c 2.243 2 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 2.243 2 [red] contribute {0, -1, -1} to all-reduction
+c 2.243 2 [red] Contribution: 0, -1, -1
+c 2.243 2 [msg] Waiting
+c 2.304 0 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 2.304 0 [red] contribute {0, 6, 15} to all-reduction
+c 2.304 0 sysstate busyratio=1.000 cmtdratio=0.250 jobs=1 globmem=0.05GB newreqs=3 hops=1
+c 2.304 0 sysstate entered=1 parsed=1 scheduled=1 processed=0 successful=0
+c 2.304 0 [msg] Waiting
+c 2.329 1 [WARN] Watchdog: No reset for 290 ms (activity=6 recvtag=0 sendtag=0)
+c 2.329 3 [WARN] Watchdog: No reset for 290 ms (activity=6 recvtag=0 sendtag=0)
+c 2.329 2 [WARN] Watchdog: No reset for 85 ms (activity=6 recvtag=0 sendtag=0)
+c 2.343 2 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 2.343 2 [red] contribute {0, -1, -1} to all-reduction
+c 2.343 2 [red] Contribution: 0, -1, -1
+c 2.344 2 [msg] Waiting
+c 2.404 0 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 2.404 0 [red] contribute {0, 6, 15} to all-reduction
+c 2.404 0 [msg] Waiting
+c 2.429 1 [WARN] Watchdog: No reset for 390 ms (activity=6 recvtag=0 sendtag=0)
+c 2.429 2 [WARN] Watchdog: No reset for 86 ms (activity=6 recvtag=0 sendtag=0)
+c 2.429 3 [WARN] Watchdog: No reset for 391 ms (activity=6 recvtag=0 sendtag=0)
+c 2.444 2 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 2.444 2 [red] contribute {0, -1, -1} to all-reduction
+c 2.444 2 [red] Contribution: 0, -1, -1
+c 2.444 2 [msg] Waiting
+c 2.505 0 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 2.505 0 [red] contribute {0, 6, 15} to all-reduction
+c 2.505 0 [msg] Waiting
+c 2.529 1 [WARN] Watchdog: No reset for 491 ms (activity=6 recvtag=0 sendtag=0)
+c 2.529 2 [WARN] Watchdog: No reset for 86 ms (activity=6 recvtag=0 sendtag=0)
+c 2.529 3 [WARN] Watchdog: No reset for 491 ms (activity=6 recvtag=0 sendtag=0)
+c 2.538 2 [WARN] Watchdog: No reset for 2500 ms (activity=0 recvtag=0 sendtag=0)
+c 2.538 1 [WARN] Watchdog: No reset for 2501 ms (activity=0 recvtag=0 sendtag=0)
+c 2.538 3 [WARN] Watchdog: No reset for 1501 ms (activity=0 recvtag=0 sendtag=0)
+c 2.544 2 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 2.544 2 [red] contribute {0, -1, -1} to all-reduction
+c 2.544 2 [red] Contribution: 0, -1, -1
+c 2.544 2 [msg] Waiting
+c 2.605 0 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 2.605 0 [red] contribute {0, 6, 15} to all-reduction
+c 2.605 0 [msg] Waiting
+c 2.629 1 [WARN] Watchdog: No reset for 591 ms (activity=6 recvtag=0 sendtag=0)
+c 2.629 2 [WARN] Watchdog: No reset for 85 ms (activity=6 recvtag=0 sendtag=0)
+c 2.629 3 [WARN] Watchdog: No reset for 591 ms (activity=6 recvtag=0 sendtag=0)
+c 2.645 2 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 2.645 2 [red] contribute {0, -1, -1} to all-reduction
+c 2.645 2 [red] Contribution: 0, -1, -1
+c 2.645 2 [msg] Waiting
+c 2.706 0 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 2.706 0 [red] contribute {0, 6, 15} to all-reduction
+c 2.706 0 [msg] Waiting
+c 2.729 1 [WARN] Watchdog: No reset for 691 ms (activity=6 recvtag=0 sendtag=0)
+c 2.729 2 [WARN] Watchdog: No reset for 85 ms (activity=6 recvtag=0 sendtag=0)
+c 2.730 3 [WARN] Watchdog: No reset for 691 ms (activity=6 recvtag=0 sendtag=0)
+c 2.745 2 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 2.745 2 [red] contribute {0, -1, -1} to all-reduction
+c 2.745 2 [red] Contribution: 0, -1, -1
+c 2.745 2 [msg] Waiting
+c 2.806 0 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 2.806 0 [red] contribute {0, 6, 15} to all-reduction
+c 2.806 0 [msg] Waiting
+c 2.830 1 [WARN] Watchdog: No reset for 791 ms (activity=6 recvtag=0 sendtag=0)
+c 2.830 2 [WARN] Watchdog: No reset for 84 ms (activity=6 recvtag=0 sendtag=0)
+c 2.830 3 [WARN] Watchdog: No reset for 791 ms (activity=6 recvtag=0 sendtag=0)
+c 2.846 2 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 2.846 2 [red] contribute {0, -1, -1} to all-reduction
+c 2.846 2 [red] Contribution: 0, -1, -1
+c 2.846 2 [msg] Waiting
+c 2.907 0 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 2.907 0 [red] contribute {0, 6, 15} to all-reduction
+c 2.907 0 [msg] Waiting
+c 2.930 2 [WARN] Watchdog: No reset for 84 ms (activity=6 recvtag=0 sendtag=0)
+c 2.930 1 [WARN] Watchdog: No reset for 891 ms (activity=6 recvtag=0 sendtag=0)
+c 2.930 3 [WARN] Watchdog: No reset for 891 ms (activity=6 recvtag=0 sendtag=0)
+c 2.946 2 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 2.946 2 [red] contribute {0, -1, -1} to all-reduction
+c 2.946 2 [red] Contribution: 0, -1, -1
+c 2.946 2 [msg] Waiting
+c 3.007 0 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 3.007 0 [red] contribute {0, 6, 15} to all-reduction
+c 3.007 0 [msg] Waiting
+c 3.027 0 [WARN] Watchdog: No reset for 944 ms (activity=0 recvtag=0 sendtag=0)
+c 3.030 2 [WARN] Watchdog: No reset for 83 ms (activity=6 recvtag=0 sendtag=0)
+c 3.030 1 [WARN] Watchdog: No reset for 992 ms (activity=6 recvtag=0 sendtag=0)
+c 3.030 3 [WARN] Watchdog: No reset for 992 ms (activity=6 recvtag=0 sendtag=0)
+c 3.038 2 [WARN] Watchdog: No reset for 3001 ms (activity=0 recvtag=0 sendtag=0)
+c 3.038 1 c 3.038 1 [red] _waiting = 0 & _sent_work = 0 & _working = 0
+c 3.038 1 [red] contribute {0, -1, -1} to all-reduction
+[WARN] Watchdog: No reset for 3001 ms (activity=0 recvtag=0 sendtag=0)
+c 3.038 3 [red] _waiting = 0 & _sent_work = 0 & _working = 0
+c 3.038 3 [red] contribute {0, -1, -1} to all-reduction
+c 3.038 3 [red] Contribution: 0, -1, -1
+c 3.038 3 [msg] Message 31 with Payload 0 from 2 received.
+c 3.038 3 [msg] Processing work stealing query from 2
+c 3.038 3 [msg] Work stealing query couldn't be answered as requesting rank is invalid
+c 3.038 3 [msg] Message 31 with Payload 0 from 0 received.
+c 3.038 3 [msg] Processing work stealing query from 0
+c 3.038 3 [msg] Work stealing query couldn't be answered as requesting rank is invalid
+c 3.038 3 [WARN] Watchdog: No reset for 2001 ms (activity=0 recvtag=0 sendtag=0)
+c 3.039 1 [msg] Messages allowed starting now
+c 3.039 1 [msg] Requested work stealing from: 0
+c 3.039 1 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 3.039 1 [red] contribute {0, -1, -1} to all-reduction
+c 3.039 3 [msg] Tried requesting work but messages are not allowed
+c 3.041 1 [msg] Waiting
+c 3.046 2 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 3.046 2 [red] contribute {0, -1, -1} to all-reduction
+c 3.046 2 [red] Contribution: 0, -1, -1
+c 3.047 2 [msg] Waiting
+c 3.108 0 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 3.108 0 [red] contribute {0, 6, 15} to all-reduction
+c 3.108 0 [msg] Message 31 with Payload 0 from 1 received.
+c 3.108 0 [msg] Processing work stealing query from 1
+c 3.108 0 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 3.108 0 [msg] Waiting
+c 3.130 2 [WARN] Watchdog: No reset for 83 ms (activity=6 recvtag=0 sendtag=0)
+c 3.130 1 [WARN] Watchdog: No reset for 90 ms (activity=6 recvtag=0 sendtag=0)
+c 3.130 3 [WARN] Watchdog: No reset for 92 ms (activity=6 recvtag=0 sendtag=0)
+c 3.141 1 [msg] Message 32 with Payload -1 from 0 received.
+c 3.141 1 [msg] Requested work stealing from: 3
+c 3.141 1 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 3.141 1 [red] contribute {0, -1, -1} to all-reduction
+c 3.144 1 [msg] Waiting
+c 3.147 2 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 3.147 2 [red] contribute {0, -1, -1} to all-reduction
+c 3.147 2 [red] Contribution: 0, -1, -1
+c 3.147 2 [msg] Waiting
+c 3.208 0 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 3.208 0 [red] contribute {0, 6, 15} to all-reduction
+c 3.208 0 [msg] Waiting
+c 3.230 2 [WARN] Watchdog: No reset for 84 ms (activity=6 recvtag=0 sendtag=0)
+c 3.230 1 [WARN] Watchdog: No reset for 86 ms (activity=6 recvtag=0 sendtag=0)
+c 3.231 3 [WARN] Watchdog: No reset for 192 ms (activity=6 recvtag=0 sendtag=0)
+c 3.245 1 [msg] Waiting
+c 3.247 2 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 3.247 2 [red] contribute {0, -1, -1} to all-reduction
+c 3.247 2 [red] Contribution: 0, -1, -1
+c 3.247 2 [msg] Waiting
+c 3.309 0 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 3.309 0 [red] contribute {0, 6, 15} to all-reduction
+c 3.309 0 sysstate entered=1 parsed=1 scheduled=1 processed=0 successful=0
+c 3.309 0 [msg] Waiting
+c 3.330 2 [WARN] Watchdog: No reset for 83 ms (activity=6 recvtag=0 sendtag=0)
+c 3.330 1 [WARN] Watchdog: No reset for 86 ms (activity=6 recvtag=0 sendtag=0)
+c 3.331 3 [WARN] Watchdog: No reset for 292 ms (activity=6 recvtag=0 sendtag=0)
+c 3.345 1 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 3.345 1 [red] contribute {0, -1, -1} to all-reduction
+c 3.345 1 [msg] Waiting
+c 3.347 2 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 3.348 2 [red] contribute {0, -1, -1} to all-reduction
+c 3.348 2 [red] Contribution: 0, -1, -1
+c 3.348 2 [msg] Waiting
+c 3.409 0 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 3.409 0 [red] contribute {0, 6, 15} to all-reduction
+c 3.409 0 [msg] Waiting
+c 3.430 2 [WARN] Watchdog: No reset for 83 ms (activity=6 recvtag=0 sendtag=0)
+c 3.431 1 [WARN] Watchdog: No reset for 85 ms (activity=6 recvtag=0 sendtag=0)
+c 3.431 3 [WARN] Watchdog: No reset for 392 ms (activity=6 recvtag=0 sendtag=0)
+c 3.445 1 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 3.445 1 [red] contribute {0, -1, -1} to all-reduction
+c 3.446 1 [msg] Waiting
+c 3.448 2 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 3.448 2 [red] contribute {0, -1, -1} to all-reduction
+c 3.448 2 [red] Contribution: 0, -1, -1
+c 3.448 2 [msg] Waiting
+c 3.512 0 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 3.512 0 [red] contribute {0, 6, 15} to all-reduction
+c 3.512 0 [msg] Waiting
+c 3.528 0 [WARN] Watchdog: No reset for 1444 ms (activity=0 recvtag=0 sendtag=0)
+c 3.530 2 [WARN] Watchdog: No reset for 82 ms (activity=6 recvtag=0 sendtag=0)
+c 3.531 1 [WARN] Watchdog: No reset for 85 ms (activity=6 recvtag=0 sendtag=0)
+c 3.531 3 [WARN] Watchdog: No reset for 492 ms (activity=6 recvtag=0 sendtag=0)
+c 3.538 2 [WARN] Watchdog: No reset for 3501 ms (activity=0 recvtag=0 sendtag=0)
+c 3.539 1 [WARN] Watchdog: No reset for 3501 ms (activity=0 recvtag=0 sendtag=0)
+c 3.539 3 [WARN] Watchdog: No reset for 2501 ms (activity=0 recvtag=0 sendtag=0)
+c 3.546 1 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 3.546 1 [red] contribute {0, -1, -1} to all-reduction
+c 3.546 1 [msg] Waiting
+c 3.548 2 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 3.548 2 [red] contribute {0, -1, -1} to all-reduction
+c 3.548 2 [red] Contribution: 0, -1, -1
+c 3.548 2 [msg] Waiting
+c 3.612 0 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 3.612 0 [red] contribute {0, 6, 15} to all-reduction
+c 3.612 0 [msg] Waiting
+c 3.630 2 [WARN] Watchdog: No reset for 82 ms (activity=6 recvtag=0 sendtag=0)
+c 3.631 1 [WARN] Watchdog: No reset for 85 ms (activity=6 recvtag=0 sendtag=0)
+c 3.631 3 [WARN] Watchdog: No reset for 593 ms (activity=6 recvtag=0 sendtag=0)
+c 3.646 1 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 3.646 1 [red] contribute {0, -1, -1} to all-reduction
+c 3.646 1 [msg] Waiting
+c 3.649 2 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 3.649 2 [red] contribute {0, -1, -1} to all-reduction
+c 3.649 2 [red] Contribution: 0, -1, -1
+c 3.649 2 [msg] Waiting
+c 3.712 0 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 3.713 0 [red] contribute {0, 6, 15} to all-reduction
+c 3.713 0 [msg] Waiting
+c 3.731 2 [WARN] Watchdog: No reset for 82 ms (activity=6 recvtag=0 sendtag=0)
+c 3.731 1 [WARN] Watchdog: No reset for 85 ms (activity=6 recvtag=0 sendtag=0)
+c 3.731 3 [WARN] Watchdog: No reset for 693 ms (activity=6 recvtag=0 sendtag=0)
+c 3.746 1 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 3.746 1 [red] contribute {0, -1, -1} to all-reduction
+c 3.747 1 [msg] Waiting
+c 3.749 2 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 3.749 2 [red] contribute {0, -1, -1} to all-reduction
+c 3.749 2 [red] Contribution: 0, -1, -1
+c 3.749 2 [msg] Waiting
+c 3.813 0 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 3.813 0 [red] contribute {0, 6, 15} to all-reduction
+c 3.813 0 [msg] Waiting
+c 3.831 2 [WARN] Watchdog: No reset for 81 ms (activity=6 recvtag=0 sendtag=0)
+c 3.831 1 [WARN] Watchdog: No reset for 85 ms (activity=6 recvtag=0 sendtag=0)
+c 3.831 3 [WARN] Watchdog: No reset for 793 ms (activity=6 recvtag=0 sendtag=0)
+c 3.847 1 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 3.847 1 [red] contribute {0, -1, -1} to all-reduction
+c 3.847 1 [msg] Waiting
+c 3.849 2 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 3.849 2 [red] contribute {0, -1, -1} to all-reduction
+c 3.849 2 [red] Contribution: 0, -1, -1
+c 3.850 2 [msg] Waiting
+c 3.913 0 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 3.913 0 [red] contribute {0, 6, 15} to all-reduction
+c 3.913 0 [msg] Waiting
+c 3.931 2 [WARN] Watchdog: No reset for 81 ms (activity=6 recvtag=0 sendtag=0)
+c 3.931 1 [WARN] Watchdog: No reset for 84 ms (activity=6 recvtag=0 sendtag=0)
+c 3.932 3 [WARN] Watchdog: No reset for 893 ms (activity=6 recvtag=0 sendtag=0)
+c 3.947 1 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 3.947 1 [red] contribute {0, -1, -1} to all-reduction
+c 3.947 1 [msg] Waiting
+c 3.950 2 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 3.950 2 [red] contribute {0, -1, -1} to all-reduction
+c 3.950 2 [red] Contribution: 0, -1, -1
+c 3.950 2 [msg] Waiting
+c 4.014 0 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 4.014 0 [red] contribute {0, 6, 15} to all-reduction
+c 4.014 0 [msg] Waiting
+c 4.028 0 [WARN] Watchdog: No reset for 1944 ms (activity=0 recvtag=0 sendtag=0)
+c 4.031 2 [WARN] Watchdog: No reset for 81 ms (activity=6 recvtag=0 sendtag=0)
+c 4.031 1 [WARN] Watchdog: No reset for 84 ms (activity=6 recvtag=0 sendtag=0)
+c 4.032 3 [WARN] Watchdog: No reset for 993 ms (activity=6 recvtag=0 sendtag=0)
+c 4.039 2 [WARN] Watchdog: No reset for 4001 ms (activity=0 recvtag=0 sendtag=0)
+c 4.039 1 [WARN] Watchdog: No reset for 4001 ms (activity=0 recvtag=0 sendtag=0)
+c 4.039 3 [WARN] Watchdog: No reset for 3001 ms (activity=0 recvtag=0 sendtag=0)
+c 4.039 3 [red] _waiting = 0 & _sent_work = 0 & _working = 0
+c 4.039 3 [red] contribute {0, -1, -1} to all-reduction
+c 4.039 3 [red] Contribution: 0, -1, -1
+c 4.039 3 [msg] Message 31 with Payload 0 from 1 received.
+c 4.039 3 [msg] Processing work stealing query from 1
+c 4.039 3 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 4.039 3 [msg] Messages allowed starting now
+c 4.039 3 [msg] Requested work stealing from: 0
+c 4.039 3 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 4.039 3 [red] contribute {0, -1, -1} to all-reduction
+c 4.040 3 [red] Contribution: 0, -1, -1
+c 4.041 3 [msg] Waiting
+c 4.048 1 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 4.048 1 [red] contribute {0, -1, -1} to all-reduction
+c 4.048 1 [msg] Message 32 with Payload -1 from 3 received.
+c 4.048 1 [msg] Requested work stealing from: 2
+c 4.048 1 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 4.048 1 [red] contribute {0, -1, -1} to all-reduction
+c 4.050 2 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 4.050 2 [red] contribute {0, -1, -1} to all-reduction
+c 4.050 2 [red] Contribution: 0, -1, -1
+c 4.050 2 [msg] Message 31 with Payload 0 from 1 received.
+c 4.050 2 [msg] Processing work stealing query from 1
+c 4.050 2 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 4.050 1 [msg] Message 32 with Payload -1 from 2 received.
+c 4.050 2 [msg] Waiting
+c 4.058 1 [msg] Tried requesting work but receiving rank was invalid or my own: 1
+c 4.068 1 [msg] Requested work stealing from: 3
+c 4.078 1 [msg] Waiting
+c 4.114 0 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 4.114 0 [red] contribute {0, 6, 15} to all-reduction
+c 4.114 0 [msg] Message 31 with Payload 0 from 3 received.
+c 4.114 0 [msg] Processing work stealing query from 3
+c 4.114 0 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 4.114 0 [msg] Waiting
+c 4.131 2 [WARN] Watchdog: No reset for 81 ms (activity=6 recvtag=0 sendtag=0)
+c 4.132 1 [WARN] Watchdog: No reset for 53 ms (activity=6 recvtag=0 sendtag=0)
+c 4.132 3 [WARN] Watchdog: No reset for 90 ms (activity=6 recvtag=0 sendtag=0)
+c 4.142 3 [msg] Message 31 with Payload 0 from 1 received.
+c 4.142 3 [msg] Processing work stealing query from 1
+c 4.142 3 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 4.142 3 [msg] Message 32 with Payload -1 from 0 received.
+c 4.142 3 [msg] Tried requesting work but receiving rank was invalid or my own: 3
+c 4.142 3 [red] _waiting = 0 & _sent_work = 0 & _working = 0
+c 4.142 3 [red] contribute {0, -1, -1} to all-reduction
+c 4.142 3 [red] Contribution: 0, -1, -1
+c 4.145 3 [msg] Requested work stealing from: 2
+c 4.149 3 [msg] Waiting
+c 4.151 2 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 4.151 2 [red] contribute {0, -1, -1} to all-reduction
+c 4.151 2 [red] Contribution: 0, -1, -1
+c 4.151 2 [msg] Message 31 with Payload 0 from 3 received.
+c 4.151 2 [msg] Processing work stealing query from 3
+c 4.151 2 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 4.151 2 [msg] Waiting
+c 4.179 1 TRY REDUCE 63 0 0 2 2
+c 4.179 1 REDUCE
+c 4.179 1 [msg] Message 32 with Payload -1 from 3 received.
+c 4.179 1 TRY REDUCE 63 0 0 2 2
+c 4.179 1 REDUCE
+c 4.179 1 [red] Contribution: 0, -1, -1
+c 4.179 1 [red] Contribution: 0, -1, -1
+c 4.179 1 [msg] Tried requesting work but receiving rank was invalid or my own: 1
+c 4.179 1 [red] _waiting = 0 & _sent_work = 0 & _working = 0
+c 4.179 1 [red] contribute {0, -1, -1} to all-reduction
+c 4.189 1 [msg] Requested work stealing from: 3
+c 4.199 1 [msg] Waiting
+c 4.215 0 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 4.215 0 [red] contribute {0, 6, 15} to all-reduction
+c 4.215 0 [msg] Waiting
+c 4.231 2 [WARN] Watchdog: No reset for 81 ms (activity=6 recvtag=0 sendtag=0)
+c 4.232 3 [WARN] Watchdog: No reset for 83 ms (activity=6 recvtag=0 sendtag=0)
+c 4.249 3 TRY REDUCE 63 0 0 2 2
+c 4.249 3 REDUCE returnedToSender
+c 4.249 3 [msg] Message 32 with Payload -1 from 2 received.
+c 4.249 3 [msg] Message 31 with Payload 0 from 1 received.
+c 4.249 3 [msg] Processing work stealing query from 1
+c 4.249 3 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 4.249 3 [msg] Requested work stealing from: 1
+c 4.249 3 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 4.249 3 [red] contribute {0, -1, -1} to all-reduction
+c 4.249 3 [red] Contribution: 0, -1, -1
+c 4.251 2 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 4.251 2 [red] contribute {0, -1, -1} to all-reduction
+c 4.251 2 [red] Contribution: 0, -1, -1
+c 4.251 2 [msg] Waiting
+c 4.254 3 [msg] Waiting
+c 4.299 1 [msg] Message 32 with Payload -1 from 3 received.
+c 4.299 1 [msg] Message 31 with Payload 0 from 3 received.
+c 4.299 1 [msg] Processing work stealing query from 3
+c 4.299 1 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 4.299 1 [msg] Requested work stealing from: 2
+c 4.299 1 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 4.299 1 [red] contribute {0, -1, -1} to all-reduction
+c 4.309 1 [msg] Waiting
+c 4.315 0 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 4.315 0 [red] contribute {0, 6, 15} to all-reduction
+c 4.315 0 sysstate busyratio=1.000 cmtdratio=0.000 jobs=1 globmem=0.16GB newreqs=0 hops=0
+c 4.315 0 sysstate entered=1 parsed=1 scheduled=1 processed=0 successful=0
+c 4.315 0 [msg] Waiting
+c 4.332 2 [WARN] Watchdog: No reset for 80 ms (activity=6 recvtag=0 sendtag=0)
+c 4.332 3 [WARN] Watchdog: No reset for 77 ms (activity=6 recvtag=0 sendtag=0)
+c 4.352 2 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 4.352 2 [red] contribute {0, -1, -1} to all-reduction
+c 4.352 2 [msg] Message 31 with Payload 0 from 1 received.
+c 4.352 2 [msg] Processing work stealing query from 1
+c 4.352 2 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 4.352 2 [red] Contribution: 0, -1, -1
+c 4.352 2 [msg] Waiting
+c 4.355 3 [msg] Message 32 with Payload -1 from 1 received.
+c 4.355 3 [msg] Tried requesting work but receiving rank was invalid or my own: 3
+c 4.355 3 [red] _waiting = 0 & _sent_work = 0 & _working = 0
+c 4.355 3 [red] contribute {0, -1, -1} to all-reduction
+c 4.355 3 [red] Contribution: 0, -1, -1
+c 4.362 3 [msg] Requested work stealing from: 1
+c 4.371 3 [msg] Waiting
+c 4.410 1 [msg] Message 32 with Payload -1 from 2 received.
+c 4.410 1 TRY REDUCE 63 0 0 2 2
+c 4.410 1 REDUCE
+c 4.410 1 [msg] Message 31 with Payload 0 from 3 received.
+c 4.410 1 [msg] Processing work stealing query from 3
+c 4.410 1 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 4.410 1 TRY REDUCE 63 0 0 2 2
+c 4.410 1 REDUCE
+c 4.410 1 [red] Contribution: 0, -1, -1
+c 4.410 1 [red] Contribution: 0, -1, -1
+c 4.410 1 [msg] Requested work stealing from: 0
+c 4.410 1 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 4.410 1 [red] contribute {0, -1, -1} to all-reduction
+c 4.416 0 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 4.416 0 [red] contribute {0, 6, 15} to all-reduction
+c 4.416 0 [msg] Message 31 with Payload 0 from 1 received.
+c 4.416 0 [msg] Processing work stealing query from 1
+c 4.416 0 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 4.416 1 [msg] Message 32 with Payload -1 from 0 received.
+c 4.416 0 [msg] Waiting
+c 4.420 1 [msg] Tried requesting work but receiving rank was invalid or my own: 1
+c 4.430 1 [msg] Tried requesting work but receiving rank was invalid or my own: 1
+c 4.432 2 [WARN] Watchdog: No reset for 80 ms (activity=6 recvtag=0 sendtag=0)
+c 4.432 3 [WARN] Watchdog: No reset for 61 ms (activity=6 recvtag=0 sendtag=0)
+c 4.440 1 [msg] Requested work stealing from: 2
+c 4.450 1 [msg] Waiting
+c 4.452 2 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 4.452 2 [red] contribute {0, -1, -1} to all-reduction
+c 4.452 2 [msg] Message 31 with Payload 0 from 1 received.
+c 4.452 2 [msg] Processing work stealing query from 1
+c 4.452 2 [red] Contribution: 0, -1, -1
+c 4.452 2 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 4.452 2 [msg] Waiting
+c 4.472 3 [msg] Message 32 with Payload -1 from 1 received.
+c 4.472 3 TRY REDUCE 63 0 0 2 2
+c 4.472 3 REDUCE returnedToSender
+c 4.472 3 [msg] Tried requesting work but receiving rank was invalid or my own: 3
+c 4.472 3 [red] _waiting = 0 & _sent_work = 0 & _working = 0
+c 4.472 3 [red] contribute {0, -1, -1} to all-reduction
+c 4.472 3 [red] Contribution: 0, -1, -1
+c 4.482 3 [msg] Requested work stealing from: 2
+c 4.492 3 [msg] Waiting
+c 4.516 0 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 4.516 0 [red] contribute {0, 6, 15} to all-reduction
+c 4.516 0 [msg] Waiting
+c 4.528 0 [WARN] Watchdog: No reset for 2444 ms (activity=0 recvtag=0 sendtag=0)
+c 4.532 2 [WARN] Watchdog: No reset for 79 ms (activity=6 recvtag=0 sendtag=0)
+c 4.532 1 [WARN] Watchdog: No reset for 82 ms (activity=6 recvtag=0 sendtag=0)
+c 4.539 2 [WARN] Watchdog: No reset for 4501 ms (activity=0 recvtag=0 sendtag=0)
+c 4.539 3 [WARN] Watchdog: No reset for 3501 ms (activity=0 recvtag=0 sendtag=0)
+c 4.539 1 [WARN] Watchdog: No reset for 4501 ms (activity=0 recvtag=0 sendtag=0)
+c 4.551 1 [msg] Message 32 with Payload -1 from 2 received.
+c 4.551 1 TRY REDUCE 63 0 0 2 2
+c 4.551 1 REDUCE
+c 4.551 1 [red] Contribution: 0, -1, -1
+c 4.551 1 [red] Contribution: 0, -1, -1
+c 4.551 1 [msg] Requested work stealing from: 3
+c 4.551 1 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 4.551 1 [red] contribute {0, -1, -1} to all-reduction
+c 4.553 2 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 4.553 2 [red] contribute {0, -1, -1} to all-reduction
+c 4.553 2 [red] Contribution: 0, -1, -1
+c 4.553 2 [msg] Message 31 with Payload 0 from 3 received.
+c 4.553 2 [msg] Processing work stealing query from 3
+c 4.553 2 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 4.553 2 [msg] Waiting
+c 4.561 1 [msg] Waiting
+c 4.592 3 [msg] Message 31 with Payload 0 from 1 received.
+c 4.592 3 [msg] Processing work stealing query from 1
+c 4.592 3 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 4.592 3 [msg] Message 32 with Payload -1 from 2 received.
+c 4.592 3 [msg] Requested work stealing from: 0
+c 4.592 3 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 4.592 3 [red] contribute {0, -1, -1} to all-reduction
+c 4.592 3 [red] Contribution: 0, -1, -1
+c 4.602 3 [msg] Waiting
+c 4.616 0 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 4.616 0 [red] contribute {0, 6, 15} to all-reduction
+c 4.616 0 [msg] Message 31 with Payload 0 from 3 received.
+c 4.616 0 [msg] Processing work stealing query from 3
+c 4.616 0 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 4.617 0 [msg] Waiting
+c 4.632 2 [WARN] Watchdog: No reset for 79 ms (activity=6 recvtag=0 sendtag=0)
+c 4.632 1 [WARN] Watchdog: No reset for 72 ms (activity=6 recvtag=0 sendtag=0)
+c 4.653 2 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 4.653 2 [red] contribute {0, -1, -1} to all-reduction
+c 4.653 2 [red] Contribution: 0, -1, -1
+c 4.653 2 [msg] Waiting
+c 4.661 1 [msg] Message 32 with Payload -1 from 3 received.
+c 4.661 1 [msg] Requested work stealing from: 2
+c 4.661 1 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 4.661 1 [red] contribute {0, -1, -1} to all-reduction
+c 4.671 1 [msg] Waiting
+c 4.703 3 [msg] Message 32 with Payload -1 from 0 received.
+c 4.703 3 [msg] Requested work stealing from: 1
+c 4.703 3 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 4.703 3 [red] contribute {0, -1, -1} to all-reduction
+c 4.703 3 [red] Contribution: 0, -1, -1
+c 4.713 3 [msg] Waiting
+c 4.717 0 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 4.717 0 [red] contribute {0, 6, 15} to all-reduction
+c 4.717 0 [msg] Waiting
+c 4.732 2 [WARN] Watchdog: No reset for 79 ms (activity=6 recvtag=0 sendtag=0)
+c 4.732 1 [WARN] Watchdog: No reset for 61 ms (activity=6 recvtag=0 sendtag=0)
+c 4.753 2 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 4.753 2 [red] contribute {0, -1, -1} to all-reduction
+c 4.754 2 [red] Contribution: 0, -1, -1
+c 4.754 2 [msg] Message 31 with Payload 0 from 1 received.
+c 4.754 2 [msg] Processing work stealing query from 1
+c 4.754 2 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 4.754 2 [msg] Waiting
+c 4.771 1 [msg] Message 32 with Payload -1 from 2 received.
+c 4.772 1 TRY REDUCE 63 0 0 2 2
+c 4.772 1 REDUCE
+c 4.772 1 [msg] Message 31 with Payload 0 from 3 received.
+c 4.772 1 [msg] Processing work stealing query from 3
+c 4.772 1 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 4.772 1 [red] Contribution: 0, -1, -1
+c 4.772 1 [red] Contribution: 0, -1, -1
+c 4.772 1 [msg] Requested work stealing from: 3
+c 4.772 1 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 4.772 1 [red] contribute {0, -1, -1} to all-reduction
+c 4.782 1 [msg] Waiting
+c 4.813 3 [msg] Message 32 with Payload -1 from 1 received.
+c 4.813 3 [msg] Message 31 with Payload 0 from 1 received.
+c 4.813 3 [msg] Processing work stealing query from 1
+c 4.813 3 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 4.813 3 [msg] Requested work stealing from: 1
+c 4.813 3 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 4.813 3 [red] contribute {0, -1, -1} to all-reduction
+c 4.813 3 [red] Contribution: 0, -1, -1
+c 4.817 0 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 4.817 0 [red] contribute {0, 6, 15} to all-reduction
+c 4.817 0 [msg] Waiting
+c 4.823 3 [msg] Waiting
+c 4.832 2 [WARN] Watchdog: No reset for 79 ms (activity=6 recvtag=0 sendtag=0)
+c 4.833 1 [WARN] Watchdog: No reset for 51 ms (activity=6 recvtag=0 sendtag=0)
+c 4.854 2 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 4.854 2 [red] contribute {0, -1, -1} to all-reduction
+c 4.854 2 [red] Contribution: 0, -1, -1
+c 4.854 2 [msg] Waiting
+c 4.882 1 TRY REDUCE 63 0 0 2 2
+c 4.882 1 REDUCE
+c 4.882 1 [msg] Message 32 with Payload -1 from 3 received.
+c 4.882 1 [msg] Message 31 with Payload 0 from 3 received.
+c 4.882 1 [msg] Processing work stealing query from 3
+c 4.882 1 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 4.882 1 [red] Contribution: 0, -1, -1
+c 4.882 1 [red] Contribution: 0, -1, -1
+c 4.882 1 [msg] Requested work stealing from: 3
+c 4.882 1 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 4.882 1 [red] contribute {0, -1, -1} to all-reduction
+c 4.892 1 [msg] Waiting
+c 4.918 0 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 4.918 0 [red] contribute {0, 6, 15} to all-reduction
+c 4.918 0 [msg] Waiting
+c 4.924 3 [msg] Message 32 with Payload -1 from 1 received.
+c 4.924 3 [msg] Message 31 with Payload 0 from 1 received.
+c 4.924 3 [msg] Processing work stealing query from 1
+c 4.924 3 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 4.924 3 [msg] Requested work stealing from: 2
+c 4.924 3 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 4.924 3 [red] contribute {0, -1, -1} to all-reduction
+c 4.924 3 [red] Contribution: 0, -1, -1
+c 4.932 2 [WARN] Watchdog: No reset for 78 ms (activity=6 recvtag=0 sendtag=0)
+c 4.934 3 [msg] Waiting
+c 4.954 2 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 4.954 2 [red] contribute {0, -1, -1} to all-reduction
+c 4.954 2 [red] Contribution: 0, -1, -1
+c 4.954 2 [msg] Message 31 with Payload 0 from 3 received.
+c 4.954 2 [msg] Processing work stealing query from 3
+c 4.954 2 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 4.955 2 [msg] Waiting
+c 4.993 1 TRY REDUCE 63 0 0 2 2
+c 4.993 1 REDUCE
+c 4.993 1 [msg] Message 32 with Payload -1 from 3 received.
+c 4.993 1 [red] Contribution: 0, -1, -1
+c 4.993 1 [red] Contribution: 0, -1, -1
+c 4.993 1 [msg] Requested work stealing from: 2
+c 4.993 1 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 4.993 1 [red] contribute {0, -1, -1} to all-reduction
+c 5.003 1 [msg] Waiting
+c 5.018 0 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 5.018 0 [red] contribute {0, 6, 15} to all-reduction
+c 5.020 0 [msg] Waiting
+c 5.028 0 [WARN] Watchdog: No reset for 2944 ms (activity=0 recvtag=0 sendtag=0)
+c 5.032 2 [WARN] Watchdog: No reset for 78 ms (activity=6 recvtag=0 sendtag=0)
+c 5.033 3 [WARN] Watchdog: No reset for 99 ms (activity=6 recvtag=0 sendtag=0)
+c 5.034 3 [msg] Message 32 with Payload -1 from 2 received.
+c 5.034 3 [msg] Tried requesting work but receiving rank was invalid or my own: 3
+c 5.034 3 [red] _waiting = 0 & _sent_work = 0 & _working = 0
+c 5.034 3 [red] contribute {0, -1, -1} to all-reduction
+c 5.034 3 [red] Contribution: 0, -1, -1
+c 5.039 2 [WARN] Watchdog: No reset for 5001 ms (activity=0 recvtag=0 sendtag=0)
+c 5.039 3 [WARN] Watchdog: No reset for 4001 ms (activity=0 recvtag=0 sendtag=0)
+c 5.039 1 [WARN] Watchdog: No reset for 5002 ms (activity=0 recvtag=0 sendtag=0)
+c 5.044 3 [msg] Requested work stealing from: 2
+c 5.055 3 [msg] Waiting
+c 5.055 2 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 5.055 2 [red] contribute {0, -1, -1} to all-reduction
+c 5.055 2 [msg] Message 31 with Payload 0 from 1 received.
+c 5.055 2 [msg] Processing work stealing query from 1
+c 5.055 2 [red] Contribution: 0, -1, -1
+c 5.055 2 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 5.055 2 [msg] Message 31 with Payload 0 from 3 received.
+c 5.055 2 [msg] Processing work stealing query from 3
+c 5.055 2 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 5.055 2 [msg] Waiting
+c 5.103 1 [msg] Message 32 with Payload -1 from 2 received.
+c 5.103 1 TRY REDUCE 63 0 0 2 2
+c 5.103 1 REDUCE
+c 5.103 1 TRY REDUCE 63 0 0 2 2
+c 5.103 1 REDUCE
+c 5.103 1 [red] Contribution: 0, -1, -1
+c 5.103 1 [red] Contribution: 0, -1, -1
+c 5.104 1 [msg] Requested work stealing from: 0
+c 5.104 1 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 5.104 1 [red] contribute {0, -1, -1} to all-reduction
+c 5.114 1 [msg] Waiting
+c 5.120 0 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 5.120 0 [red] contribute {0, 6, 15} to all-reduction
+c 5.120 0 [msg] Message 31 with Payload 0 from 1 received.
+c 5.120 0 [msg] Processing work stealing query from 1
+c 5.120 0 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 5.120 0 [msg] Waiting
+c 5.132 2 [WARN] Watchdog: No reset for 77 ms (activity=6 recvtag=0 sendtag=0)
+c 5.133 3 [WARN] Watchdog: No reset for 78 ms (activity=6 recvtag=0 sendtag=0)
+c 5.155 3 TRY REDUCE 63 0 0 2 2
+c 5.155 3 REDUCE returnedToSender
+c 5.155 3 [msg] Message 32 with Payload -1 from 2 received.
+c 5.155 3 [msg] Tried requesting work but receiving rank was invalid or my own: 3
+c 5.155 3 [red] _waiting = 0 & _sent_work = 0 & _working = 0
+c 5.155 3 [red] contribute {0, -1, -1} to all-reduction
+c 5.155 3 [red] Contribution: 0, -1, -1
+c 5.155 2 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 5.155 2 [red] contribute {0, -1, -1} to all-reduction
+c 5.155 2 [red] Contribution: 0, -1, -1
+c 5.155 2 [msg] Waiting
+c 5.165 3 [msg] Tried requesting work but receiving rank was invalid or my own: 3
+c 5.175 3 [msg] Requested work stealing from: 2
+c 5.185 3 [msg] Waiting
+c 5.214 1 [msg] Message 32 with Payload -1 from 0 received.
+c 5.214 1 TRY REDUCE 63 0 0 2 2
+c 5.214 1 REDUCE
+c 5.214 1 [red] Contribution: 0, -1, -1
+c 5.214 1 [red] Contribution: 0, -1, -1
+c 5.214 1 [msg] Requested work stealing from: 2
+c 5.214 1 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 5.214 1 [red] contribute {0, -1, -1} to all-reduction
+c 5.220 0 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 5.220 0 [red] contribute {0, 6, 15} to all-reduction
+c 5.221 0 [msg] Waiting
+c 5.224 1 [msg] Waiting
+c 5.233 2 [WARN] Watchdog: No reset for 77 ms (activity=6 recvtag=0 sendtag=0)
+c 5.256 2 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 5.256 2 [red] contribute {0, -1, -1} to all-reduction
+c 5.256 2 [red] Contribution: 0, -1, -1
+c 5.256 2 [msg] Message 31 with Payload 0 from 1 received.
+c 5.256 2 [msg] Processing work stealing query from 1
+c 5.256 2 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 5.256 2 [msg] Message 31 with Payload 0 from 3 received.
+c 5.256 2 [msg] Processing work stealing query from 3
+c 5.256 2 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 5.256 2 [msg] Waiting
+c 5.285 3 [msg] Message 32 with Payload -1 from 2 received.
+c 5.286 3 [msg] Requested work stealing from: 0
+c 5.286 3 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 5.286 3 [red] contribute {0, -1, -1} to all-reduction
+c 5.286 3 [red] Contribution: 0, -1, -1
+c 5.296 3 [msg] Waiting
+c 5.321 0 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 5.321 0 [red] contribute {0, 6, 15} to all-reduction
+c 5.321 0 sysstate busyratio=1.000 cmtdratio=0.000 jobs=1 globmem=0.16GB newreqs=0 hops=0
+c 5.321 0 sysstate entered=1 parsed=1 scheduled=1 processed=0 successful=0
+c 5.321 0 [msg] Message 31 with Payload 0 from 3 received.
+c 5.321 0 [msg] Processing work stealing query from 3
+c 5.321 0 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 5.321 0 [msg] Waiting
+c 5.324 1 [msg] Message 32 with Payload -1 from 2 received.
+c 5.325 1 [msg] Requested work stealing from: 0
+c 5.325 1 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 5.325 1 [red] contribute {0, -1, -1} to all-reduction
+c 5.333 2 [WARN] Watchdog: No reset for 77 ms (activity=6 recvtag=0 sendtag=0)
+c 5.335 1 [msg] Waiting
+c 5.356 2 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 5.356 2 [red] contribute {0, -1, -1} to all-reduction
+c 5.356 2 [red] Contribution: 0, -1, -1
+c 5.356 2 [msg] Waiting
+c 5.396 3 [msg] Message 32 with Payload -1 from 0 received.
+c 5.396 3 [msg] Requested work stealing from: 2
+c 5.396 3 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 5.396 3 [red] contribute {0, -1, -1} to all-reduction
+c 5.396 3 [red] Contribution: 0, -1, -1
+c 5.406 3 [msg] Waiting
+c 5.421 0 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 5.421 0 [red] contribute {0, 6, 15} to all-reduction
+c 5.421 0 [msg] Message 31 with Payload 0 from 1 received.
+c 5.421 0 [msg] Processing work stealing query from 1
+c 5.421 0 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 5.422 0 [msg] Waiting
+c 5.433 2 [WARN] Watchdog: No reset for 76 ms (activity=6 recvtag=0 sendtag=0)
+c 5.433 1 [WARN] Watchdog: No reset for 99 ms (activity=6 recvtag=0 sendtag=0)
+c 5.435 1 [msg] Message 32 with Payload -1 from 0 received.
+c 5.435 1 TRY REDUCE 63 0 0 2 2
+c 5.435 1 REDUCE
+c 5.435 1 [red] Contribution: 0, -1, -1
+c 5.435 1 [red] Contribution: 0, -1, -1
+c 5.435 1 [msg] Requested work stealing from: 0
+c 5.435 1 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 5.435 1 [red] contribute {0, -1, -1} to all-reduction
+c 5.445 1 [msg] Waiting
+c 5.456 2 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 5.457 2 [red] contribute {0, -1, -1} to all-reduction
+c 5.457 2 [msg] Message 31 with Payload 0 from 3 received.
+c 5.457 2 [msg] Processing work stealing query from 3
+c 5.457 2 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 5.457 2 [red] Contribution: 0, -1, -1
+c 5.457 2 [msg] Waiting
+c 5.506 3 [msg] Message 32 with Payload -1 from 2 received.
+c 5.507 3 [msg] Requested work stealing from: 0
+c 5.507 3 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 5.507 3 [red] contribute {0, -1, -1} to all-reduction
+c 5.507 3 [red] Contribution: 0, -1, -1
+c 5.517 3 [msg] Waiting
+c 5.522 0 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 5.522 0 [red] contribute {0, 6, 15} to all-reduction
+c 5.522 0 [msg] Message 31 with Payload 0 from 3 received.
+c 5.522 0 [msg] Processing work stealing query from 3
+c 5.522 0 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 5.522 0 [msg] Message 31 with Payload 0 from 1 received.
+c 5.522 0 [msg] Processing work stealing query from 1
+c 5.522 0 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 5.522 0 [msg] Waiting
+c 5.528 0 [WARN] Watchdog: No reset for 3445 ms (activity=0 recvtag=0 sendtag=0)
+c 5.533 2 [WARN] Watchdog: No reset for 77 ms (activity=6 recvtag=0 sendtag=0)
+c 5.533 1 [WARN] Watchdog: No reset for 88 ms (activity=6 recvtag=0 sendtag=0)
+c 5.539 2 [WARN] Watchdog: No reset for 5501 ms (activity=0 recvtag=0 sendtag=0)
+c 5.539 3 [WARN] Watchdog: No reset for 4502 ms (activity=0 recvtag=0 sendtag=0)
+c 5.539 1 [WARN] Watchdog: No reset for 5502 ms (activity=0 recvtag=0 sendtag=0)
+c 5.545 1 [msg] Message 32 with Payload -1 from 0 received.
+c 5.545 1 TRY REDUCE 63 0 0 2 2
+c 5.545 1 REDUCE
+c 5.545 1 [red] Contribution: 0, -1, -1
+c 5.545 1 [red] Contribution: 0, -1, -1
+c 5.545 1 [msg] Requested work stealing from: 3
+c 5.545 1 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 5.545 1 [red] contribute {0, -1, -1} to all-reduction
+c 5.556 1 [msg] Waiting
+c 5.557 2 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 5.557 2 [red] contribute {0, -1, -1} to all-reduction
+c 5.557 2 [red] Contribution: 0, -1, -1
+c 5.557 2 [msg] Waiting
+c 5.617 3 [msg] Message 32 with Payload -1 from 0 received.
+c 5.617 3 [msg] Message 31 with Payload 0 from 1 received.
+c 5.617 3 [msg] Processing work stealing query from 1
+c 5.617 3 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 5.617 3 [msg] Requested work stealing from: 0
+c 5.617 3 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 5.617 3 [red] contribute {0, -1, -1} to all-reduction
+c 5.617 3 [red] Contribution: 0, -1, -1
+c 5.622 0 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 5.622 0 [red] contribute {0, 6, 15} to all-reduction
+c 5.622 0 [msg] Message 31 with Payload 0 from 3 received.
+c 5.622 0 [msg] Processing work stealing query from 3
+c 5.622 0 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 5.623 3 [msg] Message 32 with Payload -1 from 0 received.
+c 5.623 0 [msg] Waiting
+c 5.627 3 [msg] Tried requesting work but receiving rank was invalid or my own: 3
+c 5.633 2 [WARN] Watchdog: No reset for 76 ms (activity=6 recvtag=0 sendtag=0)
+c 5.633 1 [WARN] Watchdog: No reset for 78 ms (activity=6 recvtag=0 sendtag=0)
+c 5.638 3 [msg] Requested work stealing from: 0
+c 5.648 3 [msg] Waiting
+c 5.656 1 TRY REDUCE 63 0 0 2 2
+c 5.656 1 REDUCE
+c 5.656 1 [msg] Message 32 with Payload -1 from 3 received.
+c 5.656 1 TRY REDUCE 63 0 0 2 2
+c 5.656 1 REDUCE
+c 5.656 1 [red] Contribution: 0, -1, -1
+c 5.656 1 [red] Contribution: 0, -1, -1
+c 5.656 1 [msg] Requested work stealing from: 0
+c 5.656 1 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 5.656 1 [red] contribute {0, -1, -1} to all-reduction
+c 5.657 2 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 5.657 2 [red] contribute {0, -1, -1} to all-reduction
+c 5.658 2 [red] Contribution: 0, -1, -1
+c 5.658 2 [msg] Waiting
+c 5.666 1 [msg] Waiting
+c 5.723 0 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 5.723 0 [red] contribute {0, 6, 15} to all-reduction
+c 5.723 0 [msg] Message 31 with Payload 0 from 3 received.
+c 5.723 0 [msg] Processing work stealing query from 3
+c 5.723 0 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 5.723 0 [msg] Message 31 with Payload 0 from 1 received.
+c 5.723 0 [msg] Processing work stealing query from 1
+c 5.723 0 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 5.723 0 [msg] Waiting
+c 5.733 2 [WARN] Watchdog: No reset for 76 ms (activity=6 recvtag=0 sendtag=0)
+c 5.734 3 [WARN] Watchdog: No reset for 86 ms (activity=6 recvtag=0 sendtag=0)
+c 5.734 1 [WARN] Watchdog: No reset for 67 ms (activity=6 recvtag=0 sendtag=0)
+c 5.748 3 [msg] Message 32 with Payload -1 from 0 received.
+c 5.748 3 TRY REDUCE 63 0 0 2 2
+c 5.748 3 REDUCE returnedToSender
+c 5.748 3 [msg] Tried requesting work but receiving rank was invalid or my own: 3
+c 5.748 3 [red] _waiting = 0 & _sent_work = 0 & _working = 0
+c 5.748 3 [red] contribute {0, -1, -1} to all-reduction
+c 5.748 3 [red] Contribution: 0, -1, -1
+c 5.758 2 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 5.758 2 [red] contribute {0, -1, -1} to all-reduction
+c 5.758 2 [red] Contribution: 0, -1, -1
+c 5.758 3 [msg] Requested work stealing from: 1
+c 5.758 2 [msg] Waiting
+c 5.766 1 [msg] Message 32 with Payload -1 from 0 received.
+c 5.766 1 [msg] Message 31 with Payload 0 from 3 received.
+c 5.766 1 [msg] Processing work stealing query from 3
+c 5.766 1 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 5.766 1 TRY REDUCE 63 0 0 2 2
+c 5.766 1 REDUCE
+c 5.766 1 [red] Contribution: 0, -1, -1
+c 5.766 1 [red] Contribution: 0, -1, -1
+c 5.766 3 [msg] Message 32 with Payload -1 from 1 received.
+c 5.766 1 [msg] Requested work stealing from: 3
+c 5.766 1 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 5.766 1 [red] contribute {0, -1, -1} to all-reduction
+c 5.766 3 [msg] Message 31 with Payload 0 from 1 received.
+c 5.766 3 [msg] Processing work stealing query from 1
+c 5.767 3 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 5.767 1 [msg] Message 32 with Payload -1 from 3 received.
+c 5.768 3 [msg] Requested work stealing from: 2
+c 5.777 1 [msg] Tried requesting work but receiving rank was invalid or my own: 1
+c 5.778 3 [msg] Waiting
+c 5.787 1 [msg] Requested work stealing from: 2
+c 5.797 1 [msg] Waiting
+c 5.823 0 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 5.823 0 [red] contribute {0, 6, 15} to all-reduction
+c 5.823 0 [msg] Waiting
+c 5.834 2 [WARN] Watchdog: No reset for 75 ms (activity=6 recvtag=0 sendtag=0)
+c 5.834 3 [WARN] Watchdog: No reset for 55 ms (activity=6 recvtag=0 sendtag=0)
+c 5.858 2 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 5.858 2 [red] contribute {0, -1, -1} to all-reduction
+c 5.858 2 [red] Contribution: 0, -1, -1
+c 5.858 2 [msg] Message 31 with Payload 0 from 1 received.
+c 5.858 2 [msg] Processing work stealing query from 1
+c 5.858 2 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 5.858 2 [msg] Message 31 with Payload 0 from 3 received.
+c 5.858 2 [msg] Processing work stealing query from 3
+c 5.858 2 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 5.859 2 [msg] Waiting
+c 5.878 3 [msg] Message 32 with Payload -1 from 2 received.
+c 5.879 3 [msg] Requested work stealing from: 2
+c 5.879 3 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 5.879 3 [red] contribute {0, -1, -1} to all-reduction
+c 5.879 3 [red] Contribution: 0, -1, -1
+c 5.889 3 [msg] Waiting
+c 5.897 1 [msg] Message 32 with Payload -1 from 2 received.
+c 5.897 1 [msg] Requested work stealing from: 2
+c 5.897 1 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 5.897 1 [red] contribute {0, -1, -1} to all-reduction
+c 5.907 1 [msg] Waiting
+c 5.924 0 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 5.924 0 [red] contribute {0, 6, 15} to all-reduction
+c 5.924 0 [msg] Waiting
+c 5.934 2 [WARN] Watchdog: No reset for 75 ms (activity=6 recvtag=0 sendtag=0)
+c 5.959 2 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 5.959 2 [red] contribute {0, -1, -1} to all-reduction
+c 5.959 2 [red] Contribution: 0, -1, -1
+c 5.959 2 [msg] Message 31 with Payload 0 from 1 received.
+c 5.959 2 [msg] Processing work stealing query from 1
+c 5.959 2 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 5.959 2 [msg] Message 31 with Payload 0 from 3 received.
+c 5.959 2 [msg] Processing work stealing query from 3
+c 5.959 2 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 5.959 2 [msg] Waiting
+c 5.989 3 [msg] Message 32 with Payload -1 from 2 received.
+c 5.989 3 [msg] Requested work stealing from: 2
+c 5.989 3 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 5.989 3 [red] contribute {0, -1, -1} to all-reduction
+c 5.989 3 [red] Contribution: 0, -1, -1
+c 5.999 3 [msg] Waiting
+c 6.008 1 [msg] Message 32 with Payload -1 from 2 received.
+c 6.008 1 TRY REDUCE 63 0 0 2 2
+c 6.008 1 REDUCE
+c 6.008 1 [red] Contribution: 0, -1, -1
+c 6.008 1 [red] Contribution: 0, -1, -1
+c 6.008 1 [msg] Requested work stealing from: 2
+c 6.008 1 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 6.008 1 [red] contribute {0, -1, -1} to all-reduction
+c 6.018 1 [msg] Waiting
+c 6.024 0 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 6.024 0 [red] contribute {0, 6, 15} to all-reduction
+c 6.024 0 [msg] Waiting
+c 6.028 0 [WARN] Watchdog: No reset for 3945 ms (activity=0 recvtag=0 sendtag=0)
+c 6.034 2 [WARN] Watchdog: No reset for 74 ms (activity=6 recvtag=0 sendtag=0)
+c 6.039 2 [WARN] Watchdog: No reset for 6002 ms (activity=0 recvtag=0 sendtag=0)
+c 6.039 3 [WARN] Watchdog: No reset for 5002 ms (activity=0 recvtag=0 sendtag=0)
+c 6.039 1 [WARN] Watchdog: No reset for 6002 ms (activity=0 recvtag=0 sendtag=0)
+c 6.059 2 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 6.059 2 [red] contribute {0, -1, -1} to all-reduction
+c 6.059 2 [msg] Message 31 with Payload 0 from 1 received.
+c 6.059 2 [msg] Processing work stealing query from 1
+c 6.059 2 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 6.059 2 [msg] Message 31 with Payload 0 from 3 received.
+c 6.059 2 [msg] Processing work stealing query from 3
+c 6.059 2 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 6.060 2 [msg] Waiting
+c 6.061 2 [red] Contribution: 0, -1, -1
+c 6.099 3 [msg] Message 32 with Payload -1 from 2 received.
+c 6.100 3 [msg] Tried requesting work but receiving rank was invalid or my own: 3
+c 6.100 3 [red] _waiting = 0 & _sent_work = 0 & _working = 0
+c 6.100 3 [red] contribute {0, -1, -1} to all-reduction
+c 6.101 3 [red] Contribution: 0, -1, -1
+c 6.110 3 [msg] Tried requesting work but receiving rank was invalid or my own: 3
+c 6.118 1 [msg] Message 32 with Payload -1 from 2 received.
+c 6.118 1 TRY REDUCE 63 0 0 2 2
+c 6.118 1 REDUCE
+c 6.118 1 TRY REDUCE 63 0 0 2 2
+c 6.118 1 REDUCE
+c 6.118 1 [red] Contribution: 0, -1, -1
+c 6.118 1 [red] Contribution: 0, -1, -1
+c 6.118 3 TRY REDUCE 63 0 0 2 2
+c 6.118 3 REDUCE returnedToSender
+c 6.118 1 [msg] Requested work stealing from: 3
+c 6.118 1 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 6.118 1 [red] contribute {0, -1, -1} to all-reduction
+c 6.119 1 [msg] Message 32 with Payload -1 from 3 received.
+c 6.119 3 [msg] Message 31 with Payload 0 from 1 received.
+c 6.119 3 [msg] Processing work stealing query from 1
+c 6.119 3 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 6.120 3 [msg] Tried requesting work but receiving rank was invalid or my own: 3
+c 6.124 0 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 6.124 0 [red] contribute {0, 6, 15} to all-reduction
+c 6.125 0 [msg] Waiting
+c 6.128 1 [msg] Requested work stealing from: 3
+c 6.129 3 [msg] Message 31 with Payload 0 from 1 received.
+c 6.129 3 [msg] Processing work stealing query from 1
+c 6.129 3 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 6.129 1 [msg] Message 32 with Payload -1 from 3 received.
+c 6.130 3 [msg] Requested work stealing from: 1
+c 6.130 1 [msg] Message 31 with Payload 0 from 3 received.
+c 6.130 1 [msg] Processing work stealing query from 3
+c 6.130 1 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 6.130 3 [msg] Message 32 with Payload -1 from 1 received.
+c 6.134 2 [WARN] Watchdog: No reset for 75 ms (activity=6 recvtag=0 sendtag=0)
+c 6.139 1 [msg] Requested work stealing from: 3
+c 6.139 3 [msg] Message 31 with Payload 0 from 1 received.
+c 6.139 3 [msg] Processing work stealing query from 1
+c 6.139 3 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 6.139 1 [msg] Message 32 with Payload -1 from 3 received.
+c 6.140 3 [msg] Requested work stealing from: 2
+c 6.149 1 [msg] Tried requesting work but receiving rank was invalid or my own: 1
+c 6.150 3 [msg] Waiting
+c 6.159 1 [msg] Requested work stealing from: 2
+c 6.160 2 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 6.160 2 [red] contribute {0, -1, -1} to all-reduction
+c c 6.160 2 [red] Contribution: 0, -1, -1
+6.160 2 [msg] Message 31 with Payload 0 from 1 received.
+c 6.160 2 [msg] Processing work stealing query from 1
+c 6.160 2 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 6.160 2 [msg] Message 31 with Payload 0 from 3 received.
+c 6.160 2 [msg] Processing work stealing query from 3
+c 6.160 2 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 6.160 1 [msg] Message 32 with Payload -1 from 2 received.
+c 6.160 2 [msg] Waiting
+c 6.169 1 [msg] Requested work stealing from: 2
+c 6.179 1 [msg] Waiting
+c 6.225 0 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 6.225 0 [red] contribute {0, 6, 15} to all-reduction
+c 6.225 0 [msg] Waiting
+c 6.234 2 [WARN] Watchdog: No reset for 74 ms (activity=6 recvtag=0 sendtag=0)
+c 6.234 1 [WARN] Watchdog: No reset for 56 ms (activity=6 recvtag=0 sendtag=0)
+c 6.234 3 [WARN] Watchdog: No reset for 85 ms (activity=6 recvtag=0 sendtag=0)
+c 6.250 3 [msg] Message 32 with Payload -1 from 2 received.
+c 6.250 3 [msg] Requested work stealing from: 2
+c 6.250 3 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 6.250 3 [red] contribute {0, -1, -1} to all-reduction
+c 6.250 3 [red] Contribution: 0, -1, -1
+c 6.260 3 [msg] Waiting
+c 6.261 2 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 6.261 2 [red] contribute {0, -1, -1} to all-reduction
+c 6.261 2 [msg] Message 31 with Payload 0 from 3 received.
+c 6.261 2 [msg] Processing work stealing query from 3
+c 6.261 2 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 6.261 2 [msg] Message 31 with Payload 0 from 1 received.
+c 6.261 2 [msg] Processing work stealing query from 1
+c 6.261 2 [red] Contribution: 0, -1, -1
+c 6.261 2 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 6.261 2 [msg] Waiting
+c 6.279 1 [msg] Message 32 with Payload -1 from 2 received.
+c 6.279 1 [msg] Requested work stealing from: 2
+c 6.279 1 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 6.279 1 [red] contribute {0, -1, -1} to all-reduction
+c 6.289 1 [msg] Waiting
+c 6.325 0 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 6.325 0 [red] contribute {0, 6, 15} to all-reduction
+c 6.325 0 sysstate entered=1 parsed=1 scheduled=1 processed=0 successful=0
+c 6.325 0 [msg] Waiting
+c 6.335 2 [WARN] Watchdog: No reset for 74 ms (activity=6 recvtag=0 sendtag=0)
+c 6.335 3 [WARN] Watchdog: No reset for 74 ms (activity=6 recvtag=0 sendtag=0)
+c 6.361 3 [msg] Message 32 with Payload -1 from 2 received.
+c 6.361 3 [msg] Requested work stealing from: 2
+c 6.361 3 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 6.361 3 [red] contribute {0, -1, -1} to all-reduction
+c 6.361 3 [red] Contribution: 0, -1, -1
+c 6.361 2 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 6.361 2 [red] contribute {0, -1, -1} to all-reduction
+c 6.361 2 [msg] Message 31 with Payload 0 from 3 received.
+c 6.361 2 [msg] Processing work stealing query from 3
+c 6.361 2 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 6.361 2 [msg] Message 31 with Payload 0 from 1 received.
+c 6.361 2 [msg] Processing work stealing query from 1
+c 6.361 2 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 6.361 2 [red] Contribution: 0, -1, -1
+c 6.361 3 [msg] Message 32 with Payload -1 from 2 received.
+c 6.361 2 [msg] Waiting
+c 6.371 3 [msg] Requested work stealing from: 1
+c 6.381 3 [msg] Waiting
+c 6.390 1 TRY REDUCE 63 0 0 2 2
+c 6.390 1 REDUCE
+c 6.390 1 [msg] Message 32 with Payload -1 from 2 received.
+c 6.390 1 TRY REDUCE 63 0 0 2 2
+c 6.390 1 REDUCE
+c 6.390 1 [msg] Message 31 with Payload 0 from 3 received.
+c 6.390 1 [msg] Processing work stealing query from 3
+c 6.390 1 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 6.390 1 [red] Contribution: 0, -1, -1
+c 6.390 1 [red] Contribution: 0, -1, -1
+c 6.390 1 [msg] Tried requesting work but receiving rank was invalid or my own: 1
+c 6.390 1 [red] _waiting = 0 & _sent_work = 0 & _working = 0
+c 6.390 1 [red] contribute {0, -1, -1} to all-reduction
+c 6.400 1 [msg] Requested work stealing from: 3
+c 6.410 1 [msg] Waiting
+c 6.425 0 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 6.425 0 [red] contribute {0, 6, 15} to all-reduction
+c 6.425 0 [msg] Waiting
+c 6.435 2 [WARN] Watchdog: No reset for 73 ms (activity=6 recvtag=0 sendtag=0)
+c 6.435 3 [WARN] Watchdog: No reset for 54 ms (activity=6 recvtag=0 sendtag=0)
+c 6.462 2 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 6.462 2 [red] contribute {0, -1, -1} to all-reduction
+c 6.462 2 [red] Contribution: 0, -1, -1
+c 6.462 2 [msg] Waiting
+c 6.481 3 TRY REDUCE 63 0 0 2 2
+c 6.481 3 REDUCE returnedToSender
+c 6.481 3 [msg] Message 32 with Payload -1 from 1 received.
+c 6.481 3 [msg] Message 31 with Payload 0 from 1 received.
+c 6.481 3 [msg] Processing work stealing query from 1
+c 6.481 3 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 6.481 3 [msg] Tried requesting work but receiving rank was invalid or my own: 3
+c 6.481 3 [red] _waiting = 0 & _sent_work = 0 & _working = 0
+c 6.481 3 [red] contribute {0, -1, -1} to all-reduction
+c 6.481 3 [red] Contribution: 0, -1, -1
+c 6.492 3 [msg] Requested work stealing from: 1
+c 6.502 3 [msg] Waiting
+c 6.510 1 [msg] Message 32 with Payload -1 from 3 received.
+c 6.510 1 TRY REDUCE 63 0 0 2 2
+c 6.510 1 REDUCE
+c 6.510 1 [msg] Message 31 with Payload 0 from 3 received.
+c 6.510 1 [msg] Processing work stealing query from 3
+c 6.510 1 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 6.510 1 [red] Contribution: 0, -1, -1
+c 6.510 1 [red] Contribution: 0, -1, -1
+c 6.510 1 [msg] Tried requesting work but receiving rank was invalid or my own: 1
+c 6.510 1 [red] _waiting = 0 & _sent_work = 0 & _working = 0
+c 6.510 1 [red] contribute {0, -1, -1} to all-reduction
+c 6.520 1 [msg] Requested work stealing from: 0
+c 6.526 0 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 6.526 0 [red] contribute {0, 6, 15} to all-reduction
+c 6.526 0 sysstate busyratio=1.000 cmtdratio=0.000 jobs=1 globmem=0.16GB newreqs=0 hops=0
+c 6.526 0 [msg] Message 31 with Payload 0 from 1 received.
+c 6.526 0 [msg] Processing work stealing query from 1
+c 6.526 0 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 6.526 1 [msg] Message 32 with Payload -1 from 0 received.
+c 6.526 0 [msg] Waiting
+c 6.529 0 [WARN] Watchdog: No reset for 4445 ms (activity=0 recvtag=0 sendtag=0)
+c 6.531 1 [msg] Requested work stealing from: 3
+c 6.535 2 [WARN] Watchdog: No reset for 73 ms (activity=6 recvtag=0 sendtag=0)
+c 6.539 3 [WARN] Watchdog: No reset for 5502 ms (activity=0 recvtag=0 sendtag=0)
+c 6.539 2 [WARN] Watchdog: No reset for 6502 ms (activity=0 recvtag=0 sendtag=0)
+c 6.539 1 [WARN] Watchdog: No reset for 6502 ms (activity=0 recvtag=0 sendtag=0)
+c 6.541 1 [msg] Waiting
+c 6.562 2 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 6.562 2 [red] contribute {0, -1, -1} to all-reduction
+c 6.562 2 [red] Contribution: 0, -1, -1
+c 6.562 2 [msg] Waiting
+c 6.602 3 [msg] Message 32 with Payload -1 from 1 received.
+c 6.602 3 [msg] Message 31 with Payload 0 from 1 received.
+c 6.602 3 [msg] Processing work stealing query from 1
+c 6.602 3 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 6.602 3 [msg] Requested work stealing from: 0
+c 6.602 3 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 6.602 3 [red] contribute {0, -1, -1} to all-reduction
+c 6.602 3 [red] Contribution: 0, -1, -1
+c 6.612 3 [msg] Waiting
+c 6.626 0 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 6.626 0 [red] contribute {0, 6, 15} to all-reduction
+c 6.626 0 [msg] Message 31 with Payload 0 from 3 received.
+c 6.626 0 [msg] Processing work stealing query from 3
+c 6.626 0 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 6.626 0 [msg] Waiting
+c 6.635 1 [WARN] Watchdog: No reset for 95 ms (activity=6 recvtag=0 sendtag=0)
+c 6.635 2 [WARN] Watchdog: No reset for 73 ms (activity=6 recvtag=0 sendtag=0)
+c 6.641 1 [msg] Message 32 with Payload -1 from 3 received.
+c 6.641 1 [msg] Requested work stealing from: 2
+c 6.641 1 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 6.641 1 [red] contribute {0, -1, -1} to all-reduction
+c 6.651 1 [msg] Waiting
+c 6.662 2 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 6.662 2 [red] contribute {0, -1, -1} to all-reduction
+c 6.662 2 [msg] Message 31 with Payload 0 from 1 received.
+c 6.662 2 [red] Contribution: 0, -1, -1
+c 6.662 2 [msg] Processing work stealing query from 1
+c 6.662 2 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 6.663 2 [msg] Waiting
+c 6.712 3 [msg] Message 32 with Payload -1 from 0 received.
+c 6.713 3 [msg] Tried requesting work but receiving rank was invalid or my own: 3
+c 6.713 3 [red] _waiting = 0 & _sent_work = 0 & _working = 0
+c 6.713 3 [red] contribute {0, -1, -1} to all-reduction
+c 6.713 3 [red] Contribution: 0, -1, -1
+c 6.723 3 [msg] Requested work stealing from: 2
+c 6.726 0 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 6.726 0 [red] contribute {0, 6, 15} to all-reduction
+c 6.727 0 [msg] Waiting
+c 6.733 3 [msg] Waiting
+c 6.735 1 [WARN] Watchdog: No reset for 84 ms (activity=6 recvtag=0 sendtag=0)
+c 6.735 2 [WARN] Watchdog: No reset for 73 ms (activity=6 recvtag=0 sendtag=0)
+c 6.751 1 [msg] Message 32 with Payload -1 from 2 received.
+c 6.751 1 TRY REDUCE 63 0 0 2 2
+c 6.751 1 REDUCE
+c 6.752 1 TRY REDUCE 63 0 0 2 2
+c 6.752 1 REDUCE
+c 6.752 1 [red] Contribution: 0, -1, -1
+c 6.752 1 [red] Contribution: 0, -1, -1
+c 6.752 1 [msg] Tried requesting work but receiving rank was invalid or my own: 1
+c 6.752 1 [red] _waiting = 0 & _sent_work = 0 & _working = 0
+c 6.752 1 [red] contribute {0, -1, -1} to all-reduction
+c 6.762 1 [msg] Tried requesting work but receiving rank was invalid or my own: 1
+c 6.763 2 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 6.763 2 [red] contribute {0, -1, -1} to all-reduction
+c 6.763 2 [red] Contribution: 0, -1, -1
+c 6.763 2 [msg] Message 31 with Payload 0 from 3 received.
+c 6.763 2 [msg] Processing work stealing query from 3
+c 6.763 2 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 6.763 2 [msg] Waiting
+c 6.772 1 [msg] Tried requesting work but receiving rank was invalid or my own: 1
+c 6.782 1 [msg] Requested work stealing from: 3
+c 6.792 1 [msg] Waiting
+c 6.827 0 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 6.827 0 [red] contribute {0, 6, 15} to all-reduction
+c 6.827 0 [msg] Waiting
+c 6.833 3 [msg] Message 32 with Payload -1 from 2 received.
+c 6.833 3 TRY REDUCE 63 0 0 2 2
+c 6.833 3 REDUCE returnedToSender
+c 6.833 3 [msg] Message 31 with Payload 0 from 1 received.
+c 6.833 3 [msg] Processing work stealing query from 1
+c 6.833 3 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 6.833 3 [msg] Requested work stealing from: 1
+c 6.833 3 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 6.833 3 [red] contribute {0, -1, -1} to all-reduction
+c 6.833 3 [red] Contribution: 0, -1, -1
+c 6.835 2 [WARN] Watchdog: No reset for 72 ms (activity=6 recvtag=0 sendtag=0)
+c 6.843 3 [msg] Waiting
+c 6.863 2 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 6.863 2 [red] contribute {0, -1, -1} to all-reduction
+c 6.863 2 [red] Contribution: 0, -1, -1
+c 6.863 2 [msg] Waiting
+c 6.892 1 [msg] Message 32 with Payload -1 from 3 received.
+c 6.892 1 [msg] Message 31 with Payload 0 from 3 received.
+c 6.892 1 [msg] Processing work stealing query from 3
+c 6.892 1 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 6.893 1 [msg] Requested work stealing from: 0
+c 6.893 1 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 6.893 1 [red] contribute {0, -1, -1} to all-reduction
+c 6.903 1 [msg] Waiting
+c 6.927 0 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 6.927 0 [red] contribute {0, 6, 15} to all-reduction
+c 6.927 0 [msg] Message 31 with Payload 0 from 1 received.
+c 6.927 0 [msg] Processing work stealing query from 1
+c 6.927 0 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 6.927 0 [msg] Waiting
+c 6.936 2 [WARN] Watchdog: No reset for 72 ms (activity=6 recvtag=0 sendtag=0)
+c 6.936 3 [WARN] Watchdog: No reset for 92 ms (activity=6 recvtag=0 sendtag=0)
+c 6.944 3 [msg] Message 32 with Payload -1 from 1 received.
+c 6.944 3 [msg] Requested work stealing from: 1
+c 6.944 3 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 6.944 3 [red] contribute {0, -1, -1} to all-reduction
+c 6.944 3 [red] Contribution: 0, -1, -1
+c 6.954 3 [msg] Waiting
+c 6.964 2 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 6.964 2 [red] contribute {0, -1, -1} to all-reduction
+c 6.964 2 [red] Contribution: 0, -1, -1
+c 6.964 2 [msg] Waiting
+c 7.003 1 [msg] Message 32 with Payload -1 from 0 received.
+c 7.003 1 TRY REDUCE 63 0 0 2 2
+c 7.003 1 REDUCE
+c 7.003 1 [msg] Message 31 with Payload 0 from 3 received.
+c 7.003 1 [msg] Processing work stealing query from 3
+c 7.003 1 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 7.003 1 [red] Contribution: 0, -1, -1
+c 7.003 1 [red] Contribution: 0, -1, -1
+c 7.003 1 [msg] Tried requesting work but receiving rank was invalid or my own: 1
+c 7.003 1 [red] _waiting = 0 & _sent_work = 0 & _working = 0
+c 7.003 1 [red] contribute {0, -1, -1} to all-reduction
+c 7.013 1 [msg] Requested work stealing from: 2
+c 7.023 1 [msg] Waiting
+c 7.027 0 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 7.027 0 [red] contribute {0, 6, 15} to all-reduction
+c 7.028 0 [msg] Waiting
+c 7.029 0 [WARN] Watchdog: No reset for 4945 ms (activity=0 recvtag=0 sendtag=0)
+c 7.036 2 [WARN] Watchdog: No reset for 72 ms (activity=6 recvtag=0 sendtag=0)
+c 7.036 3 [WARN] Watchdog: No reset for 81 ms (activity=6 recvtag=0 sendtag=0)
+c 7.039 3 [WARN] Watchdog: No reset for 6002 ms (activity=0 recvtag=0 sendtag=0)
+c 7.039 2 [WARN] Watchdog: No reset for 7002 ms (activity=0 recvtag=0 sendtag=0)
+c 7.040 1 [WARN] Watchdog: No reset for 7002 ms (activity=0 recvtag=0 sendtag=0)
+c 7.054 3 [msg] Message 32 with Payload -1 from 1 received.
+c 7.055 3 [msg] Requested work stealing from: 1
+c 7.055 3 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 7.055 3 [red] contribute {0, -1, -1} to all-reduction
+c 7.055 3 [red] Contribution: 0, -1, -1
+c 7.064 2 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 7.064 2 [red] contribute {0, -1, -1} to all-reduction
+c 7.064 2 [msg] Message 31 with Payload 0 from 1 received.
+c 7.064 2 [msg] Processing work stealing query from 1
+c 7.064 2 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 7.064 2 [red] Contribution: 0, -1, -1
+c 7.064 2 [msg] Waiting
+c 7.065 3 [msg] Waiting
+c 7.124 1 [msg] Message 32 with Payload -1 from 2 received.
+c 7.124 1 TRY REDUCE 63 0 0 2 2
+c 7.124 1 REDUCE
+c 7.124 1 [msg] Message 31 with Payload 0 from 3 received.
+c 7.124 1 [msg] Processing work stealing query from 3
+c 7.124 1 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 7.124 1 TRY REDUCE 63 0 0 2 2
+c 7.124 1 REDUCE
+c 7.124 1 [red] Contribution: 0, -1, -1
+c 7.124 1 [red] Contribution: 0, -1, -1
+c 7.124 1 [msg] Requested work stealing from: 0
+c 7.124 1 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 7.124 1 [red] contribute {0, -1, -1} to all-reduction
+c 7.128 0 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 7.128 0 [red] contribute {0, 6, 15} to all-reduction
+c 7.128 0 [msg] Message 31 with Payload 0 from 1 received.
+c 7.128 0 [msg] Processing work stealing query from 1
+c 7.128 0 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 7.128 1 [msg] Message 32 with Payload -1 from 0 received.
+c 7.128 0 [msg] Waiting
+c 7.134 1 [msg] Requested work stealing from: 3
+c 7.136 2 [WARN] Watchdog: No reset for 71 ms (activity=6 recvtag=0 sendtag=0)
+c 7.136 3 [WARN] Watchdog: No reset for 71 ms (activity=6 recvtag=0 sendtag=0)
+c 7.144 1 [msg] Waiting
+c 7.164 2 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 7.164 2 [red] contribute {0, -1, -1} to all-reduction
+c 7.164 2 [red] Contribution: 0, -1, -1
+c 7.165 2 [msg] Waiting
+c 7.165 3 [msg] Message 32 with Payload -1 from 1 received.
+c 7.165 3 TRY REDUCE 63 0 0 2 2
+c 7.165 3 REDUCE returnedToSender
+c 7.165 3 [msg] Message 31 with Payload 0 from 1 received.
+c 7.165 3 [msg] Processing work stealing query from 1
+c 7.165 3 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 7.165 3 [msg] Tried requesting work but receiving rank was invalid or my own: 3
+c 7.165 3 [red] _waiting = 0 & _sent_work = 0 & _working = 0
+c 7.165 3 [red] contribute {0, -1, -1} to all-reduction
+c 7.165 3 [red] Contribution: 0, -1, -1
+c 7.175 3 [msg] Requested work stealing from: 0
+c 7.185 3 [msg] Waiting
+c 7.228 0 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 7.228 0 [red] contribute {0, 6, 15} to all-reduction
+c 7.228 0 [msg] Message 31 with Payload 0 from 3 received.
+c 7.228 0 [msg] Processing work stealing query from 3
+c 7.229 0 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 7.229 0 [msg] Waiting
+c 7.236 2 [WARN] Watchdog: No reset for 71 ms (activity=6 recvtag=0 sendtag=0)
+c 7.236 3 [WARN] Watchdog: No reset for 51 ms (activity=6 recvtag=0 sendtag=0)
+c 7.236 1 [WARN] Watchdog: No reset for 93 ms (activity=6 recvtag=0 sendtag=0)
+c 7.244 1 [msg] Message 32 with Payload -1 from 3 received.
+c 7.244 1 TRY REDUCE 63 0 0 2 2
+c 7.244 1 REDUCE
+c 7.244 1 [red] Contribution: 0, -1, -1
+c 7.244 1 [red] Contribution: 0, -1, -1
+c 7.244 1 [msg] Requested work stealing from: 2
+c 7.244 1 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 7.244 1 [red] contribute {0, -1, -1} to all-reduction
+c 7.254 1 [msg] Waiting
+c 7.265 2 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 7.265 2 [red] contribute {0, -1, -1} to all-reduction
+c 7.265 2 [msg] Message 31 with Payload 0 from 1 received.
+c 7.265 2 [msg] Processing work stealing query from 1
+c 7.265 2 c 7.265 2 [red] Contribution: 0, -1, -1
+[msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 7.265 2 [msg] Waiting
+c 7.286 3 [msg] Message 32 with Payload -1 from 0 received.
+c 7.286 3 [msg] Requested work stealing from: 1
+c 7.286 3 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 7.286 3 [red] contribute {0, -1, -1} to all-reduction
+c 7.286 3 [red] Contribution: 0, -1, -1
+c 7.296 3 [msg] Waiting
+c 7.329 0 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 7.329 0 [red] contribute {0, 6, 15} to all-reduction
+c 7.329 0 sysstate entered=1 parsed=1 scheduled=1 processed=0 successful=0
+c 7.329 0 [msg] Waiting
+c 7.336 2 [WARN] Watchdog: No reset for 71 ms (activity=6 recvtag=0 sendtag=0)
+c 7.336 1 [WARN] Watchdog: No reset for 82 ms (activity=6 recvtag=0 sendtag=0)
+c 7.355 1 [msg] Message 32 with Payload -1 from 2 received.
+c 7.355 1 [msg] Message 31 with Payload 0 from 3 received.
+c 7.355 1 [msg] Processing work stealing query from 3
+c 7.355 1 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 7.355 1 [msg] Tried requesting work but receiving rank was invalid or my own: 1
+c 7.355 1 [red] _waiting = 0 & _sent_work = 0 & _working = 0
+c 7.355 1 [red] contribute {0, -1, -1} to all-reduction
+c 7.365 1 [msg] Requested work stealing from: 2
+c 7.365 2 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 7.365 2 [red] contribute {0, -1, -1} to all-reduction
+c 7.365 2 [red] Contribution: 0, -1, -1
+c 7.365 2 [msg] Message 31 with Payload 0 from 1 received.
+c 7.365 2 [msg] Processing work stealing query from 1
+c 7.365 2 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 7.366 1 [msg] Message 32 with Payload -1 from 2 received.
+c 7.366 2 [msg] Waiting
+c 7.375 1 [msg] Requested work stealing from: 3
+c 7.385 1 [msg] Waiting
+c 7.396 3 [msg] Message 32 with Payload -1 from 1 received.
+c 7.396 3 [msg] Message 31 with Payload 0 from 1 received.
+c 7.396 3 [msg] Processing work stealing query from 1
+c 7.396 3 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 7.396 3 [msg] Requested work stealing from: 2
+c 7.396 3 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 7.396 3 [red] contribute {0, -1, -1} to all-reduction
+c 7.396 3 [red] Contribution: 0, -1, -1
+c 7.406 3 [msg] Waiting
+c 7.429 0 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 7.429 0 [red] contribute {0, 6, 15} to all-reduction
+c 7.429 0 [msg] Waiting
+c 7.436 2 [WARN] Watchdog: No reset for 71 ms (activity=6 recvtag=0 sendtag=0)
+c 7.437 1 [WARN] Watchdog: No reset for 51 ms (activity=6 recvtag=0 sendtag=0)
+c 7.466 2 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 7.466 2 [red] contribute {0, -1, -1} to all-reduction
+c 7.466 2 c 7.466 2 [red] Contribution: 0, -1, -1
+[msg] Message 31 with Payload 0 from 3 received.
+c 7.466 2 [msg] Processing work stealing query from 3
+c 7.466 2 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 7.466 2 [msg] Waiting
+c 7.485 1 TRY REDUCE 63 0 0 2 2
+c 7.485 1 REDUCE
+c 7.485 1 [msg] Message 32 with Payload -1 from 3 received.
+c 7.485 1 [red] Contribution: 0, -1, -1
+c 7.485 1 [red] Contribution: 0, -1, -1
+c 7.486 1 [msg] Requested work stealing from: 0
+c 7.486 1 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 7.486 1 [red] contribute {0, -1, -1} to all-reduction
+c 7.496 1 [msg] Waiting
+c 7.507 3 [msg] Message 32 with Payload -1 from 2 received.
+c 7.507 3 [msg] Requested work stealing from: 0
+c 7.507 3 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 7.507 3 [red] contribute {0, -1, -1} to all-reduction
+c 7.507 3 [red] Contribution: 0, -1, -1
+c 7.517 3 [msg] Waiting
+c 7.529 0 [WARN] Watchdog: No reset for 5445 ms (activity=0 recvtag=0 sendtag=0)
+c 7.530 0 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 7.530 0 [red] contribute {0, 6, 15} to all-reduction
+c 7.530 0 [msg] Message 31 with Payload 0 from 3 received.
+c 7.530 0 [msg] Processing work stealing query from 3
+c 7.530 0 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 7.530 0 [msg] Message 31 with Payload 0 from 1 received.
+c 7.530 0 [msg] Processing work stealing query from 1
+c 7.530 0 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 7.530 0 [msg] Waiting
+c 7.537 2 [WARN] Watchdog: No reset for 70 ms (activity=6 recvtag=0 sendtag=0)
+c 7.540 2 [WARN] Watchdog: No reset for 7502 ms (activity=0 recvtag=0 sendtag=0)
+c 7.540 3 [WARN] Watchdog: No reset for 6502 ms (activity=0 recvtag=0 sendtag=0)
+c 7.540 1 [WARN] Watchdog: No reset for 7502 ms (activity=0 recvtag=0 sendtag=0)
+c 7.566 2 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 7.566 2 [red] contribute {0, -1, -1} to all-reduction
+c 7.566 2 [red] Contribution: 0, -1, -1
+c 7.567 2 [msg] Waiting
+c 7.596 1 [msg] Message 32 with Payload -1 from 0 received.
+c 7.596 1 TRY REDUCE 63 0 0 2 2
+c 7.596 1 REDUCE
+c 7.596 1 [red] Contribution: 0, -1, -1
+c 7.596 1 [red] Contribution: 0, -1, -1
+c 7.596 1 [msg] Requested work stealing from: 0
+c 7.596 1 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 7.596 1 [red] contribute {0, -1, -1} to all-reduction
+c 7.606 1 [msg] Waiting
+c 7.617 3 [msg] Message 32 with Payload -1 from 0 received.
+c 7.617 3 [msg] Tried requesting work but receiving rank was invalid or my own: 3
+c 7.617 3 [red] _waiting = 0 & _sent_work = 0 & _working = 0
+c 7.617 3 [red] contribute {0, -1, -1} to all-reduction
+c 7.617 3 [red] Contribution: 0, -1, -1
+c 7.627 3 [msg] Requested work stealing from: 2
+c 7.630 0 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 7.630 0 [red] contribute {0, 6, 15} to all-reduction
+c 7.630 0 [msg] Message 31 with Payload 0 from 1 received.
+c 7.630 0 [msg] Processing work stealing query from 1
+c 7.630 0 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 7.630 0 [msg] Waiting
+c 7.637 2 [WARN] Watchdog: No reset for 70 ms (activity=6 recvtag=0 sendtag=0)
+c 7.638 3 [msg] Waiting
+c 7.667 2 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 7.667 2 [red] contribute {0, -1, -1} to all-reduction
+c 7.667 2 [red] Contribution: 0, -1, -1
+c 7.667 2 [msg] Message 31 with Payload 0 from 3 received.
+c 7.667 2 [msg] Processing work stealing query from 3
+c 7.667 2 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 7.667 2 [msg] Waiting
+c 7.706 1 [msg] Message 32 with Payload -1 from 0 received.
+c 7.706 1 TRY REDUCE 63 0 0 2 2
+c 7.706 1 REDUCE
+c 7.706 1 TRY REDUCE 63 0 0 2 2
+c 7.706 1 REDUCE
+c 7.706 1 [red] Contribution: 0, -1, -1
+c 7.706 1 [red] Contribution: 0, -1, -1
+c 7.706 1 [msg] Tried requesting work but receiving rank was invalid or my own: 1
+c 7.706 1 [red] _waiting = 0 & _sent_work = 0 & _working = 0
+c 7.706 1 [red] contribute {0, -1, -1} to all-reduction
+c 7.717 1 [msg] Requested work stealing from: 2
+c 7.727 1 [msg] Waiting
+c 7.730 0 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 7.730 0 [red] contribute {0, 6, 15} to all-reduction
+c 7.730 0 sysstate busyratio=1.000 cmtdratio=0.000 jobs=1 globmem=0.16GB newreqs=0 hops=0
+c 7.731 0 [msg] Waiting
+c 7.737 3 [WARN] Watchdog: No reset for 99 ms (activity=6 recvtag=0 sendtag=0)
+c 7.737 2 [WARN] Watchdog: No reset for 69 ms (activity=6 recvtag=0 sendtag=0)
+c 7.738 3 TRY REDUCE 63 0 0 2 2
+c 7.738 3 REDUCE returnedToSender
+c 7.738 3 [msg] Message 32 with Payload -1 from 2 received.
+c 7.738 3 [msg] Requested work stealing from: 1
+c 7.738 3 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 7.738 3 [red] contribute {0, -1, -1} to all-reduction
+c 7.738 3 [red] Contribution: 0, -1, -1
+c 7.748 3 [msg] Waiting
+c 7.767 2 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 7.767 2 [red] contribute {0, -1, -1} to all-reduction
+c 7.767 2 [msg] Message 31 with Payload 0 from 1 received.
+c 7.767 2 [msg] Processing work stealing query from 1
+c 7.767 2 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 7.767 2 [red] Contribution: 0, -1, -1
+c 7.768 2 [msg] Waiting
+c 7.827 1 [msg] Message 32 with Payload -1 from 2 received.
+c 7.827 1 [msg] Message 31 with Payload 0 from 3 received.
+c 7.827 1 [msg] Processing work stealing query from 3
+c 7.827 1 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 7.827 1 TRY REDUCE 63 0 0 2 2
+c 7.827 1 REDUCE
+c 7.827 1 [red] Contribution: 0, -1, -1
+c 7.827 1 [red] Contribution: 0, -1, -1
+c 7.827 1 [msg] Requested work stealing from: 2
+c 7.827 1 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 7.827 1 [red] contribute {0, -1, -1} to all-reduction
+c 7.831 0 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 7.831 0 [red] contribute {0, 6, 15} to all-reduction
+c 7.831 0 [msg] Waiting
+c 7.837 2 [WARN] Watchdog: No reset for 69 ms (activity=6 recvtag=0 sendtag=0)
+c 7.837 3 [WARN] Watchdog: No reset for 89 ms (activity=6 recvtag=0 sendtag=0)
+c 7.837 1 [msg] Waiting
+c 7.848 3 [msg] Message 32 with Payload -1 from 1 received.
+c 7.849 3 [msg] Requested work stealing from: 2
+c 7.849 3 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 7.849 3 [red] contribute {0, -1, -1} to all-reduction
+c 7.849 3 [red] Contribution: 0, -1, -1
+c 7.859 3 [msg] Waiting
+c 7.868 2 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 7.868 2 [red] contribute {0, -1, -1} to all-reduction
+c 7.868 2 [msg] Message 31 with Payload 0 from 3 received.
+c 7.868 2 [red] Contribution: 0, -1, -1
+c 7.868 2 [msg] Processing work stealing query from 3
+c 7.868 2 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 7.868 2 [msg] Message 31 with Payload 0 from 1 received.
+c 7.868 2 [msg] Processing work stealing query from 1
+c 7.868 2 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 7.868 2 [msg] Waiting
+c 7.931 0 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 7.931 0 [red] contribute {0, 6, 15} to all-reduction
+c 7.931 0 [msg] Waiting
+c 7.937 1 [WARN] Watchdog: No reset for 100 ms (activity=6 recvtag=0 sendtag=0)
+c 7.937 1 [msg] Message 32 with Payload -1 from 2 received.
+c 7.937 1 TRY REDUCE 63 0 0 2 2
+c 7.937 1 REDUCE
+c 7.937 1 [red] Contribution: 0, -1, -1
+c 7.937 1 [red] Contribution: 0, -1, -1
+c 7.937 2 [WARN] Watchdog: No reset for 70 ms (activity=6 recvtag=0 sendtag=0)
+c 7.937 3 [WARN] Watchdog: No reset for 79 ms (activity=6 recvtag=0 sendtag=0)
+c 7.938 1 [msg] Requested work stealing from: 0
+c 7.938 1 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 7.938 1 [red] contribute {0, -1, -1} to all-reduction
+c 7.948 1 [msg] Waiting
+c 7.959 3 [msg] Message 32 with Payload -1 from 2 received.
+c 7.959 3 [msg] Tried requesting work but receiving rank was invalid or my own: 3
+c 7.959 3 [red] _waiting = 0 & _sent_work = 0 & _working = 0
+c 7.959 3 [red] contribute {0, -1, -1} to all-reduction
+c 7.959 3 [red] Contribution: 0, -1, -1
+c 7.968 2 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 7.968 2 [red] contribute {0, -1, -1} to all-reduction
+c 7.968 2 [red] Contribution: 0, -1, -1
+c 7.968 2 [msg] Waiting
+c 7.969 3 [msg] Requested work stealing from: 0
+c 7.979 3 [msg] Waiting
+c 8.029 0 [WARN] Watchdog: No reset for 5945 ms (activity=0 recvtag=0 sendtag=0)
+c 8.032 0 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 8.032 0 [red] contribute {0, 6, 15} to all-reduction
+c 8.032 0 [msg] Message 31 with Payload 0 from 3 received.
+c 8.032 0 [msg] Processing work stealing query from 3
+c 8.032 0 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 8.032 0 [msg] Message 31 with Payload 0 from 1 received.
+c 8.032 0 [msg] Processing work stealing query from 1
+c 8.032 0 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 8.032 0 [msg] Waiting
+c 8.037 1 [WARN] Watchdog: No reset for 90 ms (activity=6 recvtag=0 sendtag=0)
+c 8.037 2 [WARN] Watchdog: No reset for 69 ms (activity=6 recvtag=0 sendtag=0)
+c 8.037 3 [WARN] Watchdog: No reset for 58 ms (activity=6 recvtag=0 sendtag=0)
+c 8.040 2 [WARN] Watchdog: No reset for 8002 ms (activity=0 recvtag=0 sendtag=0)
+c 8.040 3 [WARN] Watchdog: No reset for 7002 ms (activity=0 recvtag=0 sendtag=0)
+c 8.040 1 [WARN] Watchdog: No reset for 8003 ms (activity=0 recvtag=0 sendtag=0)
+c 8.048 1 [msg] Message 32 with Payload -1 from 0 received.
+c 8.048 1 TRY REDUCE 63 0 0 2 2
+c 8.048 1 REDUCE
+c 8.048 1 [red] Contribution: 0, -1, -1
+c 8.048 1 [red] Contribution: 0, -1, -1
+c 8.048 1 [msg] Tried requesting work but receiving rank was invalid or my own: 1
+c 8.048 1 [red] _waiting = 0 & _sent_work = 0 & _working = 0
+c 8.048 1 [red] contribute {0, -1, -1} to all-reduction
+c 8.058 1 [msg] Tried requesting work but receiving rank was invalid or my own: 1
+c 8.068 1 [msg] Tried requesting work but receiving rank was invalid or my own: 1
+c 8.069 2 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 8.069 2 [red] contribute {0, -1, -1} to all-reduction
+c 8.069 2 [red] Contribution: 0, -1, -1
+c 8.069 2 [msg] Waiting
+c 8.078 1 [msg] Requested work stealing from: 0
+c 8.079 3 [msg] Message 32 with Payload -1 from 0 received.
+c 8.079 3 [msg] Requested work stealing from: 0
+c 8.080 3 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 8.080 3 [red] contribute {0, -1, -1} to all-reduction
+c 8.080 3 [red] Contribution: 0, -1, -1
+c 8.088 1 [msg] Waiting
+c 8.090 3 [msg] Waiting
+c 8.132 0 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 8.132 0 [red] contribute {0, 6, 15} to all-reduction
+c 8.132 0 [msg] Message 31 with Payload 0 from 3 received.
+c 8.132 0 [msg] Processing work stealing query from 3
+c 8.132 0 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 8.132 0 [msg] Message 31 with Payload 0 from 1 received.
+c 8.132 0 [msg] Processing work stealing query from 1
+c 8.132 0 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 8.132 0 [msg] Waiting
+c 8.138 2 [WARN] Watchdog: No reset for 69 ms (activity=6 recvtag=0 sendtag=0)
+c 8.169 2 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 8.169 2 [red] contribute {0, -1, -1} to all-reduction
+c 8.169 2 [red] Contribution: 0, -1, -1
+c 8.169 2 [msg] Waiting
+c 8.189 1 [msg] Message 32 with Payload -1 from 0 received.
+c 8.189 1 [msg] Requested work stealing from: 3
+c 8.189 1 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 8.189 1 [red] contribute {0, -1, -1} to all-reduction
+c 8.190 3 [msg] Message 32 with Payload -1 from 0 received.
+c 8.190 3 [msg] Message 31 with Payload 0 from 1 received.
+c 8.190 3 [msg] Processing work stealing query from 1
+c 8.190 3 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 8.190 1 TRY REDUCE 63 0 0 2 2
+c 8.190 1 REDUCE
+c 8.190 1 [msg] Message 32 with Payload -1 from 3 received.
+c 8.190 1 [red] Contribution: 0, -1, -1
+c 8.190 1 [red] Contribution: 0, -1, -1
+c 8.191 3 [msg] Requested work stealing from: 1
+c 8.191 3 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 8.191 3 [red] contribute {0, -1, -1} to all-reduction
+c 8.191 3 [red] Contribution: 0, -1, -1
+c 8.191 3 [msg] Message 32 with Payload -1 from 1 received.
+c 8.191 1 [msg] Message 31 with Payload 0 from 3 received.
+c 8.191 1 [msg] Processing work stealing query from 3
+c 8.191 1 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 8.199 1 [msg] Requested work stealing from: 0
+c 8.200 3 [msg] Requested work stealing from: 2
+c 8.200 1 TRY REDUCE 63 0 0 2 2
+c 8.200 1 REDUCE
+c 8.200 3 TRY REDUCE 63 0 0 2 2
+c 8.200 3 REDUCE returnedToSender
+c 8.209 1 [msg] Waiting
+c 8.210 3 [msg] Waiting
+c 8.233 0 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 8.233 0 [red] contribute {0, 6, 15} to all-reduction
+c 8.233 0 [msg] Message 31 with Payload 0 from 1 received.
+c 8.233 0 [msg] Processing work stealing query from 1
+c 8.233 0 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 8.233 0 TRY REDUCE 63 0 0 2 2
+c 8.233 0 REDUCE
+c 8.233 0 [msg] Waiting
+c 8.238 2 [WARN] Watchdog: No reset for 68 ms (activity=6 recvtag=0 sendtag=0)
+c 8.270 2 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 8.270 2 [red] contribute {0, -1, -1} to all-reduction
+c 8.270 2 c [red] Contribution: 0, -1, -1
+8.270 2 [msg] Message 31 with Payload 0 from 3 received.
+c 8.270 2 [msg] Processing work stealing query from 3
+c 8.270 2 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 8.270 2 [msg] Waiting
+c 8.309 1 [msg] Message 32 with Payload -1 from 0 received.
+c 8.309 1 [msg] Tried requesting work but receiving rank was invalid or my own: 1
+c 8.309 1 [red] _waiting = 0 & _sent_work = 0 & _working = 0
+c 8.309 1 [red] contribute {0, -1, -1} to all-reduction
+c 8.310 3 [msg] Message 32 with Payload -1 from 2 received.
+c 8.311 3 [msg] Requested work stealing from: 2
+c 8.311 3 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 8.311 3 [red] contribute {0, -1, -1} to all-reduction
+c 8.311 3 [red] Contribution: 0, -1, -1
+c 8.311 1 TRY REDUCE 63 0 0 2 2
+c 8.311 1 REDUCE
+c 8.311 1 [red] Contribution: 0, -1, -1
+c 8.311 1 [red] Contribution: 0, -1, -1
+c 8.319 1 [msg] Requested work stealing from: 2
+c 8.321 3 [msg] Waiting
+c 8.329 1 [msg] Waiting
+c 8.333 0 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 8.333 0 [red] contribute {0, 6, 15} to all-reduction
+c 8.333 0 sysstate entered=1 parsed=1 scheduled=1 processed=0 successful=0
+c 8.333 0 TRY REDUCE 63 0 0 2 2
+c 8.333 0 REDUCE
+c 8.333 0 [msg] Waiting
+c 8.338 2 [WARN] Watchdog: No reset for 69 ms (activity=6 recvtag=0 sendtag=0)
+c 8.370 2 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 8.370 2 [red] contribute {0, -1, -1} to all-reduction
+c 8.370 2 [red] Contribution: 0, -1, -1
+c 8.370 2 [msg] Message 31 with Payload 0 from 1 received.
+c 8.370 2 [msg] Processing work stealing query from 1
+c 8.370 2 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 8.370 2 [msg] Message 31 with Payload 0 from 3 received.
+c 8.370 2 [msg] Processing work stealing query from 3
+c 8.370 2 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 8.371 2 [msg] Waiting
+c 8.421 3 [msg] Message 32 with Payload -1 from 2 received.
+c 8.421 3 [msg] Requested work stealing from: 0
+c 8.421 3 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 8.421 3 [red] contribute {0, -1, -1} to all-reduction
+c 8.421 3 [red] Contribution: 0, -1, -1
+c 8.430 1 [msg] Message 32 with Payload -1 from 2 received.
+c 8.430 1 TRY REDUCE 63 0 0 2 2
+c 8.430 1 REDUCE
+c 8.430 1 [msg] Tried requesting work but receiving rank was invalid or my own: 1
+c 8.430 1 [red] _waiting = 0 & _sent_work = 0 & _working = 0
+c 8.430 1 [red] contribute {0, -1, -1} to all-reduction
+c 8.430 3 TRY REDUCE 63 0 0 2 2
+c 8.430 3 REDUCE returnedToSender
+c 8.431 3 [msg] Waiting
+c 8.433 0 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 8.433 0 [red] contribute {0, 6, 15} to all-reduction
+c 8.434 0 [msg] Message 31 with Payload 0 from 3 received.
+c 8.434 0 [msg] Processing work stealing query from 3
+c 8.434 0 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 8.434 0 [msg] Waiting
+c 8.438 2 [WARN] Watchdog: No reset for 68 ms (activity=6 recvtag=0 sendtag=0)
+c 8.440 1 [msg] Tried requesting work but receiving rank was invalid or my own: 1
+c 8.450 1 [msg] Tried requesting work but receiving rank was invalid or my own: 1
+c 8.460 1 [msg] Requested work stealing from: 0
+c 8.470 1 [msg] Waiting
+c 8.471 2 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 8.471 2 [red] contribute {0, -1, -1} to all-reduction
+c 8.471 2 [red] Contribution: 0, -1, -1
+c 8.471 2 [msg] Waiting
+c 8.529 0 [WARN] Watchdog: No reset for 6445 ms (activity=0 recvtag=0 sendtag=0)
+c 8.532 3 [msg] Message 32 with Payload -1 from 0 received.
+c 8.532 3 [msg] Requested work stealing from: 1
+c 8.532 3 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 8.532 3 [red] contribute {0, -1, -1} to all-reduction
+c 8.532 3 [red] Contribution: 0, -1, -1
+c 8.534 0 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 8.534 0 [red] contribute {0, 6, 15} to all-reduction
+c 8.534 0 [msg] Message 31 with Payload 0 from 1 received.
+c 8.534 0 [msg] Processing work stealing query from 1
+c 8.534 0 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 8.534 0 [msg] Waiting
+c 8.538 1 [WARN] Watchdog: No reset for 68 ms (activity=6 recvtag=0 sendtag=0)
+c 8.538 2 [WARN] Watchdog: No reset for 67 ms (activity=6 recvtag=0 sendtag=0)
+c 8.540 2 [WARN] Watchdog: No reset for 8502 ms (activity=0 recvtag=0 sendtag=0)
+c 8.540 3 [WARN] Watchdog: No reset for 7502 ms (activity=0 recvtag=0 sendtag=0)
+c 8.540 1 [WARN] Watchdog: No reset for 8503 ms (activity=0 recvtag=0 sendtag=0)
+c 8.542 3 [msg] Waiting
+c 8.570 1 [msg] Message 32 with Payload -1 from 0 received.
+c 8.570 1 [msg] Message 31 with Payload 0 from 3 received.
+c 8.570 1 [msg] Processing work stealing query from 3
+c 8.570 1 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 8.570 1 TRY REDUCE 63 0 0 2 2
+c 8.570 1 REDUCE
+c 8.571 1 [red] Contribution: 0, -1, -1
+c 8.571 1 [red] Contribution: 0, -1, -1
+c 8.571 1 [msg] Requested work stealing from: 3
+c 8.571 1 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 8.571 1 [red] contribute {0, -1, -1} to all-reduction
+c 8.571 2 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 8.571 2 [red] contribute {0, -1, -1} to all-reduction
+c 8.571 2 [red] Contribution: 0, -1, -1
+c 8.571 2 [msg] Waiting
+c 8.581 1 [msg] Waiting
+c 8.634 0 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 8.634 0 [red] contribute {0, 6, 15} to all-reduction
+c 8.635 0 [msg] Waiting
+c 8.639 1 [WARN] Watchdog: No reset for 58 ms (activity=6 recvtag=0 sendtag=0)
+c 8.639 3 [WARN] Watchdog: No reset for 97 ms (activity=6 recvtag=0 sendtag=0)
+c 8.639 2 [WARN] Watchdog: No reset for 67 ms (activity=6 recvtag=0 sendtag=0)
+c 8.642 3 [msg] Message 32 with Payload -1 from 1 received.
+c 8.642 3 [msg] Message 31 with Payload 0 from 1 received.
+c 8.642 3 [msg] Processing work stealing query from 1
+c 8.642 3 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 8.642 3 [msg] Requested work stealing from: 1
+c 8.642 3 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 8.642 3 [red] contribute {0, -1, -1} to all-reduction
+c 8.642 3 [red] Contribution: 0, -1, -1
+c 8.652 3 [msg] Waiting
+c 8.671 2 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 8.672 2 [red] contribute {0, -1, -1} to all-reduction
+c 8.672 2 [red] Contribution: 0, -1, -1
+c 8.672 2 [msg] Waiting
+c 8.681 1 [msg] Message 32 with Payload -1 from 3 received.
+c 8.681 1 [msg] Message 31 with Payload 0 from 3 received.
+c 8.681 1 [msg] Processing work stealing query from 3
+c 8.681 1 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 8.681 1 [msg] Requested work stealing from: 2
+c 8.681 1 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 8.681 1 [red] contribute {0, -1, -1} to all-reduction
+c 8.691 1 [msg] Waiting
+c 8.735 0 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 8.735 0 [red] contribute {0, 6, 15} to all-reduction
+c 8.735 0 [msg] Waiting
+c 8.739 2 [WARN] Watchdog: No reset for 67 ms (activity=6 recvtag=0 sendtag=0)
+c 8.739 3 [WARN] Watchdog: No reset for 86 ms (activity=6 recvtag=0 sendtag=0)
+c 8.753 3 [msg] Message 32 with Payload -1 from 1 received.
+c 8.753 3 [msg] Requested work stealing from: 1
+c 8.753 3 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 8.753 3 [red] contribute {0, -1, -1} to all-reduction
+c 8.753 3 [red] Contribution: 0, -1, -1
+c 8.763 3 [msg] Waiting
+c 8.772 2 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 8.772 2 [red] contribute {0, -1, -1} to all-reduction
+c 8.772 2 [msg] Message 31 with Payload 0 from 1 received.
+c 8.772 2 [msg] Processing work stealing query from 1
+c 8.772 2 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 8.772 2 [red] Contribution: 0, -1, -1
+c 8.772 2 [msg] Waiting
+c 8.792 1 [msg] Message 32 with Payload -1 from 2 received.
+c 8.792 1 TRY REDUCE 63 0 0 2 2
+c 8.792 1 REDUCE
+c 8.792 1 [msg] Message 31 with Payload 0 from 3 received.
+c 8.792 1 [msg] Processing work stealing query from 3
+c 8.792 1 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 8.792 1 TRY REDUCE 63 0 0 2 2
+c 8.792 1 REDUCE
+c 8.792 1 [red] Contribution: 0, -1, -1
+c 8.792 1 [red] Contribution: 0, -1, -1
+c 8.792 1 [msg] Tried requesting work but receiving rank was invalid or my own: 1
+c 8.792 1 [red] _waiting = 0 & _sent_work = 0 & _working = 0
+c 8.792 1 [red] contribute {0, -1, -1} to all-reduction
+c 8.802 1 [msg] Requested work stealing from: 2
+c 8.812 1 [msg] Waiting
+c 8.835 0 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 8.835 0 [red] contribute {0, 6, 15} to all-reduction
+c 8.836 0 [msg] Waiting
+c 8.839 2 [WARN] Watchdog: No reset for 66 ms (activity=6 recvtag=0 sendtag=0)
+c 8.839 3 [WARN] Watchdog: No reset for 76 ms (activity=6 recvtag=0 sendtag=0)
+c 8.863 3 [msg] Message 32 with Payload -1 from 1 received.
+c 8.863 3 TRY REDUCE 63 0 0 2 2
+c 8.863 3 REDUCE returnedToSender
+c 8.863 3 [msg] Requested work stealing from: 0
+c 8.863 3 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 8.863 3 [red] contribute {0, -1, -1} to all-reduction
+c 8.863 3 [red] Contribution: 0, -1, -1
+c 8.873 2 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 8.873 2 [red] contribute {0, -1, -1} to all-reduction
+c 8.873 2 [red] Contribution: 0, -1, -1
+c 8.873 2 [msg] Message 31 with Payload 0 from 1 received.
+c 8.873 2 [msg] Processing work stealing query from 1
+c 8.873 2 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 8.873 2 [msg] Waiting
+c 8.873 3 [msg] Waiting
+c 8.912 1 [msg] Message 32 with Payload -1 from 2 received.
+c 8.912 1 TRY REDUCE 63 0 0 2 2
+c 8.912 1 REDUCE
+c 8.912 1 [red] Contribution: 0, -1, -1
+c 8.912 1 [red] Contribution: 0, -1, -1
+c 8.912 1 [msg] Requested work stealing from: 3
+c 8.912 1 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 8.912 1 [red] contribute {0, -1, -1} to all-reduction
+c 8.922 1 [msg] Waiting
+c 8.936 0 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 8.936 0 [red] contribute {0, 6, 15} to all-reduction
+c 8.936 0 sysstate busyratio=1.000 cmtdratio=0.000 jobs=1 globmem=0.17GB newreqs=0 hops=0
+c 8.936 0 [msg] Message 31 with Payload 0 from 3 received.
+c 8.936 0 [msg] Processing work stealing query from 3
+c 8.936 0 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 8.936 0 TRY REDUCE 63 0 0 2 2
+c 8.936 0 REDUCE
+c 8.936 0 [msg] Waiting
+c 8.939 2 [WARN] Watchdog: No reset for 66 ms (activity=6 recvtag=0 sendtag=0)
+c 8.939 3 [WARN] Watchdog: No reset for 66 ms (activity=6 recvtag=0 sendtag=0)
+c 8.973 2 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 8.973 2 [red] contribute {0, -1, -1} to all-reduction
+c 8.973 2 [red] Contribution: 0, -1, -1
+c 8.973 2 [msg] Waiting
+c 8.974 3 [msg] Message 32 with Payload -1 from 0 received.
+c 8.974 3 [msg] Message 31 with Payload 0 from 1 received.
+c 8.974 3 [msg] Processing work stealing query from 1
+c 8.974 3 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 8.974 3 [msg] Tried requesting work but receiving rank was invalid or my own: 3
+c 8.974 3 [red] _waiting = 0 & _sent_work = 0 & _working = 0
+c 8.974 3 [red] contribute {0, -1, -1} to all-reduction
+c 8.974 3 [red] Contribution: 0, -1, -1
+c 8.984 3 [msg] Requested work stealing from: 0
+c 8.994 3 [msg] Waiting
+c 9.023 1 [msg] Message 32 with Payload -1 from 3 received.
+c 9.023 1 TRY REDUCE 63 0 0 2 2
+c 9.023 1 REDUCE
+c 9.023 1 [red] Contribution: 0, -1, -1
+c 9.023 1 [red] Contribution: 0, -1, -1
+c 9.023 1 [msg] Requested work stealing from: 2
+c 9.023 1 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 9.023 1 [red] contribute {0, -1, -1} to all-reduction
+c 9.029 0 [WARN] Watchdog: No reset for 6946 ms (activity=0 recvtag=0 sendtag=0)
+c 9.033 1 [msg] Waiting
+c 9.036 0 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 9.036 0 [red] contribute {0, 6, 15} to all-reduction
+c 9.036 0 [msg] Message 31 with Payload 0 from 3 received.
+c 9.036 0 [msg] Processing work stealing query from 3
+c 9.036 0 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 9.037 0 [msg] Waiting
+c 9.039 2 [WARN] Watchdog: No reset for 66 ms (activity=6 recvtag=0 sendtag=0)
+c 9.040 3 [WARN] Watchdog: No reset for 8003 ms (activity=0 recvtag=0 sendtag=0)
+c 9.040 2 [WARN] Watchdog: No reset for 9003 ms (activity=0 recvtag=0 sendtag=0)
+c 9.040 1 [WARN] Watchdog: No reset for 9003 ms (activity=0 recvtag=0 sendtag=0)
+c 9.073 2 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 9.074 2 [red] contribute {0, -1, -1} to all-reduction
+c 9.074 2 [red] Contribution: 0, -1, -1
+c 9.074 2 [msg] Message 31 with Payload 0 from 1 received.
+c 9.074 2 [msg] Processing work stealing query from 1
+c 9.074 2 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 9.074 2 [msg] Waiting
+c 9.094 3 [msg] Message 32 with Payload -1 from 0 received.
+c 9.094 3 [msg] Requested work stealing from: 1
+c 9.094 3 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 9.094 3 [red] contribute {0, -1, -1} to all-reduction
+c 9.094 3 [red] Contribution: 0, -1, -1
+c 9.104 3 [msg] Waiting
+c 9.133 1 [msg] Message 32 with Payload -1 from 2 received.
+c 9.133 1 [msg] Message 31 with Payload 0 from 3 received.
+c 9.133 1 [msg] Processing work stealing query from 3
+c 9.133 1 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 9.133 1 [msg] Requested work stealing from: 0
+c 9.133 1 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 9.133 1 [red] contribute {0, -1, -1} to all-reduction
+c 9.137 0 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 9.137 0 [red] contribute {0, 6, 15} to all-reduction
+c 9.137 0 [msg] Message 31 with Payload 0 from 1 received.
+c 9.137 0 [msg] Processing work stealing query from 1
+c 9.137 0 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 9.137 1 [msg] Message 32 with Payload -1 from 0 received.
+c 9.137 0 [msg] Waiting
+c 9.139 2 [WARN] Watchdog: No reset for 66 ms (activity=6 recvtag=0 sendtag=0)
+c 9.143 1 [msg] Requested work stealing from: 3
+c 9.154 1 [msg] Waiting
+c 9.174 2 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 9.174 2 [red] contribute {0, -1, -1} to all-reduction
+c 9.174 2 [red] Contribution: 0, -1, -1
+c 9.174 2 [msg] Waiting
+c 9.205 3 [msg] Message 32 with Payload -1 from 1 received.
+c 9.205 3 [msg] Message 31 with Payload 0 from 1 received.
+c 9.205 3 [msg] Processing work stealing query from 1
+c 9.205 3 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 9.205 3 [msg] Requested work stealing from: 2
+c 9.205 3 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 9.205 3 [red] contribute {0, -1, -1} to all-reduction
+c 9.205 3 [red] Contribution: 0, -1, -1
+c 9.215 3 [msg] Waiting
+c 9.237 0 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 9.237 0 [red] contribute {0, 6, 15} to all-reduction
+c 9.237 0 [WARN] Watchdog: No reset for 100 ms (activity=6 recvtag=0 sendtag=0)
+c 9.238 0 [msg] Waiting
+c 9.239 2 [WARN] Watchdog: No reset for 65 ms (activity=6 recvtag=0 sendtag=0)
+c 9.239 1 [WARN] Watchdog: No reset for 86 ms (activity=6 recvtag=0 sendtag=0)
+c 9.254 1 TRY REDUCE 63 0 0 2 2
+c 9.254 1 REDUCE
+c 9.254 1 [msg] Message 32 with Payload -1 from 3 received.
+c 9.254 1 TRY REDUCE 63 0 0 2 2
+c 9.254 1 REDUCE
+c 9.254 1 [red] Contribution: 0, -1, -1
+c 9.254 1 [red] Contribution: 0, -1, -1
+c 9.254 1 [msg] Requested work stealing from: 2
+c 9.254 1 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 9.254 1 [red] contribute {0, -1, -1} to all-reduction
+c 9.264 1 [msg] Waiting
+c 9.274 2 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 9.274 2 [red] contribute {0, -1, -1} to all-reduction
+c 9.274 2 [msg] Message 31 with Payload 0 from 3 received.
+c c 9.274 2 [red] Contribution: 0, -1, -1
+9.274 2 [msg] Processing work stealing query from 3
+c 9.274 2 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 9.274 2 [msg] Message 31 with Payload 0 from 1 received.
+c 9.274 2 [msg] Processing work stealing query from 1
+c 9.274 2 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 9.275 2 [msg] Waiting
+c 9.315 3 TRY REDUCE 63 0 0 2 2
+c 9.315 3 REDUCE returnedToSender
+c 9.315 3 [msg] Message 32 with Payload -1 from 2 received.
+c 9.315 3 [msg] Requested work stealing from: 1
+c 9.315 3 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 9.315 3 [red] contribute {0, -1, -1} to all-reduction
+c 9.315 3 [red] Contribution: 0, -1, -1
+c 9.325 3 [msg] Waiting
+c 9.338 0 [WARN] Watchdog: No reset for 100 ms (activity=6 recvtag=0 sendtag=0)
+c 9.338 0 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 9.338 0 [red] contribute {0, 6, 15} to all-reduction
+c 9.338 0 sysstate entered=1 parsed=1 scheduled=1 processed=0 successful=0
+c 9.338 0 [msg] Waiting
+c 9.339 2 [WARN] Watchdog: No reset for 65 ms (activity=6 recvtag=0 sendtag=0)
+c 9.340 1 [WARN] Watchdog: No reset for 75 ms (activity=6 recvtag=0 sendtag=0)
+c 9.364 1 [msg] Message 32 with Payload -1 from 2 received.
+c 9.364 1 [msg] Message 31 with Payload 0 from 3 received.
+c 9.364 1 [msg] Processing work stealing query from 3
+c 9.364 1 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 9.365 1 [msg] Requested work stealing from: 3
+c 9.365 1 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 9.365 1 [red] contribute {0, -1, -1} to all-reduction
+c 9.375 1 [msg] Waiting
+c 9.375 2 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 9.375 2 [red] contribute {0, -1, -1} to all-reduction
+c 9.375 2 [red] Contribution: 0, -1, -1
+c 9.375 2 [msg] Waiting
+c 9.426 3 [msg] Message 32 with Payload -1 from 1 received.
+c 9.426 3 [msg] Message 31 with Payload 0 from 1 received.
+c 9.426 3 [msg] Processing work stealing query from 1
+c 9.426 3 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 9.426 3 [msg] Requested work stealing from: 1
+c 9.426 3 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 9.426 3 [red] contribute {0, -1, -1} to all-reduction
+c 9.426 3 [red] Contribution: 0, -1, -1
+c 9.436 3 [msg] Waiting
+c 9.438 0 [WARN] Watchdog: No reset for 100 ms (activity=6 recvtag=0 sendtag=0)
+c 9.438 0 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 9.438 0 [red] contribute {0, 6, 15} to all-reduction
+c 9.438 0 [msg] Waiting
+c 9.440 2 [WARN] Watchdog: No reset for 64 ms (activity=6 recvtag=0 sendtag=0)
+c 9.440 1 [WARN] Watchdog: No reset for 65 ms (activity=6 recvtag=0 sendtag=0)
+c 9.475 1 TRY REDUCE 63 0 0 2 2
+c 9.475 1 REDUCE
+c 9.475 1 [msg] Message 32 with Payload -1 from 3 received.
+c 9.475 1 [msg] Message 31 with Payload 0 from 3 received.
+c 9.475 1 [msg] Processing work stealing query from 3
+c 9.475 1 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 9.475 1 [red] Contribution: 0, -1, -1
+c 9.475 1 [red] Contribution: 0, -1, -1
+c 9.475 2 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 9.475 2 [red] contribute {0, -1, -1} to all-reduction
+c 9.475 2 [red] Contribution: 0, -1, -1
+c 9.475 1 [msg] Requested work stealing from: 0
+c 9.475 1 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 9.475 1 [red] contribute {0, -1, -1} to all-reduction
+c 9.475 2 [msg] Waiting
+c 9.485 1 [msg] Waiting
+c 9.529 0 [WARN] Watchdog: No reset for 7446 ms (activity=0 recvtag=0 sendtag=0)
+c 9.536 3 [msg] Message 32 with Payload -1 from 1 received.
+c 9.536 3 [msg] Requested work stealing from: 1
+c 9.536 3 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 9.536 3 [red] contribute {0, -1, -1} to all-reduction
+c 9.536 3 [red] Contribution: 0, -1, -1
+c 9.538 0 [WARN] Watchdog: No reset for 99 ms (activity=6 recvtag=0 sendtag=0)
+c 9.538 0 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 9.538 0 [red] contribute {0, 6, 15} to all-reduction
+c 9.538 0 [msg] Message 31 with Payload 0 from 1 received.
+c 9.538 0 [msg] Processing work stealing query from 1
+c 9.538 0 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 9.539 0 [msg] Waiting
+c 9.540 2 [WARN] Watchdog: No reset for 64 ms (activity=6 recvtag=0 sendtag=0)
+c 9.540 1 [WARN] Watchdog: No reset for 54 ms (activity=6 recvtag=0 sendtag=0)
+c 9.540 2 [WARN] Watchdog: No reset for 9503 ms (activity=0 recvtag=0 sendtag=0)
+c 9.540 3 [WARN] Watchdog: No reset for 8503 ms (activity=0 recvtag=0 sendtag=0)
+c 9.540 1 [WARN] Watchdog: No reset for 9503 ms (activity=0 recvtag=0 sendtag=0)
+c 9.546 3 [msg] Waiting
+c 9.575 2 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 9.575 2 [red] contribute {0, -1, -1} to all-reduction
+c 9.575 2 [red] Contribution: 0, -1, -1
+c 9.576 2 [msg] Waiting
+c 9.585 1 [msg] Message 32 with Payload -1 from 0 received.
+c 9.585 1 TRY REDUCE 63 0 0 2 2
+c 9.585 1 REDUCE
+c 9.586 1 [msg] Message 31 with Payload 0 from 3 received.
+c 9.586 1 [msg] Processing work stealing query from 3
+c 9.586 1 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 9.586 1 TRY REDUCE 63 0 0 2 2
+c 9.586 1 REDUCE
+c 9.586 1 [red] Contribution: 0, -1, -1
+c 9.586 1 [red] Contribution: 0, -1, -1
+c 9.586 1 [msg] Requested work stealing from: 0
+c 9.586 1 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 9.586 1 [red] contribute {0, -1, -1} to all-reduction
+c 9.596 1 [msg] Waiting
+c 9.638 0 [WARN] Watchdog: No reset for 100 ms (activity=6 recvtag=0 sendtag=0)
+c 9.639 0 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 9.639 0 [red] contribute {0, 6, 15} to all-reduction
+c 9.639 0 [msg] Message 31 with Payload 0 from 1 received.
+c 9.639 0 [msg] Processing work stealing query from 1
+c 9.639 0 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 9.639 0 [msg] Waiting
+c 9.640 2 [WARN] Watchdog: No reset for 64 ms (activity=6 recvtag=0 sendtag=0)
+c 9.640 3 [WARN] Watchdog: No reset for 93 ms (activity=6 recvtag=0 sendtag=0)
+c 9.647 3 [msg] Message 32 with Payload -1 from 1 received.
+c 9.647 3 TRY REDUCE 63 0 0 2 2
+c 9.647 3 REDUCE returnedToSender
+c 9.647 3 [msg] Requested work stealing from: 0
+c 9.647 3 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 9.647 3 [red] contribute {0, -1, -1} to all-reduction
+c 9.647 3 [red] Contribution: 0, -1, -1
+c 9.657 3 [msg] Waiting
+c 9.676 2 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 9.676 2 [red] contribute {0, -1, -1} to all-reduction
+c 9.676 2 [red] Contribution: 0, -1, -1
+c 9.676 2 [msg] Waiting
+c 9.696 1 [msg] Message 32 with Payload -1 from 0 received.
+c 9.696 1 TRY REDUCE 63 0 0 2 2
+c 9.696 1 REDUCE
+c 9.696 1 [red] Contribution: 0, -1, -1
+c 9.696 1 [red] Contribution: 0, -1, -1
+c 9.696 1 [msg] Requested work stealing from: 2
+c 9.696 1 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 9.696 1 [red] contribute {0, -1, -1} to all-reduction
+c 9.706 1 [msg] Waiting
+c 9.738 0 [WARN] Watchdog: No reset for 99 ms (activity=6 recvtag=0 sendtag=0)
+c 9.739 0 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 9.739 0 [red] contribute {0, 6, 15} to all-reduction
+c 9.739 0 [msg] Message 31 with Payload 0 from 3 received.
+c 9.739 0 [msg] Processing work stealing query from 3
+c 9.739 0 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 9.739 0 [msg] Waiting
+c 9.740 2 [WARN] Watchdog: No reset for 64 ms (activity=6 recvtag=0 sendtag=0)
+c 9.740 3 [WARN] Watchdog: No reset for 84 ms (activity=6 recvtag=0 sendtag=0)
+c 9.757 3 [msg] Message 32 with Payload -1 from 0 received.
+c 9.757 3 [msg] Tried requesting work but receiving rank was invalid or my own: 3
+c 9.757 3 [red] _waiting = 0 & _sent_work = 0 & _working = 0
+c 9.757 3 [red] contribute {0, -1, -1} to all-reduction
+c 9.757 3 [red] Contribution: 0, -1, -1
+c 9.767 3 [msg] Requested work stealing from: 2
+c 9.776 2 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 9.776 2 [red] contribute {0, -1, -1} to all-reduction
+c 9.776 2 [red] Contribution: 0, -1, -1
+c 9.776 2 [msg] Message 31 with Payload 0 from 3 received.
+c 9.776 2 [msg] Processing work stealing query from 3
+c 9.776 2 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 9.776 2 [msg] Message 31 with Payload 0 from 1 received.
+c 9.776 2 [msg] Processing work stealing query from 1
+c 9.776 2 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 9.777 2 [msg] Waiting
+c 9.777 3 [msg] Message 32 with Payload -1 from 2 received.
+c 9.777 3 [msg] Requested work stealing from: 1
+c 9.788 3 [msg] Waiting
+c 9.806 1 [msg] Message 32 with Payload -1 from 2 received.
+c 9.806 1 TRY REDUCE 63 0 0 2 2
+c 9.806 1 REDUCE
+c 9.807 1 [msg] Message 31 with Payload 0 from 3 received.
+c 9.807 1 [msg] Processing work stealing query from 3
+c 9.807 1 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 9.807 1 [red] Contribution: 0, -1, -1
+c 9.807 1 [red] Contribution: 0, -1, -1
+c 9.807 1 [msg] Requested work stealing from: 0
+c 9.807 1 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 9.807 1 [red] contribute {0, -1, -1} to all-reduction
+c 9.817 1 [msg] Waiting
+c 9.839 0 [WARN] Watchdog: No reset for 99 ms (activity=6 recvtag=0 sendtag=0)
+c 9.840 0 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 9.840 0 [red] contribute {0, 6, 15} to all-reduction
+c 9.840 0 [msg] Message 31 with Payload 0 from 1 received.
+c 9.840 0 [msg] Processing work stealing query from 1
+c 9.840 0 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 9.840 0 [msg] Waiting
+c 9.840 2 [WARN] Watchdog: No reset for 64 ms (activity=6 recvtag=0 sendtag=0)
+c 9.840 3 [WARN] Watchdog: No reset for 53 ms (activity=6 recvtag=0 sendtag=0)
+c 9.877 2 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 9.877 2 [red] contribute {0, -1, -1} to all-reduction
+c 9.877 2 [red] Contribution: 0, -1, -1
+c 9.877 2 [msg] Waiting
+c 9.888 3 [msg] Message 32 with Payload -1 from 1 received.
+c 9.888 3 [msg] Requested work stealing from: 2
+c 9.888 3 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 9.888 3 [red] contribute {0, -1, -1} to all-reduction
+c 9.888 3 [red] Contribution: 0, -1, -1
+c 9.898 3 [msg] Waiting
+c 9.917 1 [msg] Message 32 with Payload -1 from 0 received.
+c 9.917 1 [msg] Requested work stealing from: 0
+c 9.917 1 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 9.917 1 [red] contribute {0, -1, -1} to all-reduction
+c 9.927 1 [msg] Waiting
+c 9.939 0 [WARN] Watchdog: No reset for 99 ms (activity=6 recvtag=0 sendtag=0)
+c 9.940 0 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 9.940 0 [red] contribute {0, 6, 15} to all-reduction
+c 9.940 0 sysstate busyratio=1.000 cmtdratio=0.000 jobs=1 globmem=0.17GB newreqs=0 hops=0
+c 9.940 0 [msg] Message 31 with Payload 0 from 1 received.
+c 9.940 0 [msg] Processing work stealing query from 1
+c 9.940 0 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 9.940 2 [WARN] Watchdog: No reset for 64 ms (activity=6 recvtag=0 sendtag=0)
+c 9.940 0 [msg] Waiting
+c 9.977 2 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 9.977 2 [red] contribute {0, -1, -1} to all-reduction
+c 9.977 2 [msg] Message 31 with Payload 0 from 3 received.
+c 9.977 2 [msg] Processing work stealing query from 3
+c 9.977 2 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 9.977 2 [msg] Waiting
+c 9.978 2 [red] Contribution: 0, -1, -1
+c 9.998 3 [msg] Message 32 with Payload -1 from 2 received.
+c 9.998 3 [msg] Tried requesting work but receiving rank was invalid or my own: 3
+c 9.998 3 [red] _waiting = 0 & _sent_work = 0 & _working = 0
+c 9.998 3 [red] contribute {0, -1, -1} to all-reduction
+c 9.998 3 [red] Contribution: 0, -1, -1
+c 10.008 3 [msg] Requested work stealing from: 2
+c 10.019 3 [msg] Waiting
+c 10.027 1 [msg] Message 32 with Payload -1 from 0 received.
+c 10.027 1 TRY REDUCE 63 0 0 2 2
+c 10.027 1 REDUCE
+c 10.028 1 TRY REDUCE 63 0 0 2 2
+c 10.028 1 REDUCE
+c 10.028 1 [red] Contribution: 0, -1, -1
+c 10.028 1 [red] Contribution: 0, -1, -1
+c 10.028 1 [msg] Requested work stealing from: 3
+c 10.028 1 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 10.028 1 [red] contribute {0, -1, -1} to all-reduction
+c 10.030 0 [WARN] Watchdog: No reset for 7946 ms (activity=0 recvtag=0 sendtag=0)
+c 10.038 1 [msg] Waiting
+c 10.039 0 [WARN] Watchdog: No reset for 98 ms (activity=6 recvtag=0 sendtag=0)
+c 10.040 3 [WARN] Watchdog: No reset for 9003 ms (activity=0 recvtag=0 sendtag=0)
+c c 10.040 2 [ERROR] Watchdog: TIMEOUT (last=0.037 activity=0 recvtag=0 sendtag=0)
+10.040 2 [WARN] Watchdog: No reset for 63 ms (activity=6 recvtag=0 sendtag=0)
+c 10.041 1 [ERROR] Watchdog: TIMEOUT (last=0.037 activity=0 recvtag=0 sendtag=0)
+c 10.041 0 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 10.041 0 [red] contribute {0, 6, 15} to all-reduction
+c 10.041 0 [msg] Waiting
+c 10.119 3 TRY REDUCE 63 0 0 2 2
+c 10.119 3 REDUCE returnedToSender
+c 10.119 3 [msg] Message 31 with Payload 0 from 1 received.
+c 10.119 3 [msg] Processing work stealing query from 1
+c 10.119 3 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 10.119 3 [msg] Waiting
+c 10.139 0 [WARN] Watchdog: No reset for 99 ms (activity=6 recvtag=0 sendtag=0)
+c 10.141 0 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 10.141 0 [red] contribute {0, 6, 15} to all-reduction
+c 10.141 0 [msg] Waiting
+c 10.219 3 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 10.219 3 [red] contribute {0, -1, -1} to all-reduction
+c 10.219 3 [red] Contribution: 0, -1, -1
+c 10.219 3 [msg] Waiting
+c 10.239 0 [WARN] Watchdog: No reset for 98 ms (activity=6 recvtag=0 sendtag=0)
+c 10.241 0 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 10.241 0 [red] contribute {0, 6, 15} to all-reduction
+c 10.242 0 [msg] Waiting
+c 10.319 3 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 10.319 3 [red] contribute {0, -1, -1} to all-reduction
+c 10.319 3 [red] Contribution: 0, -1, -1
+c 10.319 3 [msg] Waiting
+c 10.339 0 [WARN] Watchdog: No reset for 98 ms (activity=6 recvtag=0 sendtag=0)
+c 10.342 0 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 10.342 0 [red] contribute {0, 6, 15} to all-reduction
+c 10.342 0 sysstate entered=1 parsed=1 scheduled=1 processed=0 successful=0
+c 10.342 0 [msg] Waiting
+c 10.420 3 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 10.420 3 [red] contribute {0, -1, -1} to all-reduction
+c 10.420 3 [red] Contribution: 0, -1, -1
+c 10.420 3 [msg] Waiting
+c 10.440 0 [WARN] Watchdog: No reset for 98 ms (activity=6 recvtag=0 sendtag=0)
+c 10.442 0 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 10.442 0 [red] contribute {0, 6, 15} to all-reduction
+c 10.442 0 [msg] Waiting
+c 10.520 3 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 10.520 3 [red] contribute {0, -1, -1} to all-reduction
+c 10.520 3 [red] Contribution: 0, -1, -1
+c 10.520 3 [msg] Waiting
+c 10.530 0 [WARN] Watchdog: No reset for 8446 ms (activity=0 recvtag=0 sendtag=0)
+c 10.540 0 [WARN] Watchdog: No reset for 97 ms (activity=6 recvtag=0 sendtag=0)
+c 10.541 3 [WARN] Watchdog: No reset for 9503 ms (activity=0 recvtag=0 sendtag=0)
+c 10.542 0 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 10.542 0 [red] contribute {0, 6, 15} to all-reduction
+c 10.542 0 [msg] Waiting
+c 10.620 3 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 10.620 3 [red] contribute {0, -1, -1} to all-reduction
+c 10.620 3 [red] Contribution: 0, -1, -1
+c 10.620 3 [msg] Waiting
+c 10.640 0 [WARN] Watchdog: No reset for 97 ms (activity=6 recvtag=0 sendtag=0)
+c 10.643 0 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 10.643 0 [red] contribute {0, 6, 15} to all-reduction
+c 10.643 0 [msg] Waiting
+c 10.684 2 [WARN] Watchdog: No reset for 706 ms (activity=6 recvtag=0 sendtag=0)
+c 10.684 2 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 10.684 2 [red] contribute {0, -1, -1} to all-reduction
+c 10.684 2 [red] Contribution: 0, -1, -1
+c 10.684 2 [msg] Message 31 with Payload 0 from 3 received.
+c 10.684 2 [msg] Processing work stealing query from 3
+c 10.684 2 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 10.687 2 [msg] Waiting
+c 10.687 1 [WARN] Watchdog: No reset for 650 ms (activity=6 recvtag=0 sendtag=0)
+c 10.687 1 [msg] Message 32 with Payload -1 from 3 received.
+c 10.691 1 [msg] Requested work stealing from: 3
+c 10.691 1 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 10.691 1 [red] contribute {0, -1, -1} to all-reduction
+c 10.698 1 [msg] Waiting
+c 10.720 3 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 10.720 3 [red] contribute {0, -1, -1} to all-reduction
+c 10.720 3 [red] Contribution: 0, -1, -1
+c 10.720 3 [msg] Message 32 with Payload -1 from 2 received.
+c 10.720 3 [msg] Message 31 with Payload 0 from 1 received.
+c 10.720 3 [msg] Processing work stealing query from 1
+c 10.720 3 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 10.721 3 [msg] Requested work stealing from: 0
+c 10.721 3 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 10.721 3 [red] contribute {0, -1, -1} to all-reduction
+c 10.721 3 [red] Contribution: 0, -1, -1
+c 10.731 3 [msg] Waiting
+c 10.740 0 [WARN] Watchdog: No reset for 97 ms (activity=6 recvtag=0 sendtag=0)
+c 10.743 0 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 10.743 0 [red] contribute {0, 6, 15} to all-reduction
+c 10.743 0 [msg] Message 31 with Payload 0 from 3 received.
+c 10.743 0 [msg] Processing work stealing query from 3
+c 10.743 0 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 10.743 0 TRY REDUCE 63 0 0 2 2
+c 10.743 0 REDUCE
+c 10.743 0 [msg] Waiting
+c 10.831 3 [msg] Message 32 with Payload -1 from 0 received.
+c 10.831 3 [msg] Tried requesting work but receiving rank was invalid or my own: 3
+c 10.831 3 [red] _waiting = 0 & _sent_work = 0 & _working = 0
+c 10.831 3 [red] contribute {0, -1, -1} to all-reduction
+c 10.831 3 [red] Contribution: 0, -1, -1
+c 10.840 0 [WARN] Watchdog: No reset for 97 ms (activity=6 recvtag=0 sendtag=0)
+c 10.841 3 [msg] Requested work stealing from: 2
+c 10.843 0 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 10.843 0 [red] contribute {0, 6, 15} to all-reduction
+c 10.844 0 [msg] Waiting
+c 10.851 3 [msg] Waiting
+c 10.940 0 [WARN] Watchdog: No reset for 97 ms (activity=6 recvtag=0 sendtag=0)
+c 10.942 3 [WARN] Watchdog: No reset for 90 ms (activity=6 recvtag=0 sendtag=0)
+c 10.944 0 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 10.944 0 [red] contribute {0, 6, 15} to all-reduction
+c 10.944 0 [msg] Waiting
+c 10.952 3 [msg] Waiting
+c 11.030 0 [WARN] Watchdog: No reset for 8946 ms (activity=0 recvtag=0 sendtag=0)
+c 11.040 0 [WARN] Watchdog: No reset for 97 ms (activity=6 recvtag=0 sendtag=0)
+c 11.041 3 [ERROR] Watchdog: TIMEOUT (last=1.037 activity=0 recvtag=0 sendtag=0)
+c 11.044 0 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 11.044 0 [red] contribute {0, 6, 15} to all-reduction
+c 11.044 0 [msg] Waiting
+c 11.140 0 [WARN] Watchdog: No reset for 96 ms (activity=6 recvtag=0 sendtag=0)
+c 11.144 0 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 11.144 0 [red] contribute {0, 6, 15} to all-reduction
+c 11.144 0 [msg] Waiting
+c 11.241 0 [WARN] Watchdog: No reset for 96 ms (activity=6 recvtag=0 sendtag=0)
+c 11.245 0 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 11.245 0 [red] contribute {0, 6, 15} to all-reduction
+c 11.245 0 [msg] Waiting
+c 11.341 0 [WARN] Watchdog: No reset for 96 ms (activity=6 recvtag=0 sendtag=0)
+c 11.345 0 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 11.345 0 [red] contribute {0, 6, 15} to all-reduction
+c 11.345 0 sysstate entered=1 parsed=1 scheduled=1 processed=0 successful=0
+c 11.345 0 [msg] Waiting
+c 11.346 1 [WARN] Watchdog: No reset for 649 ms (activity=6 recvtag=0 sendtag=0)
+c 11.349 1 [msg] Message 32 with Payload -1 from 3 received.
+c 11.349 1 TRY REDUCE 63 0 0 2 2
+c 11.349 1 REDUCE
+c 11.349 1 [red] Contribution: 0, -1, -1
+c 11.349 1 [red] Contribution: 0, -1, -1
+c 11.349 1 TRY REDUCE 63 0 0 2 2
+c 11.349 1 REDUCE
+c 11.349 1 [ERROR] pid=20238 tid=20340 signal=6
+c 11.349 1 [term] Terminated
+c 11.349 1 [queue] Succesfully broken out of loop
+c 11.355 2 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 11.355 2 [WARN] Watchdog: No reset for 671 ms (activity=6 recvtag=0 sendtag=0)
+c 11.355 2 [red] contribute {0, -1, -1} to all-reduction
+c 11.355 2 [red] Contribution: 0, -1, -1
+c 11.356 2 [msg] Message 31 with Payload 0 from 3 received.
+c 11.356 2 [msg] Processing work stealing query from 3
+c 11.356 2 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 11.356 2 [ERROR] pid=20239 tid=20345 signal=6
+c 11.356 2 [term] Terminated
+c 11.356 2 [queue] Succesfully broken out of loop
+c 11.356 2 [msg] Waiting
+c 11.441 0 [WARN] Watchdog: No reset for 95 ms (activity=6 recvtag=0 sendtag=0)
+c 11.445 0 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 11.445 0 [red] contribute {0, 6, 15} to all-reduction
+c 11.445 0 TRY REDUCE 63 0 0 2 2
+c 11.445 0 REDUCE
+c 11.445 0 TRY REDUCE 63 0 0 2 2
+c 11.445 0 REDUCE
+c 11.445 0 [red] Contribution: 0, 6, 15
+c 11.445 0 [red] Contribution: 0, -1, -1
+c 11.445 0 [red] Contribution: 0, -1, -1
+c 11.445 0 [term] Terminated
+c 11.445 0 [msg] Waiting
+c 11.445 0 [queue] Succesfully broken out of loop
+c 11.541 0 [WARN] Watchdog: No reset for 195 ms (activity=0 recvtag=0 sendtag=0)
+c 11.545 0 [red] all-reduction complete
+c 11.545 0 [red] Result is: 0, 6, 15
+c 11.545 0 Finished set to 1
+c 11.716 3 [WARN] Watchdog: No reset for 764 ms (activity=6 recvtag=0 sendtag=0)
+c 11.716 3 [red] _waiting = 1 & _sent_work = 0 & _working = 0
+c 11.716 3 [red] contribute {0, -1, -1} to all-reduction
+c 11.716 3 [red] Contribution: 0, -1, -1
+c 11.716 3 [msg] Message 32 with Payload -1 from 2 received.
+c 11.716 3 TRY REDUCE 63 0 0 2 2
+c 11.716 3 REDUCE returnedToSender
