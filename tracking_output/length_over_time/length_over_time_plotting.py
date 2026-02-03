@@ -75,13 +75,13 @@ print(values)
 max_value = math.ceil(max(max(sub_list) for sub_list in values[1]))
 min_value = math.floor(min(min(sub_list) for sub_list in values[1]))
 
-plt.boxplot(x=values[1], tick_labels=[10,15,20])
+plt.boxplot(x=values[1], tick_labels=[10,15,20,25])
 
 plt.xlim([0, len(values[0])+1])
-plt.ylim([0, max_value])
+plt.ylim([0, 50])
 
 plt.title("Compare computing time for length of input")
 plt.ylabel("Time")
 plt.xlabel("Input Length n")
 
-plt.savefig("tracking_output/length_over_time/length_over_time_plot.png")
+plt.savefig("tracking_output/length_over_time/length_over_time_plot_zz1.png")
