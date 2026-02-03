@@ -87,6 +87,8 @@ int BnbJob::appl_solved() { //TODO CHANGES HERE
     LOG(V2_INFO, "[tracking] Time not spent working getting work: 2 %f\n", perc_not_working_work);
     float perc_not_working_after = tracker.time_spent_not_working_after / tracker.time_since_activation;
     LOG(V2_INFO, "[tracking] Time not spent working after loop: 4 %f\n", perc_not_working_after);
+    float perc_messages = tracker.time_spent_messages / tracker.time_since_activation;
+    LOG(V2_INFO, "[tracking] Time spent on messages: 5 %f\n", perc_messages);
 
     return _result.result;
 }
@@ -97,6 +99,9 @@ JobResult&& BnbJob::appl_getResult() {
 
 // Called periodically by the main thread to allow the worker to emit messages.
 void BnbJob::appl_communicate() {
+    //tracker
+    tracker.messages_start_time = Timer::elapsedSeconds();
+
     // Are enough workers available?
     if (getJobTree().isRoot() && !_send_messages && getVolume() < NUM_WORKERS) {
         if (getAgeSinceActivation() < 1) return; // wait for up to 1s after appl_start
@@ -104,6 +109,10 @@ void BnbJob::appl_communicate() {
         LOG(V2_INFO, "[msg] Unable to get %i workers within 1 second - giving up\n", NUM_WORKERS);
         // Report an "unknown" result (code 0)
         insertResult(0, {-1});
+        
+        //tracker
+        tracker.time_spent_messages += (Timer::elapsedSeconds() - tracker.messages_start_time);
+
         return;
     }
 
@@ -186,10 +195,15 @@ void BnbJob::appl_communicate() {
     if (_periodic_reduction.ready()) tryStartReduction();
     tryEndReduction();
 
+    //tracker
+    tracker.time_spent_messages += (Timer::elapsedSeconds() - tracker.messages_start_time);
 }
 
 // React to an incoming message.
 void BnbJob::appl_communicate(int source, int mpiTag, JobMessage& msg) {
+    //tracker
+    tracker.messages_start_time = Timer::elapsedSeconds();
+
     LOG(V2_INFO, "[msg] Message %i with Payload %i from %i received.\n", msg.tag, msg.payload[0], source);
 
     if(_finished) {
@@ -213,6 +227,10 @@ void BnbJob::appl_communicate(int source, int mpiTag, JobMessage& msg) {
             if(msg.payload[0] != -1) _sent_work = true;
             LOG(V2_INFO, "[msg] Message returned to sender %i with tag %i\n", msg.tag);
         }
+
+        //tracker
+        tracker.time_spent_messages += (Timer::elapsedSeconds() - tracker.messages_start_time);
+
         return;
     }
 
@@ -238,6 +256,10 @@ void BnbJob::appl_communicate(int source, int mpiTag, JobMessage& msg) {
             if(msg.payload[0] != -1) _sent_work = true;
             LOG(V2_INFO, "[msg] Message returned to sender %i with payload[0] = %i and _sent_work = %i\n", recvRank, msg.payload[0], _sent_work);
         }
+
+        //tracker
+        tracker.time_spent_messages += (Timer::elapsedSeconds() - tracker.messages_start_time);
+        
         return;
     }
 
@@ -270,11 +292,19 @@ void BnbJob::appl_communicate(int source, int mpiTag, JobMessage& msg) {
             LOG(V2_INFO, "[msg] Message returned to sender %i.\n", recvRank);
         }
         }
+
+        //tracker
+        tracker.time_spent_messages += (Timer::elapsedSeconds() - tracker.messages_start_time);
+        
         return;
     }
 
     if(msg.tag == MSG_WORK_STEALING_DONE) {
         _sent_work = false;
+
+        //tracker
+        tracker.time_spent_messages += (Timer::elapsedSeconds() - tracker.messages_start_time);
+        
         return;
     }
 
@@ -285,6 +315,10 @@ void BnbJob::appl_communicate(int source, int mpiTag, JobMessage& msg) {
         }
         _loop_cond_var.notify();
         LOG(V2_INFO, "Finished set to 1\n");
+
+        //tracker
+        tracker.time_spent_messages += (Timer::elapsedSeconds() - tracker.messages_start_time);
+        
         return;
     }
 }
