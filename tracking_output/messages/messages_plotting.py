@@ -93,4 +93,4 @@ plt.title("Percentage of all queries")
 plt.xlabel("Type of return")
 plt.ylabel("Number of queries")
 
-plt.savefig("tracking_output/messages/messages_plot.png")
+plt.savefig("tracking_output/messages/messages_plot_new.png")
