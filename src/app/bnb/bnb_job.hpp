@@ -48,6 +48,8 @@ private:
         float time_spent_not_working_after;
         float messages_start_time;
         float time_spent_messages;
+        float waiting_start_time;
+        float time_spent_waiting;
 
         int num_queries;
         int num_succ_queries;
@@ -56,7 +58,7 @@ private:
         int num_nonsucc_empty;
     };
 
-    Tracker tracker = {-1, 0, -1, 0, -1, -1, 0, -1, 0, -1, 0, -1, 0, -1, 0, 0, 0, 0, 0};
+    Tracker tracker = {-1, 0, -1, 0, -1, -1, 0, -1, 0, -1, 0, -1, 0, -1, 0, -1, 0, 0, 0, 0, 0};
 
     long appr_amount_of_expl; //approximative amount of explorations (2^nr tasks)
     int num_expl_nodes;

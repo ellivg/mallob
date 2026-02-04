@@ -89,6 +89,12 @@ int BnbJob::appl_solved() { //TODO CHANGES HERE
     LOG(V2_INFO, "[tracking] Time not spent working after loop: 4 %f\n", perc_not_working_after);
     float perc_messages = tracker.time_spent_messages / tracker.time_since_activation;
     LOG(V2_INFO, "[tracking] Time spent on messages: 5 %f\n", perc_messages);
+    float perc_waiting = tracker.time_spent_waiting / tracker.time_since_activation;
+
+    if (tracker.waiting_start_time == -1) tracker.time_spent_waiting += (Timer::elapsedSeconds() - tracker.waiting_start_time);
+    LOG(V2_INFO, "[tracking] Time spent on messages: 6 %f\n", perc_waiting);
+    LOG(V2_INFO, "[tracking] 7 %f %f\n", tracker.time_spent_waiting, tracker.time_since_activation);
+
 
     return _result.result;
 }
@@ -163,6 +169,9 @@ void BnbJob::appl_communicate() {
                 getJobTree().send(recvRank, MSG_SEND_APPLICATION_MESSAGE, msg);
                 LOG(V2_INFO, "[msg] Requested work stealing from: %i\n", recvRank);
                 _waiting = 1;
+                //tracker
+                tracker.waiting_start_time = Timer::elapsedSeconds();
+                LOG(V2_INFO, "[track] Starting tracker: %i\n", tracker.waiting_start_time);
                 _first = 0;
             }            
         } else if (!_finished) {
@@ -187,6 +196,9 @@ void BnbJob::appl_communicate() {
                 getJobTree().send(recvRank, MSG_SEND_APPLICATION_MESSAGE, msg);
                 LOG(V2_INFO, "[msg] Requested work stealing from: %i\n", recvRank);
                 _waiting = 1;
+                //tracker
+                tracker.waiting_start_time = Timer::elapsedSeconds();
+                LOG(V2_INFO, "[track] Starting tracker: %i\n", tracker.waiting_start_time);
             }            
         }
     }
@@ -266,6 +278,10 @@ void BnbJob::appl_communicate(int source, int mpiTag, JobMessage& msg) {
     if(msg.tag == MSG_WORK_STEALING_ANSWER) {
         if(msg.payload[0] == -1) {
             _waiting = 0;
+            //tracker
+            tracker.time_spent_waiting += (Timer::elapsedSeconds() - tracker.waiting_start_time);
+            LOG(V2_INFO, "[track] Stopping tracker: %i %i %i\n", tracker.waiting_start_time, Timer::elapsedSeconds(), tracker.time_spent_waiting);
+            tracker.waiting_start_time = -1;
             tracker.num_nonsucc_empty++;
         } else {
             LOG(V2_INFO, "[msg] Work stealing query successful. Filling work queue.\n");
@@ -427,7 +443,6 @@ void BnbJob::loop() {
             curr_work = _work_queue.front();
             _work_queue.pop();
         }
-        usleep(50); //TODO work on removing
         LOG(V5_DEBG, "%s", transform_for_log("[queue] In Loop. Currently at:", curr_work).c_str());
         if (num_expl_nodes % 1000 == 0) LOG(V2_INFO, "[queue] In loop. Jobs left: %i\n", _work_queue.size()+1);
 
@@ -705,6 +720,10 @@ void BnbJob::addToQueue(std::vector<int>& message) {
 
     _working = 1;
     _waiting = 0;
+    //tracker
+    tracker.time_spent_waiting += (Timer::elapsedSeconds() - tracker.waiting_start_time);
+    LOG(V2_INFO, "[track] Stopping tracker: %i %i %i\n", tracker.waiting_start_time, Timer::elapsedSeconds(), tracker.time_spent_waiting);
+    tracker.waiting_start_time = -1;
     _loop_cond_var.notify();
     LOG(V2_INFO, "[adding] Adding ending now\n");
 }
