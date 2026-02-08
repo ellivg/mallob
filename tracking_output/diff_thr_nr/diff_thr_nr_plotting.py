@@ -4,8 +4,8 @@ import math
 import os
 
 # Assign directory
-dir_list = [r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/diff_thr_nr/thr_2",
-            r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/diff_thr_nr/thr_4"]
+dir_list = [r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/diff_thr_nr/out",
+            r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/diff_thr_nr/out4"]
 
 # Variables
 non_tracking_files = []
@@ -80,11 +80,11 @@ min_value = math.floor(min(min(sub_list) for sub_list in values[1]))
 plt.boxplot(x=values[1], tick_labels=values[0])
 
 plt.xlim([0, len(values[0])+1])
-plt.ylim([0, max_value])
+plt.ylim([0, 0.25])
 
 plt.title("Compare if changing the number of threads \n does anything on a small example")
 plt.ylabel("Time")
 plt.xlabel("Number Of Threads")
 
-plt.savefig("tracking_output/diff_thr_nr/diff_thr_nr_xx.png")
+plt.savefig("tracking_output/diff_thr_nr/diff_thr_nr_yy_zoom.png")
 
