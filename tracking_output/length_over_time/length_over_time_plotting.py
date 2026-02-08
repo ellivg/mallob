@@ -4,7 +4,7 @@ import math
 import os
 
 # Assign directory
-directory = r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/length_over_time/out"
+directory = r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/length_over_time/out_new"
 
 # Variables
 non_tracking_files = []
@@ -78,10 +78,10 @@ min_value = math.floor(min(min(sub_list) for sub_list in values[1]))
 plt.boxplot(x=values[1], tick_labels=[10,15,20,25])
 
 plt.xlim([0, len(values[0])+1])
-plt.ylim([0, 50])
+plt.ylim([0, 10])
 
 plt.title("Compare computing time for length of input")
 plt.ylabel("Time")
 plt.xlabel("Input Length n")
 
-plt.savefig("tracking_output/length_over_time/length_over_time_plot_zz1.png")
+plt.savefig("tracking_output/length_over_time/length_over_time_plot_aa.png")
