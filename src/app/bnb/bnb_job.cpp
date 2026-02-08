@@ -24,6 +24,8 @@ BnbJob::BnbJob(const Parameters& params, const JobSetup& setup, AppMessageTable&
             " you must explicitly enable job communicators with the -jcup option, e.g., -jcup=0.1\n"));
         
         _result.result = -1; // no result present at initilization
+        _result.id = getId();
+        _result.revision = 0;
 }
 
 void BnbJob::appl_start() {
@@ -47,6 +49,13 @@ void BnbJob::appl_terminate() {
 }
 
 int BnbJob::appl_solved() { //TODO CHANGES HERE
+
+    // TODO _finished has two meanings:
+    // - I should stop working
+    // - I have a globally best solution I'd like to report
+    // Separate these two meanings into two vars (or one var and one expression)
+    // and make sure that you only return a result with .result!=-1 if the 2nd meaning applies.
+    
     if(!_finished) return -1;
 
     bool empty;
@@ -55,7 +64,7 @@ int BnbJob::appl_solved() { //TODO CHANGES HERE
         empty = _work_queue.empty();
     }
 
-    assert(empty && !_working);
+    //assert(empty && !_working);
 
     {
         auto lock = solution_mtx.getLock();
@@ -65,7 +74,7 @@ int BnbJob::appl_solved() { //TODO CHANGES HERE
                 _internal_solution.push_back(_best_solution.machines[i][j]);
             }
         }
-        _result.result = 0;
+        _result.result = 10;
         _result.setSolution(std::move(_internal_solution));
 
         LOG(V2_INFO, "%s", transform_for_log("[solved] End", _best_solution).c_str());
@@ -136,16 +145,14 @@ void BnbJob::appl_communicate() {
         auto lock = queue_mtx.getLock();
         empty = _work_queue.empty();
     }
-    if(empty) {
+    if(empty && !_finished) {
         tracker.num_queries++;
 
         if (!_send_messages) {
             LOG(V2_INFO, "[msg] Tried requesting work but messages are not allowed\n");
             tracker.num_nonsucc_nomsg++;
-            usleep(1000*1000); //wait 1s (until {giving up message} is sent) until trying again
         } else if (_waiting) {
             LOG(V2_INFO, "[msg] Waiting\n");
-            usleep(1000*100); //wait 0.1s to account for operations to fill queue (TODO maybe change?)
             tracker.num_queries--; //because were still waiting on the last one to be filled
         } else if (_first && !getJobTree().isRoot()) { // requesting from root
             //Request work
@@ -174,7 +181,7 @@ void BnbJob::appl_communicate() {
                 LOG(V2_INFO, "[track] Starting tracker: %i\n", tracker.waiting_start_time);
                 _first = 0;
             }            
-        } else if (!_finished) {
+        } else {
             //Request work
             JobMessage msg = getMessageTemplate();
             msg.tag = MSG_WORK_STEALING_QUERY;
@@ -204,7 +211,7 @@ void BnbJob::appl_communicate() {
     }
 
     // Periodic All-Reduction to determine if all threads are waiting and have not sent work -> program is finished
-    if (_periodic_reduction.ready()) tryStartReduction();
+    if (!_finished && _periodic_reduction.ready()) tryStartReduction();
     tryEndReduction();
 
     //tracker
@@ -826,13 +833,13 @@ void BnbJob::tryEndReduction() {
     LOG(V2_INFO, "[red] all-reduction complete\n");
 
     auto result = _red->extractResult();
-    int res0 = *result.data();
+    int nbActive = *result.data();
     int res1 = *(result.data()+1);
     int res2 = *(result.data()+2);
     LOG(V5_DEBG, "[red] Result has been found\n");
-    LOG(V2_INFO, "[red] Result is: %i, %i, %i\n", res0, res1, res2);
+    LOG(V2_INFO, "[red] Result is: %i, %i, %i\n", nbActive, res1, res2);
 
-    if(res0 == 0) {
+    if(nbActive == 0) {
         {
             auto lock = queue_mtx.getLock();
             _finished = true;
@@ -840,6 +847,9 @@ void BnbJob::tryEndReduction() {
         _loop_cond_var.notify();
         LOG(V2_INFO, "Finished set to 1\n");
     }
+
+    // TODO Three fields: best known upper, lower bound, cost of currently present solution.
+    // Update the former two here with the result of the all reduction.
 
     if(res2 != -1 && res2 == _curr_lower_bound) {
         {
