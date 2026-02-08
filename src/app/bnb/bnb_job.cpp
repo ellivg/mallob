@@ -50,7 +50,7 @@ void BnbJob::appl_terminate() {
 
 int BnbJob::appl_solved() {
 
-    // TODO _finished has two meanings:
+    // _finished has two meanings:
     // - I should stop working -> _stopSearch
     // - I have a globally best solution I'd like to report -> _reportableSolution
     // Separate these two meanings into two vars (or one var and one expression)
@@ -378,15 +378,16 @@ void BnbJob::init() {
         _working = 1;
 
         //initialize lower bound
-        _curr_lower_bound = tasks[0];
+        bounds.curr_lower_bound = tasks[0];
 
         int average_size = 0;
         for (int i = 0; i < tasks.size(); i++) average_size += tasks[i];
         average_size /= tasks.size();
-        if (_curr_lower_bound < average_size) _curr_lower_bound = average_size;
+        if (bounds.curr_lower_bound < average_size) bounds.curr_lower_bound = average_size;
 
         int possible_lower_bound = tasks[_nr_machines] + tasks[_nr_machines+1];
-        if(_curr_lower_bound < possible_lower_bound) _curr_lower_bound = possible_lower_bound;
+        if(bounds.curr_lower_bound < possible_lower_bound) bounds.curr_lower_bound = possible_lower_bound;
+        LOG(V2_INFO, "[bou] Initiliased to {lower, upper, best} = {%i, %i, %i}.\n", bounds.curr_lower_bound, bounds.curr_upper_bound, bounds.curr_best_solution);
 
         LOG(V2_INFO, "%s", transform_for_log("[start] Beginning", work).c_str());
     }
@@ -472,10 +473,13 @@ void BnbJob::loop() {
             std::vector<int> new_machine_workload = machine_workloads(curr_work.machines);
             new_length = *std::max_element(new_machine_workload.begin(), new_machine_workload.end());
         
-            if (_curr_upper_bound == -1 || new_length < _curr_upper_bound) {
+            if (bounds.curr_best_solution == -1 || new_length < bounds.curr_best_solution) {
                 auto lock = solution_mtx.getLock();
                 _best_solution = curr_work;
-                _curr_upper_bound = new_length;
+                bounds.curr_best_solution = new_length;
+                if (bounds.curr_lower_bound > bounds.curr_best_solution) bounds.curr_lower_bound = bounds.curr_best_solution;
+                if (bounds.curr_upper_bound == -1 || bounds.curr_upper_bound > bounds.curr_best_solution) bounds.curr_upper_bound = bounds.curr_best_solution;
+                LOG(V2_INFO, "[bou] Updated to {lower, upper, best} = {%i, %i, %i}.\n", bounds.curr_lower_bound, bounds.curr_upper_bound, bounds.curr_best_solution);
             }        
         }
 
@@ -524,10 +528,10 @@ void BnbJob::branch(Work& work) {
     }
 
     // if there is still a valid solution given the upper bound (Rule No 5)
-    if (work.tasks[0] == work.tasks[work.tasks.size() - 1] && _curr_upper_bound != -1) {
+    if (work.tasks[0] == work.tasks[work.tasks.size() - 1] && bounds.curr_upper_bound != -1) {
         int sum = 0;
         for (int x = 0; x < work.machines.size(); x++) {
-            sum += (_curr_upper_bound - machine_workload[x]) / work.tasks[0];
+            sum += (bounds.curr_upper_bound - machine_workload[x]) / work.tasks[0];
         }
         if (sum < work.tasks.size()) return;
     }
@@ -807,7 +811,7 @@ void BnbJob::tryStartReduction() {
         int all_upper_bound = -1; //contrib.at(2) is current upper bound
 
         for (auto& contrib : contribs) {
-            LOG(V2_INFO, "[red] Contribution: %i, %i, %i\n", contrib.at(0), contrib.at(1), contrib.at(2));
+            LOG(V5_DEBG, "[red] Contribution: %i, %i, %i\n", contrib.at(0), contrib.at(1), contrib.at(2));
             sum += contrib.at(0);
             if(contrib.at(1) != -1 && (all_lower_bound == -1 || contrib.at(1) < all_lower_bound)) all_lower_bound = contrib.at(1);
             if(contrib.at(2) != -1 && (all_upper_bound == -1 || contrib.at(1) > all_upper_bound)) all_upper_bound = contrib.at(2);
@@ -818,27 +822,26 @@ void BnbJob::tryStartReduction() {
     }));
 
     // Contribution: 0 if finished a.k.a. waiting (not working) and not sent work
-    LOG(V2_INFO, "[red] _waiting = %i & _sent_work = %i & _working = %i\n", _waiting, _sent_work, _working);
+    LOG(V5_DEBG, "[red] _waiting = %i & _sent_work = %i & _working = %i\n", _waiting, _sent_work, _working);
     const int contrib0 = !((!_working) && (!_sent_work));
-    const int contrib1 = _curr_lower_bound;
-    const int contrib2 = _curr_upper_bound;
-    LOG(V2_INFO, "[red] contribute {%i, %i, %i} to all-reduction\n", contrib0, contrib1, contrib2);
+    const int contrib1 = bounds.curr_lower_bound;
+    const int contrib2 = bounds.curr_upper_bound;
+    LOG(V2_INFO, "[red] & [bou] Contributed {finished, lowerBound, upperBound} = {%i, %i, %i} to all-reduction.\n", contrib0, contrib1, contrib2);
     _red->contribute({contrib0, contrib1, contrib2});
 }
 
 void BnbJob::tryEndReduction() {
     if (!_red) return;
-    if(!_red->advance().isValid()) LOG(V2_INFO, "[red] all-reduction without validity\n");
+    if(!_red->advance().isValid()) LOG(V5_DEBG, "[red] all-reduction without validity\n");
     if (!_red->advance().hasResult()) return;
 
-    LOG(V2_INFO, "[red] all-reduction complete\n");
+    LOG(V5_DEBG, "[red] All-Reduction completed.\n");
 
     auto result = _red->extractResult();
     int nbActive = *result.data();
-    int res1 = *(result.data()+1);
-    int res2 = *(result.data()+2);
-    LOG(V5_DEBG, "[red] Result has been found\n");
-    LOG(V2_INFO, "[red] Result is: %i, %i, %i\n", nbActive, res1, res2);
+    int lowerBound = *(result.data()+1);
+    int upperBound = *(result.data()+2);
+    LOG(V2_INFO, "[red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {%i, %i, %i}.\n", nbActive, lowerBound, upperBound);
 
     if(nbActive == 0) {
         {
@@ -846,20 +849,34 @@ void BnbJob::tryEndReduction() {
             _stopSearch = true;
         }
         _loop_cond_var.notify();
-        LOG(V2_INFO, "Finished set to 1\n");
+        LOG(V2_INFO, "[red] Thread will stop search: nbActive = %i\n", nbActive);
+        
+        if (upperBound == bounds.curr_best_solution) {
+            {
+                auto lock = queue_mtx.getLock();
+                _reportableSolution = true;
+            }
+            _loop_cond_var.notify();
+            LOG(V2_INFO, "[red] & [bou] Thread has reportable solution: upperBound = %i, lowerBound = %i, currSolution = %i\n", upperBound, lowerBound, bounds.curr_best_solution);
+        }
     }
 
     // TODO Three fields: best known upper, lower bound, cost of currently present solution.
     // Update the former two here with the result of the all reduction.
 
-    if(res2 != -1 && res2 == _curr_lower_bound) {
+    if(lowerBound == bounds.curr_best_solution) {
         {
             auto lock = queue_mtx.getLock();
             _reportableSolution = true;
         }
         _loop_cond_var.notify();
-        LOG(V2_INFO, "Finished set to 1\n");
-    }
+        LOG(V2_INFO, "[red] & [bou] Thread has reportable solution: upperBound = %i, lowerBound = %i, currSolution = %i\n", upperBound, lowerBound, bounds.curr_best_solution);
+    } 
+
+    LOG(V2_INFO, "[bou] Before reduction: {lower, upper, best} = {%i, %i, %i}\n", bounds.curr_lower_bound, bounds.curr_upper_bound, bounds.curr_best_solution);
+    bounds.curr_upper_bound = upperBound;
+    bounds.curr_lower_bound = lowerBound;
+    LOG(V2_INFO, "[bou] After redution: {lower, upper, best} = {%i, %i, %i}\n", bounds.curr_lower_bound, bounds.curr_upper_bound, bounds.curr_best_solution);
 
     // Conclude the all-reduction, allowing for this worker to be destructed later
     _red.reset();

@@ -68,8 +68,12 @@ private:
     AdjustablePermutation _perm; // Represents a pseudo-random permutation of a set of integers [0..n).
 
     Work _best_solution;
-    int _curr_lower_bound {-1}; //current lower bound
-    int _curr_upper_bound {-1}; //current best length found
+    struct Bounds{
+        int curr_lower_bound {-1};
+        int curr_upper_bound {-1};
+        int curr_best_solution {-1};
+    };
+    Bounds bounds;
 
     Mutex solution_mtx;
     Mutex queue_mtx;
