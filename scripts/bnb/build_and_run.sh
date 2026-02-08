@@ -33,4 +33,4 @@ make clean
 make -j 20
 cd ..
 
-bash scripts/bnb/run_length_over_time.sh
+bash scripts/bnb/run_diff_thr_nr.sh

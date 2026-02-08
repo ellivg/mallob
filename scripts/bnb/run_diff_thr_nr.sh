@@ -1,7 +1,7 @@
 #!/bin/bash
 
-THREADS_PER_PROCESS=3 #TODO Set to desired number
-MPI_PROCESSES=4 #TODO: Set to desired number 
+THREADS_PER_PROCESS=1 #TODO Set to desired number
+MPI_PROCESSES=2 #TODO: Set to desired number 
 INSTANCES=1 #TODO: Set to desired number (or count paths in paths.txt file)
 
 echo "" 
