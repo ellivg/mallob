@@ -123,6 +123,7 @@ private:
 
     std::vector<int> machine_workloads(const std::vector<std::vector<int>>& machines);
     std::string transform_for_log(const std::string& reason, const Work& work);
+    void printTracking();
 
     void tryStartReduction();
     void tryEndReduction();
