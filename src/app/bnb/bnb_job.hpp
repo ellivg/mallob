@@ -77,7 +77,11 @@ private:
 
     bool _working {false};
     bool _waiting {false};
-    bool _finished {false};
+
+    // Types of ending the program
+    bool _stopSearch {false};
+    bool _reportableSolution {false};
+
     bool _send_messages {false}; // Whether we can send messages
     bool _sent_work {false}; // Whether we have sent work to another thread
     

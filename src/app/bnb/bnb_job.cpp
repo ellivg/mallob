@@ -42,21 +42,22 @@ void BnbJob::appl_start() {
 void BnbJob::appl_terminate() {
     {
         auto lock = queue_mtx.getLock();
-        _finished = true;
+        _stopSearch = true;
     }
     _loop_cond_var.notify();
     LOG(V2_INFO, "[term] Terminated\n");
 }
 
-int BnbJob::appl_solved() { //TODO CHANGES HERE
+int BnbJob::appl_solved() {
 
     // TODO _finished has two meanings:
-    // - I should stop working
-    // - I have a globally best solution I'd like to report
+    // - I should stop working -> _stopSearch
+    // - I have a globally best solution I'd like to report -> _reportableSolution
     // Separate these two meanings into two vars (or one var and one expression)
     // and make sure that you only return a result with .result!=-1 if the 2nd meaning applies.
     
-    if(!_finished) return -1;
+    if(!_stopSearch || !_reportableSolution) return -1;
+    LOG(V2_INFO, "[solved] _stopSearch = %i, _reportableSolution = %i\n", _stopSearch, _reportableSolution);
 
     bool empty;
     {
@@ -145,7 +146,7 @@ void BnbJob::appl_communicate() {
         auto lock = queue_mtx.getLock();
         empty = _work_queue.empty();
     }
-    if(empty && !_finished) {
+    if(empty && !_stopSearch && !_reportableSolution) {
         tracker.num_queries++;
 
         if (!_send_messages) {
@@ -211,7 +212,7 @@ void BnbJob::appl_communicate() {
     }
 
     // Periodic All-Reduction to determine if all threads are waiting and have not sent work -> program is finished
-    if (!_finished && _periodic_reduction.ready()) tryStartReduction();
+    if (!_stopSearch && !_reportableSolution && _periodic_reduction.ready()) tryStartReduction();
     tryEndReduction();
 
     //tracker
@@ -225,7 +226,7 @@ void BnbJob::appl_communicate(int source, int mpiTag, JobMessage& msg) {
 
     LOG(V2_INFO, "[msg] Message %i with Payload %i from %i received.\n", msg.tag, msg.payload[0], source);
 
-    if(_finished) {
+    if(_stopSearch || _reportableSolution) {
         LOG(V2_INFO, "[msg] Message will not be entirely processed as program is finished\n");
 
         // Use our JobComm to convert the tree index into an addressable MPI rank.
@@ -334,7 +335,7 @@ void BnbJob::appl_communicate(int source, int mpiTag, JobMessage& msg) {
     if(msg.tag == MSG_FINISHED) {
         {
             auto lock = queue_mtx.getLock();
-            _finished = true;
+            _stopSearch = true;
         }
         _loop_cond_var.notify();
         LOG(V2_INFO, "Finished set to 1\n");
@@ -430,10 +431,10 @@ void BnbJob::loop() {
                 LOG(V2_INFO, "[queue] Queue empty. Stopping Loop\n");
                 _working = 0;
 
-                _loop_cond_var.waitWithLockedMutex(lock, [&]() {return (_working || _finished);});
-                LOG(V5_DEBG, "[queue] working: %i or finished: %i\n", _working, _finished);
+                _loop_cond_var.waitWithLockedMutex(lock, [&]() {return (_working || _stopSearch || _reportableSolution);});
+                LOG(V5_DEBG, "[queue] working: %i or finished: %i %i\n", _working, _stopSearch, _reportableSolution);
                 
-                if(_finished) break;
+                if(_stopSearch || _reportableSolution) break;
 
                 LOG(V2_INFO, "[queue] Restarting loop: %i\n", _work_queue.size());
             }
@@ -482,7 +483,7 @@ void BnbJob::loop() {
         tracker.time_spent_not_working_after += (Timer::elapsedSeconds() - tracker.not_work_start_time_after);
 
         watchdog.reset();
-    } while(_working && !_finished);
+    } while(_working && !_stopSearch && !_reportableSolution);
 
     LOG(V2_INFO, "[queue] Succesfully broken out of loop\n");
 }
@@ -842,7 +843,7 @@ void BnbJob::tryEndReduction() {
     if(nbActive == 0) {
         {
             auto lock = queue_mtx.getLock();
-            _finished = true;
+            _stopSearch = true;
         }
         _loop_cond_var.notify();
         LOG(V2_INFO, "Finished set to 1\n");
@@ -854,7 +855,7 @@ void BnbJob::tryEndReduction() {
     if(res2 != -1 && res2 == _curr_lower_bound) {
         {
             auto lock = queue_mtx.getLock();
-            _finished = true;
+            _reportableSolution = true;
         }
         _loop_cond_var.notify();
         LOG(V2_INFO, "Finished set to 1\n");
