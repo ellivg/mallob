@@ -7,7 +7,8 @@ import os
 dir_list = [r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/diff_thr_nr/out",
             r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/diff_thr_nr/out4",
             r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/diff_thr_nr/out8",
-            r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/diff_thr_nr/out16"]
+            r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/diff_thr_nr/out16",
+            r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/diff_thr_nr/out32"]
 
 def get_values(wanted_keyword=str, index=int, median=bool, ylabel=str, fig=str):
     # Variables
@@ -101,7 +102,7 @@ def get_values(wanted_keyword=str, index=int, median=bool, ylabel=str, fig=str):
     plt.ylabel(ylabel)
     plt.xlabel("Number Of Threads")
 
-    fig_name = "tracking_output/diff_thr_nr/diff_thr_nr_16_"+fig+"_zoom.png"
+    fig_name = "tracking_output/diff_thr_nr/diff_thr_nr_32_"+fig+"_zoom.png"
     plt.savefig(fig_name)
 
 def time():
