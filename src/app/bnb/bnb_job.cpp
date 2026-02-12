@@ -91,6 +91,7 @@ JobResult&& BnbJob::appl_getResult() {
 // Called periodically by the main thread to allow the worker to emit messages.
 void BnbJob::appl_communicate() {
     //tracker
+    if (tracker.not_work_wait) tracker.time_spent_not_working_wait += (Timer::elapsedSeconds() - tracker.not_work_start_time_wait);
     tracker.messages_start_time = Timer::elapsedSeconds();
 
     // Are enough workers available?
@@ -103,6 +104,7 @@ void BnbJob::appl_communicate() {
         
         //tracker
         tracker.time_spent_messages += (Timer::elapsedSeconds() - tracker.messages_start_time);
+        if (tracker.not_work_wait) tracker.not_work_start_time_wait = Timer::elapsedSeconds();
 
         return;
     }
@@ -153,6 +155,7 @@ void BnbJob::appl_communicate() {
                 LOG(V2_INFO, "[msg] Requested work stealing from: %i\n", recvRank);
                 _waiting = 1;
                 //tracker
+                if (tracker.not_work_wait) tracker.time_spent_not_working_wait += (Timer::elapsedSeconds() - tracker.not_work_start_time_wait);
                 tracker.waiting_start_time = Timer::elapsedSeconds();
                 LOG(V2_INFO, "[track] Starting tracker: %i\n", tracker.waiting_start_time);
                 _first = 0;
@@ -180,6 +183,7 @@ void BnbJob::appl_communicate() {
                 LOG(V2_INFO, "[msg] Requested work stealing from: %i\n", recvRank);
                 _waiting = 1;
                 //tracker
+                if (tracker.not_work_wait) tracker.time_spent_not_working_wait += (Timer::elapsedSeconds() - tracker.not_work_start_time_wait);
                 tracker.waiting_start_time = Timer::elapsedSeconds();
                 LOG(V2_INFO, "[track] Starting tracker: %i\n", tracker.waiting_start_time);
             }            
@@ -192,11 +196,13 @@ void BnbJob::appl_communicate() {
 
     //tracker
     tracker.time_spent_messages += (Timer::elapsedSeconds() - tracker.messages_start_time);
+    if (tracker.not_work_wait) tracker.not_work_start_time_wait = Timer::elapsedSeconds();
 }
 
 // React to an incoming message.
 void BnbJob::appl_communicate(int source, int mpiTag, JobMessage& msg) {
     //tracker
+    if (tracker.not_work_wait) tracker.time_spent_not_working_wait += (Timer::elapsedSeconds() - tracker.not_work_start_time_wait);
     tracker.messages_start_time = Timer::elapsedSeconds();
 
     LOG(V2_INFO, "[msg] Message %i with Payload %i from %i received.\n", msg.tag, msg.payload[0], source);
@@ -211,6 +217,7 @@ void BnbJob::appl_communicate(int source, int mpiTag, JobMessage& msg) {
 
         //tracker
         tracker.time_spent_messages += (Timer::elapsedSeconds() - tracker.messages_start_time);
+        if (tracker.not_work_wait) tracker.not_work_start_time_wait = Timer::elapsedSeconds();
         
         return;
     }
@@ -239,6 +246,7 @@ void BnbJob::appl_communicate(int source, int mpiTag, JobMessage& msg) {
 
         //tracker
         tracker.time_spent_messages += (Timer::elapsedSeconds() - tracker.messages_start_time);
+        if (tracker.not_work_wait) tracker.not_work_start_time_wait = Timer::elapsedSeconds();
 
         return;
     }
@@ -268,6 +276,7 @@ void BnbJob::appl_communicate(int source, int mpiTag, JobMessage& msg) {
 
         //tracker
         tracker.time_spent_messages += (Timer::elapsedSeconds() - tracker.messages_start_time);
+        if (tracker.not_work_wait) tracker.not_work_start_time_wait = Timer::elapsedSeconds();
         
         return;
     }
@@ -277,6 +286,7 @@ void BnbJob::appl_communicate(int source, int mpiTag, JobMessage& msg) {
             _waiting = 0;
             //tracker
             tracker.time_spent_waiting += (Timer::elapsedSeconds() - tracker.waiting_start_time);
+            if (tracker.not_work_wait) tracker.not_work_start_time_wait = Timer::elapsedSeconds();
             LOG(V2_INFO, "[track] Stopping tracker: %i %i %i\n", tracker.waiting_start_time, Timer::elapsedSeconds(), tracker.time_spent_waiting);
             tracker.waiting_start_time = -1;
             tracker.num_nonsucc_empty++;
@@ -308,6 +318,7 @@ void BnbJob::appl_communicate(int source, int mpiTag, JobMessage& msg) {
 
         //tracker
         tracker.time_spent_messages += (Timer::elapsedSeconds() - tracker.messages_start_time);
+        if (tracker.not_work_wait) tracker.not_work_start_time_wait = Timer::elapsedSeconds();
         
         return;
     }
@@ -317,6 +328,7 @@ void BnbJob::appl_communicate(int source, int mpiTag, JobMessage& msg) {
 
         //tracker
         tracker.time_spent_messages += (Timer::elapsedSeconds() - tracker.messages_start_time);
+        if (tracker.not_work_wait) tracker.not_work_start_time_wait = Timer::elapsedSeconds();
         
         return;
     }
@@ -402,6 +414,7 @@ void BnbJob::loop() {
             //tracker
             tracker.time_spent_not_working_empty += (Timer::elapsedSeconds() - tracker.not_work_start_time_empty);
             tracker.not_work_start_time_wait = Timer::elapsedSeconds();
+            tracker.not_work_wait = 1;
 
             if(empty) {
                 LOG(V2_INFO, "[queue] Queue empty. Stopping Loop\n");
@@ -418,6 +431,7 @@ void BnbJob::loop() {
 
         //tracker
         tracker.time_spent_not_working_wait += (Timer::elapsedSeconds() - tracker.not_work_start_time_wait);
+        tracker.not_work_wait = 0;
         tracker.not_work_start_time_work = Timer::elapsedSeconds();
 
         //else: work

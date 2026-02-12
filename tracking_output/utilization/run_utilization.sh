@@ -14,9 +14,9 @@ MY_MALLOB_OPTIONS="$MALLOB_OPTIONS \
   -mono=instances/bnb/basic/bnb_n20_m2.cnf\
 "
 
-for ((j=1; j<=9; j++)); do
+for ((j=0; j<=9; j++)); do
   echo "Run Nr $j"
-  mpirun -np $MPI_PROCESSES build/mallob $MY_MALLOB_OPTIONS >tracking_output/utilization/out_new/"log_"$j".txt"
+  mpirun -np $MPI_PROCESSES build/mallob $MY_MALLOB_OPTIONS >tracking_output/utilization/out_new3/"log_"$j".txt"
 done
 
 python -u "/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/utilization/utilization_plotting.py"

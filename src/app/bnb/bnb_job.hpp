@@ -32,33 +32,34 @@ private:
     };
 
     struct Tracker{
-        float activation_time;
-        float time_since_activation;
-        float work_start_time;
-        float time_spent_working;
-        float perc_working;
+        float activation_time {-1};
+        float time_since_activation {0};
+        float work_start_time {-1};
+        float time_spent_working {0};
+        float perc_working {-1};
 
-        float not_work_start_time_empty;
-        float time_spent_not_working_empty;
-        float not_work_start_time_wait;
-        float time_spent_not_working_wait;
-        float not_work_start_time_work;
-        float time_spent_not_working_work;
-        float not_work_start_time_after;
-        float time_spent_not_working_after;
-        float messages_start_time;
-        float time_spent_messages;
-        float waiting_start_time;
-        float time_spent_waiting;
+        float not_work_start_time_empty {-1};
+        float time_spent_not_working_empty {0};
+        bool not_work_wait {0};
+        float not_work_start_time_wait {-1};
+        float time_spent_not_working_wait {0};
+        float not_work_start_time_work {-1};
+        float time_spent_not_working_work {0};
+        float not_work_start_time_after {-1};
+        float time_spent_not_working_after {0};
+        float messages_start_time {-1};
+        float time_spent_messages {0};
+        float waiting_start_time {-1};
+        float time_spent_waiting {0};
 
-        int num_queries;
-        int num_succ_queries;
-        int num_nonsucc_nomsg;
-        int num_nonsucc_rankinvld;
-        int num_nonsucc_empty;
+        int num_queries {0};
+        int num_succ_queries {0};
+        int num_nonsucc_nomsg {0};
+        int num_nonsucc_rankinvld {0};
+        int num_nonsucc_empty {0};
     };
 
-    Tracker tracker = {-1, 0, -1, 0, -1, -1, 0, -1, 0, -1, 0, -1, 0, -1, 0, -1, 0, 0, 0, 0, 0};
+    Tracker tracker;
 
     long appr_amount_of_expl; //approximative amount of explorations (2^nr tasks)
     int num_expl_nodes;
