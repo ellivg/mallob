@@ -67,12 +67,12 @@ for ((i=1; i<=INSTANCES; i++)); do
   echo "" 
   echo ""
 
-  for ((j=1; j<=5; j++)); do
+  for ((j=1; j<=4; j++)); do
     ((MPI_PROCESSES=2**$j)) #TODO: Set to desired number 
 
     echo "MPI_PROCESSES: $MPI_PROCESSES"
 
-    for ((k=1; k<=5; k++)); do
+    for ((k=1; k<=10; k++)); do
       echo "Run Nr $k"
       mpirun -np $MPI_PROCESSES --bind-to core --map-by :OVERSUBSCRIBE  build/mallob $MY_MALLOB_OPTIONS >scripts/bnb/out/"file_"$i"_"$MPI_PROCESSES"_"$k".txt"
     done
