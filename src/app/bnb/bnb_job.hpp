@@ -21,6 +21,8 @@ private:
     JobResult _result;
     std::future<void> future;
 
+    int _num_workers; // number of workers requested and required
+
     size_t _nr_tasks;
     int _nr_machines;
     
@@ -110,8 +112,6 @@ private:
     static const int MSG_WORK_STEALING_ANSWER = 32;
     static const int MSG_WORK_STEALING_DONE = 33;
     static const int MSG_FINISHED = 4;
-
-    static const int NUM_WORKERS = 2; // # workers we request and require   
     
     void init();
     void loop();

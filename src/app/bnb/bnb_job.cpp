@@ -26,12 +26,16 @@ BnbJob::BnbJob(const Parameters& params, const JobSetup& setup, AppMessageTable&
         _result.result = -1; // no result present at initilization
         _result.id = getId();
         _result.revision = 0;
+
+        LOG(V2_INFO, "Hey\n");
+
+        _num_workers = MyMpi::size(MPI_COMM_WORLD);
 }
 
 void BnbJob::appl_start() {
     // Initialize pseudo-random permutation with the number of workers -
     // use the 1st integer in the job's payload as a random seed
-    _perm = AdjustablePermutation(NUM_WORKERS, getDescription().getFormulaPayload(0)[0]);
+    _perm = AdjustablePermutation(_num_workers, getDescription().getFormulaPayload(0)[0]);
 
     LOG(V5_DEBG, "myRank: %i myIndex: %i\n", getJobTree().getRank(), getJobTree().getIndex());
 
@@ -95,10 +99,11 @@ void BnbJob::appl_communicate() {
     tracker.messages_start_time = Timer::elapsedSeconds();
 
     // Are enough workers available?
-    if (getJobTree().isRoot() && !_send_messages && getVolume() < NUM_WORKERS) {
+    if (getJobTree().isRoot() && !_send_messages && getVolume() < _num_workers) {
         if (getAgeSinceActivation() < 1) return; // wait for up to 1s after appl_start
 
-        LOG(V2_INFO, "[msg] Unable to get %i workers within 1 second - giving up\n", NUM_WORKERS);
+        LOG(V2_INFO, "[msg] Unable to get %i workers within 1 second - giving up\n", _num_workers);
+
         // Report an "unknown" result (code 0)
         insertResult(0, {-1});
         
@@ -110,8 +115,7 @@ void BnbJob::appl_communicate() {
     }
 
     //Allow messages after conditions are met
-    if (!_send_messages && getVolume() == NUM_WORKERS
-            && getJobComm().getWorldRankOrMinusOne(NUM_WORKERS-1) >= 0) {
+    if (!_send_messages && getVolume() == _num_workers && getJobComm().getWorldRankOrMinusOne(_num_workers-1) >= 0) {
 
         LOG(V2_INFO, "[msg] Messages allowed starting now\n");
         _send_messages = true;
@@ -167,9 +171,8 @@ void BnbJob::appl_communicate() {
             msg.payload = {0}; // irrelevant
 
             // Check if request can be sent
-            int randomIndex = rand() % NUM_WORKERS;
-            // Use our JobComm to convert the tree index into an addressable MPI rank.
-            int recvRank = getJobComm().getWorldRankOrMinusOne(randomIndex);
+            int randomIndex = rand() % _num_workers;
+            int recvRank = getJobComm().getWorldRankOrMinusOne(randomIndex); // use JobComm to convert tree index into addressable MPI rank
             if (recvRank == -1 || getJobTree().getRank() == randomIndex) {
                 LOG(V2_INFO, "[msg] Tried requesting work but receiving rank was invalid or my own: %i\n", recvRank);
                 tracker.num_nonsucc_rankinvld++;
@@ -336,7 +339,7 @@ void BnbJob::appl_communicate(int source, int mpiTag, JobMessage& msg) {
 
 int BnbJob::getDemand() const {
     // return Job::getDemand();
-    return NUM_WORKERS; // we strictly want this number of workers
+    return _num_workers; // we strictly want this number of workers
 }
 
 //PRIVATE METHODS
