@@ -74,7 +74,7 @@ for ((i=1; i<=INSTANCES; i++)); do
 
     for ((k=1; k<=5; k++)); do
       echo "Run Nr $k"
-      mpirun -np $MPI_PROCESSES --bind-to core --map-by ppr:${MPI_PROCESSES}:node:pe=${THREADS_PER_PROCESS}:OVERSUBSCRIBE  build/mallob $MY_MALLOB_OPTIONS >scripts/bnb/out/"file_"$i"_"$MPI_PROCESSES"_"$k".txt"
+      mpirun -np $MPI_PROCESSES --bind-to core --map-by :OVERSUBSCRIBE  build/mallob $MY_MALLOB_OPTIONS >scripts/bnb/out/"file_"$i"_"$MPI_PROCESSES"_"$k".txt"
     done
   done
 done 
