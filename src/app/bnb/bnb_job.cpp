@@ -27,8 +27,6 @@ BnbJob::BnbJob(const Parameters& params, const JobSetup& setup, AppMessageTable&
         _result.id = getId();
         _result.revision = 0;
 
-        LOG(V2_INFO, "Hey\n");
-
         _num_workers = MyMpi::size(MPI_COMM_WORLD);
 }
 
@@ -80,7 +78,7 @@ int BnbJob::appl_solved() {
             }
         }
         _result.result = 10;
-        _result.setSolution(std::move(_internal_solution));
+        _result.setSolutionToSerialize(_internal_solution.data(), _internal_solution.size());
 
         LOG(V2_INFO, "%s", transform_for_log("[solved] End", _best_solution).c_str());
     }
