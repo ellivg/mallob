@@ -4,11 +4,7 @@ import math
 import os
 
 # Assign directory
-dir_list = [r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/diff_thr_nr/out",
-            r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/diff_thr_nr/out4",
-            r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/diff_thr_nr/out8",
-            r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/diff_thr_nr/out16",
-            r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/diff_thr_nr/out32"]
+dir_list = [r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/diff_thr_nr/n20/in"]
 
 def get_values(wanted_keyword=str, index=int, median=bool, ylabel=str, fig=str):
     # Variables
@@ -59,7 +55,7 @@ def get_values(wanted_keyword=str, index=int, median=bool, ylabel=str, fig=str):
             #print(finished_values)
 
             # Get label
-            label = float(name.split("_")[1])
+            label = float(name.split("_")[2])
             #print(label)
 
             if median:
@@ -96,13 +92,13 @@ def get_values(wanted_keyword=str, index=int, median=bool, ylabel=str, fig=str):
     plt.boxplot(x=values[1], tick_labels=values[0])
 
     plt.xlim([0, len(values[0])+1])
-    plt.ylim([0, 0.03])
+    plt.ylim([0, 0.3])
 
     plt.title("Compare if changing the number of threads \n does anything on a small example")
     plt.ylabel(ylabel)
     plt.xlabel("Number Of Threads")
 
-    fig_name = "tracking_output/diff_thr_nr/diff_thr_nr_32_"+fig+"_zoom.png"
+    fig_name = "tracking_output/diff_thr_nr/n20/diff_thr_nr_n20_"+fig+"_zoom.png"
     plt.savefig(fig_name)
 
 def time():
