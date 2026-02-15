@@ -1,20 +1,18 @@
 #!/bin/bash
 
-THREADS_PER_PROCESS=1 #TODO Set to desired number
-MPI_PROCESSES=2 #TODO: Set to desired number 
+THREADS_PER_PROCESS=1 # Set to desired number
 INSTANCES=1 #TODO: Set to desired number (or count paths in paths.txt file)
 
 echo "" 
 echo ""
-echo "Using $((MPI_PROCESSES * THREADS_PER_PROCESS))/$(nproc) cores"
 echo $(lscpu | grep "Model name")
 
-echo "MPI_PROCESSES: $MPI_PROCESSES"
+echo "MPI_PROCESSES: variable" # TODO: change if applicable
 echo "THREADS_PER_PROCESS: $THREADS_PER_PROCESS"
 echo "INSTANCES: $INSTANCES"
 
-OUT_DIR="scripts/bnb/out/" #TODO: Set to own paths
-INST_PATHS_TXT="scripts/bnb/in/paths.txt" #TODO: Set to own instances
+OUT_DIR="scripts/bnb/out/"
+INST_PATHS_TXT="scripts/bnb/in/paths.txt"
 
 (cd scripts/server/example_in; find "$(pwd)" -type f -name "*.xz" > paths.txt) #TODO remove. We create paths.txt this way only here for the example to have valid full paths
 
@@ -34,8 +32,7 @@ MALLOB_OPTIONS=" \
   -pre-cleanup=1 \
 "
 
-echo "MALLOB_OPTIONS"echo "MPI_PROCESSES: $MPI_PROCESSES"
-e
+echo "MALLOB_OPTIONS"
 echo $MALLOB_OPTIONS | tr ' ' '\n'
 
 # main loop over instances
@@ -69,9 +66,15 @@ for ((i=1; i<=INSTANCES; i++)); do
   echo "" 
   echo ""
 
-  for ((j=1; j<=5; j++)); do
-    echo "Run Nr $j"
-    mpirun -np $MPI_PROCESSES --bind-to core --map-by ppr:${MPI_PROCESSES}:node:pe=${THREADS_PER_PROCESS} build/mallob $MY_MALLOB_OPTIONS >scripts/bnb/out/"file_"$MPI_PROCESSES"_"$j".txt"
+  for ((j=0; j<=4; j++)); do
+    ((MPI_PROCESSES=2**$j)) #TODO: Set to desired number 
+
+    echo "MPI_PROCESSES: $MPI_PROCESSES"
+
+    for ((k=1; k<=10; k++)); do
+      echo "Run Nr $k"
+      mpirun -np $MPI_PROCESSES --bind-to core --map-by :OVERSUBSCRIBE  build/mallob $MY_MALLOB_OPTIONS >scripts/bnb/out/"file_"$i"_"$MPI_PROCESSES"_"$k".txt"
+    done
   done
 done 
 
