@@ -1,12 +1,11 @@
 from matplotlib import pyplot as plt
 from collections import defaultdict
+import numpy as np
 import math
 import os
 
-# TODO changes for 1v1
-
 # Assign directory
-dir_list = [r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/1v1/in"]
+dir_list = [r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/speedup/in"]
 
 # Variables
 non_tracking_files = []
@@ -75,19 +74,18 @@ for name in non_tracking_files:
 #print(values)
 myList = sorted(values.items())
 x, y = zip(*myList)
-values = list(map(int, x)),  y
+values = list(map(int, x)),  list(y)
+
 print(values)
 
-plt.plot([0,1], [0,1], color="black")
+for i in range(0,2):
+    sum = np.log(values[1][i])
+    gmean = np.exp(sum.mean())
+    values[1][i] = gmean
 
-plt.scatter(values[1][0], values[1][1], color="red")
+speedup = values[1][0] / values[1][1]
 
-plt.xlim([0, 0.2])
-plt.ylim([0, 0.2])
-
-plt.title("1v1")
-plt.ylabel("4 threads")
-plt.xlabel("2 threads")
-
-fig_name = "tracking_output/1v1/out/1v1.png"
-plt.savefig(fig_name)
+print("")
+print("T_seq: "+str(values[1][0]))
+print("T_par: "+str(values[1][1]))
+print("Speedup: "+str(speedup))
