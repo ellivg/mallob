@@ -72,7 +72,7 @@ def get_values(wanted_keyword=str, index=int, median=bool, ylabel=str, fig=str):
             for line in finished_values:
                 values[label].append(line)
             
-            #print(values)
+            print(values)
 
     # Print non solved files
     if not non_tracking_files:
@@ -92,13 +92,13 @@ def get_values(wanted_keyword=str, index=int, median=bool, ylabel=str, fig=str):
     plt.boxplot(x=values[1], tick_labels=values[0])
 
     plt.xlim([0, len(values[0])+1])
-    plt.ylim([0, 0.3])
+    plt.ylim([0, 400000])
 
     plt.title("Compare if changing the number of threads \n does anything on a small example")
     plt.ylabel(ylabel)
     plt.xlabel("Number Of Threads")
 
-    fig_name = "tracking_output/diff_thr_nr/n20/diff_thr_nr_n20_"+fig+"_zoom.png"
+    fig_name = "tracking_output/diff_thr_nr/n20/diff_thr_nr_n20_"+fig+"_spanne.png"
     plt.savefig(fig_name)
 
 def time():
@@ -118,7 +118,7 @@ def expl():
     
     wanted_keyword = "explored nodes"
     index = -1
-    median = True
+    median = False
     ylabel = "Median Explored Nodes"
     fig = "expl"
     
@@ -138,5 +138,5 @@ def perc():
 
 # Run all
 #time()
-#expl()
-perc()
+expl()
+#perc()

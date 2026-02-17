@@ -1,7 +1,7 @@
 #!/bin/bash
 
 THREADS_PER_PROCESS=1 # Set to desired number
-INSTANCES=1 #TODO: Set to desired number (or count paths in paths.txt file)
+INSTANCES=3 #TODO: Set to desired number (or count paths in paths.txt file)
 
 echo "" 
 echo ""
@@ -66,7 +66,10 @@ for ((i=1; i<=INSTANCES; i++)); do
   echo "" 
   echo ""
 
-  for ((j=0; j<=4; j++)); do
+  for ((j=0; j<=5; j++)); do
+    if ((i==1 && j!=5)); then
+      continue
+    fi
     ((MPI_PROCESSES=2**$j)) #TODO: Set to desired number 
 
     echo "MPI_PROCESSES: $MPI_PROCESSES"
