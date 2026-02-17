@@ -71,7 +71,7 @@ for ((i=1; i<=INSTANCES; i++)); do
 
   for ((j=1; j<=1; j++)); do
     echo "Run Nr $j"
-    mpirun -np $MPI_PROCESSES --bind-to core --map-by ppr:${MPI_PROCESSES}:node:pe=${THREADS_PER_PROCESS} build/mallob $MY_MALLOB_OPTIONS >scripts/bnb/out/"file_"50"_"$j".txt"
+    mpirun -np $MPI_PROCESSES --bind-to core --map-by ppr:${MPI_PROCESSES}:node:pe=${THREADS_PER_PROCESS} build/mallob $MY_MALLOB_OPTIONS >scripts/bnb/out/"file_"30"_"$j".txt"
   done
 done 
 
