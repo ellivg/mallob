@@ -78,10 +78,10 @@ min_value = math.floor(min(min(sub_list) for sub_list in values[1]))
 plt.boxplot(x=values[1], tick_labels=values[0])
 
 plt.xlim([0, len(values[0])+1])
-plt.ylim([min_value, 1])
+plt.ylim([min_value, 0.5])
 
 plt.title("Auslastung bei einzigem Unterschied in der Job-Anzahl \n bei gleicher Maschinen- und Threadanzahl (2)")
 plt.xlabel("Jobanzahl")
 plt.ylabel("Auslastung")
 
-plt.savefig("tracking_output/basic/out/basic_boxplot_4.png")
+plt.savefig("tracking_output/basic/out/basic_boxplot_4_zoom.png")
