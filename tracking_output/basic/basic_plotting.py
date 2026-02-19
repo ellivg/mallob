@@ -75,7 +75,7 @@ print(values)
 max_value = math.ceil(max(max(sub_list) for sub_list in values[1]))
 min_value = math.floor(min(min(sub_list) for sub_list in values[1]))
 
-plt.boxplot(x=values[1], tick_labels=[20,25])
+plt.boxplot(x=values[1], tick_labels=values[0])
 
 plt.xlim([0, len(values[0])+1])
 plt.ylim([min_value, 1])

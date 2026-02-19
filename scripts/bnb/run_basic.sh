@@ -4,7 +4,7 @@
 
 MPI_PROCESSES=4 #TODO: Set to desired number 
 THREADS_PER_PROCESS=1 #TODO Set to desired number
-INSTANCES=4 #TODO: Set to desired number (or count paths in paths.txt file)
+INSTANCES=1 #TODO: Set to desired number (or count paths in paths.txt file)
 
 echo "" 
 echo ""
@@ -70,7 +70,7 @@ for ((i=1; i<=INSTANCES; i++)); do
   echo "" 
   echo ""
 
-  ((n = i*5 + 5))
+  ((n = 30))
 
   for ((j=1; j<=10; j++)); do
     echo "Run Nr $j"
