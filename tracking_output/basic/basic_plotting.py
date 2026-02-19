@@ -3,8 +3,12 @@ from collections import defaultdict
 import math
 import os
 
+#
+# Using: n10;15;20;25 m2 thr4
+#
+
 # Assign directory
-directory = r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/scripts/bnb/out/"
+directory = r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/basic/in/"
 
 # Variables
 non_tracking_files = []
@@ -42,7 +46,7 @@ for name in os.listdir(directory):
             line = line.split(" ")
             line = line[1:3] + line[4:]
             tracking_values.append(line)
-            print(line)
+            #print(line)
 
     # Probably later prettier but in basic the only necessary numbers are the timestamp line[0] and percentage line[-1]
     for line in tracking_values:
@@ -52,6 +56,8 @@ for name in os.listdir(directory):
     label = name.split("_")[1]
     for line in finished_values:
         values[label].append(line)
+    
+    #print(values)
     
 
 # Print non solved files
@@ -72,10 +78,10 @@ min_value = math.floor(min(min(sub_list) for sub_list in values[1]))
 plt.boxplot(x=values[1], tick_labels=[20,25])
 
 plt.xlim([0, len(values[0])+1])
-plt.ylim([min_value, 0.02])
+plt.ylim([min_value, 1])
 
 plt.title("Auslastung bei einzigem Unterschied in der Job-Anzahl \n bei gleicher Maschinen- und Threadanzahl (2)")
 plt.xlabel("Jobanzahl")
 plt.ylabel("Auslastung")
 
-plt.savefig("tracking_output/basic/basic_boxplot_2.png")
+plt.savefig("tracking_output/basic/out/basic_boxplot_4.png")

@@ -3,8 +3,8 @@
 #set -eu  #Abort if encounter error or unset variable
 
 MPI_PROCESSES=4 #TODO: Set to desired number 
-THREADS_PER_PROCESS=3 #TODO Set to desired number
-INSTANCES=5 #TODO: Set to desired number (or count paths in paths.txt file)
+THREADS_PER_PROCESS=1 #TODO Set to desired number
+INSTANCES=4 #TODO: Set to desired number (or count paths in paths.txt file)
 
 echo "" 
 echo ""
@@ -58,6 +58,7 @@ for ((i=1; i<=INSTANCES; i++)); do
   mkdir -p $MY_TMP
 
   MY_MALLOB_OPTIONS="$MALLOB_OPTIONS \
+    -T=300 \
     -mono=$INST_PATH \
     -log=$MY_LOG \
     -trace-dir=$MY_LOG \
@@ -69,15 +70,12 @@ for ((i=1; i<=INSTANCES; i++)); do
   echo "" 
   echo ""
 
-  if (($i < 5)); then
-    for ((j=1; j<=10; j++)); do
-      echo "Run Nr $j"
-      mpirun -np $MPI_PROCESSES --bind-to core --map-by ppr:${MPI_PROCESSES}:node:pe=${THREADS_PER_PROCESS} build/mallob $MY_MALLOB_OPTIONS >scripts/bnb/out/"file_"$i"_"$j".txt"
-    done
-  fi
-  if (($i == 5)); then
-    mpirun -np $MPI_PROCESSES --bind-to core --map-by ppr:${MPI_PROCESSES}:node:pe=${THREADS_PER_PROCESS} build/mallob $MY_MALLOB_OPTIONS >scripts/bnb/out/"file_"$i"_1.txt"
-  fi
+  ((n = i*5 + 5))
+
+  for ((j=1; j<=10; j++)); do
+    echo "Run Nr $j"
+    mpirun -np $MPI_PROCESSES --bind-to core --map-by ppr:${MPI_PROCESSES}:node:pe=${THREADS_PER_PROCESS} build/mallob $MY_MALLOB_OPTIONS >scripts/bnb/out/"file_"$n"_"$j".txt"
+  done
 done 
 
 echo ""
