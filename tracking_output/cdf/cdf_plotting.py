@@ -4,7 +4,8 @@ import math
 import os
 
 # Assign directory
-dir_list = [r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/cdf/in"]
+dir_list = [r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/cdf/in10",
+            r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/cdf/in20"]
 
 # Variables
 non_tracking_files = []
@@ -80,12 +81,12 @@ for i in range(0, len(values[0])):
     plt.plot(values[1][i], list(range(0,len(values[1][i]))), label=values[0][i])
 
 plt.xlim([0, 0.5])
-plt.ylim([0, 9])
+plt.ylim([0, 20])
 
-plt.title("CDF on currently 1 example (todo more)")
+plt.title("CDF on currently 2 examples (todo more)")
 plt.ylabel("# solved")
 plt.xlabel("time")
 plt.legend()
 
-fig_name = "tracking_output/cdf/out/plot.png"
+fig_name = "tracking_output/cdf/out/plot2_zoom.png"
 plt.savefig(fig_name)

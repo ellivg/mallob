@@ -1,0 +1,356 @@
+0.000 0 [WARN] Invalid argument "\"
+c 
+c Mallob -- a parallel and distributed platform for job scheduling, load balancing, and SAT solving
+c Copyright (C) 2019-2025 Dominik Schreiber, Karlsruhe Institute of Technology, Germany
+c 
+c 0.001 0 Program options: -0o=0 -J=0 -SJ=0 -T=300 -adc=0 -aim=1 -ajpc=0 -ans=0 -apidir=.api -ba=4 -bem=1 -bicg=4 -br=0 -c=1 -cbbs=0 -cblm=1 -cblp=100000 -cdel=2 -cecpm=0 -cf=0 -cfci=10 -cfm=3 -cg=1 -ch=0 -checksums=0 -cjc=0 -client-app-threads=1 -cm=0 -cmp=0 -colors=0 -compact-proof=0 -cpshm=0 -csm=3 -cusv=1 -dc=0 -decay-distr=1 -decay-max=200 -decay-mean=50 -decay-min=1 -decay-stddev=3 -decpm=0 -delaymonkey=0 -div-elim=0 -div-fanout=0 -div-init-shuffle=0 -div-native=1 -div-noise=0 -div-phases=1 -div-reduce=0 -div-seeds=1 -dpa=1 -ds=0 -evpt=350 -evu=0 -extmem-disk-dir=.disk -fapii=0 -fcll=1 -g=0 -gclls=0 -h=0 -huca=0 -iff=0 -ilbd=0 -inotify=1 -interface-fs=0 -interface-ipc=0 -ipm=1 -ivdh=1 -jc=1 -jcl=0 -jcup=0.1 -jjp=0 -jwl=0 -l=1 -latencymonkey=0 -lbdpi=0 -lbdpo=0 -ljpc=32 -log=scripts/bnb/out//1/ -mbt=8388608 -mcips=5 -md=0 -mempanic=1 -mjps=0 -mlbdps=2 -mlpt=50000000 -mmpi=0 -mono=instances/bnb/basic/bnb_n20_m2.cnf -mono-app=bnb -mscf=5 -nec=5 -no-import=0 -os=0 -otfc=0 -otfcm=1 -p=0.1 -pbbm=0 -plain-add-specific=0 -pph=0 -pre-cleanup=1 -prisma=0 -proof-debugging=0 -ps=0 -q=0 -qcll=8 -qlbdl=2 -randlbd=0 -reduce-delta=100 -reduce-max=980 -reduce-mean=700 -reduce-min=300 -reduce-stddev=150 -rlbd=3 -rpa=0 -rs=1 -rspaa=0 -s=0.5 -satsolver=C -scll=60 -scramble-lbds=0 -scsd=0 -seed=0 -sjd=0 -slbdl=60 -sleep=100 -spl=-1 -sswl=0 -t=1 -tmp=scripts/bnb/out//1/tmp/ -trace-dir=scripts/bnb/out//1/ -uninvert-proof=1 -v=2 -w=-1 -wam=10000 -warmup=0 -watchdog=1 -y=1 -yield=0 
+c 0.001 0 Cleaning up pre-execution
+c 0.001 0 Killing old subprocesses: "killall -9 build/mallob_sat_process 2>/dev/null"
+c 0.009 0 Killing old subprocesses: "killall -9 build/impcheck_parse 2>/dev/null"
+c 0.012 0 Killing old subprocesses: "killall -9 build/impcheck_check 2>/dev/null"
+c 0.014 0 Killing old subprocesses: "killall -9 build/impcheck_confirm 2>/dev/null"
+c 0.023 0 [WARN] Num bounce alternatives must be at most half the number of workers!
+c 0.023 0 [WARN] Falling back to safe value r=1.
+c 0.023 0 Set up API connector
+c 0.024 0 Machine color 0 with 1 total workers (my rank: 0)
+c 0.024 0 Assuming application "BNB" for mono job
+c 0.024 0 Introducing job #1 rev. 0 : r.#1:0 rev. 0 <- [0] born=0.024 hops=0 epoch=-1 matchId=-1 => [0]
+c 0.025 0 [bou] Initiliased to {lower, upper, best} = {6, -1, -1}.
+c 0.025 0 [start] Beginning: (Completion: 0) (Nr Tasks: 20) (Nr Machines: 2) (Tasks: 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3) (Machine Workloads: 0 0) (Machines: 0 0)
+c 0.025 0 Start waiting for other threads: 0
+c 0.105 0 [msg] Messages allowed starting now
+c 0.105 0 End waiting: 1
+c 0.105 0 [queue] In loop. Jobs left: 1
+c 0.106 0 [queue] In loop. Jobs left: 936
+c 0.106 0 [queue] In loop. Jobs left: 1804
+c 0.107 0 [queue] In loop. Jobs left: 2804
+c 0.108 0 [queue] In loop. Jobs left: 3794
+c 0.108 0 [queue] In loop. Jobs left: 4680
+c 0.109 0 [queue] In loop. Jobs left: 5535
+c 0.110 0 [queue] In loop. Jobs left: 6389
+c 0.111 0 [queue] In loop. Jobs left: 7375
+c 0.111 0 [queue] In loop. Jobs left: 8375
+c 0.112 0 [queue] In loop. Jobs left: 9375
+c 0.113 0 [queue] In loop. Jobs left: 10375
+c 0.114 0 [queue] In loop. Jobs left: 11375
+c 0.114 0 [queue] In loop. Jobs left: 12375
+c 0.115 0 [queue] In loop. Jobs left: 13369
+c 0.116 0 [queue] In loop. Jobs left: 14313
+c 0.116 0 [queue] In loop. Jobs left: 15236
+c 0.117 0 [queue] In loop. Jobs left: 16100
+c 0.118 0 [queue] In loop. Jobs left: 17024
+c 0.119 0 [queue] In loop. Jobs left: 17887
+c 0.119 0 [queue] In loop. Jobs left: 18776
+c 0.120 0 [queue] In loop. Jobs left: 19657
+c 0.121 0 [queue] In loop. Jobs left: 20510
+c 0.121 0 [queue] In loop. Jobs left: 21374
+c 0.122 0 [queue] In loop. Jobs left: 22293
+c 0.123 0 [queue] In loop. Jobs left: 23156
+c 0.124 0 [queue] In loop. Jobs left: 24013
+c 0.125 0 [queue] In loop. Jobs left: 24945
+c 0.125 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 6, -1} to all-reduction.
+c 0.126 0 [queue] In loop. Jobs left: 25945
+c 0.128 0 [queue] In loop. Jobs left: 26945
+c 0.129 0 [queue] In loop. Jobs left: 27945
+c 0.131 0 [queue] In loop. Jobs left: 28945
+c 0.132 0 [queue] In loop. Jobs left: 29945
+c 0.134 0 [queue] In loop. Jobs left: 30945
+c 0.135 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, -1}.
+c 0.135 0 [bou] Before reduction: {lower, upper, best} = {6, -1, -1}
+c 0.135 0 [bou] After redution: {lower, upper, best} = {6, -1, -1}
+c 0.135 0 [queue] In loop. Jobs left: 31945
+c 0.137 0 [queue] In loop. Jobs left: 32945
+c 0.138 0 [queue] In loop. Jobs left: 33945
+c 0.139 0 [queue] In loop. Jobs left: 34945
+c 0.141 0 [queue] In loop. Jobs left: 35945
+c 0.142 0 [queue] In loop. Jobs left: 36945
+c 0.144 0 [queue] In loop. Jobs left: 37945
+c 0.145 0 [queue] In loop. Jobs left: 38945
+c 0.147 0 [queue] In loop. Jobs left: 39945
+c 0.149 0 [queue] In loop. Jobs left: 40945
+c 0.150 0 [queue] In loop. Jobs left: 41945
+c 0.151 0 [queue] In loop. Jobs left: 42945
+c 0.153 0 [queue] In loop. Jobs left: 43945
+c 0.154 0 [queue] In loop. Jobs left: 44945
+c 0.156 0 [queue] In loop. Jobs left: 45945
+c 0.157 0 [queue] In loop. Jobs left: 46945
+c 0.158 0 [queue] In loop. Jobs left: 47945
+c 0.159 0 [queue] In loop. Jobs left: 48945
+c 0.160 0 [queue] In loop. Jobs left: 49935
+c 0.161 0 [queue] In loop. Jobs left: 50900
+c 0.162 0 [queue] In loop. Jobs left: 51859
+c 0.162 0 [queue] In loop. Jobs left: 52789
+c 0.163 0 [queue] In loop. Jobs left: 53743
+c 0.164 0 [queue] In loop. Jobs left: 54659
+c 0.164 0 [queue] In loop. Jobs left: 55540
+c 0.165 0 [queue] In loop. Jobs left: 56495
+c 0.166 0 [queue] In loop. Jobs left: 57413
+c 0.167 0 [queue] In loop. Jobs left: 58330
+c 0.167 0 [queue] In loop. Jobs left: 59228
+c 0.168 0 [queue] In loop. Jobs left: 60114
+c 0.168 0 [queue] In loop. Jobs left: 60970
+c 0.169 0 [queue] In loop. Jobs left: 61925
+c 0.170 0 [queue] In loop. Jobs left: 62843
+c 0.170 0 [queue] In loop. Jobs left: 63759
+c 0.171 0 [queue] In loop. Jobs left: 64656
+c 0.172 0 [queue] In loop. Jobs left: 65544
+c 0.172 0 [queue] In loop. Jobs left: 66399
+c 0.173 0 [queue] In loop. Jobs left: 67307
+c 0.174 0 [queue] In loop. Jobs left: 68184
+c 0.174 0 [queue] In loop. Jobs left: 69040
+c 0.175 0 [queue] In loop. Jobs left: 69941
+c 0.176 0 [queue] In loop. Jobs left: 70890
+c 0.177 0 [queue] In loop. Jobs left: 71806
+c 0.177 0 [queue] In loop. Jobs left: 72681
+c 0.178 0 [queue] In loop. Jobs left: 73593
+c 0.179 0 [queue] In loop. Jobs left: 74469
+c 0.179 0 [queue] In loop. Jobs left: 75354
+c 0.180 0 [queue] In loop. Jobs left: 76236
+c 0.181 0 [queue] In loop. Jobs left: 77088
+c 0.181 0 [queue] In loop. Jobs left: 77942
+c 0.182 0 [queue] In loop. Jobs left: 78865
+c 0.182 0 [queue] In loop. Jobs left: 79729
+c 0.183 0 [queue] In loop. Jobs left: 80591
+c 0.184 0 [queue] In loop. Jobs left: 81505
+c 0.185 0 [queue] In loop. Jobs left: 82450
+c 0.185 0 [queue] In loop. Jobs left: 83369
+c 0.186 0 [queue] In loop. Jobs left: 84238
+c 0.186 0 [queue] In loop. Jobs left: 85156
+c 0.187 0 [queue] In loop. Jobs left: 86020
+c 0.188 0 [queue] In loop. Jobs left: 86913
+c 0.188 0 [queue] In loop. Jobs left: 87781
+c 0.189 0 [queue] In loop. Jobs left: 88644
+c 0.190 0 [queue] In loop. Jobs left: 89511
+c 0.190 0 [queue] In loop. Jobs left: 90421
+c 0.191 0 [queue] In loop. Jobs left: 91284
+c 0.192 0 [queue] In loop. Jobs left: 92136
+c 0.192 0 [queue] In loop. Jobs left: 92378
+c 0.193 0 [queue] In loop. Jobs left: 92378
+c 0.193 0 [queue] In loop. Jobs left: 92378
+c 0.194 0 [queue] In loop. Jobs left: 92378
+c 0.195 0 [queue] In loop. Jobs left: 92378
+c 0.195 0 [queue] In loop. Jobs left: 92378
+c 0.196 0 [queue] In loop. Jobs left: 92378
+c 0.196 0 [queue] In loop. Jobs left: 92378
+c 0.197 0 [queue] In loop. Jobs left: 92378
+c 0.197 0 [queue] In loop. Jobs left: 92378
+c 0.198 0 [queue] In loop. Jobs left: 92378
+c 0.199 0 [queue] In loop. Jobs left: 92378
+c 0.199 0 [queue] In loop. Jobs left: 92378
+c 0.200 0 [queue] In loop. Jobs left: 92378
+c 0.200 0 [queue] In loop. Jobs left: 92378
+c 0.201 0 [queue] In loop. Jobs left: 92378
+c 0.201 0 [queue] In loop. Jobs left: 92378
+c 0.202 0 [queue] In loop. Jobs left: 92378
+c 0.202 0 [queue] In loop. Jobs left: 92378
+c 0.203 0 [queue] In loop. Jobs left: 92378
+c 0.203 0 [queue] In loop. Jobs left: 92378
+c 0.204 0 [queue] In loop. Jobs left: 92378
+c 0.205 0 [queue] In loop. Jobs left: 92378
+c 0.205 0 [queue] In loop. Jobs left: 92378
+c 0.206 0 [queue] In loop. Jobs left: 92378
+c 0.206 0 [queue] In loop. Jobs left: 92378
+c 0.207 0 [queue] In loop. Jobs left: 92378
+c 0.207 0 [queue] In loop. Jobs left: 92378
+c 0.208 0 [queue] In loop. Jobs left: 92378
+c 0.208 0 [queue] In loop. Jobs left: 92378
+c 0.209 0 [queue] In loop. Jobs left: 92378
+c 0.210 0 [queue] In loop. Jobs left: 92378
+c 0.210 0 [queue] In loop. Jobs left: 92378
+c 0.211 0 [queue] In loop. Jobs left: 92378
+c 0.211 0 [queue] In loop. Jobs left: 92378
+c 0.212 0 [queue] In loop. Jobs left: 92378
+c 0.213 0 [queue] In loop. Jobs left: 92378
+c 0.213 0 [queue] In loop. Jobs left: 92378
+c 0.214 0 [queue] In loop. Jobs left: 92378
+c 0.214 0 [queue] In loop. Jobs left: 92378
+c 0.215 0 [queue] In loop. Jobs left: 92378
+c 0.215 0 [queue] In loop. Jobs left: 92378
+c 0.216 0 [queue] In loop. Jobs left: 92378
+c 0.216 0 [queue] In loop. Jobs left: 92378
+c 0.217 0 [queue] In loop. Jobs left: 92378
+c 0.217 0 [queue] In loop. Jobs left: 92378
+c 0.218 0 [queue] In loop. Jobs left: 92378
+c 0.219 0 [queue] In loop. Jobs left: 92378
+c 0.219 0 [queue] In loop. Jobs left: 92378
+c 0.220 0 [queue] In loop. Jobs left: 92378
+c 0.220 0 [queue] In loop. Jobs left: 92378
+c 0.221 0 [queue] In loop. Jobs left: 92378
+c 0.221 0 [queue] In loop. Jobs left: 92378
+c 0.222 0 [queue] In loop. Jobs left: 92378
+c 0.222 0 [queue] In loop. Jobs left: 92378
+c 0.223 0 [queue] In loop. Jobs left: 92378
+c 0.223 0 [queue] In loop. Jobs left: 92378
+c 0.224 0 [queue] In loop. Jobs left: 92378
+c 0.225 0 [queue] In loop. Jobs left: 92378
+c 0.225 0 [queue] In loop. Jobs left: 92378
+c 0.226 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 6, -1} to all-reduction.
+c 0.226 0 [queue] In loop. Jobs left: 92378
+c 0.226 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, -1}.
+c 0.226 0 [bou] Before reduction: {lower, upper, best} = {6, -1, -1}
+c 0.226 0 [bou] After redution: {lower, upper, best} = {6, -1, -1}
+c 0.226 0 [queue] In loop. Jobs left: 92378
+c 0.227 0 [queue] In loop. Jobs left: 92378
+c 0.227 0 [queue] In loop. Jobs left: 92378
+c 0.228 0 [queue] In loop. Jobs left: 92378
+c 0.228 0 [queue] In loop. Jobs left: 92378
+c 0.229 0 [queue] In loop. Jobs left: 92378
+c 0.230 0 [queue] In loop. Jobs left: 92378
+c 0.230 0 [queue] In loop. Jobs left: 92378
+c 0.231 0 [queue] In loop. Jobs left: 92378
+c 0.231 0 [queue] In loop. Jobs left: 92378
+c 0.232 0 [queue] In loop. Jobs left: 92378
+c 0.232 0 [queue] In loop. Jobs left: 92378
+c 0.233 0 [queue] In loop. Jobs left: 92378
+c 0.233 0 [queue] In loop. Jobs left: 92378
+c 0.234 0 [queue] In loop. Jobs left: 92378
+c 0.234 0 [queue] In loop. Jobs left: 92378
+c 0.235 0 [queue] In loop. Jobs left: 92378
+c 0.236 0 [queue] In loop. Jobs left: 92378
+c 0.236 0 [queue] In loop. Jobs left: 92378
+c 0.237 0 [queue] In loop. Jobs left: 92378
+c 0.237 0 [queue] In loop. Jobs left: 92378
+c 0.238 0 [queue] In loop. Jobs left: 92378
+c 0.238 0 [queue] In loop. Jobs left: 92378
+c 0.239 0 [queue] In loop. Jobs left: 92378
+c 0.239 0 [queue] In loop. Jobs left: 92378
+c 0.240 0 [queue] In loop. Jobs left: 92378
+c 0.240 0 [queue] In loop. Jobs left: 92378
+c 0.241 0 [queue] In loop. Jobs left: 92378
+c 0.242 0 [queue] In loop. Jobs left: 92378
+c 0.242 0 [queue] In loop. Jobs left: 92378
+c 0.243 0 [queue] In loop. Jobs left: 92378
+c 0.243 0 [bou] Updated to {lower, upper, best} = {6, 54, 54}.
+c 0.243 0 [bou] Updated to {lower, upper, best} = {6, 51, 51}.
+c 0.243 0 [bou] Updated to {lower, upper, best} = {6, 48, 48}.
+c 0.243 0 [bou] Updated to {lower, upper, best} = {6, 45, 45}.
+c 0.243 0 [bou] Updated to {lower, upper, best} = {6, 42, 42}.
+c 0.243 0 [bou] Updated to {lower, upper, best} = {6, 39, 39}.
+c 0.243 0 [bou] Updated to {lower, upper, best} = {6, 36, 36}.
+c 0.243 0 [bou] Updated to {lower, upper, best} = {6, 33, 33}.
+c 0.243 0 [queue] In loop. Jobs left: 92051
+c 0.243 0 [bou] Updated to {lower, upper, best} = {6, 30, 30}.
+c 0.244 0 [queue] In loop. Jobs left: 91051
+c 0.244 0 [queue] In loop. Jobs left: 90051
+c 0.244 0 [queue] In loop. Jobs left: 89051
+c 0.245 0 [queue] In loop. Jobs left: 88051
+c 0.245 0 [queue] In loop. Jobs left: 87051
+c 0.246 0 [queue] In loop. Jobs left: 86051
+c 0.246 0 [queue] In loop. Jobs left: 85051
+c 0.247 0 [queue] In loop. Jobs left: 84051
+c 0.247 0 [queue] In loop. Jobs left: 83051
+c 0.247 0 [queue] In loop. Jobs left: 82051
+c 0.248 0 [queue] In loop. Jobs left: 81051
+c 0.248 0 [queue] In loop. Jobs left: 80051
+c 0.249 0 [queue] In loop. Jobs left: 79051
+c 0.249 0 [queue] In loop. Jobs left: 78051
+c 0.250 0 [queue] In loop. Jobs left: 77051
+c 0.250 0 [queue] In loop. Jobs left: 76051
+c 0.250 0 [queue] In loop. Jobs left: 75051
+c 0.251 0 [queue] In loop. Jobs left: 74051
+c 0.251 0 [queue] In loop. Jobs left: 73051
+c 0.252 0 [queue] In loop. Jobs left: 72051
+c 0.252 0 [queue] In loop. Jobs left: 71051
+c 0.252 0 [queue] In loop. Jobs left: 70051
+c 0.253 0 [queue] In loop. Jobs left: 69051
+c 0.253 0 [queue] In loop. Jobs left: 68051
+c 0.254 0 [queue] In loop. Jobs left: 67051
+c 0.254 0 [queue] In loop. Jobs left: 66051
+c 0.255 0 [queue] In loop. Jobs left: 65051
+c 0.255 0 [queue] In loop. Jobs left: 64051
+c 0.255 0 [queue] In loop. Jobs left: 63051
+c 0.256 0 [queue] In loop. Jobs left: 62051
+c 0.256 0 [queue] In loop. Jobs left: 61051
+c 0.257 0 [queue] In loop. Jobs left: 60051
+c 0.257 0 [queue] In loop. Jobs left: 59051
+c 0.257 0 [queue] In loop. Jobs left: 58051
+c 0.258 0 [queue] In loop. Jobs left: 57051
+c 0.258 0 [queue] In loop. Jobs left: 56051
+c 0.259 0 [queue] In loop. Jobs left: 55051
+c 0.259 0 [queue] In loop. Jobs left: 54051
+c 0.260 0 [queue] In loop. Jobs left: 53051
+c 0.260 0 [queue] In loop. Jobs left: 52051
+c 0.260 0 [queue] In loop. Jobs left: 51051
+c 0.261 0 [queue] In loop. Jobs left: 50051
+c 0.261 0 [queue] In loop. Jobs left: 49051
+c 0.262 0 [queue] In loop. Jobs left: 48051
+c 0.262 0 [queue] In loop. Jobs left: 47051
+c 0.262 0 [queue] In loop. Jobs left: 46051
+c 0.263 0 [queue] In loop. Jobs left: 45051
+c 0.263 0 [queue] In loop. Jobs left: 44051
+c 0.264 0 [queue] In loop. Jobs left: 43051
+c 0.264 0 [queue] In loop. Jobs left: 42051
+c 0.265 0 [queue] In loop. Jobs left: 41051
+c 0.265 0 [queue] In loop. Jobs left: 40051
+c 0.265 0 [queue] In loop. Jobs left: 39051
+c 0.266 0 [queue] In loop. Jobs left: 38051
+c 0.266 0 [queue] In loop. Jobs left: 37051
+c 0.267 0 [queue] In loop. Jobs left: 36051
+c 0.267 0 [queue] In loop. Jobs left: 35051
+c 0.268 0 [queue] In loop. Jobs left: 34051
+c 0.268 0 [queue] In loop. Jobs left: 33051
+c 0.268 0 [queue] In loop. Jobs left: 32051
+c 0.269 0 [queue] In loop. Jobs left: 31051
+c 0.269 0 [queue] In loop. Jobs left: 30051
+c 0.270 0 [queue] In loop. Jobs left: 29051
+c 0.270 0 [queue] In loop. Jobs left: 28051
+c 0.270 0 [queue] In loop. Jobs left: 27051
+c 0.271 0 [queue] In loop. Jobs left: 26051
+c 0.271 0 [queue] In loop. Jobs left: 25051
+c 0.272 0 [queue] In loop. Jobs left: 24051
+c 0.272 0 [queue] In loop. Jobs left: 23051
+c 0.273 0 [queue] In loop. Jobs left: 22051
+c 0.273 0 [queue] In loop. Jobs left: 21051
+c 0.273 0 [queue] In loop. Jobs left: 20051
+c 0.274 0 [queue] In loop. Jobs left: 19051
+c 0.274 0 [queue] In loop. Jobs left: 18051
+c 0.275 0 [queue] In loop. Jobs left: 17051
+c 0.275 0 [queue] In loop. Jobs left: 16051
+c 0.275 0 [queue] In loop. Jobs left: 15051
+c 0.276 0 [queue] In loop. Jobs left: 14051
+c 0.276 0 [queue] In loop. Jobs left: 13051
+c 0.277 0 [queue] In loop. Jobs left: 12051
+c 0.277 0 [queue] In loop. Jobs left: 11051
+c 0.277 0 [queue] In loop. Jobs left: 10051
+c 0.278 0 [queue] In loop. Jobs left: 9051
+c 0.278 0 [queue] In loop. Jobs left: 8051
+c 0.279 0 [queue] In loop. Jobs left: 7051
+c 0.279 0 [queue] In loop. Jobs left: 6051
+c 0.280 0 [queue] In loop. Jobs left: 5051
+c 0.280 0 [queue] In loop. Jobs left: 4051
+c 0.280 0 [queue] In loop. Jobs left: 3051
+c 0.281 0 [queue] In loop. Jobs left: 2051
+c 0.281 0 [queue] In loop. Jobs left: 1051
+c 0.282 0 [queue] In loop. Jobs left: 51
+c 0.282 0 [queue] Queue empty. Stopping Loop
+c 0.286 0 [msg] Tried requesting work but receiving rank was invalid or my own: 0
+c 0.296 0 [msg] Tried requesting work but receiving rank was invalid or my own: 0
+c 0.306 0 [msg] Tried requesting work but receiving rank was invalid or my own: 0
+c 0.316 0 [msg] Tried requesting work but receiving rank was invalid or my own: 0
+c 0.326 0 [msg] Tried requesting work but receiving rank was invalid or my own: 0
+c 0.326 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {0, 6, 30} to all-reduction.
+c 0.337 0 [msg] Tried requesting work but receiving rank was invalid or my own: 0
+c 0.337 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {0, 6, 30}.
+c 0.337 0 [red] Thread will stop search: nbActive = 0
+c 0.337 0 [red] & [bou] Thread has reportable solution: upperBound = 30, lowerBound = 6, currSolution = 30
+c 0.337 0 c [bou] Before reduction: {lower, upper, best} = {6, 30, 30}
+c 0.337 0 [bou] After redution: {lower, upper, best} = {6, 30, 30}
+0.337 0 [queue] Succesfully broken out of loop
+c 0.337 0 [tracking] Percentage of time spent working: 3 0.255112
+c 0.337 0 [tracking] Number of explored nodes: 284051
+c 0.337 0 [tracking] Number of queries in total: 6 - succesful: 0 - before msgs allowed: 0 - rank invalid: 6 - reply empty: 0
+c 0.337 0 [tracking] Time not spent working checking empty: 0 0.024852
+c 0.337 0 [tracking] Time not spent working waiting: 1 0.200086
+c 0.337 0 [tracking] Time not spent working getting work: 2 0.076706
+c 0.337 0 [tracking] Time not spent working after loop: 4 0.029976
+c 0.337 0 [tracking] Time spent on messages: 5 0.000661
+c 0.337 0 [tracking] Time spent on messages: 6 0.000000
+c 0.337 0 [tracking] 7 1.336685 0.311777
+c 0.347 0 [solved] _stopSearch = 1, _reportableSolution = 1
+c 0.347 0 [solved] End: (Completion: 1) (Nr Tasks: 20) (Nr Machines: 2) (Tasks:) (Machine Workloads: 30 30) (Machines: 3 3 3 3 3 3 3 3 3 3 0 3 3 3 3 3 3 3 3 3 3 0)
+c 0.347 0 [term] Terminated
+c 0.347 0 RESPONSE_TIME #1 0.323579 rev. 0
+c 0.347 0 SOLUTION #1 SATISFIABLE rev. 0
+s SATISFIABLE
+null
+c 0.391 0 Exiting happily
