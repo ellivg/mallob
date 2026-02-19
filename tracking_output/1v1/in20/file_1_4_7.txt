@@ -1,0 +1,1089 @@
+0.000 0 [WARN] Invalid argument "\"
+c 
+c Mallob -- a parallel and distributed platform for job scheduling, load balancing, and SAT solving
+c Copyright (C) 2019-2025 Dominik Schreiber, Karlsruhe Institute of Technology, Germany
+c 
+0.000 0 [WARN] Invalid argument "\"
+0.000 0 [WARN] Invalid argument "\"
+0.000 0 [WARN] Invalid argument "\"
+c 0.002 3 Cleaning up pre-execution
+c 0.002 3 Killing old subprocesses: "killall -9 build/mallob_sat_process 2>/dev/null"
+c 0.002 1 Cleaning up pre-execution
+c 0.002 1 Killing old subprocesses: "killall -9 build/mallob_sat_process 2>/dev/null"
+c 0.002 2 Cleaning up pre-execution
+c 0.002 2 Killing old subprocesses: "killall -9 build/mallob_sat_process 2>/dev/null"
+c 0.002 0 Program options: -0o=0 -J=0 -SJ=0 -T=300 -adc=0 -aim=1 -ajpc=0 -ans=0 -apidir=.api -ba=4 -bem=1 -bicg=4 -br=0 -c=1 -cbbs=0 -cblm=1 -cblp=100000 -cdel=2 -cecpm=0 -cf=0 -cfci=10 -cfm=3 -cg=1 -ch=0 -checksums=0 -cjc=0 -client-app-threads=1 -cm=0 -cmp=0 -colors=0 -compact-proof=0 -cpshm=0 -csm=3 -cusv=1 -dc=0 -decay-distr=1 -decay-max=200 -decay-mean=50 -decay-min=1 -decay-stddev=3 -decpm=0 -delaymonkey=0 -div-elim=0 -div-fanout=0 -div-init-shuffle=0 -div-native=1 -div-noise=0 -div-phases=1 -div-reduce=0 -div-seeds=1 -dpa=1 -ds=0 -evpt=350 -evu=0 -extmem-disk-dir=.disk -fapii=0 -fcll=1 -g=0 -gclls=0 -h=0 -huca=0 -iff=0 -ilbd=0 -inotify=1 -interface-fs=0 -interface-ipc=0 -ipm=1 -ivdh=1 -jc=1 -jcl=0 -jcup=0.1 -jjp=0 -jwl=0 -l=1 -latencymonkey=0 -lbdpi=0 -lbdpo=0 -ljpc=32 -log=scripts/bnb/out//1/ -mbt=8388608 -mcips=5 -md=0 -mempanic=1 -mjps=0 -mlbdps=2 -mlpt=50000000 -mmpi=0 -mono=instances/bnb/basic/bnb_n20_m2.cnf -mono-app=bnb -mscf=5 -nec=5 -no-import=0 -os=0 -otfc=0 -otfcm=1 -p=0.1 -pbbm=0 -plain-add-specific=0 -pph=0 -pre-cleanup=1 -prisma=0 -proof-debugging=0 -ps=0 -q=0 -qcll=8 -qlbdl=2 -randlbd=0 -reduce-delta=100 -reduce-max=980 -reduce-mean=700 -reduce-min=300 -reduce-stddev=150 -rlbd=3 -rpa=0 -rs=1 -rspaa=0 -s=0.5 -satsolver=C -scll=60 -scramble-lbds=0 -scsd=0 -seed=0 -sjd=0 -slbdl=60 -sleep=100 -spl=-1 -sswl=0 -t=1 -tmp=scripts/bnb/out//1/tmp/ -trace-dir=scripts/bnb/out//1/ -uninvert-proof=1 -v=2 -w=-1 -wam=10000 -warmup=0 -watchdog=1 -y=1 -yield=0 
+c 0.002 0 Cleaning up pre-execution
+c 0.002 0 Killing old subprocesses: "killall -9 build/mallob_sat_process 2>/dev/null"
+c 0.009 0 Killing old subprocesses: "killall -9 build/impcheck_parse 2>/dev/null"
+c 0.009 1 Killing old subprocesses: "killall -9 build/impcheck_parse 2>/dev/null"
+c 0.009 2 Killing old subprocesses: "killall -9 build/impcheck_parse 2>/dev/null"
+c 0.009 3 Killing old subprocesses: "killall -9 build/impcheck_parse 2>/dev/null"
+c 0.012 1 Killing old subprocesses: "killall -9 build/impcheck_check 2>/dev/null"
+c 0.012 0 Killing old subprocesses: "killall -9 build/impcheck_check 2>/dev/null"
+c 0.012 3 Killing old subprocesses: "killall -9 build/impcheck_check 2>/dev/null"
+c 0.012 2 Killing old subprocesses: "killall -9 build/impcheck_check 2>/dev/null"
+c 0.014 3 Killing old subprocesses: "killall -9 build/impcheck_confirm 2>/dev/null"
+c 0.014 1 Killing old subprocesses: "killall -9 build/impcheck_confirm 2>/dev/null"
+c 0.014 2 Killing old subprocesses: "killall -9 build/impcheck_confirm 2>/dev/null"
+c 0.014 0 Killing old subprocesses: "killall -9 build/impcheck_confirm 2>/dev/null"
+c 0.027 2 [WARN] Num bounce alternatives must be at most half the number of workers!
+c 0.027 1 [WARN] Num bounce alternatives must be at most half the number of workers!
+c 0.027 1 [WARN] Falling back to safe value r=2.
+c 0.027 3 [WARN] Num bounce alternatives must be at most half the number of workers!
+c 0.027 3 [WARN] Falling back to safe value r=2.
+c 0.027 2 [WARN] Falling back to safe value r=2.
+c 0.027 0 [WARN] Num bounce alternatives must be at most half the number of workers!
+c 0.027 0 [WARN] Falling back to safe value r=2.
+c 0.028 0 Set up API connector
+c 0.028 2 Machine color 0 with 4 total workers (my rank: 2)
+c 0.028 0 Machine color 0 with 4 total workers (my rank: 0)
+c 0.028 0 Assuming application "BNB" for mono job
+c 0.028 1 Machine color 0 with 4 total workers (my rank: 1)
+c 0.028 3 Machine color 0 with 4 total workers (my rank: 3)
+c 0.029 0 Introducing job #1 rev. 0 : r.#1:0 rev. 0 <- [0] born=0.029 hops=0 epoch=-1 matchId=-1 => [0]
+c 0.030 0 [bou] Initiliased to {lower, upper, best} = {6, -1, -1}.
+c 0.030 0 [start] Beginning: (Completion: 0) (Nr Tasks: 20) (Nr Machines: 2) (Tasks: 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3) (Machine Workloads: 0 0) (Machines: 0 0)
+c 0.030 0 Start waiting for other threads: 0
+c 0.039 2 [queue] Queue empty. Stopping Loop
+c 0.040 1 [queue] Queue empty. Stopping Loop
+c 0.040 2 [msg] Tried requesting work but messages are not allowed
+c 0.040 1 [msg] Tried requesting work but messages are not allowed
+c 0.040 3 [queue] Queue empty. Stopping Loop
+c 0.040 3 [msg] Tried requesting work but messages are not allowed
+c 0.041 2 [msg] Tried requesting work but messages are not allowed
+c 0.041 1 [msg] Tried requesting work but messages are not allowed
+c 0.041 3 [msg] Tried requesting work but messages are not allowed
+c 0.042 2 [msg] Tried requesting work but messages are not allowed
+c 0.042 1 [msg] Tried requesting work but messages are not allowed
+c 0.043 3 [msg] Tried requesting work but messages are not allowed
+c 0.044 2 [msg] Tried requesting work but messages are not allowed
+c 0.044 1 [msg] Tried requesting work but messages are not allowed
+c 0.045 3 [msg] Tried requesting work but messages are not allowed
+c 0.046 2 [msg] Tried requesting work but messages are not allowed
+c 0.047 1 [msg] Tried requesting work but messages are not allowed
+c 0.047 3 [msg] Tried requesting work but messages are not allowed
+c 0.049 2 [msg] Tried requesting work but messages are not allowed
+c 0.049 1 [msg] Tried requesting work but messages are not allowed
+c 0.049 3 [msg] Tried requesting work but messages are not allowed
+c 0.052 2 [msg] Tried requesting work but messages are not allowed
+c 0.052 1 [msg] Tried requesting work but messages are not allowed
+c 0.053 3 [msg] Tried requesting work but messages are not allowed
+c 0.056 2 [msg] Tried requesting work but messages are not allowed
+c 0.056 1 [msg] Tried requesting work but messages are not allowed
+c 0.056 3 [msg] Tried requesting work but messages are not allowed
+c 0.060 2 [msg] Tried requesting work but messages are not allowed
+c 0.060 1 [msg] Tried requesting work but messages are not allowed
+c 0.061 3 [msg] Tried requesting work but messages are not allowed
+c 0.065 2 [msg] Tried requesting work but messages are not allowed
+c 0.065 1 [msg] Tried requesting work but messages are not allowed
+c 0.066 3 [msg] Tried requesting work but messages are not allowed
+c 0.072 2 [msg] Tried requesting work but messages are not allowed
+c 0.072 1 [msg] Tried requesting work but messages are not allowed
+c 0.072 3 [msg] Tried requesting work but messages are not allowed
+c 0.079 2 [msg] Tried requesting work but messages are not allowed
+c 0.079 1 [msg] Tried requesting work but messages are not allowed
+c 0.080 3 [msg] Tried requesting work but messages are not allowed
+c 0.088 2 [msg] Tried requesting work but messages are not allowed
+c 0.088 1 [msg] Tried requesting work but messages are not allowed
+c 0.089 3 [msg] Tried requesting work but messages are not allowed
+c 0.098 2 [msg] Tried requesting work but messages are not allowed
+c 0.098 1 [msg] Tried requesting work but messages are not allowed
+c 0.099 3 [msg] Tried requesting work but messages are not allowed
+c 0.108 2 [msg] Tried requesting work but messages are not allowed
+c 0.108 1 [msg] Tried requesting work but messages are not allowed
+c 0.109 3 [msg] Tried requesting work but messages are not allowed
+c 0.109 0 [WARN] #1:0 job tree has size 0/4
+c 0.109 0 [msg] Messages allowed starting now
+c 0.109 0 End waiting: 1
+c 0.109 0 [queue] In loop. Jobs left: 1
+c 0.110 0 [queue] In loop. Jobs left: 936
+c 0.110 0 [queue] In loop. Jobs left: 1804
+c 0.111 0 [queue] In loop. Jobs left: 2804
+c 0.112 0 [queue] In loop. Jobs left: 3794
+c 0.112 0 [queue] In loop. Jobs left: 4680
+c 0.113 0 [queue] In loop. Jobs left: 5535
+c 0.114 0 [queue] In loop. Jobs left: 6389
+c 0.114 0 [queue] In loop. Jobs left: 7375
+c 0.115 0 [queue] In loop. Jobs left: 8375
+c 0.116 0 [queue] In loop. Jobs left: 9375
+c 0.116 0 [queue] In loop. Jobs left: 10375
+c 0.117 0 [queue] In loop. Jobs left: 11375
+c 0.118 0 [queue] In loop. Jobs left: 12375
+c 0.118 2 [msg] Messages allowed starting now
+c 0.118 1 [msg] Messages allowed starting now
+c 0.118 1 [msg] Requested work stealing from: 0
+c 0.118 1 [track] Starting tracker: 24
+c 0.118 2 [msg] Requested work stealing from: 0
+c 0.118 2 [track] Starting tracker: 24
+c 0.119 0 [msg] Message 31 with Payload 0 from 1 received.
+c 0.119 0 [msg] Processing work stealing query from 1
+c 0.119 0 [queue] In loop. Jobs left: 13369
+c 0.119 0 [msg] Message returned to sender 1 with payload[0] = 0 and _sent_work = 1
+c 0.119 0 [msg] Message 31 with Payload 0 from 2 received.
+c 0.119 0 [msg] Processing work stealing query from 2
+c 0.119 0 [msg] Message returned to sender 2 with payload[0] = 0 and _sent_work = 1
+c 0.119 1 [msg] Message 32 with Payload 0 from 0 received.
+c 0.119 1 [msg] Work stealing query successful. Filling work queue.
+c 0.119 1 [adding] Adding starting now
+c 0.119 1 [track] Stopping tracker: 24 -1261215584 -1235891008
+c 0.119 2 [msg] Message 32 with Payload 0 from 0 received.
+c 0.119 2 [msg] Work stealing query successful. Filling work queue.
+c 0.119 2 [adding] Adding starting now
+c 0.119 2 [track] Stopping tracker: 24 -59449392 -32494400
+c 0.119 2 [adding] Adding ending now
+c 0.119 2 [msg] Work queue is filled.
+c 0.119 1 [adding] Adding ending now
+c 0.119 1 [msg] Work queue is filled.
+c 0.119 1 [msg] Message returned to sender 0.
+c 0.119 2 [msg] Message returned to sender 0.
+c 0.119 2 [queue] Restarting loop: 2
+c 0.119 1 [queue] Restarting loop: 2
+c 0.119 1 [queue] In loop. Jobs left: 2
+c 0.119 2 [queue] In loop. Jobs left: 2
+c 0.119 1 [bou] Updated to {lower, upper, best} = {-1, 33, 33}.
+c 0.119 1 [bou] Updated to {lower, upper, best} = {-1, 30, 30}.
+c 0.119 2 [bou] Updated to {lower, upper, best} = {-1, 42, 42}.
+c 0.119 2 [bou] Updated to {lower, upper, best} = {-1, 39, 39}.
+c 0.119 1 [queue] Queue empty. Stopping Loop
+c 0.119 2 [bou] Updated to {lower, upper, best} = {-1, 36, 36}.
+c 0.119 2 [bou] Updated to {lower, upper, best} = {-1, 33, 33}.
+c 0.119 2 [queue] Queue empty. Stopping Loop
+c 0.119 0 [msg] Message 33 with Payload 0 from 1 received.
+c 0.119 0 [msg] Message 33 with Payload 0 from 2 received.
+c 0.119 3 [msg] Messages allowed starting now
+c 0.119 3 [msg] Requested work stealing from: 0
+c 0.119 3 [track] Starting tracker: 24
+c 0.119 0 [msg] Message 31 with Payload 0 from 3 received.
+c 0.119 0 [msg] Processing work stealing query from 3
+c 0.119 0 [msg] Message returned to sender 3 with payload[0] = 0 and _sent_work = 1
+c 0.119 3 [msg] Message 32 with Payload 0 from 0 received.
+c 0.119 3 [msg] Work stealing query successful. Filling work queue.
+c 0.119 3 [adding] Adding starting now
+c 0.119 3 [track] Stopping tracker: 24 1813209248 1838853312
+c 0.119 3 [adding] Adding ending now
+c 0.119 3 [msg] Work queue is filled.
+c 0.119 3 [queue] Restarting loop: 2
+c 0.119 3 [msg] Message returned to sender 0.
+c 0.119 3 [queue] In loop. Jobs left: 2
+c 0.119 3 [bou] Updated to {lower, upper, best} = {-1, 42, 42}.
+c 0.119 3 [bou] Updated to {lower, upper, best} = {-1, 39, 39}.
+c 0.119 3 [bou] Updated to {lower, upper, best} = {-1, 36, 36}.
+c 0.119 3 [bou] Updated to {lower, upper, best} = {-1, 33, 33}.
+c 0.119 3 [queue] Queue empty. Stopping Loop
+c 0.119 0 [msg] Message 33 with Payload 0 from 3 received.
+c 0.119 0 [queue] In loop. Jobs left: 14308
+c 0.120 0 [queue] In loop. Jobs left: 15231
+c 0.121 0 [queue] In loop. Jobs left: 16095
+c 0.122 0 [queue] In loop. Jobs left: 17018
+c 0.122 0 [queue] In loop. Jobs left: 17882
+c 0.123 0 [queue] In loop. Jobs left: 18771
+c 0.124 0 [queue] In loop. Jobs left: 19651
+c 0.124 0 [queue] In loop. Jobs left: 20503
+c 0.125 0 [queue] In loop. Jobs left: 21369
+c 0.126 0 [queue] In loop. Jobs left: 22287
+c 0.126 0 [queue] In loop. Jobs left: 23151
+c 0.127 0 [queue] In loop. Jobs left: 24006
+c 0.128 0 [queue] In loop. Jobs left: 24940
+c 0.128 2 [msg] Requested work stealing from: 3
+c 0.128 2 [track] Starting tracker: 24
+c 0.128 3 [msg] Message 31 with Payload 0 from 2 received.
+c 0.128 3 [msg] Processing work stealing query from 2
+c 0.128 3 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 0.128 3 [msg] Message 31 with Payload 0 from 1 received.
+c 0.128 3 [msg] Processing work stealing query from 1
+c 0.128 3 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.128 1 [msg] Requested work stealing from: 3
+c 0.128 1 [track] Starting tracker: 24
+c 0.128 1 [msg] Message 32 with Payload -1 from 3 received.
+c 0.128 1 [track] Stopping tracker: 24 0 375524151
+c 0.129 2 [msg] Message 32 with Payload -1 from 3 received.
+c 0.129 2 [track] Stopping tracker: 24 0 170887351
+c 0.129 3 [msg] Tried requesting work but receiving rank was invalid or my own: 3
+c 0.130 0 [queue] In loop. Jobs left: 25940
+c 0.131 0 [queue] In loop. Jobs left: 26940
+c 0.133 0 [queue] In loop. Jobs left: 27940
+c 0.134 0 [queue] In loop. Jobs left: 28940
+c 0.136 0 [queue] In loop. Jobs left: 29940
+c 0.137 0 [queue] In loop. Jobs left: 30940
+c 0.138 2 [msg] Tried requesting work but receiving rank was invalid or my own: 2
+c 0.138 2 [msg] Message 31 with Payload 0 from 1 received.
+c 0.138 2 [msg] Processing work stealing query from 1
+c 0.138 1 [msg] Requested work stealing from: 2
+c 0.138 1 [track] Starting tracker: 24
+c 0.138 1 [msg] Message 32 with Payload -1 from 2 received.
+c 0.138 1 [track] Stopping tracker: 24 0 375524151
+c 0.138 2 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.139 0 [queue] In loop. Jobs left: 31940
+c 0.139 3 [msg] Requested work stealing from: 2
+c 0.139 3 [track] Starting tracker: 24
+c 0.139 2 [msg] Message 31 with Payload 0 from 3 received.
+c 0.139 2 [msg] Processing work stealing query from 3
+c 0.139 2 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 0.139 3 [msg] Message 32 with Payload -1 from 2 received.
+c 0.139 3 [track] Stopping tracker: 24 0 1501031079
+c 0.139 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 6, -1} to all-reduction.
+c 0.140 0 [queue] In loop. Jobs left: 32940
+c 0.142 0 [queue] In loop. Jobs left: 33940
+c 0.143 0 [queue] In loop. Jobs left: 34940
+c 0.145 0 [queue] In loop. Jobs left: 35940
+c 0.146 0 [queue] In loop. Jobs left: 36940
+c 0.148 0 [queue] In loop. Jobs left: 37940
+c 0.149 2 [msg] Requested work stealing from: 1
+c 0.149 2 [track] Starting tracker: 24
+c 0.149 2 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {0, -1, 33} to all-reduction.
+c 0.149 1 [msg] Tried requesting work but receiving rank was invalid or my own: 1
+c 0.149 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {0, -1, 30} to all-reduction.
+c 0.149 1 [msg] Message 31 with Payload 0 from 2 received.
+c 0.149 1 [msg] Processing work stealing query from 2
+c 0.149 1 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 0.149 2 [msg] Message 32 with Payload -1 from 1 received.
+c 0.149 2 [track] Stopping tracker: 24 0 170887351
+c 0.149 0 TRY REDUCE 63 0 0 2 2
+c 0.149 0 REDUCE
+c 0.149 3 [msg] Requested work stealing from: 1
+c 0.149 3 [track] Starting tracker: 24
+c 0.149 3 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {0, -1, 33} to all-reduction.
+c 0.149 1 [msg] Message 31 with Payload 0 from 3 received.
+c 0.149 1 [msg] Processing work stealing query from 3
+c 0.149 1 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 0.149 3 [msg] Message 32 with Payload -1 from 1 received.
+c 0.149 3 [track] Stopping tracker: 24 0 1501031079
+c 0.149 0 [queue] In loop. Jobs left: 38940
+c 0.151 0 [queue] In loop. Jobs left: 39940
+c 0.152 0 [queue] In loop. Jobs left: 40940
+c 0.154 0 [queue] In loop. Jobs left: 41940
+c 0.155 0 [queue] In loop. Jobs left: 42940
+c 0.157 0 [queue] In loop. Jobs left: 43940
+c 0.158 0 [queue] In loop. Jobs left: 44940
+c 0.159 1 [msg] Requested work stealing from: 3
+c 0.159 1 [track] Starting tracker: 24
+c 0.159 2 [msg] Requested work stealing from: 3
+c 0.159 2 [track] Starting tracker: 24
+c 0.159 3 [msg] Message 31 with Payload 0 from 1 received.
+c 0.159 3 [msg] Processing work stealing query from 1
+c 0.159 3 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.159 1 [msg] Message 32 with Payload -1 from 3 received.
+c 0.159 1 [track] Stopping tracker: 24 0 375524151
+c 0.159 3 [msg] Message 31 with Payload 0 from 2 received.
+c 0.159 3 [msg] Processing work stealing query from 2
+c 0.159 3 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 0.159 2 [msg] Message 32 with Payload -1 from 3 received.
+c 0.159 2 [track] Stopping tracker: 24 0 170887351
+c 0.159 3 [msg] Tried requesting work but receiving rank was invalid or my own: 3
+c 0.159 0 [queue] In loop. Jobs left: 45940
+c 0.159 1 TRY REDUCE 63 0 0 2 2
+c 0.159 1 REDUCE
+c 0.160 0 TRY REDUCE 63 0 0 2 2
+c 0.160 0 REDUCE
+c 0.160 2 BROADCAST
+c 0.160 2 TRY REDUCE 64 0 0 2 2
+c 0.160 2 BROADCAST
+c 0.160 1 BROADCAST
+c 0.160 1 TRY REDUCE 64 0 0 2 2
+c 0.160 1 BROADCAST
+c 0.160 3 BROADCAST
+c 0.160 3 TRY REDUCE 64 0 0 2 2
+c 0.160 3 BROADCAST
+c 0.161 0 [queue] In loop. Jobs left: 46940
+c 0.162 0 [queue] In loop. Jobs left: 47940
+c 0.163 0 [queue] In loop. Jobs left: 48940
+c 0.164 0 [queue] In loop. Jobs left: 49930
+c 0.165 0 [queue] In loop. Jobs left: 50897
+c 0.166 0 [queue] In loop. Jobs left: 51855
+c 0.166 0 [queue] In loop. Jobs left: 52786
+c 0.167 0 [queue] In loop. Jobs left: 53739
+c 0.168 0 [queue] In loop. Jobs left: 54651
+c 0.168 0 [queue] In loop. Jobs left: 55528
+c 0.169 2 [msg] Requested work stealing from: 1
+c 0.169 2 [track] Starting tracker: 24
+c 0.169 2 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 30}.
+c 0.169 2 [bou] Before reduction: {lower, upper, best} = {-1, 33, 33}
+c 0.169 2 [bou] After redution: {lower, upper, best} = {6, 30, 33}
+c 0.169 1 [msg] Tried requesting work but receiving rank was invalid or my own: 1
+c 0.169 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 30}.
+c 0.169 1 [bou] Before reduction: {lower, upper, best} = {-1, 30, 30}
+c 0.169 1 [bou] After redution: {lower, upper, best} = {6, 30, 30}
+c 0.169 1 [msg] Message 31 with Payload 0 from 2 received.
+c 0.169 1 [msg] Processing work stealing query from 2
+c 0.169 1 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 0.169 2 [msg] Message 32 with Payload -1 from 1 received.
+c 0.169 2 [track] Stopping tracker: 24 0 170887351
+c 0.169 0 [queue] In loop. Jobs left: 56491
+c 0.169 3 [msg] Requested work stealing from: 1
+c 0.169 3 [track] Starting tracker: 24
+c 0.169 3 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 30}.
+c 0.169 1 [msg] Message 31 with Payload 0 from 3 received.
+c 0.169 1 [msg] Processing work stealing query from 3
+c 0.169 1 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 0.169 3 [bou] Before reduction: {lower, upper, best} = {-1, 33, 33}
+c 0.169 3 [bou] After redution: {lower, upper, best} = {6, 30, 33}
+c 0.169 3 [msg] Message 32 with Payload -1 from 1 received.
+c 0.169 3 [track] Stopping tracker: 24 0 1501031079
+c 0.170 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 30}.
+c 0.170 0 [bou] Before reduction: {lower, upper, best} = {6, -1, -1}
+c 0.170 0 [bou] After redution: {lower, upper, best} = {6, 30, -1}
+c 0.170 0 [queue] In loop. Jobs left: 57403
+c 0.171 0 [queue] In loop. Jobs left: 58326
+c 0.171 0 [queue] In loop. Jobs left: 59223
+c 0.172 0 [queue] In loop. Jobs left: 60106
+c 0.173 0 [queue] In loop. Jobs left: 60958
+c 0.173 0 [queue] In loop. Jobs left: 61919
+c 0.174 0 [queue] In loop. Jobs left: 62831
+c 0.175 0 [queue] In loop. Jobs left: 63754
+c 0.175 0 [queue] In loop. Jobs left: 64652
+c 0.176 0 [queue] In loop. Jobs left: 65534
+c 0.176 0 [queue] In loop. Jobs left: 66388
+c 0.177 0 [queue] In loop. Jobs left: 67294
+c 0.178 0 [queue] In loop. Jobs left: 68175
+c 0.179 0 [queue] In loop. Jobs left: 69028
+c 0.179 2 [msg] Requested work stealing from: 3
+c 0.179 2 [track] Starting tracker: 24
+c 0.179 3 [msg] Message 31 with Payload 0 from 2 received.
+c 0.179 3 [msg] Processing work stealing query from 2
+c 0.179 1 [msg] Requested work stealing from: 3
+c 0.179 1 [track] Starting tracker: 24
+c 0.179 3 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 0.179 3 [msg] Message 31 with Payload 0 from 1 received.
+c 0.179 3 [msg] Processing work stealing query from 1
+c 0.179 3 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.179 2 [msg] Message 32 with Payload -1 from 3 received.
+c 0.179 2 [track] Stopping tracker: 24 0 170887351
+c 0.179 1 [msg] Message 32 with Payload -1 from 3 received.
+c 0.179 1 [track] Stopping tracker: 24 0 375524151
+c 0.179 3 [msg] Tried requesting work but receiving rank was invalid or my own: 3
+c 0.179 0 [queue] In loop. Jobs left: 69936
+c 0.180 0 [queue] In loop. Jobs left: 70882
+c 0.181 0 [queue] In loop. Jobs left: 71802
+c 0.182 0 [queue] In loop. Jobs left: 72670
+c 0.182 0 [queue] In loop. Jobs left: 73589
+c 0.183 0 [queue] In loop. Jobs left: 74457
+c 0.184 0 [queue] In loop. Jobs left: 75346
+c 0.184 0 [queue] In loop. Jobs left: 76227
+c 0.185 0 [queue] In loop. Jobs left: 77080
+c 0.186 0 [queue] In loop. Jobs left: 77939
+c 0.186 0 [queue] In loop. Jobs left: 78858
+c 0.187 0 [queue] In loop. Jobs left: 79725
+c 0.188 0 [queue] In loop. Jobs left: 80580
+c 0.188 0 [queue] In loop. Jobs left: 81502
+c 0.189 2 [msg] Tried requesting work but receiving rank was invalid or my own: 2
+c 0.189 0 [queue] In loop. Jobs left: 82444
+c 0.189 1 [msg] Requested work stealing from: 2
+c 0.189 1 [track] Starting tracker: 24
+c 0.189 2 [msg] Message 31 with Payload 0 from 1 received.
+c 0.189 2 [msg] Processing work stealing query from 1
+c 0.189 2 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.189 1 [msg] Message 32 with Payload -1 from 2 received.
+c 0.189 1 [track] Stopping tracker: 24 0 375524151
+c 0.189 3 [msg] Requested work stealing from: 2
+c 0.189 3 [track] Starting tracker: 24
+c 0.189 2 [msg] Message 31 with Payload 0 from 3 received.
+c 0.189 2 [msg] Processing work stealing query from 3
+c 0.189 2 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 0.189 3 [msg] Message 32 with Payload -1 from 2 received.
+c 0.189 3 [track] Stopping tracker: 24 0 1501031079
+c 0.190 0 [queue] In loop. Jobs left: 83361
+c 0.190 0 [queue] In loop. Jobs left: 84235
+c 0.191 0 [queue] In loop. Jobs left: 85148
+c 0.192 0 [queue] In loop. Jobs left: 86008
+c 0.192 0 [queue] In loop. Jobs left: 86908
+c 0.193 0 [queue] In loop. Jobs left: 87773
+c 0.193 0 [queue] In loop. Jobs left: 88639
+c 0.194 0 [queue] In loop. Jobs left: 89508
+c 0.195 0 [queue] In loop. Jobs left: 90414
+c 0.196 0 [queue] In loop. Jobs left: 91272
+c 0.196 0 [queue] In loop. Jobs left: 92124
+c 0.197 0 [queue] In loop. Jobs left: 92336
+c 0.197 0 [queue] In loop. Jobs left: 92336
+c 0.198 0 [queue] In loop. Jobs left: 92336
+c 0.199 0 [queue] In loop. Jobs left: 92336
+c 0.199 2 [msg] Requested work stealing from: 0
+c 0.199 2 [track] Starting tracker: 24
+c 0.199 1 [msg] Requested work stealing from: 0
+c 0.199 1 [track] Starting tracker: 24
+c 0.199 0 [msg] Message 31 with Payload 0 from 1 received.
+c 0.199 0 [msg] Processing work stealing query from 1
+c 0.199 0 [msg] Message returned to sender 1 with payload[0] = 0 and _sent_work = 1
+c 0.199 0 [msg] Message 31 with Payload 0 from 2 received.
+c 0.199 0 [msg] Processing work stealing query from 2
+c 0.199 0 [msg] Message returned to sender 2 with payload[0] = 0 and _sent_work = 1
+c 0.199 0 [queue] In loop. Jobs left: 92332
+c 0.199 1 [msg] Message 32 with Payload 0 from 0 received.
+c 0.199 1 [msg] Work stealing query successful. Filling work queue.
+c 0.199 1 [adding] Adding starting now
+c 0.199 1 [track] Stopping tracker: 24 -1261206912 -1235891008
+c 0.199 1 [adding] Adding ending now
+c 0.199 1 [msg] Work queue is filled.
+c 0.199 1 c [msg] Message returned to sender 0.
+0.199 1 [queue] Restarting loop: 2
+c 0.199 1 [queue] Queue empty. Stopping Loop
+c 0.199 2 [msg] Message 32 with Payload 0 from 0 received.
+c 0.199 2 [msg] Work stealing query successful. Filling work queue.
+c 0.199 2 [adding] Adding starting now
+c 0.199 2 [track] Stopping tracker: 24 -59538808 -32494400
+c 0.199 2 [adding] Adding ending now
+c 0.199 2 [msg] Work queue is filled.
+c 0.199 2 [msg] Message returned to sender 0.
+c 0.199 2 [queue] Restarting loop: 2
+c 0.199 0 [msg] Message 33 with Payload 0 from 1 received.
+c 0.199 0 [msg] Message 33 with Payload 0 from 2 received.
+c 0.199 2 [queue] Queue empty. Stopping Loop
+c 0.199 3 [msg] Requested work stealing from: 0
+c 0.199 3 [track] Starting tracker: 24
+c 0.199 0 [msg] Message 31 with Payload 0 from 3 received.
+c 0.199 0 [msg] Processing work stealing query from 3
+c 0.199 0 [msg] Message returned to sender 3 with payload[0] = 0 and _sent_work = 1
+c 0.199 3 [msg] Message 32 with Payload 0 from 0 received.
+c 0.199 3 [msg] Work stealing query successful. Filling work queue.
+c 0.199 3 [adding] Adding starting now
+c 0.199 3 [track] Stopping tracker: 24 1813217928 1838853312
+c 0.199 3 [adding] Adding ending now
+c 0.199 3 [msg] Work queue is filled.
+c c 0.199 3 [queue] Restarting loop: 2
+0.199 3 [msg] Message returned to sender 0.
+c 0.200 3 [queue] Queue empty. Stopping Loop
+c 0.200 0 [msg] Message 33 with Payload 0 from 3 received.
+c 0.200 0 [queue] In loop. Jobs left: 92330
+c 0.200 0 [queue] In loop. Jobs left: 92330
+c 0.201 0 [queue] In loop. Jobs left: 92330
+c 0.201 0 [queue] In loop. Jobs left: 92330
+c 0.202 0 [queue] In loop. Jobs left: 92330
+c 0.203 0 [queue] In loop. Jobs left: 92330
+c 0.203 0 [queue] In loop. Jobs left: 92330
+c 0.204 0 [queue] In loop. Jobs left: 92330
+c 0.204 0 [queue] In loop. Jobs left: 92330
+c 0.205 0 [queue] In loop. Jobs left: 92330
+c 0.205 0 [queue] In loop. Jobs left: 92330
+c 0.206 0 [queue] In loop. Jobs left: 92330
+c 0.206 0 [queue] In loop. Jobs left: 92330
+c 0.207 0 [queue] In loop. Jobs left: 92330
+c 0.208 0 [queue] In loop. Jobs left: 92330
+c 0.208 0 [queue] In loop. Jobs left: 92330
+c 0.209 0 [queue] In loop. Jobs left: 92330
+c 0.209 2 [msg] Requested work stealing from: 1
+c 0.209 2 [track] Starting tracker: 24
+c 0.209 1 [msg] Tried requesting work but receiving rank was invalid or my own: 1
+c 0.209 1 [msg] Message 31 with Payload 0 from 2 received.
+c 0.209 1 [msg] Processing work stealing query from 2
+c 0.209 1 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 0.209 2 [msg] Message 32 with Payload -1 from 1 received.
+c 0.209 2 [track] Stopping tracker: 24 0 170887351
+c 0.209 0 [queue] In loop. Jobs left: 92330
+c 0.209 3 [msg] Requested work stealing from: 1
+c 0.209 3 [track] Starting tracker: 24
+c 0.209 1 [msg] Message 31 with Payload 0 from 3 received.
+c 0.209 1 [msg] Processing work stealing query from 3
+c 0.209 1 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 0.210 3 [msg] Message 32 with Payload -1 from 1 received.
+c 0.210 3 [track] Stopping tracker: 24 0 1501031079
+c 0.210 0 [queue] In loop. Jobs left: 92330
+c 0.210 0 [queue] In loop. Jobs left: 92330
+c 0.211 0 [queue] In loop. Jobs left: 92330
+c 0.212 0 [queue] In loop. Jobs left: 92330
+c 0.212 0 [queue] In loop. Jobs left: 92330
+c 0.213 0 [queue] In loop. Jobs left: 92330
+c 0.213 0 [queue] In loop. Jobs left: 92330
+c 0.214 0 [queue] In loop. Jobs left: 92330
+c 0.215 0 [queue] In loop. Jobs left: 92330
+c 0.215 0 [queue] In loop. Jobs left: 92330
+c 0.216 0 [queue] In loop. Jobs left: 92330
+c 0.216 0 [queue] In loop. Jobs left: 92330
+c 0.217 0 [queue] In loop. Jobs left: 92330
+c 0.217 0 [queue] In loop. Jobs left: 92330
+c 0.218 0 [queue] In loop. Jobs left: 92330
+c 0.218 0 [queue] In loop. Jobs left: 92330
+c 0.219 0 [queue] In loop. Jobs left: 92330
+c 0.219 2 [msg] Requested work stealing from: 1
+c 0.219 2 [track] Starting tracker: 24
+c 0.219 1 [msg] Tried requesting work but receiving rank was invalid or my own: 1
+c 0.219 1 [msg] Message 31 with Payload 0 from 2 received.
+c 0.219 1 [msg] Processing work stealing query from 2
+c 0.219 1 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 0.219 2 [msg] Message 32 with Payload -1 from 1 received.
+c 0.219 2 [track] Stopping tracker: 24 0 170887351
+c 0.220 0 [queue] In loop. Jobs left: 92330
+c 0.220 3 [msg] Requested work stealing from: 1
+c 0.220 3 [track] Starting tracker: 24
+c 0.220 1 [msg] Message 31 with Payload 0 from 3 received.
+c 0.220 1 [msg] Processing work stealing query from 3
+c 0.220 1 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 0.220 3 [msg] Message 32 with Payload -1 from 1 received.
+c 0.220 3 [track] Stopping tracker: 24 0 1501031079
+c 0.220 0 [queue] In loop. Jobs left: 92330
+c 0.221 0 [queue] In loop. Jobs left: 92330
+c 0.221 0 [queue] In loop. Jobs left: 92330
+c 0.222 0 [queue] In loop. Jobs left: 92330
+c 0.222 0 [queue] In loop. Jobs left: 92330
+c 0.223 0 [queue] In loop. Jobs left: 92330
+c 0.223 0 [queue] In loop. Jobs left: 92330
+c 0.224 0 [queue] In loop. Jobs left: 92330
+c 0.225 0 [queue] In loop. Jobs left: 92330
+c 0.225 0 [queue] In loop. Jobs left: 92330
+c 0.226 0 [queue] In loop. Jobs left: 92330
+c 0.226 0 [queue] In loop. Jobs left: 92330
+c 0.227 0 [queue] In loop. Jobs left: 92330
+c 0.227 0 [queue] In loop. Jobs left: 92330
+c 0.228 0 [queue] In loop. Jobs left: 92330
+c 0.228 0 [queue] In loop. Jobs left: 92330
+c 0.229 0 [queue] In loop. Jobs left: 92330
+c 0.229 2 [msg] Tried requesting work but receiving rank was invalid or my own: 2
+c 0.229 1 [msg] Requested work stealing from: 2
+c 0.229 1 [track] Starting tracker: 24
+c 0.229 2 [msg] Message 31 with Payload 0 from 1 received.
+c 0.229 2 [msg] Processing work stealing query from 1
+c 0.229 2 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.229 1 [msg] Message 32 with Payload -1 from 2 received.
+c 0.229 1 [track] Stopping tracker: 24 0 375524151
+c 0.230 0 [queue] In loop. Jobs left: 92330
+c 0.230 3 [msg] Requested work stealing from: 2
+c 0.230 3 [track] Starting tracker: 24
+c 0.230 2 [msg] Message 31 with Payload 0 from 3 received.
+c 0.230 2 [msg] Processing work stealing query from 3
+c 0.230 2 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 0.230 3 [msg] Message 32 with Payload -1 from 2 received.
+c 0.230 3 [track] Stopping tracker: 24 0 1501031079
+c 0.230 0 [queue] In loop. Jobs left: 92330
+c 0.231 0 [queue] In loop. Jobs left: 92330
+c 0.231 0 [queue] In loop. Jobs left: 92330
+c 0.232 0 [queue] In loop. Jobs left: 92330
+c 0.232 0 [queue] In loop. Jobs left: 92330
+c 0.233 0 [queue] In loop. Jobs left: 92330
+c 0.234 0 [queue] In loop. Jobs left: 92330
+c 0.234 0 [queue] In loop. Jobs left: 92330
+c 0.235 0 [queue] In loop. Jobs left: 92330
+c 0.235 0 [queue] In loop. Jobs left: 92330
+c 0.236 0 [queue] In loop. Jobs left: 92330
+c 0.236 0 [queue] In loop. Jobs left: 92330
+c 0.237 0 [queue] In loop. Jobs left: 92330
+c 0.237 0 [queue] In loop. Jobs left: 92330
+c 0.238 0 [queue] In loop. Jobs left: 92330
+c 0.239 0 [queue] In loop. Jobs left: 92330
+c 0.239 0 [queue] In loop. Jobs left: 92330
+c 0.239 2 [msg] Requested work stealing from: 3
+c 0.239 2 [track] Starting tracker: 24
+c 0.239 1 [msg] Requested work stealing from: 3
+c 0.239 1 [track] Starting tracker: 24
+c 0.239 3 [msg] Message 31 with Payload 0 from 1 received.
+c 0.239 3 [msg] Processing work stealing query from 1
+c 0.239 3 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.239 3 [msg] Message 31 with Payload 0 from 2 received.
+c 0.239 3 [msg] Processing work stealing query from 2
+c 0.239 3 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 0.239 2 [msg] Message 32 with Payload -1 from 3 received.
+c 0.239 2 [track] Stopping tracker: 24 0 170887351
+c 0.239 1 [msg] Message 32 with Payload -1 from 3 received.
+c 0.239 1 [track] Stopping tracker: 24 0 375524151
+c 0.240 0 [queue] In loop. Jobs left: 92330
+c 0.240 3 [msg] Tried requesting work but receiving rank was invalid or my own: 3
+c 0.240 0 [queue] In loop. Jobs left: 92330
+c 0.241 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 6, 30} to all-reduction.
+c 0.241 0 [queue] In loop. Jobs left: 92330
+c 0.241 0 [queue] In loop. Jobs left: 92330
+c 0.242 0 [queue] In loop. Jobs left: 92330
+c 0.243 0 [queue] In loop. Jobs left: 92330
+c 0.243 0 [queue] In loop. Jobs left: 92330
+c 0.244 0 [queue] In loop. Jobs left: 92330
+c 0.244 0 [queue] In loop. Jobs left: 92330
+c 0.245 0 [queue] In loop. Jobs left: 92330
+c 0.245 0 [queue] In loop. Jobs left: 92330
+c 0.246 0 [queue] In loop. Jobs left: 92330
+c 0.246 0 [queue] In loop. Jobs left: 92330
+c 0.247 0 [queue] In loop. Jobs left: 92330
+c 0.248 0 [queue] In loop. Jobs left: 92330
+c 0.248 0 [queue] In loop. Jobs left: 92330
+c 0.248 0 [bou] Updated to {lower, upper, best} = {6, 30, 54}.
+c 0.248 0 [bou] Updated to {lower, upper, best} = {6, 30, 51}.
+c 0.248 0 [bou] Updated to {lower, upper, best} = {6, 30, 48}.
+c 0.248 0 [bou] Updated to {lower, upper, best} = {6, 30, 45}.
+c 0.248 0 [bou] Updated to {lower, upper, best} = {6, 30, 42}.
+c 0.248 0 [bou] Updated to {lower, upper, best} = {6, 30, 39}.
+c 0.248 0 [bou] Updated to {lower, upper, best} = {6, 30, 36}.
+c 0.249 0 [bou] Updated to {lower, upper, best} = {6, 30, 33}.
+c 0.249 0 [queue] In loop. Jobs left: 91916
+c 0.249 0 [bou] Updated to {lower, upper, best} = {6, 30, 30}.
+c 0.249 0 [queue] In loop. Jobs left: 90916
+c 0.249 2 [msg] Tried requesting work but receiving rank was invalid or my own: 2
+c 0.249 2 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {0, 6, 30} to all-reduction.
+c 0.249 1 [msg] Requested work stealing from: 2
+c 0.249 1 [track] Starting tracker: 24
+c 0.249 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {0, 6, 30} to all-reduction.
+c 0.249 2 [msg] Message 31 with Payload 0 from 1 received.
+c 0.249 2 [msg] Processing work stealing query from 1
+c 0.249 2 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.249 1 [msg] Message 32 with Payload -1 from 2 received.
+c 0.249 1 [track] Stopping tracker: 24 0 375524151
+c 0.249 0 [queue] In loop. Jobs left: 89916
+c 0.250 3 [msg] Requested work stealing from: 2
+c 0.250 3 [track] Starting tracker: 24
+c 0.250 3 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {0, 6, 30} to all-reduction.
+c 0.250 0 [queue] In loop. Jobs left: 88916
+c 0.250 2 [msg] Message 31 with Payload 0 from 3 received.
+c 0.250 2 [msg] Processing work stealing query from 3
+c 0.250 2 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 0.250 3 [msg] Message 32 with Payload -1 from 2 received.
+c 0.250 3 [track] Stopping tracker: 24 0 1501031079
+c 0.250 0 [queue] In loop. Jobs left: 87916
+c 0.251 0 [queue] In loop. Jobs left: 86916
+c 0.251 0 [queue] In loop. Jobs left: 85916
+c 0.252 0 [queue] In loop. Jobs left: 84916
+c 0.252 0 [queue] In loop. Jobs left: 83916
+c 0.253 0 [queue] In loop. Jobs left: 82916
+c 0.253 0 [queue] In loop. Jobs left: 81916
+c 0.253 0 [queue] In loop. Jobs left: 80916
+c 0.254 0 [queue] In loop. Jobs left: 79916
+c 0.254 0 [queue] In loop. Jobs left: 78916
+c 0.255 0 [queue] In loop. Jobs left: 77916
+c 0.255 0 [queue] In loop. Jobs left: 76916
+c 0.256 0 [queue] In loop. Jobs left: 75916
+c 0.256 0 [queue] In loop. Jobs left: 74916
+c 0.256 0 [queue] In loop. Jobs left: 73916
+c 0.257 0 [queue] In loop. Jobs left: 72916
+c 0.257 0 [queue] In loop. Jobs left: 71916
+c 0.258 0 [queue] In loop. Jobs left: 70916
+c 0.258 0 [queue] In loop. Jobs left: 69916
+c 0.258 0 [queue] In loop. Jobs left: 68916
+c 0.259 0 [queue] In loop. Jobs left: 67916
+c 0.259 0 [queue] In loop. Jobs left: 66916
+c 0.259 1 [msg] Requested work stealing from: 3
+c 0.259 1 [track] Starting tracker: 24
+c 0.259 2 [msg] Requested work stealing from: 3
+c 0.259 2 [track] Starting tracker: 24
+c 0.259 3 [msg] Message 31 with Payload 0 from 1 received.
+c 0.259 3 [msg] Processing work stealing query from 1
+c 0.259 3 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.259 0 TRY REDUCE 63 0 0 2 2
+c 0.259 0 REDUCE
+c 0.259 3 [msg] Message 31 with Payload 0 from 2 received.
+c 0.259 3 [msg] Processing work stealing query from 2
+c 0.259 3 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 0.259 1 [msg] Message 32 with Payload -1 from 3 received.
+c 0.259 1 [track] Stopping tracker: 24 0 375524151
+c 0.259 2 [msg] Message 32 with Payload -1 from 3 received.
+c 0.259 2 [track] Stopping tracker: 24 0 170887351
+c 0.260 0 [queue] In loop. Jobs left: 65916
+c 0.260 3 [msg] Tried requesting work but receiving rank was invalid or my own: 3
+c 0.260 1 TRY REDUCE 63 0 0 2 2
+c 0.260 1 REDUCE
+c 0.260 0 TRY REDUCE 63 0 0 2 2
+c 0.260 0 REDUCE
+c 0.260 2 BROADCAST
+c 0.260 2 TRY REDUCE 64 0 0 2 2
+c 0.260 2 BROADCAST
+c 0.260 0 [queue] In loop. Jobs left: 64916
+c 0.260 1 BROADCAST
+c 0.260 1 TRY REDUCE 64 0 0 2 2
+c 0.260 1 BROADCAST
+c 0.260 3 BROADCAST
+c 0.260 3 TRY REDUCE 64 0 0 2 2
+c 0.260 3 BROADCAST
+c 0.261 0 [queue] In loop. Jobs left: 63916
+c 0.261 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 30}.
+c 0.261 0 [bou] Before reduction: {lower, upper, best} = {6, 30, 30}
+c 0.261 0 [bou] After redution: {lower, upper, best} = {6, 30, 30}
+c 0.261 0 [queue] In loop. Jobs left: 62916
+c 0.261 0 [queue] In loop. Jobs left: 61916
+c 0.262 0 [queue] In loop. Jobs left: 60916
+c 0.262 0 [queue] In loop. Jobs left: 59916
+c 0.263 0 [queue] In loop. Jobs left: 58916
+c 0.263 0 [queue] In loop. Jobs left: 57916
+c 0.264 0 [queue] In loop. Jobs left: 56916
+c 0.264 0 [queue] In loop. Jobs left: 55916
+c 0.264 0 [queue] In loop. Jobs left: 54916
+c 0.265 0 [queue] In loop. Jobs left: 53916
+c 0.265 0 [queue] In loop. Jobs left: 52916
+c 0.266 0 [queue] In loop. Jobs left: 51916
+c 0.266 0 [queue] In loop. Jobs left: 50916
+c 0.266 0 [queue] In loop. Jobs left: 49916
+c 0.267 0 [queue] In loop. Jobs left: 48916
+c 0.267 0 [queue] In loop. Jobs left: 47916
+c 0.268 0 [queue] In loop. Jobs left: 46916
+c 0.268 0 [queue] In loop. Jobs left: 45916
+c 0.269 0 [queue] In loop. Jobs left: 44916
+c 0.269 0 [queue] In loop. Jobs left: 43916
+c 0.269 2 [msg] Requested work stealing from: 3
+c 0.269 2 [track] Starting tracker: 24
+c 0.269 2 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 30}.
+c 0.269 2 [bou] Before reduction: {lower, upper, best} = {6, 30, 33}
+c 0.269 2 [bou] After redution: {lower, upper, best} = {6, 30, 33}
+c 0.269 0 [queue] In loop. Jobs left: 42916
+c 0.269 3 [msg] Message 31 with Payload 0 from 2 received.
+c 0.269 3 [msg] Processing work stealing query from 2
+c 0.269 3 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 0.269 1 [msg] Requested work stealing from: 3
+c 0.269 1 [track] Starting tracker: 24
+c 0.269 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 30}.
+c 0.269 1 [bou] Before reduction: {lower, upper, best} = {6, 30, 30}
+c 0.269 1 [bou] After redution: {lower, upper, best} = {6, 30, 30}
+c 0.269 3 [msg] Message 31 with Payload 0 from 1 received.
+c 0.269 3 [msg] Processing work stealing query from 1
+c 0.269 3 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.269 1 [msg] Message 32 with Payload -1 from 3 received.
+c 0.269 1 [track] Stopping tracker: 24 0 375524151
+c 0.269 2 [msg] Message 32 with Payload -1 from 3 received.
+c 0.269 2 [track] Stopping tracker: 24 0 170887351
+c 0.270 0 [queue] In loop. Jobs left: 41916
+c 0.270 3 [msg] Tried requesting work but receiving rank was invalid or my own: 3
+c 0.270 3 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 30}.
+c 0.270 3 [bou] Before reduction: {lower, upper, best} = {6, 30, 33}
+c 0.270 3 [bou] After redution: {lower, upper, best} = {6, 30, 33}
+c 0.270 0 [queue] In loop. Jobs left: 40916
+c 0.271 0 [queue] In loop. Jobs left: 39916
+c 0.271 0 [queue] In loop. Jobs left: 38916
+c 0.272 0 [queue] In loop. Jobs left: 37916
+c 0.272 0 [queue] In loop. Jobs left: 36916
+c 0.273 0 [queue] In loop. Jobs left: 35916
+c 0.273 0 [queue] In loop. Jobs left: 34916
+c 0.273 0 [queue] In loop. Jobs left: 33916
+c 0.274 0 [queue] In loop. Jobs left: 32916
+c 0.274 0 [queue] In loop. Jobs left: 31916
+c 0.275 0 [queue] In loop. Jobs left: 30916
+c 0.275 0 [queue] In loop. Jobs left: 29916
+c 0.275 0 [queue] In loop. Jobs left: 28916
+c 0.276 0 [queue] In loop. Jobs left: 27916
+c 0.276 0 [queue] In loop. Jobs left: 26916
+c 0.277 0 [queue] In loop. Jobs left: 25916
+c 0.277 0 [queue] In loop. Jobs left: 24916
+c 0.278 0 [queue] In loop. Jobs left: 23916
+c 0.278 0 [queue] In loop. Jobs left: 22916
+c 0.278 0 [queue] In loop. Jobs left: 21916
+c 0.279 0 [queue] In loop. Jobs left: 20916
+c 0.279 0 [queue] In loop. Jobs left: 19916
+c 0.279 2 [msg] Tried requesting work but receiving rank was invalid or my own: 2
+c 0.279 2 [msg] Message 31 with Payload 0 from 1 received.
+c 0.279 2 [msg] Processing work stealing query from 1
+c 0.279 1 [msg] Requested work stealing from: 2
+c 0.279 1 [track] Starting tracker: 24
+c 0.279 2 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.280 0 [queue] In loop. Jobs left: 18916
+c 0.280 1 [msg] Message 32 with Payload -1 from 2 received.
+c 0.280 1 [track] Stopping tracker: 24 0 375524151
+c 0.280 0 [queue] In loop. Jobs left: 17916
+c 0.280 3 [msg] Requested work stealing from: 2
+c 0.280 3 [track] Starting tracker: 24
+c 0.280 2 [msg] Message 31 with Payload 0 from 3 received.
+c 0.280 2 [msg] Processing work stealing query from 3
+c 0.280 2 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 0.280 3 [msg] Message 32 with Payload -1 from 2 received.
+c 0.280 3 [track] Stopping tracker: 24 0 1501031079
+c 0.280 0 [queue] In loop. Jobs left: 16916
+c 0.281 0 [queue] In loop. Jobs left: 15916
+c 0.281 0 [queue] In loop. Jobs left: 14916
+c 0.282 0 [queue] In loop. Jobs left: 13916
+c 0.282 0 [queue] In loop. Jobs left: 12916
+c 0.283 0 [queue] In loop. Jobs left: 11916
+c 0.283 0 [queue] In loop. Jobs left: 10916
+c 0.283 0 [queue] In loop. Jobs left: 9916
+c 0.284 0 [queue] In loop. Jobs left: 8916
+c 0.284 0 [queue] In loop. Jobs left: 7916
+c 0.285 0 [queue] In loop. Jobs left: 6916
+c 0.285 0 [queue] In loop. Jobs left: 5916
+c 0.286 0 [queue] In loop. Jobs left: 4916
+c 0.286 0 [queue] In loop. Jobs left: 3916
+c 0.286 0 [queue] In loop. Jobs left: 2916
+c 0.287 0 [queue] In loop. Jobs left: 1916
+c 0.287 0 [queue] In loop. Jobs left: 916
+c 0.288 0 [queue] Queue empty. Stopping Loop
+c 0.290 1 [msg] Requested work stealing from: 0
+c 0.290 1 [track] Starting tracker: 24
+c 0.290 2 [msg] Requested work stealing from: 0
+c 0.290 2 [track] Starting tracker: 24
+c 0.290 0 [msg] Message 31 with Payload 0 from 1 received.
+c 0.290 0 [msg] Processing work stealing query from 1
+c 0.290 0 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.290 0 [msg] Message 31 with Payload 0 from 2 received.
+c 0.290 0 [msg] Processing work stealing query from 2
+c 0.290 0 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 0.290 2 [msg] Message 32 with Payload -1 from 0 received.
+c 0.290 2 [track] Stopping tracker: 24 0 170887351
+c 0.290 1 [msg] Message 32 with Payload -1 from 0 received.
+c 0.290 1 [track] Stopping tracker: 24 0 375524151
+c 0.290 3 [msg] Requested work stealing from: 0
+c 0.290 3 [track] Starting tracker: 24
+c 0.290 0 [msg] Message 31 with Payload 0 from 3 received.
+c 0.290 0 [msg] Processing work stealing query from 3
+c 0.290 0 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 0.290 3 [msg] Message 32 with Payload -1 from 0 received.
+c 0.290 3 [track] Stopping tracker: 24 0 1501031079
+c 0.291 0 [msg] Requested work stealing from: 3
+c 0.291 0 [track] Starting tracker: 24
+c 0.291 3 [msg] Message 31 with Payload 0 from 0 received.
+c 0.291 3 [msg] Processing work stealing query from 0
+c 0.291 3 [msg] Message returned to sender 0 with payload[0] = -1 and _sent_work = 0
+c 0.291 0 [msg] Message 32 with Payload -1 from 3 received.
+c 0.291 0 [track] Stopping tracker: 24 0 739411511
+c 0.300 1 [msg] Requested work stealing from: 2
+c 0.300 1 [track] Starting tracker: 24
+c 0.300 2 [msg] Tried requesting work but receiving rank was invalid or my own: 2
+c 0.300 2 [msg] Message 31 with Payload 0 from 1 received.
+c 0.300 2 [msg] Processing work stealing query from 1
+c 0.300 2 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.300 1 [msg] Message 32 with Payload -1 from 2 received.
+c 0.300 1 [track] Stopping tracker: 24 0 375524151
+c 0.300 3 [msg] Requested work stealing from: 2
+c 0.300 3 [track] Starting tracker: 24
+c 0.300 2 [msg] Message 31 with Payload 0 from 3 received.
+c 0.300 2 [msg] Processing work stealing query from 3
+c 0.300 2 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 0.301 3 [msg] Message 32 with Payload -1 from 2 received.
+c 0.301 3 [track] Stopping tracker: 24 0 1501031079
+c 0.301 0 [msg] Requested work stealing from: 2
+c 0.301 0 [track] Starting tracker: 24
+c 0.301 2 [msg] Message 31 with Payload 0 from 0 received.
+c 0.301 2 [msg] Processing work stealing query from 0
+c 0.301 2 [msg] Message returned to sender 0 with payload[0] = -1 and _sent_work = 0
+c 0.301 0 [msg] Message 32 with Payload -1 from 2 received.
+c 0.301 0 [track] Stopping tracker: 24 0 739411511
+c 0.310 1 [msg] Requested work stealing from: 0
+c 0.310 1 [track] Starting tracker: 24
+c 0.310 2 [msg] Requested work stealing from: 0
+c 0.310 2 [track] Starting tracker: 24
+c 0.310 0 [msg] Message 31 with Payload 0 from 1 received.
+c 0.310 0 [msg] Processing work stealing query from 1
+c 0.310 0 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.310 0 [msg] Message 31 with Payload 0 from 2 received.
+c 0.310 0 [msg] Processing work stealing query from 2
+c 0.310 0 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 0.310 1 [msg] Message 32 with Payload -1 from 0 received.
+c 0.310 1 [track] Stopping tracker: 24 0 375524151
+c 0.310 2 [msg] Message 32 with Payload -1 from 0 received.
+c 0.310 2 [track] Stopping tracker: 24 0 170887351
+c 0.310 3 [msg] Requested work stealing from: 0
+c 0.310 3 [track] Starting tracker: 24
+c 0.310 0 [msg] Message 31 with Payload 0 from 3 received.
+c 0.310 0 [msg] Processing work stealing query from 3
+c 0.310 0 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 0.310 3 [msg] Message 32 with Payload -1 from 0 received.
+c 0.310 3 [track] Stopping tracker: 24 0 1501031079
+c 0.311 0 [msg] Requested work stealing from: 1
+c 0.311 0 [track] Starting tracker: 24
+c 0.311 1 [msg] Message 31 with Payload 0 from 0 received.
+c 0.311 1 [msg] Processing work stealing query from 0
+c 0.311 1 [msg] Message returned to sender 0 with payload[0] = -1 and _sent_work = 0
+c 0.311 0 [msg] Message 32 with Payload -1 from 1 received.
+c 0.311 0 [track] Stopping tracker: 24 0 739411511
+c 0.320 1 [msg] Requested work stealing from: 0
+c 0.320 1 [track] Starting tracker: 24
+c 0.320 2 [msg] Requested work stealing from: 0
+c 0.320 2 [track] Starting tracker: 24
+c 0.320 0 [msg] Message 31 with Payload 0 from 1 received.
+c 0.320 0 [msg] Processing work stealing query from 1
+c 0.320 0 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.320 0 [msg] Message 31 with Payload 0 from 2 received.
+c 0.320 0 [msg] Processing work stealing query from 2
+c 0.320 0 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 0.320 2 [msg] Message 32 with Payload -1 from 0 received.
+c 0.320 2 [track] Stopping tracker: 24 0 170887351
+c 0.320 1 [msg] Message 32 with Payload -1 from 0 received.
+c 0.320 1 [track] Stopping tracker: 24 0 375524151
+c 0.320 3 [msg] Requested work stealing from: 0
+c 0.320 3 [track] Starting tracker: 24
+c 0.321 0 [msg] Message 31 with Payload 0 from 3 received.
+c 0.321 0 [msg] Processing work stealing query from 3
+c 0.321 0 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 0.321 3 [msg] Message 32 with Payload -1 from 0 received.
+c 0.321 3 [track] Stopping tracker: 24 0 1501031079
+c 0.321 0 [msg] Requested work stealing from: 3
+c 0.321 0 [track] Starting tracker: 24
+c 0.321 3 [msg] Message 31 with Payload 0 from 0 received.
+c 0.321 3 [msg] Processing work stealing query from 0
+c 0.321 3 [msg] Message returned to sender 0 with payload[0] = -1 and _sent_work = 0
+c 0.321 0 [msg] Message 32 with Payload -1 from 3 received.
+c 0.321 0 [track] Stopping tracker: 24 0 739411511
+c 0.330 2 [msg] Requested work stealing from: 3
+c 0.330 2 [track] Starting tracker: 24
+c 0.330 3 [msg] Message 31 with Payload 0 from 2 received.
+c 0.330 3 [msg] Processing work stealing query from 2
+c 0.330 3 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 0.330 3 [msg] Message 31 with Payload 0 from 1 received.
+c 0.330 3 [msg] Processing work stealing query from 1
+c 0.330 1 [msg] Requested work stealing from: 3
+c 0.330 1 [track] Starting tracker: 24
+c 0.330 3 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.330 2 [msg] Message 32 with Payload -1 from 3 received.
+c 0.330 2 [track] Stopping tracker: 24 0 170887351
+c 0.330 1 [msg] Message 32 with Payload -1 from 3 received.
+c 0.330 1 [track] Stopping tracker: 24 0 375524151
+c 0.330 3 [msg] Tried requesting work but receiving rank was invalid or my own: 3
+c 0.331 0 [msg] Requested work stealing from: 1
+c 0.331 0 [track] Starting tracker: 24
+c 0.331 1 [msg] Message 31 with Payload 0 from 0 received.
+c 0.331 1 [msg] Processing work stealing query from 0
+c 0.331 1 [msg] Message returned to sender 0 with payload[0] = -1 and _sent_work = 0
+c 0.331 0 [msg] Message 32 with Payload -1 from 1 received.
+c 0.331 0 [track] Stopping tracker: 24 0 739411511
+c 0.340 2 [msg] Requested work stealing from: 0
+c 0.340 2 [track] Starting tracker: 24
+c 0.340 0 [msg] Message 31 with Payload 0 from 2 received.
+c 0.340 0 [msg] Processing work stealing query from 2
+c 0.340 0 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 0.340 1 [msg] Requested work stealing from: 0
+c 0.340 1 [track] Starting tracker: 24
+c 0.340 2 [msg] Message 32 with Payload -1 from 0 received.
+c 0.340 2 [track] Stopping tracker: 24 0 170887351
+c 0.340 0 [msg] Message 31 with Payload 0 from 1 received.
+c 0.340 0 [msg] Processing work stealing query from 1
+c 0.340 0 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.340 1 [msg] Message 32 with Payload -1 from 0 received.
+c 0.340 1 [track] Stopping tracker: 24 0 375524151
+c 0.341 3 [msg] Requested work stealing from: 0
+c 0.341 3 [track] Starting tracker: 24
+c 0.341 0 [msg] Message 31 with Payload 0 from 3 received.
+c 0.341 0 [msg] Processing work stealing query from 3
+c 0.341 0 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 0.341 3 [msg] Message 32 with Payload -1 from 0 received.
+c 0.341 3 [track] Stopping tracker: 24 0 1501031079
+c 0.341 0 [msg] Requested work stealing from: 3
+c 0.341 0 [track] Starting tracker: 24
+c 0.341 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {0, 6, 30} to all-reduction.
+c 0.341 3 [msg] Message 31 with Payload 0 from 0 received.
+c 0.341 3 [msg] Processing work stealing query from 0
+c 0.341 3 [msg] Message returned to sender 0 with payload[0] = -1 and _sent_work = 0
+c 0.341 0 [msg] Message 32 with Payload -1 from 3 received.
+c 0.341 0 [track] Stopping tracker: 24 0 739411511
+c 0.350 2 [msg] Requested work stealing from: 3
+c 0.350 2 [track] Starting tracker: 24
+c 0.350 2 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {0, 6, 30} to all-reduction.
+c 0.350 3 [msg] Message 31 with Payload 0 from 2 received.
+c 0.350 3 [msg] Processing work stealing query from 2
+c 0.350 3 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 0.350 2 [msg] Message 32 with Payload -1 from 3 received.
+c 0.350 2 [track] Stopping tracker: 24 0 170887351
+c 0.350 1 [msg] Requested work stealing from: 3
+c 0.350 1 [track] Starting tracker: 24
+c 0.350 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {0, 6, 30} to all-reduction.
+c 0.350 3 [msg] Message 31 with Payload 0 from 1 received.
+c 0.350 3 [msg] Processing work stealing query from 1
+c 0.350 3 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.350 1 [msg] Message 32 with Payload -1 from 3 received.
+c 0.350 1 [track] Stopping tracker: 24 0 375524151
+c 0.351 3 [msg] Tried requesting work but receiving rank was invalid or my own: 3
+c 0.351 3 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {0, 6, 30} to all-reduction.
+c 0.351 0 [msg] Requested work stealing from: 2
+c 0.351 0 [track] Starting tracker: 24
+c 0.351 2 [msg] Message 31 with Payload 0 from 0 received.
+c 0.351 2 [msg] Processing work stealing query from 0
+c 0.351 2 [msg] Message returned to sender 0 with payload[0] = -1 and _sent_work = 0
+c 0.351 0 [msg] Message 32 with Payload -1 from 2 received.
+c 0.351 0 [track] Stopping tracker: 24 0 739411511
+c 0.360 2 [msg] Requested work stealing from: 1
+c 0.360 2 [track] Starting tracker: 24
+c 0.360 0 TRY REDUCE 63 0 0 2 2
+c 0.360 0 REDUCE
+c 0.360 1 [msg] Tried requesting work but receiving rank was invalid or my own: 1
+c 0.360 1 [msg] Message 31 with Payload 0 from 2 received.
+c 0.360 1 [msg] Processing work stealing query from 2
+c 0.360 1 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 0.360 2 [msg] Message 32 with Payload -1 from 1 received.
+c 0.360 2 [track] Stopping tracker: 24 0 170887351
+c 0.361 3 [msg] Requested work stealing from: 1
+c 0.361 3 [track] Starting tracker: 24
+c 0.361 1 [msg] Message 31 with Payload 0 from 3 received.
+c 0.361 1 [msg] Processing work stealing query from 3
+c 0.361 1 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 0.361 1 TRY REDUCE 63 0 0 2 2
+c 0.361 1 REDUCE
+c 0.361 0 TRY REDUCE 63 0 0 2 2
+c 0.361 0 REDUCE
+c 0.361 3 [msg] Message 32 with Payload -1 from 1 received.
+c 0.361 3 [track] Stopping tracker: 24 0 1501031079
+c 0.361 0 [msg] Tried requesting work but receiving rank was invalid or my own: 0
+c 0.361 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {0, 6, 30}.
+c 0.361 0 [red] Thread will stop search: nbActive = 0
+c 0.361 0 [red] & [bou] Thread has reportable solution: upperBound = 30, lowerBound = 6, currSolution = 30
+c 0.361 0 [bou] Before reduction: {lower, upper, best} = {6, 30, 30}
+c 0.361 0 [bou] After redution: {lower, upper, best} = {6, 30, 30}
+c 0.361 0 [queue] Succesfully broken out of loop
+c 0.361 0 [tracking] Percentage of time spent working: 3 0.240553
+c 0.361 0 [tracking] Number of explored nodes: 283916
+c 0.361 0 [tracking] Number of queries in total: 8 - succesful: 0 - before msgs allowed: 0 - rank invalid: 1 - reply empty: 7
+c 0.361 0 [tracking] Time not spent working checking empty: 0 0.023762
+c 0.361 0 [tracking] Time not spent working waiting: 1 0.338502
+c 0.361 0 [tracking] Time not spent working getting work: 2 0.073503
+c 0.361 0 [tracking] Time not spent working after loop: 4 0.028404
+c 0.361 0 [tracking] Time spent on messages: 5 0.001390
+c 0.361 0 [tracking] Time spent on messages: 6 0.003286
+c 0.361 0 [tracking] 7 1.362288 0.331630
+c 0.361 2 BROADCAST
+c 0.361 2 TRY REDUCE 64 0 0 2 2
+c 0.361 2 BROADCAST
+c 0.361 1 BROADCAST
+c 0.361 1 TRY REDUCE 64 0 0 2 2
+c 0.361 1 BROADCAST
+c 0.361 3 BROADCAST
+c 0.361 3 TRY REDUCE 64 0 0 2 2
+c 0.361 3 BROADCAST
+c 0.370 2 [msg] Tried requesting work but receiving rank was invalid or my own: 2
+c 0.370 2 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {0, 6, 30}.
+c 0.370 2 [red] Thread will stop search: nbActive = 0
+c 0.370 2 [bou] Before reduction: {lower, upper, best} = {6, 30, 33}
+c 0.370 2 [bou] After redution: {lower, upper, best} = {6, 30, 33}
+c 0.370 2 [queue] Succesfully broken out of loop
+c 0.370 2 [tracking] Percentage of time spent working: 3 0.000079
+c 0.370 2 [tracking] Number of explored nodes: 50
+c 0.370 2 [tracking] Number of queries in total: 41 - succesful: 2 - before msgs allowed: 15 - rank invalid: 7 - reply empty: 17
+c 0.370 2 [tracking] Time not spent working checking empty: 0 0.000005
+c 0.370 2 [tracking] Time not spent working waiting: 1 1.551825
+c 0.370 2 [tracking] Time not spent working getting work: 2 0.000042
+c 0.370 2 [tracking] Time not spent working after loop: 4 0.000049
+c 0.370 2 [tracking] Time spent on messages: 5 0.002213
+c 0.370 2 [tracking] Time spent on messages: 6 0.010443
+c 0.370 2 [tracking] 7 1.373569 0.330657
+c 0.370 1 [msg] Requested work stealing from: 2
+c 0.370 1 [track] Starting tracker: 24
+c 0.370 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {0, 6, 30}.
+c 0.370 1 [red] Thread will stop search: nbActive = 0
+c c 0.370 1 [queue] Succesfully broken out of loop
+c 0.370 1 [tracking] Percentage of time spent working: 3 0.000060
+c 0.370 1 [tracking] Number of explored nodes: 35
+c 0.370 1 [tracking] Number of queries in total: 41 - succesful: 2 - before msgs allowed: 15 - rank invalid: 5 - reply empty: 18
+c 0.370 1 [tracking] Time not spent working checking empty: 0 0.000003
+c 0.370 1 [tracking] Time not spent working waiting: 1 1.616927
+c 0.370 1 [tracking] Time not spent working getting work: 2 0.000034
+c 0.370 1 [tracking] Time not spent working after loop: 4 0.000028
+c 0.370 1 [tracking] Time spent on messages: 5 0.002076
+c 0.370 1 0.370 1 [red] & [bou] Thread has reportable solution: upperBound = 30, lowerBound = 6, currSolution = 30
+c 0.370 1 [bou] Before reduction: {lower, upper, best} = {6, 30, 30}
+c 0.370 1 [bou] After redution: {lower, upper, best} = {6, 30, 30}
+c 0.370 2 [msg] Message 31 with Payload 0 from 1 received.
+c 0.370 2 [msg] Message will not be entirely processed as program is finished
+c 0.370 2 [msg] Message returned to sender 1 with tag 4
+c 0.370 1 [tracking] Time spent on messages: 6 0.009394
+c 0.370 1 [tracking] 7 0.003107 0.330796
+[msg] Message 4 with Payload 0 from 2 received.
+c 0.370 1 Finished set to 1
+c 0.371 3 [msg] Requested work stealing from: 2
+c 0.371 3 [track] Starting tracker: 24
+c 0.371 3 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {0, 6, 30}.
+c 0.371 3 [red] Thread will stop search: nbActive = 0
+c 0.371 3 [bou] Before reduction: {lower, upper, best} = {6, 30, 33}
+c 0.371 3 [bou] After redution: {lower, upper, best} = {6, 30, 33}
+c 0.371 2 [msg] Message 31 with Payload 0 from 3 received.
+c 0.371 2 [msg] Message will not be entirely processed as program is finished
+c 0.371 2 [msg] Message returned to sender 3 with tag 4
+c 0.371 3 [queue] Succesfully broken out of loop
+c 0.371 3 [tracking] Percentage of time spent working: 3 0.000082
+c 0.371 3 [tracking] Number of explored nodes: 50
+c 0.371 3 [tracking] Number of queries in total: 41 - succesful: 2 - before msgs allowed: 15 - rank invalid: 8 - reply empty: 15
+c 0.371 3 [tracking] Time not spent working checking empty: 0 0.000006
+c 0.371 3 [tracking] Time not spent working waiting: 1 1.539216
+c 0.371 3 [tracking] Time not spent working getting work: 2 0.000072
+c 0.371 3 [tracking] Time not spent working after loop: 4 0.000055
+c 0.371 3 [tracking] Time spent on messages: 5 0.002340
+c 0.371 3 [tracking] Time spent on messages: 6 0.009454
+c 0.371 3 [tracking] 7 0.003128 0.330833
+c 0.371 3 [msg] Message 4 with Payload 0 from 2 received.
+c 0.371 3 Finished set to 1
+c 0.371 0 [solved] _stopSearch = 1, _reportableSolution = 1
+c 0.371 0 [solved] End: (Completion: 1) (Nr Tasks: 20) (Nr Machines: 2) (Tasks:) (Machine Workloads: 30 30) (Machines: 3 3 3 3 3 3 3 3 3 3 0 3 3 3 3 3 3 3 3 3 3 0)
+c 0.371 0 [term] Terminated
+c 0.371 2 [term] Terminated
+c 0.371 1 [term] Terminated
+c 0.371 3 [term] Terminated
+c 0.372 0 RESPONSE_TIME #1 0.343439 rev. 0
+c 0.372 0 SOLUTION #1 SATISFIABLE rev. 0
+s SATISFIABLE
+null
+c 0.416 0 Exiting happily
+c 0.416 2 Exiting happily
+c 0.416 3 Exiting happily
+c 0.416 1 Exiting happily

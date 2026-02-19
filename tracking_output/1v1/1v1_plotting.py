@@ -6,7 +6,8 @@ import os
 # TODO changes for 1v1
 
 # Assign directory
-dir_list = [r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/1v1/in"]
+dir_list = [r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/1v1/in10",
+            r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/1v1/in20"]
 
 # Variables
 non_tracking_files = []
@@ -82,12 +83,12 @@ plt.plot([0,1], [0,1], color="black")
 
 plt.scatter(values[1][0], values[1][1], color="red")
 
-plt.xlim([0, 0.2])
-plt.ylim([0, 0.2])
+plt.xlim([0, 0.5])
+plt.ylim([0, 0.5])
 
 plt.title("1v1")
 plt.ylabel("4 threads")
 plt.xlabel("2 threads")
 
-fig_name = "tracking_output/1v1/out/1v1.png"
+fig_name = "tracking_output/1v1/out/1v1_2.png"
 plt.savefig(fig_name)
