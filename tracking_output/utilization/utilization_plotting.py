@@ -4,7 +4,7 @@ import math
 import os
 
 # Assign directory
-directory = r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/utilization/out_30"
+directory = r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/utilization/test"
 
 # Variables
 non_tracking_files = []
@@ -67,13 +67,13 @@ print(values)
 max_value = math.ceil(max(max(sub_list) for sub_list in values[1]))
 min_value = math.floor(min(min(sub_list) for sub_list in values[1]))
 
-plt.boxplot(x=values[1], tick_labels=["checking\nempty", "waiting", "getting\nwork", "working", "after\nloop", "messages", "waiting\nmessages"])
+plt.boxplot(x=values[1], tick_labels=["wait\nthreads", "check", "wait\nfull", "get\nwork", "work", "compare", "outside\n"])
 
 plt.xlim([0, len(values[0])+1])
-plt.ylim([0, 2])
+plt.ylim([0, 1])
 
 plt.title("Auslastung bei einzigem Unterschied in der Job-Anzahl \n bei gleicher Maschinen- und Threadanzahl (2)")
 plt.xlabel("")
 plt.ylabel("Auslastung")
 
-plt.savefig("tracking_output/utilization/utilization_plot_30.png")
+plt.savefig("tracking_output/utilization/utilization_plot_30_new.png")
