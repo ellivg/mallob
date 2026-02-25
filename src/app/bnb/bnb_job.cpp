@@ -414,7 +414,7 @@ void BnbJob::loop() {
         tracker.curr_time = Timer::elapsedSeconds();
         tracker.time_spent_get_work += tracker.curr_time - tracker.get_work_time;
         tracker.work_time = tracker.curr_time;
-        LOG(V2_INFO, "[tracking] End get work & Start work\n");
+        LOG(V2_INFO, "[track] End get work & Start work\n");
 
         branch(curr_work);
         num_expl_nodes++;
@@ -423,7 +423,7 @@ void BnbJob::loop() {
         tracker.curr_time = Timer::elapsedSeconds();
         tracker.time_spent_work += tracker.curr_time - tracker.work_time;
         tracker.compare_time = tracker.curr_time;
-        LOG(V2_INFO, "[tracking] End work & Start compare\n");
+        LOG(V2_INFO, "[track] End work & Start compare\n");
         
         //compare solutions
         if (curr_work.completed == 1) {
@@ -778,34 +778,34 @@ void BnbJob::printTracking() {
     {
         float perc_wait_threads = tracker.time_spent_wait_threads / tracker.time_since_activation;
         perc_all += perc_wait_threads;
-        LOG(V2_INFO, "[tracking] Time wait threads: %f\n", perc_wait_threads);
+        LOG(V2_INFO, "[tracking] Time wait threads: 0 %f\n", perc_wait_threads);
 
         float perc_check = tracker.time_spent_check / tracker.time_since_activation;
         perc_all += perc_check;
-        LOG(V2_INFO, "[tracking] Time check: %f\n", perc_check);
+        LOG(V2_INFO, "[tracking] Time check: 1 %f\n", perc_check);
 
         float perc_wait_full = tracker.time_spent_wait_full / tracker.time_since_activation;
         perc_all += perc_wait_full;
-        LOG(V2_INFO, "[tracking] Time wait full: %f\n", perc_wait_full);
+        LOG(V2_INFO, "[tracking] Time wait full: 2 %f\n", perc_wait_full);
 
         float perc_get_work = tracker.time_spent_get_work / tracker.time_since_activation;
         perc_all += perc_get_work;
-        LOG(V2_INFO, "[tracking] Time get work: %f\n", perc_get_work);
+        LOG(V2_INFO, "[tracking] Time get work: 3 %f\n", perc_get_work);
 
         float perc_work = tracker.time_spent_work / tracker.time_since_activation;
         perc_all += perc_work;
-        LOG(V2_INFO, "[tracking] Time work: %f\n", perc_work);
+        LOG(V2_INFO, "[tracking] Time work: 4 %f\n", perc_work);
 
         float perc_compare = tracker.time_spent_compare / tracker.time_since_activation;
         perc_all += perc_compare;
-        LOG(V2_INFO, "[tracking] Time compare: %f\n", perc_compare);
+        LOG(V2_INFO, "[tracking] Time compare: 5 %f\n", perc_compare);
 
         float perc_outside = tracker.time_spent_outside / tracker.time_since_activation;
         perc_all += perc_outside;
-        LOG(V2_INFO, "[tracking] Time outside: %f\n", perc_outside);
+        LOG(V2_INFO, "[tracking] Time outside: 6 %f\n", perc_outside);
     }
 
-    LOG(V2_INFO, "[tracking] All time: %f\n", perc_all);
+    LOG(V2_INFO, "[track] All time: %f\n", perc_all);
 }
 
 void BnbJob::tryStartReduction() {
