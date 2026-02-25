@@ -4,7 +4,7 @@ import math
 import os
 
 # Assign directory
-directory = r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/utilization/out_new3"
+directory = r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/utilization/out_30"
 
 # Variables
 non_tracking_files = []
@@ -51,7 +51,6 @@ for name in os.listdir(directory):
     # Decide which values are important for the current plot and add them to the dict
     for line in finished_values:
         values[line[0]].append(line[1])
-    
 
 # Print non solved files
 if not non_tracking_files:
@@ -71,10 +70,10 @@ min_value = math.floor(min(min(sub_list) for sub_list in values[1]))
 plt.boxplot(x=values[1], tick_labels=["checking\nempty", "waiting", "getting\nwork", "working", "after\nloop", "messages", "waiting\nmessages"])
 
 plt.xlim([0, len(values[0])+1])
-plt.ylim([min_value, 1])
+plt.ylim([0, 2])
 
 plt.title("Auslastung bei einzigem Unterschied in der Job-Anzahl \n bei gleicher Maschinen- und Threadanzahl (2)")
 plt.xlabel("")
 plt.ylabel("Auslastung")
 
-plt.savefig("tracking_output/utilization/utilization_plot_new3.png")
+plt.savefig("tracking_output/utilization/utilization_plot_30.png")
