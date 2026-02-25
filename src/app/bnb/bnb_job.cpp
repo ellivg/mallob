@@ -342,22 +342,21 @@ int BnbJob::getDemand() const {
 
 //PRIVATE METHODS
 
+// Initialize problem
 void BnbJob::init() {
-    //read problem
+    // Read problem
     size_t problem_size = getDescription().getFormulaPayloadSize(0);
     int const *problem = getDescription().getFormulaPayload(0);
 
-    //divide into categories
+    // Fill variables with problem input
     _nr_tasks = problem[0];
     _nr_machines = problem[1];
     std::vector<int> tasks;
-    for(int i = 0; i < _nr_tasks; ++i) {
-        tasks.push_back(problem[i+2]);
-    }
+    for(int i = 0; i < _nr_tasks; ++i) tasks.push_back(problem[i+2]);
 
     appr_amount_of_expl = pow((long double) 2.0, (long double) _nr_tasks);
 
-    //initial work (only done by root)
+    // Initializing work – only done by root
     if(getJobTree().isRoot()) {
         auto lock = queue_mtx.getLock();
         std::vector<std::vector<int>> machines(_nr_machines, std::vector<int>(1, 0));
@@ -379,17 +378,20 @@ void BnbJob::init() {
 
         LOG(V2_INFO, "%s", transform_for_log("[start] Beginning", work).c_str());
     }
-
-    //start tracking time
-    tracker.activation_time = Timer::elapsedSeconds();
-    tracker.work_start_time = tracker.activation_time;
 }
 
+// Calculate solution by looping over jobs
 void BnbJob::loop() {
+    // Set watchdog for loop iteration
     Watchdog watchdog(true, 500, true);
     watchdog.setWarningPeriod(500);
     watchdog.setAbortPeriod(10'000);
+
+    // Start tracker
+    tracker.activation_time = Timer::elapsedSeconds();
+    tracker.work_start_time = tracker.activation_time;
     
+    // Possibly wait for all threads
     if(getJobTree().isRoot() && !_send_messages) {
         LOG(V2_INFO, "Start waiting for other threads: %i\n", _send_messages);
         float timer = Timer::elapsedSeconds();
@@ -402,6 +404,7 @@ void BnbJob::loop() {
         LOG(V2_INFO, "End waiting: %i\n", _send_messages);
     }
 
+    // Loop over jobs
     do {
         //tracker
         tracker.not_work_start_time_empty = Timer::elapsedSeconds();
@@ -481,6 +484,8 @@ void BnbJob::loop() {
 
     LOG(V2_INFO, "[queue] Succesfully broken out of loop\n");
 
+    // Finish tracker
+    tracker.time_since_activation = (Timer::elapsedSeconds()  - tracker.activation_time);
     printTracking();
 }
 
@@ -793,28 +798,36 @@ std::string BnbJob::transform_for_log(const std::string& reason, const Work& wor
     return log_string;
 }
 
+// Print all tracking information
 void BnbJob::printTracking() {
-    tracker.time_since_activation = (Timer::elapsedSeconds()  - tracker.activation_time);
-    tracker.perc_working = tracker.time_spent_working / tracker.time_since_activation;
-    LOG(V2_INFO, "[tracking] Percentage of time spent working: 3 %f\n", tracker.perc_working);
     LOG(V2_INFO, "[tracking] Number of explored nodes: %i\n", num_expl_nodes);
+
     LOG(V2_INFO, 
         "[tracking] Number of queries in total: %i - succesful: %i - before msgs allowed: %i - rank invalid: %i - reply empty: %i\n", 
         tracker.num_queries, tracker.num_succ_queries,  tracker.num_nonsucc_nomsg, tracker.num_nonsucc_rankinvld, tracker.num_nonsucc_empty);
+
     float perc_not_working_empty = tracker.time_spent_not_working_empty / tracker.time_since_activation;
     LOG(V2_INFO, "[tracking] Time not spent working checking empty: 0 %f\n", perc_not_working_empty);
+
     float perc_not_working_wait = tracker.time_spent_not_working_wait / tracker.time_since_activation;
     LOG(V2_INFO, "[tracking] Time not spent working waiting: 1 %f\n", perc_not_working_wait);
+
     float perc_not_working_work = tracker.time_spent_not_working_work / tracker.time_since_activation;
     LOG(V2_INFO, "[tracking] Time not spent working getting work: 2 %f\n", perc_not_working_work);
+
+    tracker.perc_working = tracker.time_spent_working / tracker.time_since_activation;
+    LOG(V2_INFO, "[tracking] Percentage of time spent working: 3 %f\n", tracker.perc_working);
+
     float perc_not_working_after = tracker.time_spent_not_working_after / tracker.time_since_activation;
     LOG(V2_INFO, "[tracking] Time not spent working after loop: 4 %f\n", perc_not_working_after);
+
     float perc_messages = tracker.time_spent_messages / tracker.time_since_activation;
     LOG(V2_INFO, "[tracking] Time spent on messages: 5 %f\n", perc_messages);
-    float perc_waiting = tracker.time_spent_waiting / tracker.time_since_activation;
 
+    float perc_waiting = tracker.time_spent_waiting / tracker.time_since_activation;
     if (tracker.waiting_start_time == -1) tracker.time_spent_waiting += (Timer::elapsedSeconds() - tracker.waiting_start_time);
     LOG(V2_INFO, "[tracking] Time spent on messages: 6 %f\n", perc_waiting);
+
     LOG(V2_INFO, "[tracking] 7 %f %f\n", tracker.time_spent_waiting, tracker.time_since_activation);
 }
 
