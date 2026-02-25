@@ -34,25 +34,34 @@ private:
     };
 
     struct Tracker{
-        float activation_time {-1};
-        float time_since_activation {0};
+        float curr_time {-1};
+
         float work_start_time {-1};
         float time_spent_working {0};
-        float perc_working {-1};
 
-        float not_work_start_time_empty {-1};
-        float time_spent_not_working_empty {0};
-        bool not_work_wait {0};
-        float not_work_start_time_wait {-1};
-        float time_spent_not_working_wait {0};
-        float not_work_start_time_work {-1};
-        float time_spent_not_working_work {0};
-        float not_work_start_time_after {-1};
-        float time_spent_not_working_after {0};
-        float messages_start_time {-1};
-        float time_spent_messages {0};
-        float waiting_start_time {-1};
-        float time_spent_waiting {0};
+        float activation_time {-1};
+        float time_since_activation {0};
+
+        float wait_threads_time {-1};
+        float time_spent_wait_threads {0};
+
+        float check_time {-1};
+        float time_spent_check {0};
+
+        float wait_full_time {-1};
+        float time_spent_wait_full {0};
+
+        float get_work_time {-1};
+        float time_spent_get_work {0};
+
+        float work_time {-1};
+        float time_spent_work {0};
+
+        float compare_time {-1};
+        float time_spent_compare {0};
+
+        float outside_time {-1};
+        float time_spent_outside {0};
 
         int num_queries {0};
         int num_succ_queries {0};
