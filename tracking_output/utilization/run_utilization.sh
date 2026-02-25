@@ -12,12 +12,12 @@ MALLOB_OPTIONS=" \
 "
 
 MY_MALLOB_OPTIONS="$MALLOB_OPTIONS \
-  -mono=instances/bnb/main_under_300/bnb_n20_m2.cnf\
+  -mono=instances/bnb/main_under_300/bnb_n30_m2.cnf\
 "
 
 for ((j=0; j<=9; j++)); do
   echo "Run Nr $j"
-  mpirun -np $MPI_PROCESSES build/mallob $MY_MALLOB_OPTIONS >tracking_output/utilization/test/"log_"$j".txt"
+  mpirun -np $MPI_PROCESSES build/mallob $MY_MALLOB_OPTIONS >tracking_output/utilization/test/"file_"$j".txt"
 done
 
 #python -u "/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/utilization/utilization_plotting.py"
