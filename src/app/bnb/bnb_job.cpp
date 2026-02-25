@@ -367,7 +367,7 @@ void BnbJob::loop() {
         tracker.curr_time = Timer::elapsedSeconds();
         tracker.time_spent_outside += tracker.curr_time - tracker.outside_time;
         tracker.check_time = tracker.curr_time;
-        LOG(V2_INFO, "[track] End outside & Start empty & Start check\n");
+        LOG(V5_DEBG, "[track] End outside & Start empty & Start check\n");
 
         //check if queue is empty and stop working if necessary
         bool empty;
@@ -379,7 +379,7 @@ void BnbJob::loop() {
             tracker.curr_time = Timer::elapsedSeconds();
             tracker.time_spent_check += tracker.curr_time - tracker.check_time;
             tracker.wait_full_time = tracker.curr_time;
-            LOG(V2_INFO, "[track] End check & Start wait full\n");
+            LOG(V5_DEBG, "[track] End check & Start wait full\n");
 
             if(empty) {
                 LOG(V2_INFO, "[queue] Queue empty. Stopping Loop\n");
@@ -398,7 +398,7 @@ void BnbJob::loop() {
         tracker.curr_time = Timer::elapsedSeconds();
         tracker.time_spent_wait_full += tracker.curr_time - tracker.wait_full_time;
         tracker.get_work_time = tracker.curr_time;
-        LOG(V2_INFO, "[track] End wait full & End empty & Start get work\n");
+        LOG(V5_DEBG, "[track] End wait full & End empty & Start get work\n");
 
         //else: work
         Work curr_work;
@@ -414,7 +414,7 @@ void BnbJob::loop() {
         tracker.curr_time = Timer::elapsedSeconds();
         tracker.time_spent_get_work += tracker.curr_time - tracker.get_work_time;
         tracker.work_time = tracker.curr_time;
-        LOG(V2_INFO, "[track] End get work & Start work\n");
+        LOG(V5_DEBG, "[track] End get work & Start work\n");
 
         branch(curr_work);
         num_expl_nodes++;
@@ -423,7 +423,7 @@ void BnbJob::loop() {
         tracker.curr_time = Timer::elapsedSeconds();
         tracker.time_spent_work += tracker.curr_time - tracker.work_time;
         tracker.compare_time = tracker.curr_time;
-        LOG(V2_INFO, "[track] End work & Start compare\n");
+        LOG(V5_DEBG, "[track] End work & Start compare\n");
         
         //compare solutions
         if (curr_work.completed == 1) {
@@ -448,7 +448,7 @@ void BnbJob::loop() {
         tracker.curr_time = Timer::elapsedSeconds();
         tracker.time_spent_compare += tracker.curr_time - tracker.compare_time;
         tracker.outside_time = tracker.curr_time;
-        LOG(V2_INFO, "[track] End compare & Start outside\n");
+        LOG(V5_DEBG, "[track] End compare & Start outside\n");
     } while(_working && !_stopSearch && !_reportableSolution);
     LOG(V2_INFO, "[queue] Succesfully broken out of loop\n");
 
