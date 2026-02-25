@@ -4,7 +4,7 @@ import math
 import os
 
 # Assign directory
-directory = r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/length_over_time/out_new"
+directory = r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/length_over_time/out_6exs"
 
 # Variables
 non_tracking_files = []
@@ -55,10 +55,12 @@ for name in os.listdir(directory):
     
     # Decide which values are important for the current plot and add them to the dict
     label = name.split("_")[1]
+    if int(label) == 5:
+        label = "4"
     for line in finished_values:
         values[label].append(line)
     
-    print(values)
+    # print(values)
 
 # Print non solved files
 if not non_tracking_files:
@@ -75,6 +77,7 @@ print(values)
 max_value = math.ceil(max(max(sub_list) for sub_list in values[1]))
 min_value = math.floor(min(min(sub_list) for sub_list in values[1]))
 
+print(values[0])
 plt.boxplot(x=values[1], tick_labels=[10,15,20,25,30])
 
 plt.xlim([0, len(values[0])+1])
@@ -84,4 +87,4 @@ plt.title("Compare computing time for length of input")
 plt.ylabel("Time")
 plt.xlabel("Input Length n")
 
-plt.savefig("tracking_output/length_over_time/length_over_time_plot_bb.png")
+plt.savefig("tracking_output/length_over_time/length_over_time_plot_6exs.png")
