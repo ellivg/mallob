@@ -4,28 +4,30 @@ import math
 import os
 
 #
-# Using: n10;15;20;25 m2 thr4
+# Using: n10;15;20;25;30 m2 thr4
 #
 
 # Assign directory
-directory = r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/basic/in/"
+directory = r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/basic/in30/"
 
 # Variables
 non_tracking_files = []
-values = defaultdict(list)
+values = []
 
 # Iterate over files in directory
 for name in os.listdir(directory):
     tracking_lines = []
     tracking_values = []
     finished_values = []
-    wanted_keyword = "Percentage"
+    wanted_keyword = "Time work"
     file_path = os.path.join(directory, name)
 
     if not os.path.isfile(file_path):
         continue
     
     with open(file_path) as file:
+        #print(file_path)
+
         # Delete non-solved files
         if not "[solved]" in file.read():
             non_tracking_files.append(name)
@@ -36,28 +38,18 @@ for name in os.listdir(directory):
         # Add all lines relevant for tracking
         for line in file:
             line.strip()
-            if "[tracking]"  in line:
+            if "[tracking]" and wanted_keyword in line:
                 tracking_lines.append(line)
-    
-    # Delete line delimiters and [tracking] keyword
-    for line in tracking_lines:
-        if wanted_keyword in line:
+
+        # Delete line delimiters and [tracking] keyword
+        for line in tracking_lines:
             line = line[:-1]
             line = line.split(" ")
-            line = line[1:3] + line[4:]
             tracking_values.append(line)
-            #print(line)
 
-    # Probably later prettier but in basic the only necessary numbers are the timestamp line[0] and percentage line[-1]
-    for line in tracking_values:
-        finished_values.append(float(line[-1]))
-    
-    # Decide which values are important for the current plot and add them to the dict
-    label = name.split("_")[1]
-    for line in finished_values:
-        values[label].append(line)
-    
-    #print(values)
+        # Probably later prettier but in basic the only necessary numbers are the timestamp line[0] and percentage line[-1]
+        for line in tracking_values:
+            values.append((float(line[1]), float(line[-1])))
     
 
 # Print non solved files
@@ -66,22 +58,19 @@ if not non_tracking_files:
 for name in non_tracking_files:
     print(name+" was not solved")
 
+values.sort()
 print(values)
-myList = sorted(values.items())
-x, y = zip(*myList)
-values = list(map(int, x)), y
-print(values)
+x, y = zip(*values)
+values = x, y
+#print(values)
 
-max_value = math.ceil(max(max(sub_list) for sub_list in values[1]))
-min_value = math.floor(min(min(sub_list) for sub_list in values[1]))
+plt.plot(values[0], values[1])
 
-plt.boxplot(x=values[1], tick_labels=values[0])
+plt.xlim([0, 150])
+plt.ylim([0,1])
 
-plt.xlim([0, len(values[0])+1])
-plt.ylim([min_value, 0.5])
+plt.title("Auslastung")
+plt.xlabel("time")
+plt.ylabel("utilization")
 
-plt.title("Auslastung bei einzigem Unterschied in der Job-Anzahl \n bei gleicher Maschinen- und Threadanzahl (2)")
-plt.xlabel("Jobanzahl")
-plt.ylabel("Auslastung")
-
-plt.savefig("tracking_output/basic/out/basic_boxplot_4_zoom.png")
+plt.savefig("tracking_output/basic/out/basic_new30.png")
