@@ -5,7 +5,8 @@ import os
 
 # Assign directory
 dir_list = [r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/cdf/in10",
-            r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/cdf/in20"]
+            r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/cdf/in20",
+            r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/cdf/in30"]
 
 # Variables
 non_tracking_files = []
@@ -55,7 +56,7 @@ for directory in dir_list:
 
         #print(finished_values)
 
-        # Get label
+        # Get label (Nr of Threads)
         label = float(name.split("_")[2])
         #print(label)
         
@@ -71,22 +72,24 @@ if not non_tracking_files:
 for name in non_tracking_files:
     print(name+" was not solved")
 
+# Convert dict to two lists [labels, [numbers]]
 #print(values)
 myList = sorted(values.items())
 x, y = zip(*myList)
 values = list(map(int, x)), list(sorted(y_list) for y_list in y)
 print(values)
 
+# Plot by label
 for i in range(0, len(values[0])):
     plt.plot(values[1][i], list(range(0,len(values[1][i]))), label=values[0][i])
 
-plt.xlim([0, 0.5])
-plt.ylim([0, 20])
+plt.xlim([0, 5])
+plt.ylim([0, 60])
 
-plt.title("CDF on currently 2 examples (todo more)")
+plt.title("CDF on currently 6 examples (todo more)")
 plt.ylabel("# solved")
 plt.xlabel("time")
 plt.legend()
 
-fig_name = "tracking_output/cdf/out/plot2_zoom.png"
+fig_name = "tracking_output/cdf/out/cdf_plot6.png"
 plt.savefig(fig_name)
