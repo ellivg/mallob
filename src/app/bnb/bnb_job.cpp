@@ -121,10 +121,10 @@ void BnbJob::appl_communicate() {
         tracker.num_queries++;
 
         if (!_send_messages) {
-            LOG(V2_INFO, "[msg] Tried requesting work but messages are not allowed\n");
+            LOG(V5_DEBG, "[msg] Tried requesting work but messages are not allowed\n");
             tracker.num_nonsucc_nomsg++;
         } else if (_waiting) {
-            LOG(V2_INFO, "[msg] Waiting\n");
+            LOG(V5_DEBG, "[msg] Waiting\n");
             tracker.num_queries--; //because were still waiting on the last one to be filled
         } else if (_first && !getJobTree().isRoot()) { // requesting from root
             //Request work
@@ -137,7 +137,7 @@ void BnbJob::appl_communicate() {
             // Use our JobComm to convert the tree index into an addressable MPI rank.
             int recvRank = getJobComm().getWorldRankOrMinusOne(randomIndex);
             if (recvRank == -1 || getJobTree().getRank() == randomIndex) {
-                LOG(V2_INFO, "[msg] Tried requesting work but receiving rank was invalid or my own: %i\n", recvRank);
+                LOG(V5_DEBG, "[msg] Tried requesting work but receiving rank was invalid or my own: %i\n", recvRank);
                 tracker.num_nonsucc_rankinvld++;
             } else {
                 //Send
