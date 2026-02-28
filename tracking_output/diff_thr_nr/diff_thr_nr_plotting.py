@@ -4,7 +4,7 @@ import math
 import os
 
 # Assign directory
-dir_list = [r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/diff_thr_nr/in30"]
+dir_list = [r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/diff_thr_nr/n25/in"]
 
 def get_values(wanted_keyword=str, index=int, median=bool, ylabel=str, fig=str):
     # Variables
@@ -93,20 +93,20 @@ def get_values(wanted_keyword=str, index=int, median=bool, ylabel=str, fig=str):
     plt.boxplot(x=values[1], tick_labels=values[0])
 
     plt.xlim([0, len(values[0])+1])
-    plt.ylim([0, 0.6])
+    plt.ylim([0, 17.5])
 
     plt.title("Compare if changing the number of threads \n does anything")
     plt.ylabel(ylabel)
     plt.xlabel("Number Of Threads")
 
-    fig_name = "tracking_output/diff_thr_nr/diff_thr_nr_"+fig+"_zoom.png"
+    fig_name = "tracking_output/diff_thr_nr/n25/out/diff_thr_nr_n25_"+fig+"_new.png"
     plt.savefig(fig_name)
 
 def time():
     print("Run Time")
 
-    wanted_keyword = "solved"
-    index = 0
+    wanted_keyword = "RESPONSE_TIME"
+    index = -3
     median = False
     ylabel = "Time"
     fig = "time"
@@ -138,6 +138,6 @@ def perc():
 
 
 # Run all
-#time()
+time()
 #expl()
-perc()
+#perc()
