@@ -33,4 +33,4 @@ make clean
 make -j 20
 cd ..
 
-bash scripts/bnb/run_utilization.sh
+bash scripts/bnb/run_cdf.sh
