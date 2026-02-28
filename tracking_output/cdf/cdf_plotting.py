@@ -83,8 +83,8 @@ print(values)
 for i in range(0, len(values[0])):
     plt.plot(values[1][i], list(range(0,len(values[1][i]))), label=values[0][i])
 
-plt.xlim([0, 5])
-plt.ylim([0, 60])
+plt.xlim([0, 140]) # max should be 300secs
+plt.ylim([0, 60]) # nr of examples times 10
 
 plt.title("CDF on currently 6 examples (todo more)")
 plt.ylabel("# solved")
