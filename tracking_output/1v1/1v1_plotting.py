@@ -3,11 +3,10 @@ from collections import defaultdict
 import math
 import os
 
-# TODO changes for 1v1
-
 # Assign directory
 dir_list = [r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/1v1/in10",
-            r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/1v1/in20"]
+            r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/1v1/in20",
+            r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/1v1/in30"]
 
 # Variables
 non_tracking_files = []
@@ -79,16 +78,23 @@ x, y = zip(*myList)
 values = list(map(int, x)),  y
 print(values)
 
-plt.plot([0,1], [0,1], color="black")
+# specific: TODO changes
+print(len(values[1][0]))
+print(len(values[1][1]))
+values_two = values[1][0]
+values_four = values[1][1][:-1]
 
-plt.scatter(values[1][0], values[1][1], color="red")
 
-plt.xlim([0, 0.5])
-plt.ylim([0, 0.5])
+plt.plot([0,200], [0,200], color="black")
+
+plt.scatter(values_two, values_four, color="red")
+
+plt.xlim([0, 10])
+plt.ylim([0, 10])
 
 plt.title("1v1")
 plt.ylabel("4 threads")
 plt.xlabel("2 threads")
 
-fig_name = "tracking_output/1v1/out/1v1_2.png"
+fig_name = "tracking_output/1v1/out/1v1_6_zoom.png"
 plt.savefig(fig_name)
