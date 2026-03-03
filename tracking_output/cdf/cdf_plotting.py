@@ -3,6 +3,15 @@ from collections import defaultdict
 import math
 import os
 
+#
+# bnb_n10_m2
+# bnb_n15_m2
+# bnb_n20_m2
+# bnb_n25_m2_1
+# bnb_n25_m2_2
+# bnb_n30
+#
+
 # Assign directory
 dir_list = [r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/cdf/in10",
             r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/cdf/in20",
