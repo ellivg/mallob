@@ -4,9 +4,9 @@ import math
 import os
 
 # Assign directory
-dir_list = [r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/1v1/in10",
-            r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/1v1/in20",
-            r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/1v1/in30"]
+dir_list = [r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/1v1/2v4/in10",
+            r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/1v1/2v4/in20",
+            r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/1v1/2v4/in30"]
 
 # Variables
 non_tracking_files = []
@@ -81,20 +81,19 @@ print(values)
 # specific: TODO changes
 print(len(values[1][0]))
 print(len(values[1][1]))
-values_two = values[1][0]
-values_four = values[1][1][:-1]
+values_two = sorted(values[1][0])
+values_four = sorted(values[1][1][:-1])
 
 
-plt.plot([0,200], [0,200], color="black")
+plt.plot([0,300], [0,300], color="black")
 
 plt.scatter(values_two, values_four, color="red")
 
-plt.xlim([0, 10])
-plt.ylim([0, 10])
+plt.xlim([0, 150])
+plt.ylim([0, 150])
 
-plt.title("1v1")
 plt.ylabel("4 threads")
 plt.xlabel("2 threads")
 
-fig_name = "tracking_output/1v1/out/1v1_6_zoom.png"
+fig_name = "tracking_output/1v1/2v4/out/1v1_2v4.png"
 plt.savefig(fig_name)
