@@ -49,7 +49,9 @@ for name in os.listdir(directory):
 
         # Probably later prettier but in basic the only necessary numbers are the timestamp line[0] and percentage line[-1]
         for line in tracking_values:
-            values.append((float(line[1]), float(line[-1])))
+            #print(line)
+            if int(line[2]) != 0:
+                values.append((float(line[1]), float(line[-1])))
     
 
 # Print non solved files
@@ -73,4 +75,4 @@ plt.title("Auslastung")
 plt.xlabel("time")
 plt.ylabel("utilization")
 
-plt.savefig("tracking_output/basic/out/basic_new30.png")
+plt.savefig("tracking_output/basic/out/basic_onlynot0.png")
