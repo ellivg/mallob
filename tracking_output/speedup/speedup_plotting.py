@@ -5,18 +5,17 @@ import math
 import os
 
 # Assign directory
-dir_list = [r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/speedup/in10",
-            r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/speedup/in15",
-            r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/speedup/in20",
-            r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/speedup/in25_1",
-            r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/speedup/in25_2",
-            r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/speedup/in30"]
+dir_list = [r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/speedup/in1",
+            r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/speedup/in2",
+            r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/speedup/in4"]
 
 # Variables
 non_tracking_files = []
-all_values = []
+all_values = defaultdict()
 wanted_keyword = "RESPONSE_TIME"
 num_files = 0
+labels = [1,2,4]
+labelcou = 0
 
 # Iterate over files in directory
 for directory in dir_list:
@@ -66,7 +65,7 @@ for directory in dir_list:
         #print(finished_values)
 
         # Get label
-        label = float(name.split("_")[2])
+        label = float(name.split("_")[1])
         #print(label)
         
         # Decide which values are important for the current plot and add them to the dict
@@ -81,14 +80,23 @@ for directory in dir_list:
     values = list(map(int, x)),  list(y)
     #print(values)
 
-    for i in range(0,2):
+    for i in range(len(values[0])):
         sum = np.log(values[1][i])
         gmean = np.exp(sum.mean())
         values[1][i] = gmean
     
-    speedup = values[1][0] / values[1][1]
-    all_values.append((values[1][1], speedup))
+    if not labelcou == 0:
+        for i in range(len(values[1])):
+            values[1][i] = all_values[1][1][i] / values[1][i]
 
+    all_values[labels[labelcou]] = values
+    labelcou += 1
+
+
+myList = sorted(all_values.items())
+x, y = zip(*myList)
+all_values = list(x),  list(y)
+print(all_values)
 
 # Print non solved files
 if not non_tracking_files:
@@ -96,17 +104,18 @@ if not non_tracking_files:
 percent = len(non_tracking_files) / num_files
 print(str(percent)+"% was not solved")
 
-#print(values)
-x, y = zip(*all_values)
-
 plt.plot([0,300], [1,1], color="black")
-plt.plot(x, y, color="red")
+
+for i in range(1, len(all_values[0])):
+    plt.plot(all_values[1][0][1], all_values[1][i][1], label=all_values[0][i])
 
 plt.xlim([0, 150])
 plt.ylim([0, 2])
 
 plt.ylabel("Speedup")
-plt.xlabel("T_parallel")
+plt.xlabel("T_sequential")
+
+plt.legend()
 
 fig_name = "tracking_output/speedup/speedup.png"
 plt.savefig(fig_name)

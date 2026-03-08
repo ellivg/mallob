@@ -769,9 +769,9 @@ std::string BnbJob::transform_for_log(const std::string& reason, const Work& wor
 void BnbJob::printTracking() {
     //LOG(V2_INFO, "[tracking] Number of explored nodes: %i\n", num_expl_nodes);
 
-    //LOG(V2_INFO, 
-    //    "[tracking] Number of queries in total: %i - succesful: %i - before msgs allowed: %i - rank invalid: %i - reply empty: %i\n", 
-    //    tracker.num_queries, tracker.num_succ_queries,  tracker.num_nonsucc_nomsg, tracker.num_nonsucc_rankinvld, tracker.num_nonsucc_empty);
+    LOG(V2_INFO, 
+        "[tracking] Number of queries in total: %i - succesful: %i - before msgs allowed: %i - rank invalid: %i - reply empty: %i\n", 
+        tracker.num_queries, tracker.num_succ_queries,  tracker.num_nonsucc_nomsg, tracker.num_nonsucc_rankinvld, tracker.num_nonsucc_empty);
 
     float perc_all = 0;
 
