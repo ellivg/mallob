@@ -47,7 +47,7 @@ void BnbJob::appl_terminate() {
         _stopSearch = true;
     }
     _loop_cond_var.notify();
-    LOG(V2_INFO, "[term] Terminated\n");
+    LOG(V5_DEBG, "[term] Terminated\n");
 }
 
 int BnbJob::appl_solved() {
@@ -59,7 +59,7 @@ int BnbJob::appl_solved() {
     // and make sure that you only return a result with .result!=-1 if the 2nd meaning applies.
     
     if(!_stopSearch || !_reportableSolution) return -1;
-    LOG(V2_INFO, "[solved] _stopSearch = %i, _reportableSolution = %i\n", _stopSearch, _reportableSolution);
+    LOG(V5_DEBG, "[solved] _stopSearch = %i, _reportableSolution = %i\n", _stopSearch, _reportableSolution);
 
     bool empty;
     {
@@ -107,7 +107,7 @@ void BnbJob::appl_communicate() {
     //Allow messages after conditions are met
     if (!_send_messages && getVolume() == _num_workers && getJobComm().getWorldRankOrMinusOne(_num_workers-1) >= 0) {
 
-        LOG(V2_INFO, "[msg] Messages allowed starting now\n");
+        LOG(V5_DEBG, "[msg] Messages allowed starting now\n");
         _send_messages = true;
     }
 
@@ -408,7 +408,7 @@ void BnbJob::loop() {
             _work_queue.pop();
         }
         LOG(V5_DEBG, "%s", transform_for_log("[queue] In Loop. Currently at:", curr_work).c_str());
-        if (num_expl_nodes % 10000 == 0) LOG(V2_INFO, "[queue] In loop. Jobs left: %i\n", _work_queue.size()+1);
+        if (num_expl_nodes % 100000 == 0) LOG(V2_INFO, "[queue] In loop. Jobs left: %i\n", _work_queue.size()+1);
 
         // Switch tracker
         tracker.curr_time = Timer::elapsedSeconds();
