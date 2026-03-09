@@ -4,17 +4,20 @@ import numpy as np
 import math
 import os
 
+# use cdf runs as base
+
 # Assign directory
 dir_list = [r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/speedup/in1",
             r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/speedup/in2",
-            r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/speedup/in4"]
+            r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/speedup/in4",
+            r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/speedup/in8"]
 
 # Variables
 non_tracking_files = []
 all_values = defaultdict()
 wanted_keyword = "RESPONSE_TIME"
 num_files = 0
-labels = [1,2,4]
+labels = [1,2,4,8]
 labelcou = 0
 
 # Iterate over files in directory
@@ -106,8 +109,10 @@ print(str(percent)+"% was not solved")
 
 plt.plot([0,300], [1,1], color="black")
 
+marker_rotation = ["o", "v", "s", "p", "*", "D"]
+
 for i in range(1, len(all_values[0])):
-    plt.plot(all_values[1][0][1], all_values[1][i][1], label=all_values[0][i])
+    plt.plot(all_values[1][0][1], all_values[1][i][1], label=all_values[0][i], marker=marker_rotation[i])
 
 plt.xlim([0, 150])
 plt.ylim([0, 2])
@@ -117,5 +122,5 @@ plt.xlabel("T_sequential")
 
 plt.legend()
 
-fig_name = "tracking_output/speedup/speedup.png"
+fig_name = "tracking_output/speedup/speedup_8.png"
 plt.savefig(fig_name)
