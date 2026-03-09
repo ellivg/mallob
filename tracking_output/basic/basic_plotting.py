@@ -12,10 +12,12 @@ directory = r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_ou
 
 # Variables
 non_tracking_files = []
-values = []
+values = defaultdict(list)
+num_files = 0
 
 # Iterate over files in directory
 for name in os.listdir(directory):
+    num_files += 1
     tracking_lines = []
     tracking_values = []
     finished_values = []
@@ -46,33 +48,41 @@ for name in os.listdir(directory):
             line = line[:-1]
             line = line.split(" ")
             tracking_values.append(line)
+        
+        thrcount = int(name.split("_")[2])
 
         # Probably later prettier but in basic the only necessary numbers are the timestamp line[0] and percentage line[-1]
         for line in tracking_values:
             #print(line)
-            if int(line[2]) != 0:
-                values.append((float(line[1]), float(line[-1])))
+            if int(line[2]) == 0:
+                values[thrcount].append((float(line[1]), float(line[-1])))
     
 
 # Print non solved files
 if not non_tracking_files:
     print("All files were solved")
-for name in non_tracking_files:
-    print(name+" was not solved")
+percent = len(non_tracking_files) / num_files
+print(str(percent)+"% was not solved")
 
-values.sort()
-print(values)
-x, y = zip(*values)
+x, y = zip(*sorted(values.items()))
 values = x, y
+#values.sort()
 #print(values)
 
-plt.plot(values[0], values[1])
+marker_rotation = ["o", "v", "s", "p", "*", "D"]
+
+# Plot by label
+# X is runtime
+# Y is utilization
+for i in range(0, len(values[0])):
+    x, y = zip(*sorted(values[1][i]))
+    plt.plot(x, y, label=values[0][i], marker=marker_rotation[i])
 
 plt.xlim([0, 150])
 plt.ylim([0,1])
 
-plt.title("Auslastung")
 plt.xlabel("time")
 plt.ylabel("utilization")
+plt.legend()
 
-plt.savefig("tracking_output/basic/out/basic_onlynot0.png")
+plt.savefig("tracking_output/basic/out/basic_thr_0.png")
