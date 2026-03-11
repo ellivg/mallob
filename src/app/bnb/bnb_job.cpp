@@ -43,7 +43,7 @@ void BnbJob::appl_start() {
 
 void BnbJob::appl_terminate() {
     {
-        auto lock = queue_mtx.getLock();
+        auto lock = list_mtx.getLock();
         _stopSearch = true;
     }
     _loop_cond_var.notify();
@@ -55,16 +55,14 @@ int BnbJob::appl_solved() {
     // _finished has two meanings:
     // - I should stop working -> _stopSearch
     // - I have a globally best solution I'd like to report -> _reportableSolution
-    // Separate these two meanings into two vars (or one var and one expression)
-    // and make sure that you only return a result with .result!=-1 if the 2nd meaning applies.
     
     if(!_stopSearch || !_reportableSolution) return -1;
     LOG(V5_DEBG, "[solved] _stopSearch = %i, _reportableSolution = %i\n", _stopSearch, _reportableSolution);
 
     bool empty;
     {
-        auto lock = queue_mtx.getLock();
-        empty = _work_queue.empty();
+        auto lock = list_mtx.getLock();
+        empty = _work_list.empty();
     }
 
     //assert(empty && !_working);
@@ -114,8 +112,8 @@ void BnbJob::appl_communicate() {
     //Check if new work needs to be requested and request if possible
     bool empty;
     {
-        auto lock = queue_mtx.getLock();
-        empty = _work_queue.empty();
+        auto lock = list_mtx.getLock();
+        empty = _work_list.empty();
     }
     if(empty && !_stopSearch && !_reportableSolution) {
         tracker.num_queries++;
@@ -186,7 +184,7 @@ void BnbJob::appl_communicate(int source, int mpiTag, JobMessage& msg) {
 
     if(msg.tag == MSG_FINISHED) {
         {
-            auto lock = queue_mtx.getLock();
+            auto lock = list_mtx.getLock();
             _stopSearch = true;
         }
         _loop_cond_var.notify();
@@ -251,9 +249,9 @@ void BnbJob::appl_communicate(int source, int mpiTag, JobMessage& msg) {
             //tracker
             tracker.num_nonsucc_empty++;
         } else {
-            LOG(V2_INFO, "[msg] Work stealing query successful. Filling work queue.\n");
+            LOG(V2_INFO, "[msg] Work stealing query successful. Filling work stack.\n");
             addToQueue(msg.payload);
-            LOG(V2_INFO, "[msg] Work queue is filled.\n", source, msg.tag, msg.payload[0]);
+            LOG(V2_INFO, "[msg] Work stack is filled.\n", source, msg.tag, msg.payload[0]);
             tracker.num_succ_queries++;
 
         // Confirm work is received
@@ -308,10 +306,10 @@ void BnbJob::init() {
 
     // Initializing work – only done by root
     if(getJobTree().isRoot()) {
-        auto lock = queue_mtx.getLock();
+        auto lock = list_mtx.getLock();
         std::vector<std::vector<int>> machines(_nr_machines, std::vector<int>(1, 0));
         Work work = {0, tasks, machines, {-1, -1}};
-        _work_queue.push(work);
+        _work_list.push_back(work);
         _working = 1;
 
         //initialize lower bound
@@ -340,26 +338,26 @@ void BnbJob::loop() {
     // Start tracker
     tracker.activation_time = Timer::elapsedSeconds();
     tracker.wait_threads_time = tracker.activation_time;
-    LOG(V2_INFO, "[track] Start tracker & Start wait threads\n");
+    LOG(V5_DEBG, "[track] Start tracker & Start wait threads\n");
     
     // Possibly wait for all threads
     if(getJobTree().isRoot() && !_send_messages) {
-        LOG(V2_INFO, "Start waiting for other threads: %i\n", _send_messages);
+        LOG(V2_INFO, "[stack] Start waiting for other threads: %i\n", _send_messages);
         float timer = Timer::elapsedSeconds();
         while(!_send_messages) {
             if(Timer::elapsedSeconds() - timer == 1) {
-                LOG(V2_INFO, "Still waiting:%i\n", _send_messages);
+                LOG(V5_DEBG, "Still waiting:%i\n", _send_messages);
                 timer += 1;
             }
         }
-        LOG(V2_INFO, "End waiting: %i\n", _send_messages);
+        LOG(V2_INFO, "[stack] End waiting: %i\n", _send_messages);
     }
 
     // Switch tracker
     tracker.curr_time = Timer::elapsedSeconds();
     tracker.time_spent_wait_threads = tracker.curr_time - tracker.wait_threads_time;
     tracker.outside_time = tracker.curr_time;
-    LOG(V2_INFO, "[track] End wait threads & Start outside\n");
+    LOG(V5_DEBG, "[track] End wait threads & Start outside\n");
     
     // Loop over jobs
     do {
@@ -369,11 +367,11 @@ void BnbJob::loop() {
         tracker.check_time = tracker.curr_time;
         LOG(V5_DEBG, "[track] End outside & Start empty & Start check\n");
 
-        //check if queue is empty and stop working if necessary
+        //check if stack is empty and stop working if necessary
         bool empty;
         {
-            auto lock = queue_mtx.getLock();
-            empty = _work_queue.empty();
+            auto lock = list_mtx.getLock();
+            empty = _work_list.empty();
 
             // Switch tracker
             tracker.curr_time = Timer::elapsedSeconds();
@@ -382,15 +380,15 @@ void BnbJob::loop() {
             LOG(V5_DEBG, "[track] End check & Start wait full\n");
 
             if(empty) {
-                LOG(V2_INFO, "[queue] Queue empty. Stopping Loop\n");
+                LOG(V2_INFO, "[stack] Stack empty. Stopping Loop\n");
                 _working = 0;
 
                 _loop_cond_var.waitWithLockedMutex(lock, [&]() {return (_working || _stopSearch || _reportableSolution);});
-                LOG(V5_DEBG, "[queue] working: %i or finished: %i %i\n", _working, _stopSearch, _reportableSolution);
+                LOG(V5_DEBG, "[stack] working: %i or finished: %i %i\n", _working, _stopSearch, _reportableSolution);
                 
                 if(_stopSearch || _reportableSolution) break;
 
-                LOG(V2_INFO, "[queue] Restarting loop: %i\n", _work_queue.size());
+                LOG(V2_INFO, "[stack] Restarting loop: %i\n", _work_list.size());
             }
         }
 
@@ -403,12 +401,13 @@ void BnbJob::loop() {
         //else: work
         Work curr_work;
         {
-            auto lock = queue_mtx.getLock();
-            curr_work = _work_queue.front();
-            _work_queue.pop();
+            auto lock = list_mtx.getLock();
+            curr_work = _work_list.back();
+            _work_list.pop_back();
         }
-        LOG(V5_DEBG, "%s", transform_for_log("[queue] In Loop. Currently at:", curr_work).c_str());
-        if (num_expl_nodes % 100000 == 0) LOG(V5_DEBG, "[queue] In loop. Jobs left: %i\n", _work_queue.size()+1);
+
+        LOG(V5_DEBG, "%s", transform_for_log("[stack] In Loop. Currently at:", curr_work).c_str());
+        if (num_expl_nodes % 100000 == 0) LOG(V5_DEBG, "[stack] In loop. Jobs left: %i\n", _work_list.size()+1);
 
         // Switch tracker
         tracker.curr_time = Timer::elapsedSeconds();
@@ -450,7 +449,7 @@ void BnbJob::loop() {
         tracker.outside_time = tracker.curr_time;
         LOG(V5_DEBG, "[track] End compare & Start outside\n");
     } while(_working && !_stopSearch && !_reportableSolution);
-    LOG(V2_INFO, "[queue] Succesfully broken out of loop\n");
+    LOG(V2_INFO, "[stack] Succesfully broken out of loop\n");
 
     // Finish tracker
     tracker.curr_time = Timer::elapsedSeconds();
@@ -526,7 +525,7 @@ void BnbJob::branch(Work& work) {
         //END PRUNING
         if (prune) continue;
 
-        auto lock = queue_mtx.getLock();
+        auto lock = list_mtx.getLock();
         std::vector<std::vector<int>> new_machines = work.machines;
         
         new_machines[i].pop_back();
@@ -534,7 +533,7 @@ void BnbJob::branch(Work& work) {
         new_machines[i].push_back(0);
               
         Work new_work = {0, new_tasks, new_machines, {curr_task, i}};
-        _work_queue.push(new_work);  
+        _work_list.push_back(new_work);
     }
     
     return;
@@ -561,8 +560,8 @@ void BnbJob::pruning_three_jobs_left(Work& work, std::vector<int>& machine_workl
             curr_machine_workload = machine_workloads(new_machines);
         }
         {
-            auto lock = queue_mtx.getLock();
-            _work_queue.push(curr_work);
+            auto lock = list_mtx.getLock();
+            _work_list.push_back(curr_work);
         }
     }
 
@@ -594,43 +593,41 @@ void BnbJob::pruning_three_jobs_left(Work& work, std::vector<int>& machine_workl
             int index_smallest_workload = std::distance(std::begin(curr_machine_workload), std::min_element(std::begin(curr_machine_workload), std::end(curr_machine_workload)));
         }
         {
-            auto lock = queue_mtx.getLock();
-            _work_queue.push(curr_work);
+            auto lock = list_mtx.getLock();
+            _work_list.push_back(curr_work);
         }
     }
 }
 
 std::vector<int> BnbJob::splitQueue() {
-    auto lock = queue_mtx.getLock();
+    auto lock = list_mtx.getLock();
     std::vector<int> sendQueue;
     
-    if (_work_queue.size() < 2 || (appr_amount_of_expl - num_expl_nodes) < 100) {
-        LOG(V5_DEBG, "I am not sending work: %i %i\n", appr_amount_of_expl, num_expl_nodes);
+    if (_work_list.size() < 2) {
+        LOG(V2_INFO, "[steal] I am not sending work: _work_list.size() = %i\n", _work_list.size());
+        sendQueue.push_back(-1);
+    } else if ((appr_amount_of_expl - num_expl_nodes) < 100) {
+        LOG(V2_INFO, "[steal] I am not sending work: appr_amount_of_expl = %i, num_explored_nodes = %i\n", appr_amount_of_expl, num_expl_nodes);
         sendQueue.push_back(-1);
     } else {
-        LOG(V5_DEBG, "I am sending work\n");
-        int length = _work_queue.size();
-        int sendLength = length / 2;
-        if(sendLength > 2) sendLength = 2;
-        LOG(V5_DEBG, "[msg] Work queue is: %i\n", length);
+        // Send the search tree that has been explored the least (aka stack element 0)
+        LOG(V2_INFO, "[steal] I am sending work\n");
 
-        for (int i = 0; i < sendLength; i++) {
-            Work work_front = _work_queue.front();
-            _work_queue.pop();
-            std::vector<int> vector_front;
+        Work work_front = _work_list.front();
+        _work_list.pop_front();
+        std::vector<int> vector_front;
 
-            vector_front.push_back(work_front.completed);
-            vector_front.push_back(-2); // -2 is inside work and -3 (see later) between works as just one delimiter is not enough
-            vector_front.insert(vector_front.end(), work_front.tasks.begin(), work_front.tasks.end());
+        vector_front.push_back(work_front.completed);
+        vector_front.push_back(-2); // -2 is inside work and -3 (see later) between works as just one delimiter is not enough
+        vector_front.insert(vector_front.end(), work_front.tasks.begin(), work_front.tasks.end());
+        vector_front.push_back(-2);
+        for (int i = 0; i < work_front.machines.size(); i++) {
+            vector_front.insert(vector_front.end(), work_front.machines.at(i).begin(), work_front.machines.at(i).end());
             vector_front.push_back(-2);
-            for (int i = 0; i < work_front.machines.size(); i++) {
-                vector_front.insert(vector_front.end(), work_front.machines.at(i).begin(), work_front.machines.at(i).end());
-                vector_front.push_back(-2);
-            }
-            vector_front.push_back(-3);
-            
-            sendQueue.insert(sendQueue.end(), vector_front.begin(), vector_front.end());
         }
+        vector_front.push_back(-3);
+        
+        sendQueue.insert(sendQueue.end(), vector_front.begin(), vector_front.end());
     }
 
     return sendQueue;
@@ -638,7 +635,7 @@ std::vector<int> BnbJob::splitQueue() {
 
 void BnbJob::addToQueue(std::vector<int>& message) {
     LOG(V2_INFO, "[adding] Adding starting now\n");
-    auto lock = queue_mtx.getLock();
+    auto lock = list_mtx.getLock();
     int next;
 
     //add one work at a time
@@ -695,7 +692,7 @@ void BnbJob::addToQueue(std::vector<int>& message) {
         message.erase(message.begin());
         assert(next == -3);
 
-        _work_queue.push(work);
+        _work_list.push_back(work);
     }
 
     _working = 1;
@@ -852,7 +849,7 @@ void BnbJob::tryEndReduction() {
 
     if(nbActive == 0) {
         {
-            auto lock = queue_mtx.getLock();
+            auto lock = list_mtx.getLock();
             _stopSearch = true;
         }
         _loop_cond_var.notify();
@@ -860,7 +857,7 @@ void BnbJob::tryEndReduction() {
         
         if (upperBound == bounds.curr_best_solution) {
             {
-                auto lock = queue_mtx.getLock();
+                auto lock = list_mtx.getLock();
                 _reportableSolution = true;
             }
             _loop_cond_var.notify();
@@ -868,12 +865,12 @@ void BnbJob::tryEndReduction() {
         }
     }
 
-    // TODO Three fields: best known upper, lower bound, cost of currently present solution.
+    // Three fields: best known upper, lower bound, cost of currently present solution.
     // Update the former two here with the result of the all reduction.
 
     if(lowerBound == bounds.curr_best_solution) {
         {
-            auto lock = queue_mtx.getLock();
+            auto lock = list_mtx.getLock();
             _reportableSolution = true;
         }
         _loop_cond_var.notify();

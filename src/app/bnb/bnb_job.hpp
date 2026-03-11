@@ -9,8 +9,6 @@
 #include "comm/job_tree_broadcast.hpp"
 #include "comm/job_tree_all_reduction.hpp"
 
-#include <queue>
-
 /*
 Minimally compiling example "application" for a Mallob job. 
 Edit and extend for your application. 
@@ -75,7 +73,8 @@ private:
     long appr_amount_of_expl; //approximative amount of explorations (2^nr tasks)
     int num_expl_nodes;
 
-    std::queue<Work> _work_queue;
+    // Stack of nodes
+    std::list<Work> _work_list;
 
     AdjustablePermutation _perm; // Represents a pseudo-random permutation of a set of integers [0..n).
 
@@ -87,8 +86,9 @@ private:
     };
     Bounds bounds;
 
+    // Mutexes and condition variable
     Mutex solution_mtx;
-    Mutex queue_mtx;
+    Mutex list_mtx;
     ConditionVariable _loop_cond_var;
 
     bool _working {false};
