@@ -407,7 +407,7 @@ void BnbJob::loop() {
         }
 
         LOG(V5_DEBG, "%s", transform_for_log("[stack] In Loop. Currently at:", curr_work).c_str());
-        if (num_expl_nodes % 100000 == 0) LOG(V5_DEBG, "[stack] In loop. Jobs left: %i\n", _work_list.size()+1);
+        if (num_expl_nodes % 100000 == 0) LOG(V2_INFO, "[stack] In loop. Jobs left: %i\n", _work_list.size()+1);
 
         // Switch tracker
         tracker.curr_time = Timer::elapsedSeconds();
