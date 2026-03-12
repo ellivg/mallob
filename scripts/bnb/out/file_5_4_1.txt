@@ -1,0 +1,2132 @@
+0.000 0 [WARN] Invalid argument "\"
+0.000 0 [WARN] Invalid argument "\"
+0.000 0 [WARN] Invalid argument "\"
+0.000 0 [WARN] Invalid argument "\"
+c 
+c Mallob -- a parallel and distributed platform for job scheduling, load balancing, and SAT solving
+c Copyright (C) 2019-2025 Dominik Schreiber, Karlsruhe Institute of Technology, Germany
+c 
+c 0.002 0 Program options: -0o=0 -J=0 -SJ=0 -T=300 -adc=0 -aim=1 -ajpc=0 -ans=0 -apidir=.api -ba=4 -bem=1 -bicg=4 -br=0 -c=1 -cbbs=0 -cblm=1 -cblp=100000 -cdel=2 -cecpm=0 -cf=0 -cfci=10 -cfm=3 -cg=1 -ch=0 -checksums=0 -cjc=0 -client-app-threads=1 -cm=0 -cmp=0 -colors=0 -compact-proof=0 -cpshm=0 -csm=3 -cusv=1 -dc=0 -decay-distr=1 -decay-max=200 -decay-mean=50 -decay-min=1 -decay-stddev=3 -decpm=0 -delaymonkey=0 -div-elim=0 -div-fanout=0 -div-init-shuffle=0 -div-native=1 -div-noise=0 -div-phases=1 -div-reduce=0 -div-seeds=1 -dpa=1 -ds=0 -evpt=350 -evu=0 -extmem-disk-dir=.disk -fapii=0 -fcll=1 -g=0 -gclls=0 -h=0 -huca=0 -iff=0 -ilbd=0 -inotify=1 -interface-fs=0 -interface-ipc=0 -ipm=1 -ivdh=1 -jc=1 -jcl=0 -jcup=0.1 -jjp=0 -jwl=0 -l=1 -latencymonkey=0 -lbdpi=0 -lbdpo=0 -ljpc=32 -log=scripts/bnb/out//5/ -mbt=8388608 -mcips=5 -md=0 -mempanic=1 -mjps=0 -mlbdps=2 -mlpt=50000000 -mmpi=0 -mono=instances/bnb/main_under_300/bnb_n25_m2_2.cnf -mono-app=bnb -mscf=5 -nec=5 -no-import=0 -os=0 -otfc=0 -otfcm=1 -p=0.1 -pbbm=0 -plain-add-specific=0 -pph=0 -pre-cleanup=1 -prisma=0 -proof-debugging=0 -ps=0 -q=0 -qcll=8 -qlbdl=2 -randlbd=0 -reduce-delta=100 -reduce-max=980 -reduce-mean=700 -reduce-min=300 -reduce-stddev=150 -rlbd=3 -rpa=0 -rs=1 -rspaa=0 -s=0.5 -satsolver=C -scll=60 -scramble-lbds=0 -scsd=0 -seed=0 -sjd=0 -slbdl=60 -sleep=100 -spl=-1 -sswl=0 -t=1 -tmp=scripts/bnb/out//5/tmp/ -trace-dir=scripts/bnb/out//5/ -uninvert-proof=1 -v=2 -w=-1 -wam=10000 -warmup=0 -watchdog=1 -y=1 -yield=0 
+c 0.002 0 Cleaning up pre-execution
+c 0.002 0 Killing old subprocesses: "killall -9 build/mallob_sat_process 2>/dev/null"
+c 0.002 3 Cleaning up pre-execution
+c 0.002 3 Killing old subprocesses: "killall -9 build/mallob_sat_process 2>/dev/null"
+c 0.002 2 Cleaning up pre-execution
+c 0.002 2 Killing old subprocesses: "killall -9 build/mallob_sat_process 2>/dev/null"
+c 0.002 1 Cleaning up pre-execution
+c 0.002 1 Killing old subprocesses: "killall -9 build/mallob_sat_process 2>/dev/null"
+c 0.016 1 Killing old subprocesses: "killall -9 build/impcheck_parse 2>/dev/null"
+c 0.016 3 Killing old subprocesses: "killall -9 build/impcheck_parse 2>/dev/null"
+c 0.016 2 Killing old subprocesses: "killall -9 build/impcheck_parse 2>/dev/null"
+c 0.016 0 Killing old subprocesses: "killall -9 build/impcheck_parse 2>/dev/null"
+c 0.020 1 Killing old subprocesses: "killall -9 build/impcheck_check 2>/dev/null"
+c 0.020 3 Killing old subprocesses: "killall -9 build/impcheck_check 2>/dev/null"
+c 0.020 2 Killing old subprocesses: "killall -9 build/impcheck_check 2>/dev/null"
+c 0.020 0 Killing old subprocesses: "killall -9 build/impcheck_check 2>/dev/null"
+c 0.024 1 Killing old subprocesses: "killall -9 build/impcheck_confirm 2>/dev/null"
+c 0.024 3 Killing old subprocesses: "killall -9 build/impcheck_confirm 2>/dev/null"
+c 0.024 0 Killing old subprocesses: "killall -9 build/impcheck_confirm 2>/dev/null"
+c 0.024 2 Killing old subprocesses: "killall -9 build/impcheck_confirm 2>/dev/null"
+c 0.041 1 [WARN] Num bounce alternatives must be at most half the number of workers!
+c 0.041 1 [WARN] Falling back to safe value r=2.
+c 0.041 3 [WARN] Num bounce alternatives must be at most half the number of workers!
+c 0.041 3 [WARN] Falling back to safe value r=2.
+c 0.041 2 [WARN] Num bounce alternatives must be at most half the number of workers!
+c 0.041 2 [WARN] Falling back to safe value r=2.
+c 0.042 0 [WARN] Num bounce alternatives must be at most half the number of workers!
+c 0.042 0 [WARN] Falling back to safe value r=2.
+c 0.042 0 Set up API connector
+c 0.043 1 Machine color 0 with 4 total workers (my rank: 1)
+c 0.043 2 Machine color 0 with 4 total workers (my rank: 2)
+c 0.043 0 Machine color 0 with 4 total workers (my rank: 0)
+c 0.043 0 Assuming application "BNB" for mono job
+c 0.043 3 Machine color 0 with 4 total workers (my rank: 3)
+c 0.044 0 Introducing job #1 rev. 0 : r.#1:0 rev. 0 <- [0] born=0.044 hops=0 epoch=-1 matchId=-1 => [0]
+c 0.045 0 [bou] Initiliased to {lower, upper, best} = {10, -1, -1}.
+c 0.045 0 [start] Beginning: (Completion: 0) (Nr Tasks: 25) (Nr Machines: 2) (Tasks: 5 5 5 5 5 4 4 4 4 4 3 3 3 3 3 2 2 2 2 2 1 1 1 1 1) (Machine Workloads: 0 0) (Machines: 0 0)
+c 0.045 0 [stack] Start waiting for other threads: 0
+c 0.055 2 [stack] Stack empty. Stopping Loop
+c 0.056 1 [stack] Stack empty. Stopping Loop
+c 0.056 3 [stack] Stack empty. Stopping Loop
+c 0.105 0 [WARN] #1:0 job tree has size 0/4
+c 0.114 0 [stack] End waiting: 1
+c 0.114 0 [stack] In loop. Jobs left: 1
+c 0.114 0 [bou] Updated to {lower, upper, best} = {10, 59, 59}.
+c 0.114 0 [bou] Updated to {lower, upper, best} = {10, 58, 58}.
+c 0.114 0 [bou] Updated to {lower, upper, best} = {10, 57, 57}.
+c 0.114 0 [bou] Updated to {lower, upper, best} = {10, 56, 56}.
+c 0.115 0 [bou] Updated to {lower, upper, best} = {10, 55, 55}.
+c 0.115 0 [bou] Updated to {lower, upper, best} = {10, 54, 54}.
+c 0.115 0 [bou] Updated to {lower, upper, best} = {10, 53, 53}.
+c 0.115 0 [bou] Updated to {lower, upper, best} = {10, 52, 52}.
+c 0.115 3 [msg] Requested work stealing from: 0
+c 0.115 0 [bou] Updated to {lower, upper, best} = {10, 51, 51}.
+c 0.115 0 [msg] Message 31 with Payload 0 from 3 received.
+c 0.115 0 [msg] Processing work stealing query from 3
+c 0.115 0 [steal] I am sending work
+c 0.115 2 [msg] Requested work stealing from: 0
+c 0.115 0 [msg] Message returned to sender 3 with payload[0] = 0 and _sent_work = 1
+c 0.115 0 [msg] Message 31 with Payload 0 from 2 received.
+c 0.115 0 [msg] Processing work stealing query from 2
+c 0.115 0 [steal] I am sending work
+c 0.115 0 [msg] Message returned to sender 2 with payload[0] = 0 and _sent_work = 1
+c 0.115 3 [msg] Message 32 with Payload 0 from 0 received.
+c 0.115 3 [msg] Work stealing query successful. Filling work stack.
+c 0.115 3 [adding] Adding starting now
+c 0.115 2 [msg] Message 32 with Payload 0 from 0 received.
+c 0.115 2 [msg] Work stealing query successful. Filling work stack.
+c 0.115 2 [adding] Adding starting now
+c 0.115 3 [adding] Adding ending now
+c 0.115 3 [msg] Work stack is filled.
+c 0.115 3 [stack] Restarting loop: 1
+c 0.115 2 [adding] Adding ending now
+c 0.115 2 [msg] Work stack is filled.
+c 0.115 2 c [stack] Restarting loop: 1
+c 0.115 3 [msg] Message returned to sender 0.
+c 0.115 3 [stack] In loop. Jobs left: 1
+c 0.115 0 [bou] Updated to {lower, upper, best} = {10, 50, 50}.
+0.115 2 [msg] Message returned to sender 0.
+c 0.115 2 [stack] In loop. Jobs left: 1
+c 0.115 0 [msg] Message 33 with Payload 0 from 2 received.
+c 0.115 0 [msg] Message 33 with Payload 0 from 3 received.
+c 0.115 0 [bou] Updated to {lower, upper, best} = {10, 49, 49}.
+c 0.115 3 [bou] Updated to {lower, upper, best} = {-1, 59, 59}.
+c 0.115 3 [bou] Updated to {lower, upper, best} = {-1, 58, 58}.
+c 0.115 2 [bou] Updated to {lower, upper, best} = {-1, 59, 59}.
+c 0.115 2 [bou] Updated to {lower, upper, best} = {-1, 58, 58}.
+c 0.115 2 [bou] Updated to {lower, upper, best} = {-1, 57, 57}.
+c 0.115 3 [bou] Updated to {lower, upper, best} = {-1, 57, 57}.
+c 0.115 3 [bou] Updated to {lower, upper, best} = {-1, 56, 56}.
+c 0.115 2 [bou] Updated to {lower, upper, best} = {-1, 56, 56}.
+c 0.115 3 [bou] Updated to {lower, upper, best} = {-1, 55, 55}.
+c 0.115 2 [bou] Updated to {lower, upper, best} = {-1, 55, 55}.
+c 0.115 3 [bou] Updated to {lower, upper, best} = {-1, 54, 54}.
+c 0.115 2 [bou] Updated to {lower, upper, best} = {-1, 54, 54}.
+c 0.115 3 [bou] Updated to {lower, upper, best} = {-1, 53, 53}.
+c 0.115 2 [bou] Updated to {lower, upper, best} = {-1, 53, 53}.
+c 0.115 1 [msg] Requested work stealing from: 0
+c 0.115 3 [bou] Updated to {lower, upper, best} = {-1, 52, 52}.
+c 0.115 2 [bou] Updated to {lower, upper, best} = {-1, 52, 52}.
+c 0.115 2 [bou] Updated to {lower, upper, best} = {-1, 51, 51}.
+c 0.115 3 [bou] Updated to {lower, upper, best} = {-1, 51, 51}.
+c 0.115 0 [msg] Message 31 with Payload 0 from 1 received.
+c 0.115 0 [msg] Processing work stealing query from 1
+c 0.115 0 [steal] I am sending work
+c 0.115 0 [msg] Message returned to sender 1 with payload[0] = 0 and _sent_work = 1
+c 0.115 1 [msg] Message 32 with Payload 0 from 0 received.
+c 0.115 1 [msg] Work stealing query successful. Filling work stack.
+c 0.115 1 [adding] Adding starting now
+c 0.115 1 [adding] Adding ending now
+c 0.115 1 [msg] Work stack is filled.
+c 0.115 0 [bou] Updated to {lower, upper, best} = {10, 48, 48}.
+c 0.115 1 c [msg] Message returned to sender 0.
+0.115 1 [stack] Restarting loop: 1
+c 0.115 0 [bou] Updated to {lower, upper, best} = {10, 47, 47}.
+c 0.115 1 [stack] In loop. Jobs left: 1
+c 0.115 2 [bou] Updated to {lower, upper, best} = {-1, 50, 50}.
+c 0.115 3 [bou] Updated to {lower, upper, best} = {-1, 50, 50}.
+c 0.115 2 [bou] Updated to {lower, upper, best} = {-1, 49, 49}.
+c 0.116 3 [bou] Updated to {lower, upper, best} = {-1, 49, 49}.
+c 0.115 1 [bou] Updated to {lower, upper, best} = {-1, 55, 55}.
+c 0.115 1 [bou] Updated to {lower, upper, best} = {-1, 54, 54}.
+c 0.115 1 [bou] Updated to {lower, upper, best} = {-1, 53, 53}.
+c 0.115 0 [msg] Message 33 with Payload 0 from 1 received.
+c 0.115 1 [bou] Updated to {lower, upper, best} = {-1, 52, 52}.
+c 0.116 1 [bou] Updated to {lower, upper, best} = {-1, 51, 51}.
+c 0.116 1 [bou] Updated to {lower, upper, best} = {-1, 50, 50}.
+c 0.116 1 [bou] Updated to {lower, upper, best} = {-1, 49, 49}.
+c 0.116 1 [bou] Updated to {lower, upper, best} = {-1, 48, 48}.
+c 0.116 1 [bou] Updated to {lower, upper, best} = {-1, 47, 47}.
+c 0.116 2 [bou] Updated to {lower, upper, best} = {-1, 48, 48}.
+c 0.116 3 [bou] Updated to {lower, upper, best} = {-1, 48, 48}.
+c 0.116 2 [bou] Updated to {lower, upper, best} = {-1, 47, 47}.
+c 0.116 3 [bou] Updated to {lower, upper, best} = {-1, 47, 47}.
+c 0.116 1 [bou] Updated to {lower, upper, best} = {-1, 46, 46}.
+c 0.116 1 [bou] Updated to {lower, upper, best} = {-1, 45, 45}.
+c 0.116 0 [bou] Updated to {lower, upper, best} = {10, 46, 46}.
+c 0.116 0 [bou] Updated to {lower, upper, best} = {10, 45, 45}.
+c 0.116 1 [bou] Updated to {lower, upper, best} = {-1, 44, 44}.
+c 0.116 1 [bou] Updated to {lower, upper, best} = {-1, 43, 43}.
+c 0.117 2 [bou] Updated to {lower, upper, best} = {-1, 46, 46}.
+c 0.117 3 [bou] Updated to {lower, upper, best} = {-1, 46, 46}.
+c 0.117 2 [bou] Updated to {lower, upper, best} = {-1, 45, 45}.
+c 0.117 3 [bou] Updated to {lower, upper, best} = {-1, 45, 45}.
+c 0.117 0 [bou] Updated to {lower, upper, best} = {10, 44, 44}.
+c 0.117 1 [bou] Updated to {lower, upper, best} = {-1, 42, 42}.
+c 0.117 1 [bou] Updated to {lower, upper, best} = {-1, 41, 41}.
+c 0.117 2 [bou] Updated to {lower, upper, best} = {-1, 44, 44}.
+c 0.117 3 [bou] Updated to {lower, upper, best} = {-1, 44, 44}.
+c 0.118 0 [bou] Updated to {lower, upper, best} = {10, 43, 43}.
+c 0.118 0 [bou] Updated to {lower, upper, best} = {10, 42, 42}.
+c 0.118 1 [bou] Updated to {lower, upper, best} = {-1, 40, 40}.
+c 0.118 2 [bou] Updated to {lower, upper, best} = {-1, 43, 43}.
+c 0.118 3 [bou] Updated to {lower, upper, best} = {-1, 43, 43}.
+c 0.118 2 [bou] Updated to {lower, upper, best} = {-1, 42, 42}.
+c 0.118 3 [bou] Updated to {lower, upper, best} = {-1, 42, 42}.
+c 0.119 1 [bou] Updated to {lower, upper, best} = {-1, 39, 39}.
+c 0.119 1 [bou] Updated to {lower, upper, best} = {-1, 38, 38}.
+c 0.120 0 [bou] Updated to {lower, upper, best} = {10, 41, 41}.
+c 0.120 2 [bou] Updated to {lower, upper, best} = {-1, 41, 41}.
+c 0.121 3 [bou] Updated to {lower, upper, best} = {-1, 41, 41}.
+c 0.121 0 [bou] Updated to {lower, upper, best} = {10, 40, 40}.
+c 0.121 0 [bou] Updated to {lower, upper, best} = {10, 39, 39}.
+c 0.121 2 [bou] Updated to {lower, upper, best} = {-1, 40, 40}.
+c 0.121 3 [bou] Updated to {lower, upper, best} = {-1, 40, 40}.
+c 0.121 2 [bou] Updated to {lower, upper, best} = {-1, 39, 39}.
+c 0.121 3 [bou] Updated to {lower, upper, best} = {-1, 39, 39}.
+c 0.126 0 [bou] Updated to {lower, upper, best} = {10, 38, 38}.
+c 0.127 2 [bou] Updated to {lower, upper, best} = {-1, 38, 38}.
+c 0.127 3 [bou] Updated to {lower, upper, best} = {-1, 38, 38}.
+c 0.155 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 0.155 2 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, -1, 38} to all-reduction.
+c 0.155 0 TRY REDUCE 63 0 0 2 2
+c 0.155 0 REDUCE
+c 0.156 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, -1, 38} to all-reduction.
+c 0.165 3 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, -1, 38} to all-reduction.
+c 0.165 1 TRY REDUCE 63 0 0 2 2
+c 0.165 1 REDUCE
+c 0.166 0 TRY REDUCE 63 0 0 2 2
+c 0.166 0 REDUCE
+c 0.166 1 BROADCAST
+c 0.166 1 TRY REDUCE 64 0 0 2 2
+c 0.166 1 BROADCAST
+c 0.166 3 BROADCAST
+c 0.166 3 TRY REDUCE 64 0 0 2 2
+c 0.166 2 BROADCAST
+c 0.166 2 TRY REDUCE 64 0 0 2 2
+c 0.166 3 BROADCAST
+c 0.166 2 BROADCAST
+c 0.175 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 0.175 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 0.175 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 0.175 3 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 0.175 3 [bou] Before reduction: {lower, upper, best} = {-1, 38, 38}
+c 0.175 3 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 0.175 2 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 0.175 2 [bou] Before reduction: {lower, upper, best} = {-1, 38, 38}
+c 0.175 2 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 0.176 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 0.176 1 [bou] Before reduction: {lower, upper, best} = {-1, 38, 38}
+c 0.176 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 0.214 3 [stack] In loop. Jobs left: 15
+c 0.214 2 [stack] In loop. Jobs left: 14
+c 0.215 1 [stack] In loop. Jobs left: 12
+c 0.215 0 [stack] In loop. Jobs left: 13
+c 0.256 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 0.256 2 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 0.256 0 TRY REDUCE 63 0 0 2 2
+c 0.256 0 REDUCE
+c 0.256 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 0.266 3 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 0.266 1 TRY REDUCE 63 0 0 2 2
+c 0.266 1 REDUCE
+c 0.266 0 TRY REDUCE 63 0 0 2 2
+c 0.266 0 REDUCE
+c 0.266 1 BROADCAST
+c 0.266 1 TRY REDUCE 64 0 0 2 2
+c 0.266 1 BROADCAST
+c 0.266 3 BROADCAST
+c 0.266 3 TRY REDUCE 64 0 0 2 2
+c 0.266 3 BROADCAST
+c 0.266 2 BROADCAST
+c 0.266 2 TRY REDUCE 64 0 0 2 2
+c 0.266 2 BROADCAST
+c 0.276 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 0.276 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 0.276 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 0.276 2 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 0.276 2 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 0.276 2 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 0.276 3 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 0.276 3 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 0.276 3 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 0.276 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 0.276 1 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 0.276 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 0.313 3 [stack] In loop. Jobs left: 14
+c 0.313 1 [stack] In loop. Jobs left: 11
+c 0.313 2 [stack] In loop. Jobs left: 15
+c 0.314 0 [stack] In loop. Jobs left: 9
+c 0.356 2 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 0.357 2 TRY REDUCE 63 0 0 2 2
+c 0.357 2 REDUCE returnedToSender
+c 0.357 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 0.357 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 0.367 3 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 0.367 1 TRY REDUCE 63 0 0 2 2
+c 0.367 1 REDUCE
+c 0.367 0 TRY REDUCE 63 0 0 2 2
+c 0.367 0 REDUCE
+c 0.410 1 [stack] In loop. Jobs left: 5
+c 0.411 3 [stack] In loop. Jobs left: 11
+c 0.411 2 [stack] In loop. Jobs left: 9
+c 0.413 0 [stack] In loop. Jobs left: 9
+c 0.457 2 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 0.457 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 0.457 0 TRY REDUCE 63 0 0 2 2
+c 0.457 0 REDUCE
+c 0.458 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 0.468 3 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 0.468 1 TRY REDUCE 63 0 0 2 2
+c 0.468 1 REDUCE
+c 0.468 0 TRY REDUCE 63 0 0 2 2
+c 0.468 0 REDUCE
+c 0.468 2 BROADCAST
+c 0.468 2 TRY REDUCE 64 0 0 2 2
+c 0.468 2 BROADCAST
+c 0.468 1 BROADCAST
+c 0.468 1 TRY REDUCE 64 0 0 2 2
+c 0.468 1 BROADCAST
+c 0.468 3 BROADCAST
+c 0.468 3 TRY REDUCE 64 0 0 2 2
+c 0.468 3 BROADCAST
+c 0.477 2 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 0.477 2 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 0.477 2 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 0.477 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 0.477 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 0.477 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 0.478 3 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 0.478 3 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 0.478 3 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 0.478 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 0.478 1 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 0.478 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 0.508 1 [stack] In loop. Jobs left: 9
+c 0.510 2 [stack] In loop. Jobs left: 13
+c 0.510 3 [stack] In loop. Jobs left: 14
+c 0.513 0 [stack] In loop. Jobs left: 12
+c 0.558 2 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 0.558 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 0.558 0 TRY REDUCE 63 0 0 2 2
+c 0.558 0 REDUCE
+c 0.558 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 0.569 3 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 0.569 1 TRY REDUCE 63 0 0 2 2
+c 0.569 1 REDUCE
+c 0.569 0 TRY REDUCE 63 0 0 2 2
+c 0.569 0 REDUCE
+c 0.569 1 BROADCAST
+c 0.569 1 TRY REDUCE 64 0 0 2 2
+c 0.569 1 BROADCAST
+c 0.569 2 BROADCAST
+c 0.569 2 TRY REDUCE 64 0 0 2 2
+c 0.569 2 BROADCAST
+c 0.569 3 BROADCAST
+c 0.569 3 TRY REDUCE 64 0 0 2 2
+c 0.569 3 BROADCAST
+c 0.578 2 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 0.578 2 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 0.578 2 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 0.578 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 0.578 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 0.578 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 0.578 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 0.579 1 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 0.579 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 0.579 3 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 0.579 3 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 0.579 3 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 0.605 1 [stack] In loop. Jobs left: 10
+c 0.607 2 [stack] In loop. Jobs left: 14
+c 0.608 3 [stack] In loop. Jobs left: 16
+c 0.611 0 [stack] In loop. Jobs left: 12
+c 0.659 2 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 0.659 2 TRY REDUCE 63 0 0 2 2
+c 0.659 2 REDUCE returnedToSender
+c 0.659 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 0.659 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 0.669 3 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 0.669 1 TRY REDUCE 63 0 0 2 2
+c 0.669 1 REDUCE
+c 0.669 0 TRY REDUCE 63 0 0 2 2
+c 0.669 0 REDUCE
+c 0.703 1 [stack] In loop. Jobs left: 10
+c 0.705 3 [stack] In loop. Jobs left: 11
+c 0.705 2 [stack] In loop. Jobs left: 11
+c 0.710 0 [stack] In loop. Jobs left: 8
+c 0.760 2 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 0.760 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 0.760 0 TRY REDUCE 63 0 0 2 2
+c 0.760 0 REDUCE
+c 0.760 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 0.765 0 [stack] Stack empty. Stopping Loop
+c 0.770 3 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 0.770 1 TRY REDUCE 63 0 0 2 2
+c 0.770 1 REDUCE
+c 0.770 0 TRY REDUCE 63 0 0 2 2
+c 0.770 0 REDUCE
+c 0.770 1 BROADCAST
+c 0.770 1 TRY REDUCE 64 0 0 2 2
+c 0.770 1 BROADCAST
+c 0.770 2 BROADCAST
+c 0.770 2 TRY REDUCE 64 0 0 2 2
+c 0.770 2 BROADCAST
+c 0.770 3 BROADCAST
+c 0.770 3 TRY REDUCE 64 0 0 2 2
+c 0.770 3 BROADCAST
+c 0.770 0 [msg] Requested work stealing from: 3
+c 0.770 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 0.770 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 0.770 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 0.770 3 [msg] Message 31 with Payload 0 from 0 received.
+c 0.770 3 [msg] Processing work stealing query from 0
+c 0.770 3 [steal] I am sending work
+c 0.770 3 [msg] Message returned to sender 0 with payload[0] = 0 and _sent_work = 1
+c 0.770 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 0.770 1 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 0.770 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 0.770 0 [msg] Message 32 with Payload 0 from 3 received.
+c 0.770 0 [msg] Work stealing query successful. Filling work stack.
+c 0.770 0 [adding] Adding starting now
+c 0.770 0 [adding] Adding ending now
+c 0.770 0 c [msg] Work stack is filled.
+c 0.770 0 [msg] Message returned to sender 3.
+0.770 0 [stack] Restarting loop: 1
+c 0.770 3 [msg] Message 33 with Payload 0 from 0 received.
+c 0.780 3 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 0.780 3 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 0.780 3 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 0.780 1 [stack] Stack empty. Stopping Loop
+c 0.780 2 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 0.780 2 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 0.780 2 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 0.780 1 [msg] Requested work stealing from: 3
+c 0.780 3 [msg] Message 31 with Payload 0 from 1 received.
+c 0.780 3 [msg] Processing work stealing query from 1
+c 0.780 3 [steal] I am sending work
+c 0.780 3 [msg] Message returned to sender 1 with payload[0] = 0 and _sent_work = 1
+c 0.780 1 [msg] Message 32 with Payload 0 from 3 received.
+c 0.780 1 [msg] Work stealing query successful. Filling work stack.
+c 0.780 1 [adding] Adding starting now
+c 0.780 1 [adding] Adding ending now
+c 0.780 1 c [msg] Work stack is filled.
+c 0.780 1 0.780 1 [stack] Restarting loop: 1
+[msg] Message returned to sender 3.
+c 0.780 3 [msg] Message 33 with Payload 0 from 1 received.
+c 0.802 1 [stack] In loop. Jobs left: 10
+c 0.803 2 [stack] In loop. Jobs left: 13
+c 0.803 3 [stack] In loop. Jobs left: 11
+c 0.815 0 [stack] In loop. Jobs left: 13
+c 0.861 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 0.861 2 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 0.861 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 0.861 0 TRY REDUCE 63 0 0 2 2
+c 0.861 0 REDUCE
+c 0.871 3 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 0.871 1 TRY REDUCE 63 0 0 2 2
+c 0.871 1 REDUCE
+c 0.871 0 TRY REDUCE 63 0 0 2 2
+c 0.871 0 REDUCE
+c 0.871 2 BROADCAST
+c 0.871 2 TRY REDUCE 64 0 0 2 2
+c 0.871 2 BROADCAST
+c 0.871 1 BROADCAST
+c 0.871 1 TRY REDUCE 64 0 0 2 2
+c 0.871 1 BROADCAST
+c 0.871 3 BROADCAST
+c 0.871 3 TRY REDUCE 64 0 0 2 2
+c 0.871 3 BROADCAST
+c 0.881 3 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 0.881 3 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 0.881 3 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 0.881 2 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 0.881 2 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 0.881 2 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 0.881 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 0.881 1 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 0.881 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 0.881 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 0.881 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 0.881 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 0.901 1 [stack] In loop. Jobs left: 12
+c 0.901 3 [stack] In loop. Jobs left: 10
+c 0.901 2 [stack] In loop. Jobs left: 10
+c 0.915 0 [stack] In loop. Jobs left: 13
+c 0.961 2 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 0.961 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 0.962 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 0.962 0 TRY REDUCE 63 0 0 2 2
+c 0.962 0 REDUCE
+c 0.971 3 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 0.971 1 TRY REDUCE 63 0 0 2 2
+c 0.971 1 REDUCE
+c 0.971 0 TRY REDUCE 63 0 0 2 2
+c 0.971 0 REDUCE
+c 0.972 2 BROADCAST
+c 0.972 2 TRY REDUCE 64 0 0 2 2
+c 0.972 2 BROADCAST
+c 0.972 1 BROADCAST
+c 0.972 1 TRY REDUCE 64 0 0 2 2
+c 0.972 1 BROADCAST
+c 0.972 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 0.972 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 0.972 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 0.972 3 BROADCAST
+c 0.972 3 TRY REDUCE 64 0 0 2 2
+c 0.972 3 BROADCAST
+c 0.981 3 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 0.981 3 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 0.981 3 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 0.982 2 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 0.982 2 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 0.982 2 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 0.982 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 0.982 1 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 0.982 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 0.999 2 [stack] In loop. Jobs left: 11
+c 0.999 3 [stack] In loop. Jobs left: 11
+c 0.999 1 [stack] In loop. Jobs left: 9
+c 1.014 0 [stack] In loop. Jobs left: 10
+c 1.062 2 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 1.062 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 1.062 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 1.062 0 TRY REDUCE 63 0 0 2 2
+c 1.062 0 REDUCE
+c 1.072 3 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 1.072 1 TRY REDUCE 63 0 0 2 2
+c 1.072 1 REDUCE
+c 1.072 0 TRY REDUCE 63 0 0 2 2
+c 1.072 0 REDUCE
+c 1.072 2 BROADCAST
+c 1.072 2 TRY REDUCE 64 0 0 2 2
+c 1.072 2 BROADCAST
+c 1.072 1 BROADCAST
+c 1.072 1 TRY REDUCE 64 0 0 2 2
+c 1.072 1 BROADCAST
+c 1.072 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 1.072 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 1.072 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 1.073 3 BROADCAST
+c 1.073 3 TRY REDUCE 64 0 0 2 2
+c 1.073 3 BROADCAST
+c 1.073 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 1.073 1 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 1.073 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 1.082 3 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 1.082 3 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 1.082 3 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 1.082 2 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 1.082 2 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 1.082 2 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 1.097 2 [stack] In loop. Jobs left: 10
+c 1.097 3 [stack] In loop. Jobs left: 10
+c 1.098 1 [stack] In loop. Jobs left: 10
+c 1.113 0 [stack] In loop. Jobs left: 16
+c 1.163 2 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 1.163 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 1.163 0 TRY REDUCE 63 0 0 2 2
+c 1.163 0 REDUCE
+c 1.163 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 1.173 3 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 1.173 1 TRY REDUCE 63 0 0 2 2
+c 1.173 1 REDUCE
+c 1.173 0 TRY REDUCE 63 0 0 2 2
+c 1.173 0 REDUCE
+c 1.173 1 BROADCAST
+c 1.173 1 TRY REDUCE 64 0 0 2 2
+c 1.173 1 BROADCAST
+c 1.173 2 BROADCAST
+c 1.173 2 TRY REDUCE 64 0 0 2 2
+c 1.173 2 BROADCAST
+c 1.173 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 1.173 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 1.173 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 1.173 3 BROADCAST
+c 1.173 3 TRY REDUCE 64 0 0 2 2
+c 1.173 3 BROADCAST
+c 1.173 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 1.173 1 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 1.173 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 1.183 3 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 1.183 3 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 1.183 3 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 1.183 2 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 1.183 2 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 1.183 2 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 1.195 3 [stack] In loop. Jobs left: 5
+c 1.195 2 [stack] In loop. Jobs left: 8
+c 1.197 1 [stack] In loop. Jobs left: 14
+c 1.201 0 sysstate busyratio=1.000 cmtdratio=0.000 jobs=1 globmem=0.00GB newreqs=3 hops=1
+c 1.201 0 sysstate entered=1 parsed=1 scheduled=1 processed=0 successful=0
+c 1.212 0 [stack] In loop. Jobs left: 11
+c 1.263 2 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 1.264 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 1.264 0 TRY REDUCE 63 0 0 2 2
+c 1.264 0 REDUCE
+c 1.264 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 1.273 3 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 1.273 1 TRY REDUCE 63 0 0 2 2
+c 1.273 1 REDUCE
+c 1.274 0 TRY REDUCE 63 0 0 2 2
+c 1.274 0 REDUCE
+c 1.274 2 BROADCAST
+c 1.274 2 TRY REDUCE 64 0 0 2 2
+c 1.274 2 BROADCAST
+c 1.274 1 BROADCAST
+c 1.274 1 TRY REDUCE 64 0 0 2 2
+c 1.274 1 BROADCAST
+c 1.274 3 BROADCAST
+c 1.274 3 TRY REDUCE 64 0 0 2 2
+c 1.274 3 BROADCAST
+c 1.274 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 1.274 1 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 1.274 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 1.284 3 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 1.284 3 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 1.284 3 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 1.284 2 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 1.284 2 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 1.284 2 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 1.284 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 1.284 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 1.284 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 1.293 3 [stack] In loop. Jobs left: 13
+c 1.293 2 [stack] In loop. Jobs left: 15
+c 1.295 1 [stack] In loop. Jobs left: 10
+c 1.311 0 [stack] In loop. Jobs left: 12
+c 1.364 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 1.365 2 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 1.365 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 1.365 0 TRY REDUCE 63 0 0 2 2
+c 1.365 0 REDUCE
+c 1.374 3 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 1.374 1 TRY REDUCE 63 0 0 2 2
+c 1.374 1 REDUCE
+c 1.375 0 TRY REDUCE 63 0 0 2 2
+c 1.375 0 REDUCE
+c 1.375 2 BROADCAST
+c 1.375 2 TRY REDUCE 64 0 0 2 2
+c 1.375 2 BROADCAST
+c 1.375 1 BROADCAST
+c 1.375 1 TRY REDUCE 64 0 0 2 2
+c 1.375 1 BROADCAST
+c 1.375 3 BROADCAST
+c 1.375 3 TRY REDUCE 64 0 0 2 2
+c 1.375 3 BROADCAST
+c 1.384 3 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 1.384 3 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 1.384 3 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 1.385 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 1.385 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 1.385 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 1.385 2 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 1.385 2 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 1.385 2 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 1.385 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 1.385 1 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 1.385 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 1.391 3 [stack] In loop. Jobs left: 8
+c 1.391 2 [stack] In loop. Jobs left: 10
+c 1.392 1 [stack] In loop. Jobs left: 10
+c 1.409 0 [stack] In loop. Jobs left: 8
+c 1.424 3 [stack] Stack empty. Stopping Loop
+c 1.435 3 [msg] Requested work stealing from: 2
+c 1.435 2 [msg] Message 31 with Payload 0 from 3 received.
+c 1.435 2 [msg] Processing work stealing query from 3
+c 1.435 2 [steal] I am sending work
+c 1.435 2 [msg] Message returned to sender 3 with payload[0] = 0 and _sent_work = 1
+c 1.435 3 [msg] Message 32 with Payload 0 from 2 received.
+c 1.435 3 [msg] Work stealing query successful. Filling work stack.
+c 1.435 3 [adding] Adding starting now
+c 1.435 3 [adding] Adding ending now
+c 1.435 3 [msg] Work stack is filled.
+c 1.435 3 c [stack] Restarting loop: 1
+1.435 3 [msg] Message returned to sender 2.
+c 1.435 2 [msg] Message 33 with Payload 0 from 3 received.
+c 1.465 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 1.465 2 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 1.466 0 TRY REDUCE 63 0 0 2 2
+c 1.466 0 REDUCE
+c 1.466 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 1.475 3 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 1.475 1 TRY REDUCE 63 0 0 2 2
+c 1.475 1 REDUCE
+c 1.475 0 TRY REDUCE 63 0 0 2 2
+c 1.475 0 REDUCE
+c 1.476 2 BROADCAST
+c 1.476 2 TRY REDUCE 64 0 0 2 2
+c 1.476 2 BROADCAST
+c 1.476 1 BROADCAST
+c 1.476 1 TRY REDUCE 64 0 0 2 2
+c 1.476 1 BROADCAST
+c 1.476 3 BROADCAST
+c 1.476 3 TRY REDUCE 64 0 0 2 2
+c 1.476 3 BROADCAST
+c 1.476 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 1.476 1 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 1.476 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 1.485 3 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 1.485 3 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 1.485 3 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 1.485 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 1.485 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 1.485 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 1.486 2 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 1.486 2 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 1.486 2 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 1.489 2 [stack] In loop. Jobs left: 9
+c 1.491 1 [stack] In loop. Jobs left: 12
+c 1.500 3 [stack] In loop. Jobs left: 10
+c 1.509 0 [stack] In loop. Jobs left: 13
+c 1.566 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 1.566 2 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 1.566 0 TRY REDUCE 63 0 0 2 2
+c 1.566 0 REDUCE
+c 1.566 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 1.576 3 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 1.576 1 TRY REDUCE 63 0 0 2 2
+c 1.576 1 REDUCE
+c 1.576 0 TRY REDUCE 63 0 0 2 2
+c 1.576 0 REDUCE
+c 1.577 1 BROADCAST
+c 1.577 1 TRY REDUCE 64 0 0 2 2
+c 1.577 1 BROADCAST
+c 1.577 3 BROADCAST
+c 1.577 3 TRY REDUCE 64 0 0 2 2
+c 1.577 3 BROADCAST
+c 1.577 2 BROADCAST
+c 1.577 2 TRY REDUCE 64 0 0 2 2
+c 1.577 2 BROADCAST
+c 1.586 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 1.586 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 1.586 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 1.586 3 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 1.586 3 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 1.586 3 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 1.586 2 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 1.586 2 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 1.586 2 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 1.587 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 1.587 1 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 1.587 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 1.587 2 [stack] In loop. Jobs left: 8
+c 1.589 1 [stack] In loop. Jobs left: 12
+c 1.597 3 [stack] In loop. Jobs left: 9
+c 1.607 0 [stack] In loop. Jobs left: 10
+c 1.667 2 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 1.667 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 1.667 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 1.667 0 TRY REDUCE 63 0 0 2 2
+c 1.667 0 REDUCE
+c 1.677 3 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 1.677 1 TRY REDUCE 63 0 0 2 2
+c 1.677 1 REDUCE
+c 1.677 0 TRY REDUCE 63 0 0 2 2
+c 1.677 0 REDUCE
+c 1.677 2 BROADCAST
+c 1.677 2 TRY REDUCE 64 0 0 2 2
+c 1.677 2 BROADCAST
+c 1.677 1 BROADCAST
+c 1.677 1 TRY REDUCE 64 0 0 2 2
+c 1.677 1 BROADCAST
+c 1.678 3 BROADCAST
+c 1.678 3 TRY REDUCE 64 0 0 2 2
+c 1.678 3 BROADCAST
+c 1.685 2 [stack] In loop. Jobs left: 11
+c 1.686 1 [stack] In loop. Jobs left: 10
+c 1.687 3 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 1.687 3 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 1.687 3 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 1.687 2 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 1.687 2 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 1.687 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 1.687 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 1.687 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 1.687 2 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 1.687 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 1.687 1 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 1.688 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 1.695 3 [stack] In loop. Jobs left: 11
+c 1.706 0 [stack] In loop. Jobs left: 11
+c 1.768 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 1.768 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 1.768 2 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 1.768 0 TRY REDUCE 63 0 0 2 2
+c 1.768 0 REDUCE
+c 1.778 3 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 1.778 1 TRY REDUCE 63 0 0 2 2
+c 1.778 1 REDUCE
+c 1.778 0 TRY REDUCE 63 0 0 2 2
+c 1.778 0 REDUCE
+c 1.778 1 BROADCAST
+c 1.778 1 TRY REDUCE 64 0 0 2 2
+c 1.778 1 BROADCAST
+c 1.778 2 BROADCAST
+c 1.778 2 TRY REDUCE 64 0 0 2 2
+c 1.778 2 BROADCAST
+c 1.778 3 BROADCAST
+c 1.778 3 TRY REDUCE 64 0 0 2 2
+c 1.778 3 BROADCAST
+c 1.783 2 [stack] In loop. Jobs left: 11
+c 1.784 1 [stack] In loop. Jobs left: 14
+c 1.788 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 1.788 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 1.788 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 1.788 3 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 1.788 3 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 1.788 3 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 1.788 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 1.788 1 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 1.788 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 1.788 2 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 1.788 2 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 1.788 2 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 1.793 3 [stack] In loop. Jobs left: 14
+c 1.804 0 [stack] In loop. Jobs left: 13
+c 1.868 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 1.869 2 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 1.869 0 TRY REDUCE 63 0 0 2 2
+c 1.869 0 REDUCE
+c 1.869 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 1.879 3 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 1.879 1 TRY REDUCE 63 0 0 2 2
+c 1.879 1 REDUCE
+c 1.879 0 TRY REDUCE 63 0 0 2 2
+c 1.879 0 REDUCE
+c 1.879 2 BROADCAST
+c 1.879 2 TRY REDUCE 64 0 0 2 2
+c 1.879 2 BROADCAST
+c 1.879 1 BROADCAST
+c 1.879 1 TRY REDUCE 64 0 0 2 2
+c 1.879 1 BROADCAST
+c 1.879 3 BROADCAST
+c 1.879 3 TRY REDUCE 64 0 0 2 2
+c 1.879 3 BROADCAST
+c 1.879 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 1.879 1 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 1.879 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 1.880 2 [stack] In loop. Jobs left: 9
+c 1.882 1 [stack] In loop. Jobs left: 9
+c 1.889 3 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 1.889 3 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 1.889 3 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 1.889 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 1.889 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 1.889 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 1.889 2 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 1.889 2 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 1.889 2 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 1.891 3 [stack] In loop. Jobs left: 9
+c 1.903 0 [stack] In loop. Jobs left: 9
+c 1.969 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 1.969 2 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 1.969 0 TRY REDUCE 63 0 0 2 2
+c 1.969 0 REDUCE
+c 1.970 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 1.978 2 [stack] In loop. Jobs left: 9
+c 1.979 3 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 1.979 1 TRY REDUCE 63 0 0 2 2
+c c 1.979 1 [stack] In loop. Jobs left: 10
+1.979 1 REDUCE
+c 1.980 0 TRY REDUCE 63 0 0 2 2
+c 1.980 0 REDUCE
+c 1.980 2 BROADCAST
+c 1.980 2 TRY REDUCE 64 0 0 2 2
+c 1.980 2 BROADCAST
+c 1.980 1 BROADCAST
+c 1.980 1 TRY REDUCE 64 0 0 2 2
+c 1.980 1 BROADCAST
+c 1.980 3 BROADCAST
+c 1.980 3 TRY REDUCE 64 0 0 2 2
+c 1.980 3 BROADCAST
+c 1.988 3 [stack] In loop. Jobs left: 8
+c 1.989 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 1.989 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 1.989 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 1.989 3 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 1.989 3 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 1.989 3 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 1.990 2 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 1.990 2 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 1.990 2 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 1.990 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 1.990 1 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 1.990 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 2.002 0 [stack] In loop. Jobs left: 10
+c 2.059 2 [stack] Stack empty. Stopping Loop
+c 2.060 2 [msg] Requested work stealing from: 3
+c 2.060 3 [msg] Message 31 with Payload 0 from 2 received.
+c 2.060 3 [msg] Processing work stealing query from 2
+c 2.060 3 [steal] I am sending work
+c 2.060 3 [msg] Message returned to sender 2 with payload[0] = 0 and _sent_work = 1
+c 2.060 2 [msg] Message 32 with Payload 0 from 3 received.
+c 2.060 2 [msg] Work stealing query successful. Filling work stack.
+c 2.060 2 [adding] Adding starting now
+c 2.060 2 [adding] Adding ending now
+c 2.060 2 [msg] Work stack is filled.
+c 2.060 2 [msg] Message returned to sender 3.
+c 2.060 2 [stack] Restarting loop: 1
+c 2.060 3 [msg] Message 33 with Payload 0 from 2 received.
+c 2.064 3 [stack] Stack empty. Stopping Loop
+c 2.070 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 2.070 3 [msg] Requested work stealing from: 1
+c 2.070 1 [msg] Message 31 with Payload 0 from 3 received.
+c 2.070 1 [msg] Processing work stealing query from 3
+c 2.070 1 [steal] I am sending work
+c 2.070 1 [msg] Message returned to sender 3 with payload[0] = 0 and _sent_work = 1
+c 2.070 2 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 2.070 3 [msg] Message 32 with Payload 0 from 1 received.
+c 2.070 3 [msg] Work stealing query successful. Filling work stack.
+c 2.070 3 [adding] Adding starting now
+c 2.070 3 [adding] Adding ending now
+c 2.070 3 [msg] Work stack is filled.
+c 2.070 3 c [msg] Message returned to sender 1.
+2.070 3 [stack] Restarting loop: 1
+c 2.070 1 [msg] Message 33 with Payload 0 from 3 received.
+c 2.070 0 TRY REDUCE 63 0 0 2 2
+c 2.070 0 REDUCE
+c 2.070 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 2.077 2 [stack] In loop. Jobs left: 9
+c 2.078 1 [stack] In loop. Jobs left: 7
+c 2.080 3 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 2.080 1 TRY REDUCE 63 0 0 2 2
+c 2.080 1 REDUCE
+c 2.080 0 TRY REDUCE 63 0 0 2 2
+c 2.080 0 REDUCE
+c 2.080 1 BROADCAST
+c 2.080 1 TRY REDUCE 64 0 0 2 2
+c 2.080 1 BROADCAST
+c 2.081 2 BROADCAST
+c 2.081 2 TRY REDUCE 64 0 0 2 2
+c 2.081 2 BROADCAST
+c 2.081 3 BROADCAST
+c 2.081 3 TRY REDUCE 64 0 0 2 2
+c 2.081 3 BROADCAST
+c 2.081 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 2.081 1 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 2.081 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 2.090 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 2.090 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 2.090 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 2.090 1 [stack] Stack empty. Stopping Loop
+c 2.090 3 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 2.090 3 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 2.090 3 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 2.090 2 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 2.090 2 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 2.090 2 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 2.091 1 [msg] Requested work stealing from: 2
+c 2.091 2 [msg] Message 31 with Payload 0 from 1 received.
+c 2.091 2 [msg] Processing work stealing query from 1
+c 2.091 2 [steal] I am sending work
+c 2.091 2 [msg] Message returned to sender 1 with payload[0] = 0 and _sent_work = 1
+c 2.091 1 [msg] Message 32 with Payload 0 from 2 received.
+c 2.091 1 [msg] Work stealing query successful. Filling work stack.
+c 2.091 1 [adding] Adding starting now
+c 2.091 1 [adding] Adding ending now
+c 2.091 1 [msg] Work stack is filled.
+c 2.091 1 c [msg] Message returned to sender 2.
+2.091 1 [stack] Restarting loop: 1
+c 2.091 2 [msg] Message 33 with Payload 0 from 1 received.
+c 2.093 3 [stack] In loop. Jobs left: 14
+c 2.101 0 [stack] In loop. Jobs left: 12
+c 2.109 2 [stack] Stack empty. Stopping Loop
+c 2.121 2 [msg] Requested work stealing from: 1
+c 2.121 1 [msg] Message 31 with Payload 0 from 2 received.
+c 2.121 1 [msg] Processing work stealing query from 2
+c 2.121 1 [steal] I am sending work
+c 2.121 1 [msg] Message returned to sender 2 with payload[0] = 0 and _sent_work = 1
+c 2.121 2 [msg] Message 32 with Payload 0 from 1 received.
+c 2.121 2 [msg] Work stealing query successful. Filling work stack.
+c 2.121 2 [adding] Adding starting now
+c 2.121 2 [adding] Adding ending now
+c 2.121 2 [msg] Work stack is filled.
+c 2.121 2 [msg] Message returned to sender 1.
+c 2.121 2 [stack] Restarting loop: 1
+c 2.121 1 [msg] Message 33 with Payload 0 from 2 received.
+c 2.127 1 [stack] Stack empty. Stopping Loop
+c 2.133 2 [stack] Stack empty. Stopping Loop
+c 2.141 2 [msg] Requested work stealing from: 3
+c 2.141 3 [msg] Message 31 with Payload 0 from 2 received.
+c 2.141 3 [msg] Processing work stealing query from 2
+c 2.141 3 [steal] I am sending work
+c 2.141 3 [msg] Message returned to sender 2 with payload[0] = 0 and _sent_work = 1
+c 2.141 1 [msg] Requested work stealing from: 3
+c 2.141 2 [msg] Message 32 with Payload 0 from 3 received.
+c 2.141 2 [msg] Work stealing query successful. Filling work stack.
+c 2.141 2 [adding] Adding starting now
+c 2.141 2 [adding] Adding ending now
+c 2.141 2 [msg] Work stack is filled.
+c 2.141 2 [msg] Message returned to sender 3.
+c 2.141 2 [stack] Restarting loop: 1
+c 2.141 3 [msg] Message 31 with Payload 0 from 1 received.
+c 2.141 3 [msg] Processing work stealing query from 1
+c 2.141 3 [steal] I am sending work
+c 2.141 3 [msg] Message returned to sender 1 with payload[0] = 0 and _sent_work = 1
+c 2.141 3 [msg] Message 33 with Payload 0 from 2 received.
+c 2.141 1 [msg] Message 32 with Payload 0 from 3 received.
+c 2.141 1 [msg] Work stealing query successful. Filling work stack.
+c 2.141 1 [adding] Adding starting now
+c 2.141 1 [adding] Adding ending now
+c 2.141 1 [msg] Work stack is filled.
+c 2.141 1 c [msg] Message returned to sender 3.
+2.141 1 [stack] Restarting loop: 1
+c 2.142 3 [msg] Message 33 with Payload 0 from 1 received.
+c 2.171 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 2.171 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 2.171 2 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 2.171 0 TRY REDUCE 63 0 0 2 2
+c 2.171 0 REDUCE
+c 2.181 3 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 2.181 1 TRY REDUCE 63 0 0 2 2
+c 2.181 1 REDUCE
+c 2.181 0 TRY REDUCE 63 0 0 2 2
+c 2.181 0 REDUCE
+c 2.181 1 BROADCAST
+c 2.181 1 TRY REDUCE 64 0 0 2 2
+c 2.181 1 BROADCAST
+c 2.181 2 BROADCAST
+c 2.181 2 TRY REDUCE 64 0 0 2 2
+c 2.181 2 BROADCAST
+c 2.182 3 BROADCAST
+c 2.182 3 TRY REDUCE 64 0 0 2 2
+c 2.182 3 BROADCAST
+c 2.191 3 [stack] In loop. Jobs left: 8
+c 2.191 1 [stack] In loop. Jobs left: 11
+c 2.191 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 2.191 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 2.191 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 2.191 3 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 2.191 3 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 2.191 3 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 2.192 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 2.192 1 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 2.192 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 2.192 2 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 2.192 2 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 2.192 2 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 2.196 2 [stack] In loop. Jobs left: 8
+c 2.199 0 [stack] In loop. Jobs left: 10
+c 2.202 0 sysstate busyratio=1.000 cmtdratio=0.000 jobs=1 globmem=0.20GB newreqs=0 hops=0
+c 2.202 0 sysstate entered=1 parsed=1 scheduled=1 processed=0 successful=0
+c 2.272 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 2.272 2 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 2.272 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 2.272 0 TRY REDUCE 63 0 0 2 2
+c 2.272 0 REDUCE
+c 2.282 3 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 2.282 1 TRY REDUCE 63 0 0 2 2
+c 2.282 1 REDUCE
+c 2.282 0 TRY REDUCE 63 0 0 2 2
+c 2.282 0 REDUCE
+c 2.282 2 BROADCAST
+c 2.282 2 TRY REDUCE 64 0 0 2 2
+c 2.282 2 BROADCAST
+c 2.282 1 BROADCAST
+c 2.282 1 TRY REDUCE 64 0 0 2 2
+c 2.282 1 BROADCAST
+c 2.283 3 BROADCAST
+c 2.283 3 TRY REDUCE 64 0 0 2 2
+c 2.283 3 BROADCAST
+c 2.288 3 [stack] In loop. Jobs left: 10
+c 2.289 1 [stack] In loop. Jobs left: 9
+c 2.292 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 2.292 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 2.292 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 2.292 3 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 2.292 3 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 2.292 3 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 2.292 2 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 2.292 2 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 2.292 2 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 2.292 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 2.292 1 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 2.292 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 2.294 2 [stack] In loop. Jobs left: 8
+c 2.298 0 [stack] In loop. Jobs left: 11
+c 2.359 3 [stack] Stack empty. Stopping Loop
+c 2.373 3 [msg] Requested work stealing from: 1
+c 2.373 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 2.373 1 [msg] Message 31 with Payload 0 from 3 received.
+c 2.373 1 [msg] Processing work stealing query from 3
+c 2.373 1 [steal] I am sending work
+c 2.373 1 [msg] Message returned to sender 3 with payload[0] = 0 and _sent_work = 1
+c 2.373 3 [msg] Message 32 with Payload 0 from 1 received.
+c 2.373 3 [msg] Work stealing query successful. Filling work stack.
+c 2.373 3 [adding] Adding starting now
+c 2.373 3 [adding] Adding ending now
+c 2.373 3 [msg] Work stack is filled.
+c 2.373 3 [msg] Message returned to sender 1.
+c 2.373 3 [stack] Restarting loop: 1
+c 2.373 2 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 2.373 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 2.373 1 [msg] Message 33 with Payload 0 from 3 received.
+c 2.373 0 TRY REDUCE 63 0 0 2 2
+c 2.373 0 REDUCE
+c 2.383 3 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 2.383 1 TRY REDUCE 63 0 0 2 2
+c 2.383 1 REDUCE
+c 2.383 0 TRY REDUCE 63 0 0 2 2
+c 2.383 0 REDUCE
+c 2.383 2 BROADCAST
+c 2.383 2 TRY REDUCE 64 0 0 2 2
+c 2.383 2 BROADCAST
+c 2.383 1 BROADCAST
+c 2.383 1 TRY REDUCE 64 0 0 2 2
+c 2.383 1 BROADCAST
+c 2.383 3 BROADCAST
+c 2.383 3 TRY REDUCE 64 0 0 2 2
+c 2.383 3 BROADCAST
+c 2.387 1 [stack] In loop. Jobs left: 6
+c 2.391 2 [stack] In loop. Jobs left: 3
+c 2.392 1 [stack] Stack empty. Stopping Loop
+c 2.393 3 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 2.393 3 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 2.393 3 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 2.393 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 2.393 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 2.393 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 2.393 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 2.393 1 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 2.393 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 2.393 2 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 2.393 2 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 2.393 2 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 2.396 0 [stack] In loop. Jobs left: 14
+c 2.400 3 [stack] In loop. Jobs left: 9
+c 2.403 1 [msg] Requested work stealing from: 3
+c 2.403 3 [msg] Message 31 with Payload 0 from 1 received.
+c 2.403 3 [msg] Processing work stealing query from 1
+c 2.403 3 [steal] I am sending work
+c 2.403 3 [msg] Message returned to sender 1 with payload[0] = 0 and _sent_work = 1
+c 2.403 1 [msg] Message 32 with Payload 0 from 3 received.
+c 2.403 1 [msg] Work stealing query successful. Filling work stack.
+c 2.403 1 [adding] Adding starting now
+c 2.403 1 [adding] Adding ending now
+c 2.403 1 [msg] Work stack is filled.
+c 2.403 1 [msg] Message returned to sender 3.
+c 2.403 1 [stack] Restarting loop: 1
+c 2.403 3 [msg] Message 33 with Payload 0 from 1 received.
+c 2.421 3 [stack] Stack empty. Stopping Loop
+c 2.433 3 [msg] Requested work stealing from: 2
+c 2.433 2 [msg] Message 31 with Payload 0 from 3 received.
+c 2.433 2 [msg] Processing work stealing query from 3
+c 2.433 2 [steal] I am sending work
+c 2.433 2 [msg] Message returned to sender 3 with payload[0] = 0 and _sent_work = 1
+c 2.433 3 [msg] Message 32 with Payload 0 from 2 received.
+c 2.433 3 [msg] Work stealing query successful. Filling work stack.
+c 2.433 3 [adding] Adding starting now
+c 2.433 3 [adding] Adding ending now
+c 2.433 3 [msg] Work stack is filled.
+c 2.433 3 [stack] Restarting loop: 1
+c 2.433 3 [msg] Message returned to sender 2.
+c 2.434 2 [msg] Message 33 with Payload 0 from 3 received.
+c 2.452 1 [stack] Stack empty. Stopping Loop
+c 2.454 1 [msg] Requested work stealing from: 2
+c 2.454 2 [msg] Message 31 with Payload 0 from 1 received.
+c 2.454 2 [msg] Processing work stealing query from 1
+c 2.454 2 [steal] I am sending work
+c 2.454 2 [msg] Message returned to sender 1 with payload[0] = 0 and _sent_work = 1
+c 2.454 1 [msg] Message 32 with Payload 0 from 2 received.
+c 2.454 1 [msg] Work stealing query successful. Filling work stack.
+c 2.454 1 [adding] Adding starting now
+c 2.454 1 [adding] Adding ending now
+c 2.454 1 [msg] Work stack is filled.
+c 2.454 1 [msg] Message returned to sender 2.
+c 2.454 1 [stack] Restarting loop: 1
+c 2.454 2 [msg] Message 33 with Payload 0 from 1 received.
+c 2.463 2 [stack] Stack empty. Stopping Loop
+c 2.463 2 [msg] Requested work stealing from: 1
+c 2.463 1 [msg] Message 31 with Payload 0 from 2 received.
+c 2.463 1 [msg] Processing work stealing query from 2
+c 2.463 1 [steal] I am sending work
+c 2.463 1 [msg] Message returned to sender 2 with payload[0] = 0 and _sent_work = 1
+c 2.464 2 [msg] Message 32 with Payload 0 from 1 received.
+c 2.464 2 [msg] Work stealing query successful. Filling work stack.
+c 2.464 2 [adding] Adding starting now
+c 2.464 2 [adding] Adding ending now
+c 2.464 2 c [msg] Work stack is filled.
+c 2.464 2 [msg] Message returned to sender 1.
+2.464 2 [stack] Restarting loop: 1
+c 2.464 1 [msg] Message 33 with Payload 0 from 2 received.
+c 2.466 1 [stack] Stack empty. Stopping Loop
+c 2.473 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 2.473 2 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 2.474 0 TRY REDUCE 63 0 0 2 2
+c 2.474 0 REDUCE
+c 2.474 1 [msg] Requested work stealing from: 0
+c 2.474 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {0, 10, 38} to all-reduction.
+c 2.474 0 [msg] Message 31 with Payload 0 from 1 received.
+c 2.474 0 [msg] Processing work stealing query from 1
+c 2.474 0 [steal] I am sending work
+c 2.474 0 [msg] Message returned to sender 1 with payload[0] = 0 and _sent_work = 1
+c 2.474 1 [msg] Message 32 with Payload 0 from 0 received.
+c 2.474 1 [msg] Work stealing query successful. Filling work stack.
+c 2.474 1 [adding] Adding starting now
+c 2.474 1 [adding] Adding ending now
+c 2.474 1 [msg] Work stack is filled.
+c 2.474 1 [msg] Message returned to sender 0.
+c 2.474 1 [stack] Restarting loop: 1
+c 2.474 0 [msg] Message 33 with Payload 0 from 1 received.
+c 2.476 2 [stack] Stack empty. Stopping Loop
+c 2.484 3 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 2.484 2 [msg] Requested work stealing from: 3
+c 2.484 1 TRY REDUCE 63 0 0 2 2
+c 2.484 1 REDUCE
+c 2.484 3 [msg] Message 31 with Payload 0 from 2 received.
+c 2.484 3 [msg] Processing work stealing query from 2
+c 2.484 3 [steal] I am sending work
+c 2.484 3 [msg] Message returned to sender 2 with payload[0] = 0 and _sent_work = 1
+c 2.484 0 TRY REDUCE 63 0 0 2 2
+c 2.484 0 REDUCE
+c 2.484 1 BROADCAST
+c 2.484 1 TRY REDUCE 64 0 0 2 2
+c 2.484 2 BROADCAST
+c 2.484 2 TRY REDUCE 64 0 0 2 2
+c 2.484 2 BROADCAST
+c 2.484 1 BROADCAST
+c 2.484 2 [msg] Message 32 with Payload 0 from 3 received.
+c 2.484 2 [msg] Work stealing query successful. Filling work stack.
+c 2.484 2 [adding] Adding starting now
+c 2.484 2 [adding] Adding ending now
+c 2.484 2 [msg] Work stack is filled.
+c 2.484 2 [msg] Message returned to sender 3.
+c 2.484 2 [stack] Restarting loop: 1
+c 2.484 3 BROADCAST
+c 2.484 3 TRY REDUCE 64 0 0 2 2
+c 2.484 3 BROADCAST
+c 2.484 3 [msg] Message 33 with Payload 0 from 2 received.
+c 2.493 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {3, 10, 38}.
+c 2.493 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 2.493 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 2.494 3 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {3, 10, 38}.
+c 2.494 3 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 2.494 3 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 2.494 2 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {3, 10, 38}.
+c 2.494 2 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 2.494 2 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 2.494 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {3, 10, 38}.
+c 2.494 1 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 2.494 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 2.495 0 [stack] In loop. Jobs left: 10
+c 2.498 2 [stack] In loop. Jobs left: 10
+c 2.507 1 [stack] In loop. Jobs left: 12
+c 2.511 3 [stack] In loop. Jobs left: 10
+c 2.574 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 2.574 2 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 2.574 0 TRY REDUCE 63 0 0 2 2
+c 2.574 0 REDUCE
+c 2.575 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 2.584 3 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 2.584 1 TRY REDUCE 63 0 0 2 2
+c 2.584 1 REDUCE
+c 2.584 0 TRY REDUCE 63 0 0 2 2
+c 2.585 0 REDUCE
+c 2.585 2 BROADCAST
+c 2.585 2 TRY REDUCE 64 0 0 2 2
+c 2.585 2 BROADCAST
+c 2.585 1 BROADCAST
+c 2.585 1 TRY REDUCE 64 0 0 2 2
+c 2.585 1 BROADCAST
+c 2.585 3 BROADCAST
+c 2.585 3 TRY REDUCE 64 0 0 2 2
+c 2.585 3 BROADCAST
+c 2.585 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 2.585 1 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 2.585 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 2.593 0 [stack] In loop. Jobs left: 9
+c 2.594 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 2.594 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 2.594 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 2.595 3 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 2.595 3 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 2.595 3 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 2.594 2 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 2.594 2 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 2.594 2 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 2.596 2 [stack] In loop. Jobs left: 8
+c 2.604 1 [stack] In loop. Jobs left: 13
+c 2.609 3 [stack] In loop. Jobs left: 10
+c 2.621 3 [stack] Stack empty. Stopping Loop
+c 2.625 3 [msg] Requested work stealing from: 0
+c 2.625 0 [msg] Message 31 with Payload 0 from 3 received.
+c 2.625 0 [msg] Processing work stealing query from 3
+c 2.625 0 [steal] I am sending work
+c 2.625 0 [msg] Message returned to sender 3 with payload[0] = 0 and _sent_work = 1
+c 2.625 3 [msg] Message 32 with Payload 0 from 0 received.
+c 2.625 3 [msg] Work stealing query successful. Filling work stack.
+c 2.625 3 [adding] Adding starting now
+c 2.625 3 [adding] Adding ending now
+c 2.625 3 [msg] Work stack is filled.
+c 2.625 3 [msg] Message returned to sender 0.
+c 2.625 3 [stack] Restarting loop: 1
+c 2.625 0 [msg] Message 33 with Payload 0 from 3 received.
+c 2.675 2 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 2.675 2 TRY REDUCE 63 0 0 2 2
+c 2.675 2 REDUCE returnedToSender
+c 2.675 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 2.676 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 2.676 2 [stack] Stack empty. Stopping Loop
+c 2.685 3 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 2.685 1 TRY REDUCE 63 0 0 2 2
+c 2.685 1 REDUCE
+c 2.685 0 TRY REDUCE 63 0 0 2 2
+c 2.685 0 REDUCE
+c 2.692 0 [stack] In loop. Jobs left: 7
+c 2.695 2 [msg] Requested work stealing from: 0
+c 2.695 0 [msg] Message 31 with Payload 0 from 2 received.
+c 2.695 0 [msg] Processing work stealing query from 2
+c 2.695 0 [steal] I am sending work
+c 2.695 0 [msg] Message returned to sender 2 with payload[0] = 0 and _sent_work = 1
+c 2.695 2 [msg] Message 32 with Payload 0 from 0 received.
+c 2.695 2 [msg] Work stealing query successful. Filling work stack.
+c 2.695 2 [adding] Adding starting now
+c 2.695 2 [adding] Adding ending now
+c 2.695 2 [msg] Work stack is filled.
+c 2.695 2 [msg] Message returned to sender 0.
+c 2.695 2 [stack] Restarting loop: 1
+c 2.695 0 [msg] Message 33 with Payload 0 from 2 received.
+c 2.702 1 [stack] In loop. Jobs left: 9
+c 2.705 0 [stack] Stack empty. Stopping Loop
+c 2.706 0 [msg] Requested work stealing from: 2
+c 2.706 2 [msg] Message 31 with Payload 0 from 0 received.
+c 2.706 2 [msg] Processing work stealing query from 0
+c 2.706 2 [steal] I am sending work
+c 2.706 2 [msg] Message returned to sender 0 with payload[0] = 0 and _sent_work = 1
+c 2.706 0 [msg] Message 32 with Payload 0 from 2 received.
+c 2.706 0 [msg] Work stealing query successful. Filling work stack.
+c 2.706 0 [adding] Adding starting now
+c 2.706 0 [adding] Adding ending now
+c 2.706 0 c [msg] Work stack is filled.
+c 2.706 0 2.706 0 [stack] Restarting loop: 1
+[msg] Message returned to sender 2.
+c 2.706 2 [msg] Message 33 with Payload 0 from 0 received.
+c 2.707 2 [stack] Stack empty. Stopping Loop
+c 2.711 3 [stack] In loop. Jobs left: 11
+c 2.715 2 [msg] Requested work stealing from: 1
+c 2.715 1 [msg] Message 31 with Payload 0 from 2 received.
+c 2.715 1 [msg] Processing work stealing query from 2
+c 2.715 1 [steal] I am sending work
+c 2.716 1 [msg] Message returned to sender 2 with payload[0] = 0 and _sent_work = 1
+c 2.716 2 [msg] Message 32 with Payload 0 from 1 received.
+c 2.716 2 [msg] Work stealing query successful. Filling work stack.
+c 2.716 2 [adding] Adding starting now
+c 2.716 2 [adding] Adding ending now
+c 2.716 2 [msg] Work stack is filled.
+c 2.716 2 [msg] Message returned to sender 1.
+c 2.716 2 [stack] Restarting loop: 1
+c 2.716 1 [msg] Message 33 with Payload 0 from 2 received.
+c 2.718 0 [stack] Stack empty. Stopping Loop
+c 2.721 2 [stack] In loop. Jobs left: 13
+c 2.726 0 [msg] Requested work stealing from: 1
+c 2.726 1 [msg] Message 31 with Payload 0 from 0 received.
+c 2.726 1 [msg] Processing work stealing query from 0
+c 2.726 1 [steal] I am sending work
+c 2.726 1 [msg] Message returned to sender 0 with payload[0] = 0 and _sent_work = 1
+c 2.726 0 [msg] Message 32 with Payload 0 from 1 received.
+c 2.726 0 [msg] Work stealing query successful. Filling work stack.
+c 2.726 0 [adding] Adding starting now
+c 2.726 0 [adding] Adding ending now
+c 2.726 0 [msg] Work stack is filled.
+c 2.726 0 [msg] Message returned to sender 1.
+c 2.726 0 [stack] Restarting loop: 1
+c 2.726 1 [msg] Message 33 with Payload 0 from 0 received.
+c 2.776 2 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 2.776 0 TRY REDUCE 63 0 0 2 2
+c 2.776 0 REDUCE
+c 2.776 1 BROADCAST
+c 2.776 1 TRY REDUCE 64 0 0 2 2
+c 2.776 1 BROADCAST
+c 2.776 2 BROADCAST
+c 2.776 2 TRY REDUCE 64 0 0 2 2
+c 2.776 2 BROADCAST
+c 2.776 3 BROADCAST
+c 2.776 3 TRY REDUCE 64 0 0 2 2
+c 2.776 3 BROADCAST
+c 2.776 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 2.776 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 2.786 2 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 2.786 2 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 2.786 2 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 2.786 3 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 2.786 1 TRY REDUCE 63 0 0 2 2
+c 2.786 1 REDUCE
+c 2.786 0 TRY REDUCE 63 0 0 2 2
+c 2.786 0 REDUCE
+c 2.799 0 [stack] In loop. Jobs left: 10
+c 2.799 1 [stack] In loop. Jobs left: 12
+c 2.808 3 [stack] In loop. Jobs left: 11
+c 2.819 2 [stack] In loop. Jobs left: 11
+c 2.877 2 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 2.877 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 2.877 0 TRY REDUCE 63 0 0 2 2
+c 2.877 0 REDUCE
+c 2.877 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 2.887 3 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 2.887 1 TRY REDUCE 63 0 0 2 2
+c 2.887 1 REDUCE
+c 2.887 0 TRY REDUCE 63 0 0 2 2
+c 2.887 0 REDUCE
+c 2.887 2 BROADCAST
+c 2.887 2 TRY REDUCE 64 0 0 2 2
+c 2.887 2 BROADCAST
+c 2.887 1 BROADCAST
+c 2.887 1 TRY REDUCE 64 0 0 2 2
+c 2.887 1 BROADCAST
+c 2.887 3 BROADCAST
+c 2.887 3 TRY REDUCE 64 0 0 2 2
+c 2.887 3 BROADCAST
+c 2.897 3 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 2.897 3 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 2.897 3 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 2.897 2 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 2.897 2 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 2.897 2 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 2.897 1 [stack] In loop. Jobs left: 12
+c 2.897 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 2.897 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 2.897 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 2.897 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 2.897 1 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 2.897 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 2.897 0 [stack] In loop. Jobs left: 13
+c 2.906 3 [stack] In loop. Jobs left: 12
+c 2.917 2 [stack] In loop. Jobs left: 13
+c 2.978 2 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 2.978 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 2.978 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 2.978 0 TRY REDUCE 63 0 0 2 2
+c 2.978 0 REDUCE
+c 2.988 3 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 2.988 1 TRY REDUCE 63 0 0 2 2
+c 2.988 1 REDUCE
+c 2.988 0 TRY REDUCE 63 0 0 2 2
+c 2.988 0 REDUCE
+c 2.988 1 BROADCAST
+c 2.988 1 TRY REDUCE 64 0 0 2 2
+c 2.988 1 BROADCAST
+c 2.988 2 BROADCAST
+c 2.988 2 TRY REDUCE 64 0 0 2 2
+c 2.988 2 BROADCAST
+c 2.988 3 BROADCAST
+c 2.988 3 TRY REDUCE 64 0 0 2 2
+c 2.988 3 BROADCAST
+c 2.994 1 [stack] In loop. Jobs left: 7
+c 2.995 0 [stack] In loop. Jobs left: 10
+c 2.998 3 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 2.998 3 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 2.998 3 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 2.998 2 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 2.998 2 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 2.998 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 2.998 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 2.998 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 2.998 2 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 2.998 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 2.998 1 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 2.998 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 3.004 3 [stack] In loop. Jobs left: 13
+c 3.015 2 [stack] In loop. Jobs left: 10
+c 3.078 2 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 3.078 2 TRY REDUCE 63 0 0 2 2
+c 3.078 2 REDUCE returnedToSender
+c 3.079 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 3.079 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 3.089 3 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 3.089 1 TRY REDUCE 63 0 0 2 2
+c 3.089 1 REDUCE
+c 3.089 0 TRY REDUCE 63 0 0 2 2
+c 3.089 0 REDUCE
+c 3.092 1 [stack] In loop. Jobs left: 8
+c 3.094 0 [stack] In loop. Jobs left: 9
+c 3.102 3 [stack] In loop. Jobs left: 12
+c 3.107 1 [stack] Stack empty. Stopping Loop
+c 3.112 2 [stack] In loop. Jobs left: 13
+c 3.129 1 [msg] Requested work stealing from: 2
+c 3.129 2 [msg] Message 31 with Payload 0 from 1 received.
+c 3.129 2 [msg] Processing work stealing query from 1
+c 3.129 2 [steal] I am sending work
+c 3.129 2 [msg] Message returned to sender 1 with payload[0] = 0 and _sent_work = 1
+c 3.129 1 [msg] Message 32 with Payload 0 from 2 received.
+c 3.129 1 [msg] Work stealing query successful. Filling work stack.
+c 3.129 1 [adding] Adding starting now
+c 3.129 1 [adding] Adding ending now
+c 3.129 1 [msg] Work stack is filled.
+c 3.129 1 c [stack] Restarting loop: 1
+3.129 1 [msg] Message returned to sender 2.
+c 3.129 2 [msg] Message 33 with Payload 0 from 1 received.
+c 3.179 2 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 3.179 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 3.179 0 TRY REDUCE 63 0 0 2 2
+c 3.179 0 REDUCE
+c 3.180 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 3.189 3 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 3.189 1 TRY REDUCE 63 0 0 2 2
+c 3.189 1 REDUCE
+c 3.189 0 TRY REDUCE 63 0 0 2 2
+c 3.189 0 REDUCE
+c 3.189 2 BROADCAST
+c 3.190 2 TRY REDUCE 64 0 0 2 2
+c 3.190 2 BROADCAST
+c 3.190 1 BROADCAST
+c 3.190 1 TRY REDUCE 64 0 0 2 2
+c 3.190 1 BROADCAST
+c 3.190 3 BROADCAST
+c 3.190 3 TRY REDUCE 64 0 0 2 2
+c 3.190 3 BROADCAST
+c 3.190 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 3.190 1 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 3.190 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 3.193 0 [stack] In loop. Jobs left: 10
+c 3.199 3 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 3.199 3 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 3.199 3 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 3.199 2 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 3.199 2 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 3.199 2 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 3.199 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 3.199 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 3.199 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 3.200 3 [stack] In loop. Jobs left: 7
+c 3.202 0 sysstate busyratio=1.000 cmtdratio=0.000 jobs=1 globmem=0.20GB newreqs=0 hops=0
+c 3.202 0 sysstate entered=1 parsed=1 scheduled=1 processed=0 successful=0
+c 3.210 2 [stack] In loop. Jobs left: 10
+c 3.212 1 [stack] In loop. Jobs left: 11
+c 3.280 2 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 3.280 2 TRY REDUCE 63 0 0 2 2
+c 3.280 2 REDUCE returnedToSender
+c 3.280 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 3.281 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 3.290 3 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 3.290 1 TRY REDUCE 63 0 0 2 2
+c 3.290 1 REDUCE
+c 3.290 0 TRY REDUCE 63 0 0 2 2
+c 3.290 0 REDUCE
+c 3.292 0 [stack] In loop. Jobs left: 12
+c 3.298 3 [stack] In loop. Jobs left: 11
+c 3.307 2 [stack] In loop. Jobs left: 7
+c 3.310 1 [stack] In loop. Jobs left: 13
+c 3.351 3 [stack] Stack empty. Stopping Loop
+c 3.351 3 [msg] Requested work stealing from: 1
+c 3.351 1 [msg] Message 31 with Payload 0 from 3 received.
+c 3.351 1 [msg] Processing work stealing query from 3
+c 3.351 1 [steal] I am sending work
+c 3.351 1 [msg] Message returned to sender 3 with payload[0] = 0 and _sent_work = 1
+c 3.351 3 [msg] Message 32 with Payload 0 from 1 received.
+c 3.351 3 [msg] Work stealing query successful. Filling work stack.
+c 3.351 3 [adding] Adding starting now
+c 3.351 3 [adding] Adding ending now
+c 3.351 3 [msg] Work stack is filled.
+c 3.351 3 [msg] Message returned to sender 1.
+c 3.351 3 [stack] Restarting loop: 1
+c 3.351 1 [msg] Message 33 with Payload 0 from 3 received.
+c 3.381 2 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 3.381 0 TRY REDUCE 63 0 0 2 2
+c 3.381 0 REDUCE
+c 3.381 1 BROADCAST
+c 3.381 1 TRY REDUCE 64 0 0 2 2
+c 3.381 1 BROADCAST
+c 3.381 2 BROADCAST
+c 3.381 2 TRY REDUCE 64 0 0 2 2
+c 3.381 2 BROADCAST
+c 3.381 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 3.381 3 BROADCAST
+c 3.381 3 TRY REDUCE 64 0 0 2 2
+c 3.381 3 BROADCAST
+c 3.381 3 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 3.381 3 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 3.381 3 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 3.381 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 3.390 0 [stack] In loop. Jobs left: 10
+c 3.391 2 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 3.391 2 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 3.391 2 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 3.391 3 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 3.392 1 TRY REDUCE 63 0 0 2 2
+c 3.392 1 REDUCE
+c 3.392 0 TRY REDUCE 63 0 0 2 2
+c 3.392 0 REDUCE
+c 3.397 3 [stack] In loop. Jobs left: 11
+c 3.405 2 [stack] In loop. Jobs left: 8
+c 3.407 1 [stack] In loop. Jobs left: 6
+c 3.457 0 [stack] Stack empty. Stopping Loop
+c 3.462 0 [msg] Requested work stealing from: 3
+c 3.462 3 [msg] Message 31 with Payload 0 from 0 received.
+c 3.462 3 [msg] Processing work stealing query from 0
+c 3.462 3 [steal] I am sending work
+c 3.462 3 [msg] Message returned to sender 0 with payload[0] = 0 and _sent_work = 1
+c 3.462 0 [msg] Message 32 with Payload 0 from 3 received.
+c 3.462 0 [msg] Work stealing query successful. Filling work stack.
+c 3.462 0 [adding] Adding starting now
+c 3.462 0 [adding] Adding ending now
+c 3.462 0 [msg] Work stack is filled.
+c 3.462 0 c [msg] Message returned to sender 3.
+3.462 0 [stack] Restarting loop: 1
+c 3.462 3 [msg] Message 33 with Payload 0 from 0 received.
+c 3.464 2 [stack] Stack empty. Stopping Loop
+c 3.471 2 [msg] Requested work stealing from: 1
+c 3.471 1 [msg] Message 31 with Payload 0 from 2 received.
+c 3.471 1 [msg] Processing work stealing query from 2
+c 3.471 1 [steal] I am sending work
+c 3.471 1 [msg] Message returned to sender 2 with payload[0] = 0 and _sent_work = 1
+c 3.471 2 [msg] Message 32 with Payload 0 from 1 received.
+c 3.471 2 [msg] Work stealing query successful. Filling work stack.
+c 3.471 2 [adding] Adding starting now
+c 3.471 2 [adding] Adding ending now
+c 3.471 2 [msg] Work stack is filled.
+c 3.471 2 [msg] Message returned to sender 1.
+c 3.471 2 [stack] Restarting loop: 1
+c 3.472 1 [msg] Message 33 with Payload 0 from 2 received.
+c 3.481 2 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 3.481 0 TRY REDUCE 63 0 0 2 2
+c 3.481 0 REDUCE
+c 3.482 2 BROADCAST
+c 3.482 2 TRY REDUCE 64 0 0 2 2
+c 3.482 2 BROADCAST
+c 3.482 1 BROADCAST
+c 3.482 1 TRY REDUCE 64 0 0 2 2
+c 3.482 1 BROADCAST
+c 3.482 3 BROADCAST
+c 3.482 3 TRY REDUCE 64 0 0 2 2
+c 3.482 3 BROADCAST
+c 3.482 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 3.482 3 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 3.482 3 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 3.482 3 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 3.482 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 3.487 1 [stack] Stack empty. Stopping Loop
+c 3.491 2 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 3.491 2 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 3.491 2 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 3.492 1 [msg] Requested work stealing from: 3
+c 3.492 3 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 3.492 3 [msg] Message 31 with Payload 0 from 1 received.
+c 3.492 3 [msg] Processing work stealing query from 1
+c 3.492 3 [steal] I am sending work
+c 3.492 3 [msg] Message returned to sender 1 with payload[0] = 0 and _sent_work = 1
+c 3.492 1 TRY REDUCE 63 0 0 2 2
+c 3.492 1 REDUCE
+c 3.492 1 [msg] Message 32 with Payload 0 from 3 received.
+c 3.492 1 [msg] Work stealing query successful. Filling work stack.
+c 3.492 1 [adding] Adding starting now
+c 3.492 1 [adding] Adding ending now
+c 3.492 1 [msg] Work stack is filled.
+c 3.492 1 c [stack] Restarting loop: 1
+3.492 1 [msg] Message returned to sender 3.
+c 3.493 3 [msg] Message 33 with Payload 0 from 1 received.
+c 3.494 0 [stack] In loop. Jobs left: 11
+c 3.495 3 [stack] In loop. Jobs left: 6
+c 3.496 2 [stack] Stack empty. Stopping Loop
+c 3.496 3 [stack] Stack empty. Stopping Loop
+c 3.502 0 TRY REDUCE 63 0 0 2 2
+c 3.502 0 REDUCE
+c 3.502 3 [msg] Requested work stealing from: 1
+c 3.502 1 [msg] Message 31 with Payload 0 from 3 received.
+c 3.502 1 [msg] Processing work stealing query from 3
+c 3.502 1 [steal] I am sending work
+c 3.502 1 [msg] Message returned to sender 3 with payload[0] = 0 and _sent_work = 1
+c 3.503 3 [msg] Message 32 with Payload 0 from 1 received.
+c 3.503 3 [msg] Work stealing query successful. Filling work stack.
+c 3.503 3 [adding] Adding starting now
+c 3.503 3 [adding] Adding ending now
+c 3.503 3 c [msg] Work stack is filled.
+c 3.503 3 [msg] Message returned to sender 1.
+3.503 3 [stack] Restarting loop: 1
+c 3.502 1 [msg] Message 33 with Payload 0 from 3 received.
+c 3.511 1 [stack] In loop. Jobs left: 6
+c 3.512 2 [msg] Requested work stealing from: 3
+c 3.512 3 [msg] Message 31 with Payload 0 from 2 received.
+c 3.512 3 [msg] Processing work stealing query from 2
+c 3.512 3 [steal] I am sending work
+c 3.512 3 [msg] Message returned to sender 2 with payload[0] = 0 and _sent_work = 1
+c 3.512 2 [msg] Message 32 with Payload 0 from 3 received.
+c 3.512 2 [msg] Work stealing query successful. Filling work stack.
+c 3.512 2 [adding] Adding starting now
+c 3.512 2 [adding] Adding ending now
+c 3.512 2 [msg] Work stack is filled.
+c 3.512 2 [stack] Restarting loop: 1
+c 3.512 2 [msg] Message returned to sender 3.
+c 3.512 3 [msg] Message 33 with Payload 0 from 2 received.
+c 3.515 3 [stack] Stack empty. Stopping Loop
+c 3.517 1 [stack] Stack empty. Stopping Loop
+c 3.522 1 [msg] Requested work stealing from: 2
+c 3.522 2 [msg] Message 31 with Payload 0 from 1 received.
+c 3.522 2 [msg] Processing work stealing query from 1
+c 3.522 2 [steal] I am sending work
+c 3.522 2 [msg] Message returned to sender 1 with payload[0] = 0 and _sent_work = 1
+c 3.523 3 [msg] Requested work stealing from: 2
+c 3.522 2 [stack] Stack empty. Stopping Loop
+c 3.523 1 [msg] Message 32 with Payload 0 from 2 received.
+c 3.523 1 [msg] Work stealing query successful. Filling work stack.
+c 3.523 1 [adding] Adding starting now
+c 3.523 1 [adding] Adding ending now
+c 3.523 1 [msg] Work stack is filled.
+c 3.523 1 c [msg] Message returned to sender 2.
+c 3.523 2 [msg] Message 31 with Payload 0 from 3 received.
+c 3.523 2 [msg] Processing work stealing query from 3
+c 3.523 2 [steal] I am not sending work: _work_list.size() = 0
+3.523 1 [stack] Restarting loop: 1
+c 3.523 2 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 1
+c 3.523 2 [msg] Message 33 with Payload 0 from 1 received.
+c 3.523 3 [msg] Message 32 with Payload -1 from 2 received.
+c 3.524 1 [stack] Stack empty. Stopping Loop
+c 3.532 1 [msg] Requested work stealing from: 3
+c 3.533 3 [msg] Message 31 with Payload 0 from 1 received.
+c 3.533 3 [msg] Processing work stealing query from 1
+c 3.533 3 [steal] I am not sending work: _work_list.size() = 0
+c 3.533 3 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 3.533 1 [msg] Message 32 with Payload -1 from 3 received.
+c 3.542 2 [msg] Requested work stealing from: 3
+c 3.542 3 [msg] Message 31 with Payload 0 from 2 received.
+c 3.542 3 [msg] Processing work stealing query from 2
+c 3.542 3 [steal] I am not sending work: _work_list.size() = 0
+c 3.542 3 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 3.542 2 [msg] Message 32 with Payload -1 from 3 received.
+c 3.542 1 [msg] Requested work stealing from: 3
+c 3.543 3 [msg] Message 31 with Payload 0 from 1 received.
+c 3.543 3 [msg] Processing work stealing query from 1
+c 3.543 3 [steal] I am not sending work: _work_list.size() = 0
+c 3.543 3 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 3.543 1 [msg] Message 32 with Payload -1 from 3 received.
+c 3.543 3 [msg] Requested work stealing from: 2
+c 3.543 2 [msg] Message 31 with Payload 0 from 3 received.
+c 3.543 2 [msg] Processing work stealing query from 3
+c 3.543 2 [steal] I am not sending work: _work_list.size() = 0
+c 3.543 2 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 3.543 3 [msg] Message 32 with Payload -1 from 2 received.
+c 3.552 2 [msg] Requested work stealing from: 3
+c 3.552 3 [msg] Message 31 with Payload 0 from 2 received.
+c 3.552 3 [msg] Processing work stealing query from 2
+c 3.552 3 [steal] I am not sending work: _work_list.size() = 0
+c 3.552 3 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 3.552 2 [msg] Message 32 with Payload -1 from 3 received.
+c 3.553 1 [msg] Requested work stealing from: 2
+c 3.553 2 [msg] Message 31 with Payload 0 from 1 received.
+c 3.553 2 [msg] Processing work stealing query from 1
+c 3.553 2 [steal] I am not sending work: _work_list.size() = 0
+c 3.553 2 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 3.553 1 [msg] Message 32 with Payload -1 from 2 received.
+c 3.563 1 [msg] Requested work stealing from: 0
+c 3.563 0 [msg] Message 31 with Payload 0 from 1 received.
+c 3.563 0 [msg] Processing work stealing query from 1
+c 3.563 0 [steal] I am sending work
+c 3.563 0 [msg] Message returned to sender 1 with payload[0] = 0 and _sent_work = 1
+c 3.563 1 [msg] Message 32 with Payload 0 from 0 received.
+c 3.563 1 [msg] Work stealing query successful. Filling work stack.
+c 3.563 1 [adding] Adding starting now
+c 3.563 1 [adding] Adding ending now
+c 3.563 1 c [msg] Work stack is filled.
+c 3.563 1 [msg] Message returned to sender 0.
+3.563 1 [stack] Restarting loop: 1
+c 3.563 0 [msg] Message 33 with Payload 0 from 1 received.
+c 3.572 2 [msg] Requested work stealing from: 0
+c 3.572 0 [msg] Message 31 with Payload 0 from 2 received.
+c 3.572 0 [msg] Processing work stealing query from 2
+c 3.572 0 [steal] I am sending work
+c 3.572 0 [msg] Message returned to sender 2 with payload[0] = 0 and _sent_work = 1
+c 3.572 2 [msg] Message 32 with Payload 0 from 0 received.
+c 3.572 2 [msg] Work stealing query successful. Filling work stack.
+c 3.572 2 [adding] Adding starting now
+c 3.572 2 [adding] Adding ending now
+c 3.572 2 [msg] Work stack is filled.
+c 3.572 2 [msg] Message returned to sender 0.
+c 3.572 0 [msg] Message 33 with Payload 0 from 2 received.
+c 3.572 2 [stack] Restarting loop: 1
+c 3.573 3 [msg] Requested work stealing from: 2
+c 3.573 2 [msg] Message 31 with Payload 0 from 3 received.
+c 3.573 2 [msg] Processing work stealing query from 3
+c 3.573 2 [steal] I am sending work
+c 3.573 2 [msg] Message returned to sender 3 with payload[0] = 0 and _sent_work = 1
+c 3.573 3 [msg] Message 32 with Payload 0 from 2 received.
+c 3.573 3 [msg] Work stealing query successful. Filling work stack.
+c 3.573 3 [adding] Adding starting now
+c 3.573 3 [adding] Adding ending now
+c 3.573 3 [msg] Work stack is filled.
+c 3.573 3 [msg] Message returned to sender 2.
+c 3.573 3 [stack] Restarting loop: 1
+c 3.573 2 [msg] Message 33 with Payload 0 from 3 received.
+c 3.577 2 [stack] In loop. Jobs left: 4
+c 3.582 2 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 3.582 0 TRY REDUCE 63 0 0 2 2
+c 3.582 0 REDUCE
+c 3.582 2 BROADCAST
+c 3.582 2 TRY REDUCE 64 0 0 2 2
+c 3.583 1 BROADCAST
+c 3.583 1 TRY REDUCE 64 0 0 2 2
+c 3.582 2 BROADCAST
+c 3.583 1 BROADCAST
+c 3.583 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 3.583 3 BROADCAST
+c 3.583 3 TRY REDUCE 64 0 0 2 2
+c 3.583 3 BROADCAST
+c 3.583 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 3.583 3 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 3.583 3 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 3.583 3 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 3.584 0 [stack] Stack empty. Stopping Loop
+c 3.585 2 [stack] Stack empty. Stopping Loop
+c 3.586 3 [stack] Stack empty. Stopping Loop
+c 3.592 2 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {4, 10, 38}.
+c 3.592 2 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 3.592 2 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 3.593 0 [msg] Requested work stealing from: 1
+c 3.593 1 [msg] Message 31 with Payload 0 from 0 received.
+c 3.593 1 [msg] Processing work stealing query from 0
+c 3.593 1 [steal] I am sending work
+c 3.593 1 [msg] Message returned to sender 0 with payload[0] = 0 and _sent_work = 1
+c 3.593 0 [msg] Message 32 with Payload 0 from 1 received.
+c 3.593 0 [msg] Work stealing query successful. Filling work stack.
+c 3.593 0 [adding] Adding starting now
+c 3.593 0 [adding] Adding ending now
+c 3.593 0 [msg] Work stack is filled.
+c 3.593 0 c [msg] Message returned to sender 1.
+3.593 0 [stack] Restarting loop: 1
+c 3.593 1 [msg] Message 33 with Payload 0 from 0 received.
+c 3.593 3 [msg] Requested work stealing from: 0
+c 3.593 3 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {0, 10, 38} to all-reduction.
+c 3.593 0 [msg] Message 31 with Payload 0 from 3 received.
+c 3.593 0 [msg] Processing work stealing query from 3
+c 3.593 0 [steal] I am sending work
+c 3.593 0 [msg] Message returned to sender 3 with payload[0] = 0 and _sent_work = 1
+c 3.594 3 [msg] Message 32 with Payload 0 from 0 received.
+c 3.594 3 [msg] Work stealing query successful. Filling work stack.
+c 3.594 3 [adding] Adding starting now
+c 3.594 3 [adding] Adding ending now
+c 3.594 3 [msg] Work stack is filled.
+c 3.594 3 c [msg] Message returned to sender 0.
+3.594 3 [stack] Restarting loop: 1
+c 3.594 0 [msg] Message 33 with Payload 0 from 3 received.
+c 3.599 0 [stack] Stack empty. Stopping Loop
+c 3.599 1 [stack] Stack empty. Stopping Loop
+c 3.600 3 [stack] Stack empty. Stopping Loop
+c 3.602 2 [msg] Requested work stealing from: 0
+c 3.602 0 [msg] Message 31 with Payload 0 from 2 received.
+c 3.602 0 [msg] Processing work stealing query from 2
+c 3.602 0 [steal] I am not sending work: _work_list.size() = 0
+c 3.602 0 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 3.603 2 [msg] Message 32 with Payload -1 from 0 received.
+c 3.603 0 [msg] Requested work stealing from: 3
+c 3.603 3 [msg] Message 31 with Payload 0 from 0 received.
+c 3.603 3 [msg] Processing work stealing query from 0
+c 3.603 3 [steal] I am not sending work: _work_list.size() = 0
+c 3.603 3 [msg] Message returned to sender 0 with payload[0] = -1 and _sent_work = 0
+c 3.603 0 [msg] Message 32 with Payload -1 from 3 received.
+c 3.603 1 [msg] Requested work stealing from: 2
+c 3.603 2 [msg] Message 31 with Payload 0 from 1 received.
+c 3.603 2 [msg] Processing work stealing query from 1
+c 3.603 2 [steal] I am not sending work: _work_list.size() = 0
+c 3.603 2 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 3.603 3 [msg] Requested work stealing from: 2
+c 3.603 1 TRY REDUCE 63 0 0 2 2
+c 3.603 1 REDUCE
+c 3.603 1 [msg] Message 32 with Payload -1 from 2 received.
+c 3.603 2 [msg] Message 31 with Payload 0 from 3 received.
+c 3.603 2 [msg] Processing work stealing query from 3
+c 3.603 2 [steal] I am not sending work: _work_list.size() = 0
+c 3.603 2 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 3.603 3 [msg] Message 32 with Payload -1 from 2 received.
+c 3.612 2 [msg] Requested work stealing from: 0
+c 3.613 0 [msg] Requested work stealing from: 2
+c 3.613 0 [msg] Message 31 with Payload 0 from 2 received.
+c 3.613 2 [msg] Message 31 with Payload 0 from 0 received.
+c 3.613 2 [msg] Processing work stealing query from 0
+c 3.613 2 [steal] I am not sending work: _work_list.size() = 0
+c 3.613 0 [msg] Processing work stealing query from 2
+c 3.613 0 [steal] I am not sending work: _work_list.size() = 0
+c 3.613 0 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 3.613 0 [msg] Message 32 with Payload -1 from 2 received.
+c 3.613 2 [msg] Message returned to sender 0 with payload[0] = -1 and _sent_work = 0
+c 3.613 2 [msg] Message 32 with Payload -1 from 0 received.
+c 3.613 1 [msg] Requested work stealing from: 0
+c 3.613 0 [msg] Message 31 with Payload 0 from 1 received.
+c 3.613 0 [msg] Processing work stealing query from 1
+c 3.613 0 [steal] I am not sending work: _work_list.size() = 0
+c 3.613 0 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 3.613 0 TRY REDUCE 63 0 0 2 2
+c 3.613 0 REDUCE
+c 3.613 3 [msg] Requested work stealing from: 0
+c 3.613 1 [msg] Message 32 with Payload -1 from 0 received.
+c 3.613 0 [msg] Message 31 with Payload 0 from 3 received.
+c 3.613 0 [msg] Processing work stealing query from 3
+c 3.613 0 [steal] I am not sending work: _work_list.size() = 0
+c 3.613 0 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 3.613 3 [msg] Message 32 with Payload -1 from 0 received.
+c 3.623 2 [msg] Requested work stealing from: 3
+c 3.623 3 [msg] Message 31 with Payload 0 from 2 received.
+c 3.623 3 [msg] Processing work stealing query from 2
+c 3.623 3 [steal] I am not sending work: _work_list.size() = 0
+c 3.623 3 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 3.623 2 [msg] Message 32 with Payload -1 from 3 received.
+c 3.623 1 [msg] Requested work stealing from: 0
+c 3.623 0 [msg] Message 31 with Payload 0 from 1 received.
+c 3.623 0 [msg] Processing work stealing query from 1
+c 3.623 0 [steal] I am not sending work: _work_list.size() = 0
+c 3.623 3 [msg] Requested work stealing from: 0
+c 3.623 0 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 3.623 0 [msg] Message 31 with Payload 0 from 3 received.
+c 3.623 0 [msg] Processing work stealing query from 3
+c 3.623 0 [steal] I am not sending work: _work_list.size() = 0
+c 3.623 1 [msg] Message 32 with Payload -1 from 0 received.
+c 3.623 0 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 3.624 3 [msg] Message 32 with Payload -1 from 0 received.
+c 3.633 2 [msg] Requested work stealing from: 0
+c 3.633 0 [msg] Requested work stealing from: 1
+c 3.633 0 [msg] Message 31 with Payload 0 from 2 received.
+c 3.633 0 [msg] Processing work stealing query from 2
+c 3.633 0 [steal] I am not sending work: _work_list.size() = 0
+c 3.633 0 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 3.633 1 [msg] Message 31 with Payload 0 from 0 received.
+c 3.633 1 [msg] Processing work stealing query from 0
+c 3.633 1 [steal] I am not sending work: _work_list.size() = 0
+c 3.633 1 [msg] Message returned to sender 0 with payload[0] = -1 and _sent_work = 0
+c 3.633 2 [msg] Message 32 with Payload -1 from 0 received.
+c 3.633 0 [msg] Message 32 with Payload -1 from 1 received.
+c 3.633 1 [msg] Requested work stealing from: 3
+c 3.633 3 [msg] Message 31 with Payload 0 from 1 received.
+c 3.633 3 [msg] Processing work stealing query from 1
+c 3.633 3 [steal] I am not sending work: _work_list.size() = 0
+c 3.633 3 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 3.633 1 [msg] Message 32 with Payload -1 from 3 received.
+c 3.643 2 [msg] Requested work stealing from: 3
+c 3.643 3 [msg] Message 31 with Payload 0 from 2 received.
+c 3.643 3 [msg] Processing work stealing query from 2
+c 3.643 3 [steal] I am not sending work: _work_list.size() = 0
+c 3.643 3 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 3.643 0 [msg] Requested work stealing from: 1
+c 3.643 1 [msg] Message 31 with Payload 0 from 0 received.
+c 3.643 1 [msg] Processing work stealing query from 0
+c 3.643 1 [steal] I am not sending work: _work_list.size() = 0
+c 3.643 1 [msg] Message returned to sender 0 with payload[0] = -1 and _sent_work = 0
+c 3.643 2 [msg] Message 32 with Payload -1 from 3 received.
+c 3.643 0 [msg] Message 32 with Payload -1 from 1 received.
+c 3.643 1 [msg] Requested work stealing from: 0
+c 3.643 0 [msg] Message 31 with Payload 0 from 1 received.
+c 3.643 0 [msg] Processing work stealing query from 1
+c 3.643 0 [steal] I am not sending work: _work_list.size() = 0
+c 3.643 0 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 3.643 3 [msg] Requested work stealing from: 0
+c 3.644 1 [msg] Message 32 with Payload -1 from 0 received.
+c 3.644 0 [msg] Message 31 with Payload 0 from 3 received.
+c 3.644 0 [msg] Processing work stealing query from 3
+c 3.644 0 [steal] I am not sending work: _work_list.size() = 0
+c 3.644 0 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 3.644 3 [msg] Message 32 with Payload -1 from 0 received.
+c 3.653 2 [msg] Requested work stealing from: 1
+c 3.653 0 [msg] Requested work stealing from: 2
+c 3.653 1 [msg] Message 31 with Payload 0 from 2 received.
+c 3.653 1 [msg] Processing work stealing query from 2
+c 3.653 1 [steal] I am not sending work: _work_list.size() = 0
+c 3.653 2 [msg] Message 31 with Payload 0 from 0 received.
+c 3.653 2 [msg] Processing work stealing query from 0
+c 3.653 2 [steal] I am not sending work: _work_list.size() = 0
+c 3.653 1 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 3.653 2 [msg] Message returned to sender 0 with payload[0] = -1 and _sent_work = 0
+c 3.653 2 [msg] Message 32 with Payload -1 from 1 received.
+c 3.653 0 [msg] Message 32 with Payload -1 from 2 received.
+c 3.653 1 [msg] Requested work stealing from: 3
+c 3.654 3 [msg] Message 31 with Payload 0 from 1 received.
+c 3.654 3 [msg] Processing work stealing query from 1
+c 3.654 3 [steal] I am not sending work: _work_list.size() = 0
+c 3.654 3 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 3.654 1 [msg] Message 32 with Payload -1 from 3 received.
+c 3.663 0 [msg] Requested work stealing from: 3
+c 3.663 3 [msg] Message 31 with Payload 0 from 0 received.
+c 3.663 3 [msg] Processing work stealing query from 0
+c 3.663 3 [steal] I am not sending work: _work_list.size() = 0
+c 3.663 3 [msg] Message returned to sender 0 with payload[0] = -1 and _sent_work = 0
+c 3.663 0 [msg] Message 32 with Payload -1 from 3 received.
+c 3.664 3 [msg] Requested work stealing from: 1
+c 3.664 1 [msg] Message 31 with Payload 0 from 3 received.
+c 3.664 1 [msg] Processing work stealing query from 3
+c 3.664 1 [steal] I am not sending work: _work_list.size() = 0
+c 3.664 1 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 3.664 3 [msg] Message 32 with Payload -1 from 1 received.
+c 3.673 0 [msg] Requested work stealing from: 2
+c 3.673 2 [msg] Message 31 with Payload 0 from 0 received.
+c 3.673 2 [msg] Processing work stealing query from 0
+c 3.673 2 [steal] I am not sending work: _work_list.size() = 0
+c 3.673 2 [msg] Message returned to sender 0 with payload[0] = -1 and _sent_work = 0
+c 3.673 0 [msg] Message 32 with Payload -1 from 2 received.
+c 3.674 1 [msg] Requested work stealing from: 2
+c 3.674 3 [msg] Requested work stealing from: 2
+c 3.674 2 [msg] Message 31 with Payload 0 from 3 received.
+c 3.674 2 [msg] Processing work stealing query from 3
+c 3.674 2 [steal] I am not sending work: _work_list.size() = 0
+c 3.674 2 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 3.674 2 [msg] Message 31 with Payload 0 from 1 received.
+c 3.674 2 [msg] Processing work stealing query from 1
+c 3.674 2 [steal] I am not sending work: _work_list.size() = 0
+c 3.674 2 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 3.674 1 [msg] Message 32 with Payload -1 from 2 received.
+c 3.674 3 [msg] Message 32 with Payload -1 from 2 received.
+c 3.683 0 [msg] Requested work stealing from: 3
+c 3.683 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {0, 10, 38} to all-reduction.
+c 3.683 2 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {0, 10, 38} to all-reduction.
+c 3.683 3 [msg] Message 31 with Payload 0 from 0 received.
+c 3.683 3 [msg] Processing work stealing query from 0
+c 3.683 3 [steal] I am not sending work: _work_list.size() = 0
+c 3.683 3 [msg] Message returned to sender 0 with payload[0] = -1 and _sent_work = 0
+c 3.683 0 [msg] Message 32 with Payload -1 from 3 received.
+c 3.684 1 [msg] Requested work stealing from: 2
+c 3.684 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {0, 10, 38} to all-reduction.
+c 3.684 3 [msg] Requested work stealing from: 2
+c 3.684 2 [msg] Message 31 with Payload 0 from 1 received.
+c 3.684 2 [msg] Processing work stealing query from 1
+c 3.684 2 [steal] I am not sending work: _work_list.size() = 0
+c 3.684 2 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 3.684 2 [msg] Message 31 with Payload 0 from 3 received.
+c 3.684 2 [msg] Processing work stealing query from 3
+c 3.684 2 [steal] I am not sending work: _work_list.size() = 0
+c 3.684 2 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 3.684 1 [msg] Message 32 with Payload -1 from 2 received.
+c 3.684 3 [msg] Message 32 with Payload -1 from 2 received.
+c 3.693 2 [msg] Requested work stealing from: 3
+c 3.693 3 [msg] Message 31 with Payload 0 from 2 received.
+c 3.693 3 [msg] Processing work stealing query from 2
+c 3.693 3 [steal] I am not sending work: _work_list.size() = 0
+c 3.693 0 [msg] Requested work stealing from: 3
+c 3.693 0 TRY REDUCE 63 0 0 2 2
+c 3.693 0 REDUCE
+c 3.693 3 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 3.693 3 [msg] Message 31 with Payload 0 from 0 received.
+c 3.693 3 [msg] Processing work stealing query from 0
+c 3.693 3 [steal] I am not sending work: _work_list.size() = 0
+c 3.693 3 [msg] Message returned to sender 0 with payload[0] = -1 and _sent_work = 0
+c 3.693 2 [msg] Message 32 with Payload -1 from 3 received.
+c 3.693 0 [msg] Message 32 with Payload -1 from 3 received.
+c 3.694 1 [msg] Requested work stealing from: 2
+c 3.694 3 [msg] Requested work stealing from: 2
+c 3.694 3 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {0, 10, 38} to all-reduction.
+c 3.694 2 [msg] Message 31 with Payload 0 from 3 received.
+c 3.694 2 [msg] Processing work stealing query from 3
+c 3.694 2 [steal] I am not sending work: _work_list.size() = 0
+c 3.694 2 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 3.694 2 [msg] Message 31 with Payload 0 from 1 received.
+c 3.694 2 [msg] Processing work stealing query from 1
+c 3.694 2 [steal] I am not sending work: _work_list.size() = 0
+c 3.694 2 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 3.694 1 [msg] Message 32 with Payload -1 from 2 received.
+c 3.694 3 [msg] Message 32 with Payload -1 from 2 received.
+c 3.703 2 [msg] Requested work stealing from: 3
+c 3.703 0 [msg] Requested work stealing from: 2
+c 3.703 3 [msg] Message 31 with Payload 0 from 2 received.
+c 3.703 3 [msg] Processing work stealing query from 2
+c 3.703 3 [steal] I am not sending work: _work_list.size() = 0
+c 3.703 3 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 3.703 2 [msg] Message 31 with Payload 0 from 0 received.
+c 3.703 2 [msg] Processing work stealing query from 0
+c 3.703 2 [steal] I am not sending work: _work_list.size() = 0
+c 3.703 2 [msg] Message returned to sender 0 with payload[0] = -1 and _sent_work = 0
+c 3.703 2 [msg] Message 32 with Payload -1 from 3 received.
+c 3.703 0 [msg] Message 32 with Payload -1 from 2 received.
+c 3.704 1 [msg] Requested work stealing from: 3
+c 3.704 3 [msg] Message 31 with Payload 0 from 1 received.
+c 3.704 3 [msg] Processing work stealing query from 1
+c 3.704 3 [steal] I am not sending work: _work_list.size() = 0
+c 3.704 3 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 3.704 1 TRY REDUCE 63 0 0 2 2
+c 3.704 1 REDUCE
+c 3.704 1 [msg] Message 32 with Payload -1 from 3 received.
+c 3.713 2 [msg] Requested work stealing from: 3
+c 3.714 3 [msg] Message 31 with Payload 0 from 2 received.
+c 3.714 3 [msg] Processing work stealing query from 2
+c 3.714 3 [steal] I am not sending work: _work_list.size() = 0
+c 3.714 3 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 3.714 2 [msg] Message 32 with Payload -1 from 3 received.
+c 3.714 1 [msg] Requested work stealing from: 3
+c 3.714 3 [msg] Message 31 with Payload 0 from 1 received.
+c 3.714 3 [msg] Processing work stealing query from 1
+c 3.714 3 [steal] I am not sending work: _work_list.size() = 0
+c 3.714 3 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 3.714 0 TRY REDUCE 63 0 0 2 2
+c 3.714 0 REDUCE
+c 3.714 1 [msg] Message 32 with Payload -1 from 3 received.
+c 3.714 2 BROADCAST
+c 3.714 2 TRY REDUCE 64 0 0 2 2
+c 3.714 2 BROADCAST
+c 3.714 1 BROADCAST
+c 3.714 1 TRY REDUCE 64 0 0 2 2
+c 3.714 1 BROADCAST
+c 3.714 3 BROADCAST
+c 3.714 3 TRY REDUCE 64 0 0 2 2
+c 3.714 3 BROADCAST
+c 3.723 0 [msg] Requested work stealing from: 2
+c 3.723 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {0, 10, 38}.
+c 3.723 0 [red] Thread will stop search: nbActive = 0
+c 3.723 0 c [red] & [bou] Thread has reportable solution: upperBound = 38, lowerBound = 10, currSolution = 38
+c 3.723 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 3.723 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+3.723 0 [stack] Succesfully broken out of loop
+c 3.723 0 [track] End outside & End tracker
+c 3.723 0 [tracking] Number of queries in total: 18 - succesful: 5 - before msgs allowed: 0 - rank invalid: 2 - reply empty: 10
+c 3.723 2 [msg] Requested work stealing from: 1
+c 3.723 2 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {0, 10, 38}.
+c 3.723 2 [red] Thread will stop search: nbActive = 0
+c 3.723 0 [tracking] Time wait threads: 0 0.018796
+c 3.723 0 [tracking] Time check: 1 0.050639
+c 3.723 0 [tracking] Time wait full: 2 0.054671
+c 3.723 0 [tracking] Time get work: 3 0.156689
+c 3.723 0 [tracking] Time work: 4 0.519506
+c 3.723 0 [tracking] Time compare: 5 0.110331
+c 3.723 0 [tracking] Time outside: 6 0.089367
+c 3.723 0 [track] All time: 1.000000
+c 3.723 2 [red] & [bou] Thread has reportable solution: upperBound = 38, lowerBound = 10, currSolution = 38
+c 3.723 2 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 3.723 2 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 3.723 2 [msg] Message 31 with Payload 0 from 0 received.
+c 3.723 2 [msg] Message will not be entirely processed as program is finished
+c 3.723 2 [msg] Message returned to sender 0 with tag 4
+c 3.723 2 [stack] Succesfully broken out of loop
+c 3.723 2 [track] End outside & End tracker
+c 3.723 2 [tracking] Number of queries in total: 45 - succesful: 11 - before msgs allowed: 13 - rank invalid: 9 - reply empty: 11
+c 3.723 2 [tracking] Time wait threads: 0 0.000000
+c 3.723 2 [tracking] Time check: 1 0.049321
+c 3.723 2 [tracking] Time wait full: 2 0.097962
+c 3.723 2 [tracking] Time get work: 3 0.150814
+c 3.723 2 [tracking] Time work: 4 0.503347
+c 3.723 0 [msg] Message 4 with Payload 0 from 2 received.
+c 3.723 0 [term] Finished set to 1
+c 3.723 2 [tracking] Time compare: 5 0.107134
+c 3.723 2 [tracking] Time outside: 6 0.091422
+c 3.723 2 [track] All time: 1.000000
+c 3.724 1 [msg] Message 31 with Payload 0 from 2 received.
+c 3.724 1 [msg] Processing work stealing query from 2
+c 3.724 1 [steal] I am not sending work: _work_list.size() = 0
+c 3.724 1 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 3.724 2 [msg] Message 32 with Payload -1 from 1 received.
+c 3.724 2 [msg] Message will not be entirely processed as program is finished
+c 3.724 2 [msg] Message returned to sender 1 with tag 4
+c 3.724 1 [msg] Message 4 with Payload -1 from 2 received.
+c 3.724 1 [term] Finished set to 1
+c 3.724 1 [stack] Succesfully broken out of loop
+c 3.724 1 [track] End outside & End tracker
+c 3.724 1 [tracking] Number of queries in total: 43 - succesful: 11 - before msgs allowed: 13 - rank invalid: 5 - reply empty: 14
+c 3.724 1 [tracking] Time wait threads: 0 0.000000
+c 3.724 1 [tracking] Time check: 1 0.049831
+c 3.724 1 [tracking] Time wait full: 2 0.092579
+c 3.724 1 [tracking] Time get work: 3 0.151090
+c 3.724 1 [tracking] Time work: 4 0.509681
+c 3.724 1 [tracking] Time compare: 5 0.108705
+c 3.724 1 [tracking] Time outside: 6 0.088115
+c 3.724 1 [track] All time: 1.000000
+c 3.724 3 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {0, 10, 38}.
+c 3.724 3 [red] Thread will stop search: nbActive = 0
+c 3.724 3 [red] & [bou] Thread has reportable solution: upperBound = 38, lowerBound = 10, currSolution = 38
+c 3.724 3 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 3.724 3 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 3.724 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {0, 10, 38}.
+c 3.724 1 [red] Thread will stop search: nbActive = 0
+c 3.724 3 [stack] Succesfully broken out of loop
+c 3.724 3 [track] End outside & End tracker
+c 3.724 3 [tracking] Number of queries in total: 44 - succesful: 10 - before msgs allowed: 13 - rank invalid: 11 - reply empty: 10
+c 3.724 3 [tracking] Time wait threads: 0 0.000000
+c 3.724 1 [red] & [bou] Thread has reportable solution: upperBound = 38, lowerBound = 10, currSolution = 38
+c 3.724 1 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 3.724 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 3.724 3 [tracking] Time check: 1 0.049672
+c 3.724 3 [tracking] Time wait full: 2 0.095452
+c 3.724 3 [tracking] Time get work: 3 0.152244
+c 3.724 3 [tracking] Time work: 4 0.506155
+c 3.724 3 [tracking] Time compare: 5 0.108252
+c 3.724 3 [tracking] Time outside: 6 0.088225
+c 3.724 3 [track] All time: 1.000000
+c 3.733 0 [solved] End: (Completion: 1) (Nr Tasks: 25) (Nr Machines: 2) (Tasks:) (Machine Workloads: 37 38) (Machines: 5 5 5 3 3 3 2 2 2 2 1 1 1 1 1 0 5 5 4 4 4 4 4 3 3 2 0)
+c 3.734 0 RESPONSE_TIME #1 3.691171 rev. 0
+c 3.734 0 SOLUTION #1 SATISFIABLE rev. 0
+s SATISFIABLE
+null
+c 3.779 0 Exiting happily
+c 3.779 3 Exiting happily
+c 3.779 1 Exiting happily
+c 3.779 2 Exiting happily
