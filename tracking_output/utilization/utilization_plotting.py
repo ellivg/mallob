@@ -4,7 +4,7 @@ import math
 import os
 
 # Assign directory
-directory = r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/utilization/out_30new"
+directory = r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/all_in9"
 
 # Variables
 non_tracking_files = []
@@ -22,6 +22,8 @@ for name in os.listdir(directory):
         continue
     
     with open(file_path) as file:
+        #print(file_path)
+
         # Delete non-solved files
         if not "[solved]" in file.read():
             non_tracking_files.append(name)
@@ -32,7 +34,7 @@ for name in os.listdir(directory):
         # Add all lines relevant for tracking
         for line in file:
             line.strip()
-            if "[tracking]"  in line:
+            if "[tracking] Time" in line:
                 tracking_lines.append(line)
     
     # Delete line delimiters and [tracking] keyword
@@ -46,6 +48,7 @@ for name in os.listdir(directory):
 
     # Probably later prettier but in basic the only necessary numbers are the timestamp line[0] and percentage line[-1]
     for line in tracking_values:
+        #print(line)
         finished_values.append((int(line[-2]),float(line[-1])))
 
     # Decide which values are important for the current plot and add them to the dict
@@ -72,8 +75,7 @@ plt.boxplot(x=values[1], tick_labels=["wait\nthreads", "check", "wait\nfull", "g
 plt.xlim([0, len(values[0])+1])
 plt.ylim([0, 1])
 
-plt.title("Auslastung bei einzigem Unterschied in der Job-Anzahl \n bei gleicher Maschinen- und Threadanzahl (2)")
 plt.xlabel("")
-plt.ylabel("Auslastung")
+plt.ylabel("utilization")
 
-plt.savefig("tracking_output/utilization/utilization_plot_30new.png")
+plt.savefig("tracking_output/utilization/utilization_in9.png")
