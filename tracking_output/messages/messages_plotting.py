@@ -4,18 +4,18 @@ import math
 import os
 
 # Assign directory
-directory = r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/utilization/out"
+directory = r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/all_in9"
 
 # Variables
 non_tracking_files = []
 values = defaultdict(list)
 labels = []
+tracking_lines = []
+finished_values = defaultdict(list)
 
 # Iterate over files in directory
 for name in os.listdir(directory):
-    tracking_lines = []
     tracking_values = []
-    finished_values = []
     wanted_keyword = "queries"
     file_path = os.path.join(directory, name)
 
@@ -29,43 +29,38 @@ for name in os.listdir(directory):
             continue
 
         file.seek(0)
-
+        
         # Add all lines relevant for tracking
         for line in file:
             line.strip()
-            if "[tracking]" in line and str.casefold(wanted_keyword) in str.casefold(line):
+            if ("[tracking]" in line) and (str.casefold(wanted_keyword) in str.casefold(line)):
+                line = line.split("Number of queries in ")[1]
                 tracking_lines.append(line)
-    
-    # Delete line delimiters and [tracking] keyword
-    for line in tracking_lines:
-        line = line[:-1]
-        line = line.split("-")
 
-        finished_line = []
-        num_all = -1
-        for value in line:
-            value = value.split(" ")
-            if value[-1] == "":
-                value = value[:-1]
-            value = value[-2:]
+# Delete line delimiters and [tracking] keyword
+for line in tracking_lines:
+    line = line[:-1] # Delete line delimiter
+    line = line.split("-")
 
-            if value[0] == "total:":
-                num_all = value[1]
-            else:
-                finished_line.append(value)
-            
-        for value in finished_line:
-            print(value)
-            perc = float(value[1]) / float(num_all)
-            finished_values.append((value[0],perc))
-        
+    finished_line = []
+    num_all = -1
+    for value in line:
+        value = value.split(" ")
+        if value[-1] == "":
+            value = value[:-1]
+        value = value[-2:]
 
-    # Decide which values are important for the current plot and add them to the dict
-    for line in finished_values:
-        if line[0] not in labels:
-            labels.append(line[0])
-        values[labels.index(line[0])].append(line[1])
-    
+        if value[0] == "total:":
+            num_all = value[1]
+        else:
+            finished_line.append(value)
+
+    #if int(num_all) >= 100:
+    #    continue
+
+    for value in finished_line:
+        perc = float(value[1]) / float(num_all)
+        finished_values[value[0]].append(perc)
 
 # Print non solved files
 if not non_tracking_files:
@@ -73,24 +68,19 @@ if not non_tracking_files:
 for name in non_tracking_files:
     print(name+" was not solved")
 
+x, y = zip(*finished_values.items())
+values = list(x), y
 
-print(labels)
-print(values)
-myList = sorted(values.items())
-x, y = zip(*myList)
-values = list(map(int, x)), y
-print(values)
+print(values[0])
+values[0][1] = "not\nallowed:"
+values[0][2] = "recipient\ninvalid:"
+values[0][3] = "return\nempty:"
 
-max_value = math.ceil(max(max(sub_list) for sub_list in values[1]))
-min_value = math.floor(min(min(sub_list) for sub_list in values[1]))
-
-plt.boxplot(x=values[1], tick_labels=labels)
+plt.boxplot(x=values[1], tick_labels=values[0])
 
 plt.xlim([0, len(values[0])+1])
-plt.ylim([min_value, max_value])
+plt.ylim([0, 1])
 
-plt.title("Percentage of all queries")
-plt.xlabel("Type of return")
 plt.ylabel("Number of queries")
 
-plt.savefig("tracking_output/messages/messages_plot_new.png")
+plt.savefig("tracking_output/messages/messages_plot_in9_small.png")
