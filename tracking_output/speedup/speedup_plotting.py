@@ -7,123 +7,137 @@ import os
 # use cdf runs as base
 
 # Assign directory
-dir_list = [r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/all_in/in1",
-            r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/all_in/in2",
-            r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/all_in/in4",
-            r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/all_in/in8",
-            r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/all_in/in16"]
+directory = r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/all_in9"
 
 # Variables
 non_tracking_files = []
-all_values = defaultdict()
+values = {}
 wanted_keyword = "RESPONSE_TIME"
-num_files = 0
-labels = [1,2,4,8,16]
-labelcou = 0
 
 # Iterate over files in directory
-for directory in dir_list:
-    values = defaultdict(list)
+for name in os.listdir(directory):
+    tracking_lines = []
+    tracking_values = []
+    finished_values = []
+    file_path = os.path.join(directory, name)
+
+    #if re.match(r'file_[0-9]_1_[0-9]\.txt', name):
+    #    print(name)
+    #    continue
+
+    if not os.path.isfile(file_path):
+        continue
     
-
-    for name in os.listdir(directory):
-        num_files += 1
-        tracking_lines = []
-        tracking_values = []
-        finished_values = []
-        file_path = os.path.join(directory, name)
-
-        if not os.path.isfile(file_path):
+    with open(file_path) as file:
+        #print("Opening: "+name)
+        # Delete non-solved files
+        if not "[solved]" in file.read():
+            non_tracking_files.append(name)
             continue
-        
-        with open(file_path) as file:
-            #print("Opening: "+name)
-            # Delete non-solved files
-            if not "[solved]" in file.read():
-                non_tracking_files.append(name)
-                continue
 
-            file.seek(0)
+        file.seek(0)
 
-            # Add all lines relevant for tracking
-            for line in file:
-                line.strip()
-                if wanted_keyword in line:
-                    tracking_lines.append(line)
-        
-        #print(tracking_lines)
-        
-        # Delete line delimiters and [tracking] keyword
-        for line in tracking_lines:
-            line = line[:-1]
-            line = line.split(" ")
-            line = line[1:3] + line[4:]
-            tracking_values.append(line)
-        
-        #print(tracking_values)
-
-        # Only use the relevant line
-        for line in tracking_values:
-            finished_values.append(float(line[-3]))
-
-        #print(finished_values)
-
-        # Get label
-        label = float(name.split("_")[1])
-        #print(label)
-        
-        # Decide which values are important for the current plot and add them to the dict
-        for line in finished_values:
-            values[label].append(line)
-        
-        #print(values)
-
-    #print(values)
-    myList = sorted(values.items())
-    x, y = zip(*myList)
-    values = list(map(int, x)),  list(y)
-    #print(values)
-
-    for i in range(len(values[0])):
-        sum = np.log(values[1][i])
-        gmean = np.exp(sum.mean())
-        values[1][i] = gmean
+        # Add all lines relevant for tracking
+        for line in file:
+            line.strip()
+            if wanted_keyword in line:
+                tracking_lines.append(line)
     
-    if not labelcou == 0:
-        for i in range(len(values[1])):
-            values[1][i] = all_values[1][1][i] / values[1][i]
+    #print(tracking_lines)
+    
+    # Delete line delimiters and [tracking] keyword
+    for line in tracking_lines:
+        line = line[:-1]
+        line = line.split(" ")
+        line = line[1:3] + line[4:]
+        tracking_values.append(line)
+    
+    #print(tracking_values)
 
-    all_values[labels[labelcou]] = values
-    labelcou += 1
+    # Only use the relevant line
+    for line in tracking_values:
+        finished_values.append(float(line[-3]))
 
+    #print(finished_values)
 
-myList = sorted(all_values.items())
-x, y = zip(*myList)
-all_values = list(x),  list(y)
-print(all_values)
+    # Get label
+    label_thr = int(name.split("_")[2])
+    label_file = int(name.split("_")[1])
+    
+    # Decide which values are important for the current plot and add them to the dict
+    for line in finished_values:
+        if (not bool(values)) or (not label_thr in values):
+            values[label_thr] = {}
+        if (not bool(values[label_thr])) or (not label_file in values[label_thr]):
+            values[label_thr][label_file] = []
+
+        values[label_thr][label_file].append(line)
+    
+    #print(values)
 
 # Print non solved files
 if not non_tracking_files:
     print("All files were solved")
-percent = len(non_tracking_files) / num_files
-print(str(percent)+"% was not solved")
+for name in sorted(non_tracking_files):
+    print(name+" was not solved")
+
+# Get T_sequential
+for key, value in values[1].items():
+    sum = np.log(values[1][key])
+    gmean = np.exp(sum.mean())
+    values[1][key] = gmean
+
+# Compute speedup
+for ikey, ivalue in values.items():
+    if ikey == 1:
+        continue
+
+    # Necesssary rn TODO change
+    values[ikey].pop(7)
+
+    for jkey, jvalue in values[ikey].items():
+        sum = np.log(values[ikey][jkey])
+        gmean = np.exp(sum.mean())
+        speedup = values[1][jkey] / gmean
+        values[ikey][jkey] = speedup
+
+marker_rotation = ["o", "v", "s", "p", "*", "D"]
+marker_count = 0
+
+# Plot
+for key, value in values.items():
+    if key == 1:
+        continue
+
+    sorted_keys = sorted(values[1], key=values[1].get)
+    d1_sorted = {k: values[1][k] for k in sorted_keys}
+    d2_sorted = {k: values[key][k] for k in sorted_keys}
+
+    x, y = zip(*d2_sorted.items())
+    value_spd = x,y
+
+    x, y = zip(*d1_sorted.items())
+    value_seq = x,y
+
+    print(key)
+    print(value_spd)
+    print(value_seq)
+
+    plt.scatter(value_seq[1], value_spd[1], label=key, marker=marker_rotation[marker_count])
+
+    marker_count += 1
+    marker_count %= len(marker_rotation)
+
 
 plt.plot([0,300], [1,1], color="black")
 
-marker_rotation = ["o", "v", "s", "p", "*", "D"]
+plt.xlim([0, 250])
+plt.ylim([0, 30])
 
-for i in range(1, len(all_values[0])-1):
-    plt.plot(all_values[1][0][1], all_values[1][i][1], label=all_values[0][i], marker=marker_rotation[i])
-
-plt.plot(all_values[1][0][1][:-1], all_values[1][len(values[0])][1], label=all_values[0][i], marker=marker_rotation[len(values[0])])
-
-plt.xlim([0, 150])
-plt.ylim([0, 2])
-
-plt.ylabel("Speedup")
 plt.xlabel("T_sequential")
+plt.ylabel("Speedup")
 
 plt.legend()
 
-fig_name = "tracking_output/speedup/speedup_16.png"
+fig_name = "tracking_output/speedup/out/speedup_in9.png"
 plt.savefig(fig_name)
