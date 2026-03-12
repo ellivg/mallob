@@ -1,7 +1,7 @@
 #!/bin/bash
 
 THREADS_PER_PROCESS=1 # Set to desired number
-INSTANCES=9 #TODO: Set to desired number (or count paths in paths.txt file)
+INSTANCES=10 #TODO: Set to desired number (or count paths in paths.txt file)
 
 echo "" 
 echo ""
