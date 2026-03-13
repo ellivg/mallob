@@ -470,7 +470,7 @@ void BnbJob::branch(Work& work) {
 
     int max_loop = _nr_machines;
 
-    /* // if three assignments left (Rule No 3)
+    // if three assignments left (Rule No 3)
     if (work.tasks.size() == 3) {
         pruning_three_jobs_left(work, machine_workload);
         return;
@@ -501,7 +501,7 @@ void BnbJob::branch(Work& work) {
             sum += (bounds.curr_upper_bound - machine_workload[x]) / work.tasks[0];
         }
         if (sum < work.tasks.size()) return;
-    } */
+    }
     
     //get current task
     std::vector<int> new_tasks = work.tasks;
