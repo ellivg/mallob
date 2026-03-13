@@ -1,0 +1,1425 @@
+0.000 0 [WARN] Invalid argument "\"
+0.000 0 [WARN] Invalid argument "\"
+c 
+c Mallob -- a parallel and distributed platform for job scheduling, load balancing, and SAT solving
+c Copyright (C) 2019-2025 Dominik Schreiber, Karlsruhe Institute of Technology, Germany
+c 
+c 0.002 1 Cleaning up pre-execution
+c 0.002 1 Killing old subprocesses: "killall -9 build/mallob_sat_process 2>/dev/null"
+c 0.002 0 Program options: -0o=0 -J=0 -SJ=0 -T=300 -adc=0 -aim=1 -ajpc=0 -ans=0 -apidir=.api -ba=4 -bem=1 -bicg=4 -br=0 -c=1 -cbbs=0 -cblm=1 -cblp=100000 -cdel=2 -cecpm=0 -cf=0 -cfci=10 -cfm=3 -cg=1 -ch=0 -checksums=0 -cjc=0 -client-app-threads=1 -cm=0 -cmp=0 -colors=0 -compact-proof=0 -cpshm=0 -csm=3 -cusv=1 -dc=0 -decay-distr=1 -decay-max=200 -decay-mean=50 -decay-min=1 -decay-stddev=3 -decpm=0 -delaymonkey=0 -div-elim=0 -div-fanout=0 -div-init-shuffle=0 -div-native=1 -div-noise=0 -div-phases=1 -div-reduce=0 -div-seeds=1 -dpa=1 -ds=0 -evpt=350 -evu=0 -extmem-disk-dir=.disk -fapii=0 -fcll=1 -g=0 -gclls=0 -h=0 -huca=0 -iff=0 -ilbd=0 -inotify=1 -interface-fs=0 -interface-ipc=0 -ipm=1 -ivdh=1 -jc=1 -jcl=0 -jcup=0.1 -jjp=0 -jwl=0 -l=1 -latencymonkey=0 -lbdpi=0 -lbdpo=0 -ljpc=32 -log=scripts/bnb/out//5/ -mbt=8388608 -mcips=5 -md=0 -mempanic=1 -mjps=0 -mlbdps=2 -mlpt=50000000 -mmpi=0 -mono=instances/bnb/main_under_300/bnb_n25_m2_2.cnf -mono-app=bnb -mscf=5 -nec=5 -no-import=0 -os=0 -otfc=0 -otfcm=1 -p=0.1 -pbbm=0 -plain-add-specific=0 -pph=0 -pre-cleanup=1 -prisma=0 -proof-debugging=0 -ps=0 -q=0 -qcll=8 -qlbdl=2 -randlbd=0 -reduce-delta=100 -reduce-max=980 -reduce-mean=700 -reduce-min=300 -reduce-stddev=150 -rlbd=3 -rpa=0 -rs=1 -rspaa=0 -s=0.5 -satsolver=C -scll=60 -scramble-lbds=0 -scsd=0 -seed=0 -sjd=0 -slbdl=60 -sleep=100 -spl=-1 -sswl=0 -t=1 -tmp=scripts/bnb/out//5/tmp/ -trace-dir=scripts/bnb/out//5/ -uninvert-proof=1 -v=2 -w=-1 -wam=10000 -warmup=0 -watchdog=1 -y=1 -yield=0 
+c 0.002 0 Cleaning up pre-execution
+c 0.002 0 Killing old subprocesses: "killall -9 build/mallob_sat_process 2>/dev/null"
+c 0.015 0 Killing old subprocesses: "killall -9 build/impcheck_parse 2>/dev/null"
+c 0.015 1 Killing old subprocesses: "killall -9 build/impcheck_parse 2>/dev/null"
+c 0.019 0 Killing old subprocesses: "killall -9 build/impcheck_check 2>/dev/null"
+c 0.019 1 Killing old subprocesses: "killall -9 build/impcheck_check 2>/dev/null"
+c 0.022 0 Killing old subprocesses: "killall -9 build/impcheck_confirm 2>/dev/null"
+c 0.022 1 Killing old subprocesses: "killall -9 build/impcheck_confirm 2>/dev/null"
+c 0.041 0 [WARN] Num bounce alternatives must be at most half the number of workers!
+c 0.041 0 [WARN] Falling back to safe value r=1.
+c 0.041 1 [WARN] Num bounce alternatives must be at most half the number of workers!
+c 0.041 1 [WARN] Falling back to safe value r=1.
+c 0.041 0 Set up API connector
+c 0.042 0 Machine color 0 with 2 total workers (my rank: 0)
+c 0.042 0 Assuming application "BNB" for mono job
+c 0.042 1 Machine color 0 with 2 total workers (my rank: 1)
+c 0.042 0 Introducing job #1 rev. 0 : r.#1:0 rev. 0 <- [0] born=0.042 hops=0 epoch=-1 matchId=-1 => [0]
+c 0.043 0 [bou] Initiliased to {lower, upper, best} = {10, -1, -1}.
+c 0.043 0 [start] Beginning: (Completion: 0) (Nr Tasks: 25) (Nr Machines: 2) (Tasks: 5 5 5 5 5 4 4 4 4 4 3 3 3 3 3 2 2 2 2 2 1 1 1 1 1) (Machine Workloads: 0 0) (Machines: 0 0)
+c 0.043 0 [stack] Start waiting for other threads: 0
+c 0.053 1 [stack] Stack empty. Stopping Loop
+c 0.102 0 [WARN] #1:0 job tree has size 0/2
+c 0.103 0 [stack] End waiting: 1
+c 0.103 0 [stack] In loop. Jobs left: 1
+c 0.103 0 [bou] Updated to {lower, upper, best} = {10, 60, 60}.
+c 0.103 0 [bou] Updated to {lower, upper, best} = {10, 59, 59}.
+c 0.103 0 [bou] Updated to {lower, upper, best} = {10, 58, 58}.
+c 0.103 0 [bou] Updated to {lower, upper, best} = {10, 57, 57}.
+c 0.103 0 [bou] Updated to {lower, upper, best} = {10, 56, 56}.
+c 0.103 0 [bou] Updated to {lower, upper, best} = {10, 55, 55}.
+c 0.103 0 [bou] Updated to {lower, upper, best} = {10, 54, 54}.
+c 0.103 0 [bou] Updated to {lower, upper, best} = {10, 53, 53}.
+c 0.103 0 [bou] Updated to {lower, upper, best} = {10, 52, 52}.
+c 0.103 0 [bou] Updated to {lower, upper, best} = {10, 51, 51}.
+c 0.103 0 [bou] Updated to {lower, upper, best} = {10, 50, 50}.
+c 0.103 0 [bou] Updated to {lower, upper, best} = {10, 49, 49}.
+c 0.104 0 [bou] Updated to {lower, upper, best} = {10, 48, 48}.
+c 0.104 0 [bou] Updated to {lower, upper, best} = {10, 47, 47}.
+c 0.105 0 [bou] Updated to {lower, upper, best} = {10, 46, 46}.
+c 0.105 0 [bou] Updated to {lower, upper, best} = {10, 45, 45}.
+c 0.106 0 [bou] Updated to {lower, upper, best} = {10, 44, 44}.
+c 0.106 0 [bou] Updated to {lower, upper, best} = {10, 43, 43}.
+c 0.106 0 [bou] Updated to {lower, upper, best} = {10, 42, 42}.
+c 0.109 0 [bou] Updated to {lower, upper, best} = {10, 41, 41}.
+c 0.110 0 [bou] Updated to {lower, upper, best} = {10, 40, 40}.
+c 0.110 0 [bou] Updated to {lower, upper, best} = {10, 39, 39}.
+c 0.112 1 [msg] Requested work stealing from: 0
+c 0.112 0 [msg] Message 31 with Payload 0 from 1 received.
+c 0.112 0 [msg] Processing work stealing query from 1
+c 0.112 0 [steal] I am sending work
+c 0.112 0 [msg] Message returned to sender 1 with payload[0] = 0 and _sent_work = 1
+c 0.112 1 [msg] Message 32 with Payload 0 from 0 received.
+c 0.112 1 [msg] Work stealing query successful. Filling work stack.
+c 0.112 1 [adding] Adding starting now
+c 0.112 1 [adding] Adding ending now
+c 0.112 1 [msg] Work stack is filled.
+c 0.112 1 [stack] Restarting loop: 1
+c 0.112 1 [msg] Message returned to sender 0.
+c 0.112 1 [stack] In loop. Jobs left: 1
+c 0.112 1 [bou] Updated to {lower, upper, best} = {-1, 60, 60}.
+c 0.112 1 [bou] Updated to {lower, upper, best} = {-1, 59, 59}.
+c 0.112 1 [bou] Updated to {lower, upper, best} = {-1, 58, 58}.
+c 0.112 1 [bou] Updated to {lower, upper, best} = {-1, 57, 57}.
+c 0.112 0 [msg] Message 33 with Payload 0 from 1 received.
+c 0.112 1 [bou] Updated to {lower, upper, best} = {-1, 56, 56}.
+c 0.112 1 [bou] Updated to {lower, upper, best} = {-1, 55, 55}.
+c 0.112 1 [bou] Updated to {lower, upper, best} = {-1, 54, 54}.
+c 0.112 1 [bou] Updated to {lower, upper, best} = {-1, 53, 53}.
+c 0.113 1 [bou] Updated to {lower, upper, best} = {-1, 52, 52}.
+c 0.113 1 [bou] Updated to {lower, upper, best} = {-1, 51, 51}.
+c 0.113 1 [bou] Updated to {lower, upper, best} = {-1, 50, 50}.
+c 0.113 1 [bou] Updated to {lower, upper, best} = {-1, 49, 49}.
+c 0.113 1 [bou] Updated to {lower, upper, best} = {-1, 48, 48}.
+c 0.113 1 [bou] Updated to {lower, upper, best} = {-1, 47, 47}.
+c 0.114 1 [bou] Updated to {lower, upper, best} = {-1, 46, 46}.
+c 0.114 1 [bou] Updated to {lower, upper, best} = {-1, 45, 45}.
+c 0.115 1 [bou] Updated to {lower, upper, best} = {-1, 44, 44}.
+c 0.116 1 [bou] Updated to {lower, upper, best} = {-1, 43, 43}.
+c 0.116 1 [bou] Updated to {lower, upper, best} = {-1, 42, 42}.
+c 0.116 0 [bou] Updated to {lower, upper, best} = {10, 38, 38}.
+c 0.119 1 [bou] Updated to {lower, upper, best} = {-1, 41, 41}.
+c 0.119 1 [bou] Updated to {lower, upper, best} = {-1, 40, 40}.
+c 0.119 1 [bou] Updated to {lower, upper, best} = {-1, 39, 39}.
+c 0.125 1 [bou] Updated to {lower, upper, best} = {-1, 38, 38}.
+c 0.143 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 0.162 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, -1, 38} to all-reduction.
+c 0.173 0 TRY REDUCE 63 0 0 2 2
+c 0.173 0 REDUCE
+c 0.173 1 BROADCAST
+c 0.173 1 TRY REDUCE 64 0 0 2 2
+c 0.173 1 BROADCAST
+c 0.173 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 0.173 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 0.173 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 0.183 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 0.183 1 [bou] Before reduction: {lower, upper, best} = {-1, 38, 38}
+c 0.183 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 0.188 0 [stack] In loop. Jobs left: 16
+c 0.196 1 [stack] In loop. Jobs left: 17
+c 0.244 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 0.263 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 0.263 0 TRY REDUCE 63 0 0 2 2
+c 0.263 0 REDUCE
+c 0.263 1 BROADCAST
+c 0.263 1 TRY REDUCE 64 0 0 2 2
+c 0.263 1 BROADCAST
+c 0.264 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 0.264 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 0.264 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 0.272 0 [stack] In loop. Jobs left: 11
+c 0.273 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 0.273 1 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 0.273 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 0.280 1 [stack] In loop. Jobs left: 12
+c 0.345 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 0.357 0 [stack] In loop. Jobs left: 12
+c 0.364 1 [stack] In loop. Jobs left: 11
+c 0.364 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 0.364 0 TRY REDUCE 63 0 0 2 2
+c 0.364 0 REDUCE
+c 0.364 1 BROADCAST
+c 0.364 1 TRY REDUCE 64 0 0 2 2
+c 0.364 1 BROADCAST
+c 0.365 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 0.365 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 0.365 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 0.374 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 0.374 1 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 0.374 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 0.441 0 [stack] In loop. Jobs left: 13
+c 0.445 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 0.447 1 [stack] In loop. Jobs left: 12
+c 0.465 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 0.465 0 TRY REDUCE 63 0 0 2 2
+c 0.465 0 REDUCE
+c 0.465 1 BROADCAST
+c 0.465 1 TRY REDUCE 64 0 0 2 2
+c 0.465 1 BROADCAST
+c 0.466 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 0.466 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 0.466 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 0.475 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 0.475 1 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 0.475 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 0.526 0 [stack] In loop. Jobs left: 12
+c 0.531 1 [stack] In loop. Jobs left: 13
+c 0.546 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 0.566 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 0.566 0 TRY REDUCE 63 0 0 2 2
+c 0.566 0 REDUCE
+c 0.566 1 BROADCAST
+c 0.566 1 TRY REDUCE 64 0 0 2 2
+c 0.566 1 BROADCAST
+c 0.566 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 0.566 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 0.566 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 0.576 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 0.576 1 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 0.576 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 0.610 0 [stack] In loop. Jobs left: 11
+c 0.614 1 [stack] In loop. Jobs left: 12
+c 0.647 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 0.667 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 0.667 0 TRY REDUCE 63 0 0 2 2
+c 0.667 0 REDUCE
+c 0.667 1 BROADCAST
+c 0.667 1 TRY REDUCE 64 0 0 2 2
+c 0.667 1 BROADCAST
+c 0.667 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 0.667 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 0.667 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 0.677 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 0.677 1 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 0.677 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 0.694 0 [stack] In loop. Jobs left: 11
+c 0.698 1 [stack] In loop. Jobs left: 12
+c 0.748 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 0.768 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 0.768 0 TRY REDUCE 63 0 0 2 2
+c 0.768 0 REDUCE
+c 0.768 1 BROADCAST
+c 0.768 1 TRY REDUCE 64 0 0 2 2
+c 0.768 1 BROADCAST
+c 0.768 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 0.768 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 0.768 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 0.778 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 0.778 1 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 0.778 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 0.779 0 [stack] In loop. Jobs left: 11
+c 0.781 1 [stack] In loop. Jobs left: 12
+c 0.849 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 0.862 0 [stack] In loop. Jobs left: 14
+c 0.865 1 [stack] In loop. Jobs left: 15
+c 0.868 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 0.868 0 TRY REDUCE 63 0 0 2 2
+c 0.868 0 REDUCE
+c 0.868 1 BROADCAST
+c 0.868 1 TRY REDUCE 64 0 0 2 2
+c 0.868 1 BROADCAST
+c 0.869 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 0.869 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 0.869 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 0.878 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 0.878 1 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 0.878 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 0.947 0 [stack] In loop. Jobs left: 10
+c 0.948 1 [stack] In loop. Jobs left: 9
+c 0.950 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 0.969 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 0.969 0 TRY REDUCE 63 0 0 2 2
+c 0.969 0 REDUCE
+c 0.969 1 BROADCAST
+c 0.969 1 TRY REDUCE 64 0 0 2 2
+c 0.969 1 BROADCAST
+c 0.970 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 0.970 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 0.970 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 0.979 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 0.979 1 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 0.979 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 1.031 0 [stack] In loop. Jobs left: 11
+c 1.032 1 [stack] In loop. Jobs left: 13
+c 1.052 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 1.069 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 1.069 0 TRY REDUCE 63 0 0 2 2
+c 1.069 0 REDUCE
+c 1.070 1 BROADCAST
+c 1.070 1 TRY REDUCE 64 0 0 2 2
+c 1.070 1 BROADCAST
+c 1.072 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 1.072 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 1.072 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 1.079 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 1.079 1 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 1.079 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 1.116 1 [stack] In loop. Jobs left: 15
+c 1.116 0 [stack] In loop. Jobs left: 12
+c 1.153 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 1.170 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 1.170 0 TRY REDUCE 63 0 0 2 2
+c 1.170 0 REDUCE
+c 1.170 1 BROADCAST
+c 1.170 1 TRY REDUCE 64 0 0 2 2
+c 1.170 1 BROADCAST
+c 1.173 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 1.173 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 1.173 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 1.180 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 1.180 1 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 1.180 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 1.200 1 [stack] In loop. Jobs left: 14
+c 1.201 0 [stack] In loop. Jobs left: 12
+c 1.202 0 sysstate busyratio=1.000 cmtdratio=0.000 jobs=1 globmem=0.00GB newreqs=1 hops=1
+c 1.202 0 sysstate entered=1 parsed=1 scheduled=1 processed=0 successful=0
+c 1.254 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 1.271 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 1.271 0 TRY REDUCE 63 0 0 2 2
+c 1.271 0 REDUCE
+c 1.271 1 BROADCAST
+c 1.271 1 TRY REDUCE 64 0 0 2 2
+c 1.271 1 BROADCAST
+c 1.274 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 1.274 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 1.274 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 1.281 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 1.281 1 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 1.281 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 1.283 1 [stack] In loop. Jobs left: 11
+c 1.285 0 [stack] In loop. Jobs left: 12
+c 1.354 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 1.367 1 [stack] In loop. Jobs left: 10
+c 1.370 0 [stack] In loop. Jobs left: 9
+c 1.372 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 1.372 0 TRY REDUCE 63 0 0 2 2
+c 1.372 0 REDUCE
+c 1.372 1 BROADCAST
+c 1.372 1 TRY REDUCE 64 0 0 2 2
+c 1.372 1 BROADCAST
+c 1.374 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 1.374 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 1.374 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 1.382 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 1.382 1 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 1.382 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 1.451 1 [stack] In loop. Jobs left: 8
+c 1.454 0 [stack] In loop. Jobs left: 9
+c 1.455 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 1.473 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 1.473 0 TRY REDUCE 63 0 0 2 2
+c 1.473 0 REDUCE
+c 1.473 1 BROADCAST
+c 1.473 1 TRY REDUCE 64 0 0 2 2
+c 1.473 1 BROADCAST
+c 1.475 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 1.475 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 1.475 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 1.483 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 1.483 1 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 1.483 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 1.535 1 [stack] In loop. Jobs left: 12
+c 1.538 0 [stack] In loop. Jobs left: 11
+c 1.556 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 1.574 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 1.574 0 TRY REDUCE 63 0 0 2 2
+c 1.574 0 REDUCE
+c 1.574 1 BROADCAST
+c 1.574 1 TRY REDUCE 64 0 0 2 2
+c 1.574 1 BROADCAST
+c 1.576 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 1.576 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 1.576 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 1.584 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 1.584 1 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 1.584 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 1.619 1 [stack] In loop. Jobs left: 11
+c 1.623 0 [stack] In loop. Jobs left: 10
+c 1.657 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 1.675 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 1.675 0 TRY REDUCE 63 0 0 2 2
+c 1.675 0 REDUCE
+c 1.675 1 BROADCAST
+c 1.675 1 TRY REDUCE 64 0 0 2 2
+c 1.675 1 BROADCAST
+c 1.677 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 1.677 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 1.677 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 1.685 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 1.685 1 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 1.685 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 1.703 1 [stack] In loop. Jobs left: 13
+c 1.708 0 [stack] In loop. Jobs left: 14
+c 1.757 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 1.775 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 1.776 0 TRY REDUCE 63 0 0 2 2
+c 1.776 0 REDUCE
+c 1.776 1 BROADCAST
+c 1.776 1 TRY REDUCE 64 0 0 2 2
+c 1.776 1 BROADCAST
+c 1.777 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 1.777 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 1.777 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 1.786 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 1.786 1 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 1.786 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 1.786 1 [stack] In loop. Jobs left: 15
+c 1.792 0 [stack] In loop. Jobs left: 12
+c 1.858 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 1.870 1 [stack] In loop. Jobs left: 15
+c 1.876 0 [stack] In loop. Jobs left: 16
+c 1.876 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 1.876 0 TRY REDUCE 63 0 0 2 2
+c 1.876 0 REDUCE
+c 1.876 1 BROADCAST
+c 1.876 1 TRY REDUCE 64 0 0 2 2
+c 1.876 1 BROADCAST
+c 1.878 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 1.878 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 1.878 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 1.886 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 1.886 1 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 1.886 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 1.953 1 [stack] In loop. Jobs left: 11
+c 1.959 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 1.960 0 [stack] In loop. Jobs left: 10
+c 1.977 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 1.977 0 TRY REDUCE 63 0 0 2 2
+c 1.977 0 REDUCE
+c 1.977 1 BROADCAST
+c 1.977 1 TRY REDUCE 64 0 0 2 2
+c 1.977 1 BROADCAST
+c 1.979 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 1.979 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 1.979 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 1.987 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 1.987 1 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 1.987 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 2.037 1 [stack] In loop. Jobs left: 14
+c 2.045 0 [stack] In loop. Jobs left: 13
+c 2.059 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 2.077 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 2.077 0 TRY REDUCE 63 0 0 2 2
+c 2.078 0 REDUCE
+c 2.078 1 BROADCAST
+c 2.078 1 TRY REDUCE 64 0 0 2 2
+c 2.078 1 BROADCAST
+c 2.080 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 2.080 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 2.080 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 2.087 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 2.088 1 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 2.088 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 2.121 1 [stack] In loop. Jobs left: 14
+c 2.129 0 [stack] In loop. Jobs left: 11
+c 2.160 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 2.178 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 2.178 0 TRY REDUCE 63 0 0 2 2
+c 2.179 0 REDUCE
+c 2.179 1 BROADCAST
+c 2.179 1 TRY REDUCE 64 0 0 2 2
+c 2.179 1 BROADCAST
+c 2.180 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 2.180 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 2.180 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 2.188 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 2.188 1 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 2.188 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 2.202 0 sysstate busyratio=1.000 cmtdratio=0.000 jobs=1 globmem=0.11GB newreqs=0 hops=0
+c 2.202 0 sysstate entered=1 parsed=1 scheduled=1 processed=0 successful=0
+c 2.204 1 [stack] In loop. Jobs left: 13
+c 2.213 0 [stack] In loop. Jobs left: 12
+c 2.261 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 2.279 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 2.279 0 TRY REDUCE 63 0 0 2 2
+c 2.279 0 REDUCE
+c 2.279 1 BROADCAST
+c 2.279 1 TRY REDUCE 64 0 0 2 2
+c 2.279 1 BROADCAST
+c 2.281 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 2.281 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 2.281 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 2.288 1 [stack] In loop. Jobs left: 14
+c 2.289 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 2.289 1 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 2.289 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 2.297 0 [stack] In loop. Jobs left: 13
+c 2.362 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 2.372 1 [stack] In loop. Jobs left: 8
+c 2.380 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 2.380 0 TRY REDUCE 63 0 0 2 2
+c 2.380 0 REDUCE
+c 2.380 1 BROADCAST
+c 2.380 1 TRY REDUCE 64 0 0 2 2
+c 2.380 1 BROADCAST
+c 2.382 0 [stack] In loop. Jobs left: 9
+c 2.382 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 2.382 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 2.382 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 2.390 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 2.390 1 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 2.390 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 2.455 1 [stack] In loop. Jobs left: 12
+c 2.463 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 2.466 0 [stack] In loop. Jobs left: 9
+c 2.480 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 2.480 0 TRY REDUCE 63 0 0 2 2
+c 2.481 0 REDUCE
+c 2.481 1 BROADCAST
+c 2.481 1 TRY REDUCE 64 0 0 2 2
+c 2.481 1 BROADCAST
+c 2.483 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 2.483 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 2.483 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 2.490 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 2.490 1 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 2.490 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 2.539 1 [stack] In loop. Jobs left: 10
+c 2.551 0 [stack] In loop. Jobs left: 9
+c 2.564 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 2.581 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 2.581 0 TRY REDUCE 63 0 0 2 2
+c 2.581 0 REDUCE
+c 2.581 1 BROADCAST
+c 2.581 1 TRY REDUCE 64 0 0 2 2
+c 2.581 1 BROADCAST
+c 2.584 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 2.584 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 2.584 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 2.591 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 2.591 1 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 2.591 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 2.622 1 [stack] In loop. Jobs left: 9
+c 2.635 0 [stack] In loop. Jobs left: 8
+c 2.665 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 2.682 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 2.682 0 TRY REDUCE 63 0 0 2 2
+c 2.682 0 REDUCE
+c 2.682 1 BROADCAST
+c 2.682 1 TRY REDUCE 64 0 0 2 2
+c 2.682 1 BROADCAST
+c 2.685 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 2.685 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 2.685 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 2.692 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 2.692 1 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 2.692 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 2.706 1 [stack] In loop. Jobs left: 12
+c 2.720 0 [stack] In loop. Jobs left: 11
+c 2.765 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 2.783 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 2.783 0 TRY REDUCE 63 0 0 2 2
+c 2.783 0 REDUCE
+c 2.783 1 BROADCAST
+c 2.783 1 TRY REDUCE 64 0 0 2 2
+c 2.783 1 BROADCAST
+c 2.785 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 2.785 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 2.785 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 2.790 1 [stack] In loop. Jobs left: 10
+c 2.793 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 2.793 1 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 2.793 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 2.804 0 [stack] In loop. Jobs left: 7
+c 2.866 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 2.873 1 [stack] In loop. Jobs left: 10
+c 2.883 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 2.884 0 TRY REDUCE 63 0 0 2 2
+c 2.884 0 REDUCE
+c 2.884 1 BROADCAST
+c 2.884 1 TRY REDUCE 64 0 0 2 2
+c 2.884 1 BROADCAST
+c 2.886 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 2.886 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 2.886 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 2.889 0 [stack] In loop. Jobs left: 11
+c 2.894 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 2.894 1 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 2.894 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 2.957 1 [stack] In loop. Jobs left: 14
+c 2.967 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 2.973 0 [stack] In loop. Jobs left: 11
+c 2.985 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 2.985 0 TRY REDUCE 63 0 0 2 2
+c 2.985 0 REDUCE
+c 2.985 1 BROADCAST
+c 2.985 1 TRY REDUCE 64 0 0 2 2
+c 2.985 1 BROADCAST
+c 2.987 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 2.987 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 2.987 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 2.995 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 2.995 1 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 2.995 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 3.041 1 [stack] In loop. Jobs left: 17
+c 3.058 0 [stack] In loop. Jobs left: 14
+c 3.068 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 3.085 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 3.085 0 TRY REDUCE 63 0 0 2 2
+c 3.085 0 REDUCE
+c 3.086 1 BROADCAST
+c 3.086 1 TRY REDUCE 64 0 0 2 2
+c 3.086 1 BROADCAST
+c 3.088 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 3.088 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 3.088 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 3.095 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 3.095 1 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 3.095 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 3.125 1 [stack] In loop. Jobs left: 14
+c 3.143 0 [stack] In loop. Jobs left: 11
+c 3.168 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 3.186 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 3.186 0 TRY REDUCE 63 0 0 2 2
+c 3.186 0 REDUCE
+c 3.187 1 BROADCAST
+c 3.187 1 TRY REDUCE 64 0 0 2 2
+c 3.187 1 BROADCAST
+c 3.189 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 3.189 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 3.189 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 3.196 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 3.196 1 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 3.196 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 3.202 0 sysstate busyratio=1.000 cmtdratio=0.000 jobs=1 globmem=0.11GB newreqs=0 hops=0
+c 3.202 0 sysstate entered=1 parsed=1 scheduled=1 processed=0 successful=0
+c 3.208 1 [stack] In loop. Jobs left: 12
+c 3.227 0 [stack] In loop. Jobs left: 11
+c 3.269 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 3.287 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 3.287 0 TRY REDUCE 63 0 0 2 2
+c 3.287 0 REDUCE
+c 3.287 1 BROADCAST
+c 3.287 1 TRY REDUCE 64 0 0 2 2
+c 3.287 1 BROADCAST
+c 3.289 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 3.289 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 3.289 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 3.292 1 [stack] In loop. Jobs left: 13
+c 3.297 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 3.297 1 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 3.297 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 3.312 0 [stack] In loop. Jobs left: 12
+c 3.370 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 3.376 1 [stack] In loop. Jobs left: 11
+c 3.388 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 3.388 0 TRY REDUCE 63 0 0 2 2
+c 3.388 0 REDUCE
+c 3.388 1 BROADCAST
+c 3.388 1 TRY REDUCE 64 0 0 2 2
+c 3.388 1 BROADCAST
+c 3.390 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 3.390 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 3.390 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 3.396 0 [stack] In loop. Jobs left: 12
+c 3.398 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 3.398 1 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 3.398 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 3.459 1 [stack] In loop. Jobs left: 11
+c 3.471 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 3.481 0 [stack] In loop. Jobs left: 10
+c 3.488 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 3.489 0 TRY REDUCE 63 0 0 2 2
+c 3.489 0 REDUCE
+c 3.489 1 BROADCAST
+c 3.489 1 TRY REDUCE 64 0 0 2 2
+c 3.489 1 BROADCAST
+c 3.491 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 3.491 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 3.491 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 3.499 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 3.499 1 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 3.499 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 3.543 1 [stack] In loop. Jobs left: 12
+c 3.566 0 [stack] In loop. Jobs left: 9
+c 3.572 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 3.589 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 3.589 0 TRY REDUCE 63 0 0 2 2
+c 3.589 0 REDUCE
+c 3.590 1 BROADCAST
+c 3.590 1 TRY REDUCE 64 0 0 2 2
+c 3.590 1 BROADCAST
+c 3.592 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 3.592 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 3.592 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 3.599 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 3.599 1 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 3.599 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 3.627 1 [stack] In loop. Jobs left: 13
+c 3.650 0 [stack] In loop. Jobs left: 12
+c 3.673 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 3.690 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 3.690 0 TRY REDUCE 63 0 0 2 2
+c 3.690 0 REDUCE
+c 3.690 1 BROADCAST
+c 3.690 1 TRY REDUCE 64 0 0 2 2
+c 3.690 1 BROADCAST
+c 3.693 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 3.693 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 3.693 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 3.700 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 3.700 1 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 3.700 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 3.711 1 [stack] In loop. Jobs left: 10
+c 3.735 0 [stack] In loop. Jobs left: 9
+c 3.774 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 3.791 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 3.791 0 TRY REDUCE 63 0 0 2 2
+c 3.791 0 REDUCE
+c 3.791 1 BROADCAST
+c 3.791 1 TRY REDUCE 64 0 0 2 2
+c 3.791 1 BROADCAST
+c 3.794 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 3.794 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 3.794 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 3.795 1 [stack] In loop. Jobs left: 12
+c 3.801 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 3.801 1 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 3.801 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 3.819 0 [stack] In loop. Jobs left: 11
+c 3.874 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 3.878 1 [stack] In loop. Jobs left: 13
+c 3.892 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 3.892 0 TRY REDUCE 63 0 0 2 2
+c 3.892 0 REDUCE
+c 3.892 1 BROADCAST
+c 3.892 1 TRY REDUCE 64 0 0 2 2
+c 3.892 1 BROADCAST
+c 3.895 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 3.895 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 3.895 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 3.902 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 3.902 1 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 3.902 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 3.904 0 [stack] In loop. Jobs left: 12
+c 3.962 1 [stack] In loop. Jobs left: 12
+c 3.975 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 3.988 0 [stack] In loop. Jobs left: 11
+c 3.993 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 3.993 0 TRY REDUCE 63 0 0 2 2
+c 3.993 0 REDUCE
+c 3.993 1 BROADCAST
+c 3.993 1 TRY REDUCE 64 0 0 2 2
+c 3.993 1 BROADCAST
+c 3.995 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 3.995 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 3.995 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 4.003 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 4.003 1 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 4.003 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 4.046 1 [stack] In loop. Jobs left: 12
+c 4.073 0 [stack] In loop. Jobs left: 11
+c 4.076 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 4.094 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 4.094 0 TRY REDUCE 63 0 0 2 2
+c 4.094 0 REDUCE
+c 4.094 1 BROADCAST
+c 4.094 1 TRY REDUCE 64 0 0 2 2
+c 4.094 1 BROADCAST
+c 4.096 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 4.096 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 4.096 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 4.104 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 4.104 1 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 4.104 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 4.130 1 [stack] In loop. Jobs left: 11
+c 4.157 0 [stack] In loop. Jobs left: 10
+c 4.177 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 4.194 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 4.194 0 TRY REDUCE 63 0 0 2 2
+c 4.194 0 REDUCE
+c 4.194 1 BROADCAST
+c 4.194 1 TRY REDUCE 64 0 0 2 2
+c 4.194 1 BROADCAST
+c 4.197 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 4.197 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 4.197 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 4.203 0 sysstate busyratio=1.000 cmtdratio=0.000 jobs=1 globmem=0.11GB newreqs=0 hops=0
+c 4.203 0 sysstate entered=1 parsed=1 scheduled=1 processed=0 successful=0
+c 4.204 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 4.204 1 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 4.204 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 4.214 1 [stack] In loop. Jobs left: 11
+c 4.242 0 [stack] In loop. Jobs left: 10
+c 4.278 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 4.295 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 4.295 0 TRY REDUCE 63 0 0 2 2
+c 4.295 0 REDUCE
+c 4.295 1 BROADCAST
+c 4.295 1 TRY REDUCE 64 0 0 2 2
+c 4.295 1 BROADCAST
+c 4.298 1 [stack] In loop. Jobs left: 13
+c 4.298 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 4.298 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 4.298 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 4.305 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 4.305 1 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 4.305 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 4.326 0 [stack] In loop. Jobs left: 10
+c 4.378 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 4.382 1 [stack] In loop. Jobs left: 10
+c 4.396 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 4.396 0 TRY REDUCE 63 0 0 2 2
+c 4.396 0 REDUCE
+c 4.396 1 BROADCAST
+c 4.396 1 TRY REDUCE 64 0 0 2 2
+c 4.396 1 BROADCAST
+c 4.399 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 4.399 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 4.399 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 4.406 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 4.406 1 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 4.406 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 4.411 0 [stack] In loop. Jobs left: 9
+c 4.466 1 [stack] In loop. Jobs left: 10
+c 4.479 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 4.496 0 [stack] In loop. Jobs left: 9
+c 4.497 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 4.497 0 TRY REDUCE 63 0 0 2 2
+c 4.497 0 REDUCE
+c 4.497 1 BROADCAST
+c 4.497 1 TRY REDUCE 64 0 0 2 2
+c 4.497 1 BROADCAST
+c 4.500 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 4.500 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 4.500 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 4.507 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 4.507 1 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 4.507 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 4.550 1 [stack] In loop. Jobs left: 8
+c 4.581 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 4.581 0 [stack] In loop. Jobs left: 7
+c 4.597 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 4.597 0 TRY REDUCE 63 0 0 2 2
+c 4.597 0 REDUCE
+c 4.598 1 BROADCAST
+c 4.598 1 TRY REDUCE 64 0 0 2 2
+c 4.598 1 BROADCAST
+c 4.601 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 4.601 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 4.601 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 4.603 0 [stack] Stack empty. Stopping Loop
+c 4.607 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 4.607 1 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 4.607 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 4.611 0 [msg] Requested work stealing from: 1
+c 4.611 1 [msg] Message 31 with Payload 0 from 0 received.
+c 4.611 1 [msg] Processing work stealing query from 0
+c 4.611 1 [steal] I am sending work
+c 4.611 1 [msg] Message returned to sender 0 with payload[0] = 0 and _sent_work = 1
+c 4.611 0 [msg] Message 32 with Payload 0 from 1 received.
+c 4.611 0 [msg] Work stealing query successful. Filling work stack.
+c 4.611 0 [adding] Adding starting now
+c 4.611 0 [adding] Adding ending now
+c 4.611 0 [msg] Work stack is filled.
+c 4.611 0 c [msg] Message returned to sender 1.
+4.611 0 [stack] Restarting loop: 1
+c 4.611 1 [msg] Message 33 with Payload 0 from 0 received.
+c 4.635 1 [stack] In loop. Jobs left: 13
+c 4.674 0 [stack] In loop. Jobs left: 9
+c 4.682 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 4.698 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 4.698 0 TRY REDUCE 63 0 0 2 2
+c 4.698 0 REDUCE
+c 4.699 1 BROADCAST
+c 4.699 1 TRY REDUCE 64 0 0 2 2
+c 4.699 1 BROADCAST
+c 4.702 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 4.702 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 4.702 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 4.708 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 4.708 1 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 4.708 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 4.718 1 [stack] In loop. Jobs left: 17
+c 4.758 0 [stack] In loop. Jobs left: 11
+c 4.782 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 4.799 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 4.799 0 TRY REDUCE 63 0 0 2 2
+c 4.799 0 REDUCE
+c 4.799 1 BROADCAST
+c 4.799 1 TRY REDUCE 64 0 0 2 2
+c 4.799 1 BROADCAST
+c 4.802 1 [stack] In loop. Jobs left: 11
+c 4.803 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 4.803 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 4.803 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 4.809 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 4.809 1 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 4.809 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 4.843 0 [stack] In loop. Jobs left: 12
+c 4.883 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 4.885 1 [stack] In loop. Jobs left: 10
+c 4.900 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 4.900 0 TRY REDUCE 63 0 0 2 2
+c 4.900 0 REDUCE
+c 4.900 1 BROADCAST
+c 4.900 1 TRY REDUCE 64 0 0 2 2
+c 4.900 1 BROADCAST
+c 4.904 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 4.904 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 4.904 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 4.910 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 4.910 1 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 4.910 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 4.927 0 [stack] In loop. Jobs left: 13
+c 4.969 1 [stack] In loop. Jobs left: 14
+c 4.984 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 5.001 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 5.001 0 TRY REDUCE 63 0 0 2 2
+c 5.001 0 REDUCE
+c 5.001 1 BROADCAST
+c 5.002 1 TRY REDUCE 64 0 0 2 2
+c 5.002 1 BROADCAST
+c 5.004 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 5.004 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 5.004 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 5.011 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 5.011 1 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 5.011 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 5.012 0 [stack] In loop. Jobs left: 11
+c 5.053 1 [stack] In loop. Jobs left: 10
+c 5.085 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 5.096 0 [stack] In loop. Jobs left: 10
+c 5.101 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 5.101 0 TRY REDUCE 63 0 0 2 2
+c 5.101 0 REDUCE
+c 5.101 1 BROADCAST
+c 5.101 1 TRY REDUCE 64 0 0 2 2
+c 5.101 1 BROADCAST
+c 5.105 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 5.105 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 5.105 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 5.111 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 5.111 1 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 5.111 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 5.136 1 [stack] In loop. Jobs left: 11
+c 5.181 0 [stack] In loop. Jobs left: 9
+c 5.186 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 5.202 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 5.202 0 TRY REDUCE 63 0 0 2 2
+c 5.202 0 REDUCE
+c 5.202 1 BROADCAST
+c 5.202 1 TRY REDUCE 64 0 0 2 2
+c 5.202 1 BROADCAST
+c 5.203 0 sysstate busyratio=1.000 cmtdratio=0.000 jobs=1 globmem=0.11GB newreqs=0 hops=0
+c 5.203 0 sysstate entered=1 parsed=1 scheduled=1 processed=0 successful=0
+c 5.206 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 5.206 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 5.206 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 5.212 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 5.212 1 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 5.212 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 5.220 1 [stack] In loop. Jobs left: 10
+c 5.265 0 [stack] In loop. Jobs left: 10
+c 5.287 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 5.303 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 5.303 0 TRY REDUCE 63 0 0 2 2
+c 5.303 0 REDUCE
+c 5.303 1 BROADCAST
+c 5.303 1 TRY REDUCE 64 0 0 2 2
+c 5.303 1 BROADCAST
+c 5.304 1 [stack] In loop. Jobs left: 13
+c 5.307 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 5.307 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 5.307 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 5.313 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 5.313 1 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 5.313 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 5.350 0 [stack] In loop. Jobs left: 13
+c 5.387 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 5.387 1 [stack] In loop. Jobs left: 11
+c 5.404 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 5.404 0 TRY REDUCE 63 0 0 2 2
+c 5.404 0 REDUCE
+c 5.404 1 BROADCAST
+c 5.404 1 TRY REDUCE 64 0 0 2 2
+c 5.404 1 BROADCAST
+c 5.407 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 5.407 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 5.407 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 5.414 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 5.414 1 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 5.414 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 5.434 0 [stack] In loop. Jobs left: 11
+c 5.471 1 [stack] In loop. Jobs left: 11
+c 5.488 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 5.504 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 5.505 0 TRY REDUCE 63 0 0 2 2
+c 5.505 0 REDUCE
+c 5.505 1 BROADCAST
+c 5.505 1 TRY REDUCE 64 0 0 2 2
+c 5.505 1 BROADCAST
+c 5.508 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 5.508 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 5.508 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 5.515 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 5.515 1 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 5.515 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 5.519 0 [stack] In loop. Jobs left: 13
+c 5.554 1 [stack] In loop. Jobs left: 12
+c 5.589 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 5.603 0 [stack] In loop. Jobs left: 8
+c 5.606 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 5.606 0 TRY REDUCE 63 0 0 2 2
+c 5.606 0 REDUCE
+c 5.606 1 BROADCAST
+c 5.606 1 TRY REDUCE 64 0 0 2 2
+c 5.606 1 BROADCAST
+c 5.609 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 5.609 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 5.609 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 5.616 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 5.616 1 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 5.616 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 5.638 1 [stack] In loop. Jobs left: 7
+c 5.688 0 [stack] In loop. Jobs left: 11
+c 5.690 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 5.706 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 5.707 0 TRY REDUCE 63 0 0 2 2
+c 5.707 0 REDUCE
+c 5.707 1 BROADCAST
+c 5.707 1 TRY REDUCE 64 0 0 2 2
+c 5.707 1 BROADCAST
+c 5.710 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 5.710 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 5.710 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 5.717 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 5.717 1 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 5.717 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 5.722 1 [stack] In loop. Jobs left: 7
+c 5.772 0 [stack] In loop. Jobs left: 11
+c 5.790 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 5.805 1 [stack] In loop. Jobs left: 10
+c 5.807 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 5.807 0 TRY REDUCE 63 0 0 2 2
+c 5.807 0 REDUCE
+c 5.807 1 BROADCAST
+c 5.807 1 TRY REDUCE 64 0 0 2 2
+c 5.807 1 BROADCAST
+c 5.811 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 5.811 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 5.811 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 5.817 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 5.817 1 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 5.817 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 5.857 0 [stack] In loop. Jobs left: 14
+c 5.889 1 [stack] In loop. Jobs left: 10
+c 5.891 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 5.908 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 5.908 0 TRY REDUCE 63 0 0 2 2
+c 5.908 0 REDUCE
+c 5.908 1 BROADCAST
+c 5.908 1 TRY REDUCE 64 0 0 2 2
+c 5.908 1 BROADCAST
+c 5.911 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 5.911 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 5.911 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 5.918 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 5.918 1 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 5.918 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 5.941 0 [stack] In loop. Jobs left: 7
+c 5.973 1 [stack] In loop. Jobs left: 8
+c 5.992 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 6.009 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 6.009 0 TRY REDUCE 63 0 0 2 2
+c 6.009 0 REDUCE
+c 6.009 1 BROADCAST
+c 6.009 1 TRY REDUCE 64 0 0 2 2
+c 6.009 1 BROADCAST
+c 6.012 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 6.012 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 6.012 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 6.019 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 6.019 1 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 6.019 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 6.026 0 [stack] In loop. Jobs left: 10
+c 6.057 1 [stack] In loop. Jobs left: 14
+c 6.093 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 6.110 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 6.110 0 TRY REDUCE 63 0 0 2 2
+c 6.110 0 REDUCE
+c 6.110 1 BROADCAST
+c 6.110 1 TRY REDUCE 64 0 0 2 2
+c 6.110 1 BROADCAST
+c 6.111 0 [stack] In loop. Jobs left: 12
+c 6.113 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 6.113 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 6.113 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 6.120 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 6.120 1 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 6.120 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 6.141 1 [stack] In loop. Jobs left: 11
+c 6.194 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 6.195 0 [stack] In loop. Jobs left: 8
+c 6.204 0 sysstate busyratio=1.000 cmtdratio=0.000 jobs=1 globmem=0.11GB newreqs=0 hops=0
+c 6.204 0 sysstate entered=1 parsed=1 scheduled=1 processed=0 successful=0
+c 6.211 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 6.211 0 TRY REDUCE 63 0 0 2 2
+c 6.211 0 REDUCE
+c 6.211 1 BROADCAST
+c 6.211 1 TRY REDUCE 64 0 0 2 2
+c 6.211 1 BROADCAST
+c 6.214 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 6.214 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 6.214 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 6.221 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 6.221 1 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 6.221 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 6.224 1 [stack] In loop. Jobs left: 11
+c 6.279 0 [stack] In loop. Jobs left: 12
+c 6.294 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 6.308 1 [stack] In loop. Jobs left: 12
+c 6.312 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 6.312 0 TRY REDUCE 63 0 0 2 2
+c 6.312 0 REDUCE
+c 6.312 1 BROADCAST
+c 6.312 1 TRY REDUCE 64 0 0 2 2
+c 6.312 1 BROADCAST
+c 6.315 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 6.315 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 6.315 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 6.322 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 6.322 1 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 6.322 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 6.364 0 [stack] In loop. Jobs left: 7
+c 6.392 1 [stack] In loop. Jobs left: 11
+c 6.395 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 6.413 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 6.413 0 TRY REDUCE 63 0 0 2 2
+c 6.413 0 REDUCE
+c 6.413 1 BROADCAST
+c 6.413 1 TRY REDUCE 64 0 0 2 2
+c 6.413 1 BROADCAST
+c 6.415 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 6.415 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 6.415 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 6.423 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 6.423 1 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 6.423 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 6.449 0 [stack] In loop. Jobs left: 10
+c 6.475 1 [stack] In loop. Jobs left: 10
+c 6.496 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 6.514 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 6.514 0 TRY REDUCE 63 0 0 2 2
+c 6.514 0 REDUCE
+c 6.514 1 BROADCAST
+c 6.514 1 TRY REDUCE 64 0 0 2 2
+c 6.514 1 BROADCAST
+c 6.516 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 6.516 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 6.516 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 6.524 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 6.524 1 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 6.524 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 6.533 0 [stack] In loop. Jobs left: 12
+c 6.559 1 [stack] In loop. Jobs left: 12
+c 6.597 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 6.614 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 6.615 0 TRY REDUCE 63 0 0 2 2
+c 6.615 0 REDUCE
+c 6.615 1 BROADCAST
+c 6.615 1 TRY REDUCE 64 0 0 2 2
+c 6.615 1 BROADCAST
+c 6.617 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 6.617 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 6.617 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 6.618 0 [stack] In loop. Jobs left: 11
+c 6.624 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 6.624 1 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 6.625 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 6.643 1 [stack] In loop. Jobs left: 8
+c 6.698 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 6.702 0 [stack] In loop. Jobs left: 12
+c 6.715 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 6.715 0 TRY REDUCE 63 0 0 2 2
+c 6.715 0 REDUCE
+c 6.715 1 BROADCAST
+c 6.715 1 TRY REDUCE 64 0 0 2 2
+c 6.715 1 BROADCAST
+c 6.718 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 6.718 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 6.718 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 6.725 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 6.725 1 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 6.725 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 6.727 1 [stack] In loop. Jobs left: 9
+c 6.787 0 [stack] In loop. Jobs left: 9
+c 6.798 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 6.811 1 [stack] In loop. Jobs left: 11
+c 6.816 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 6.816 0 TRY REDUCE 63 0 0 2 2
+c 6.816 0 REDUCE
+c 6.816 1 BROADCAST
+c 6.816 1 TRY REDUCE 64 0 0 2 2
+c 6.816 1 BROADCAST
+c 6.818 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 6.818 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 6.818 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 6.826 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 6.826 1 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 6.826 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 6.871 0 [stack] In loop. Jobs left: 9
+c 6.894 1 [stack] In loop. Jobs left: 9
+c 6.899 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 6.917 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 6.917 0 TRY REDUCE 63 0 0 2 2
+c 6.917 0 REDUCE
+c 6.917 1 BROADCAST
+c 6.917 1 TRY REDUCE 64 0 0 2 2
+c 6.917 1 BROADCAST
+c 6.919 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 6.919 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 6.919 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 6.927 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 6.927 1 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 6.927 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 6.956 0 [stack] In loop. Jobs left: 10
+c 6.978 1 [stack] In loop. Jobs left: 9
+c 7.000 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 7.018 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 7.018 0 TRY REDUCE 63 0 0 2 2
+c 7.018 0 REDUCE
+c 7.018 1 BROADCAST
+c 7.018 1 TRY REDUCE 64 0 0 2 2
+c 7.018 1 BROADCAST
+c 7.020 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 7.020 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 7.020 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 7.028 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 7.028 1 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 7.028 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 7.041 0 [stack] In loop. Jobs left: 13
+c 7.062 1 [stack] In loop. Jobs left: 10
+c 7.100 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 7.118 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 7.119 0 TRY REDUCE 63 0 0 2 2
+c 7.119 0 REDUCE
+c 7.119 1 BROADCAST
+c 7.119 1 TRY REDUCE 64 0 0 2 2
+c 7.119 1 BROADCAST
+c 7.121 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 7.121 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 7.121 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 7.125 0 [stack] In loop. Jobs left: 9
+c 7.129 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 7.129 1 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 7.129 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 7.147 1 [stack] In loop. Jobs left: 10
+c 7.201 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 7.204 0 sysstate busyratio=1.000 cmtdratio=0.000 jobs=1 globmem=0.11GB newreqs=0 hops=0
+c 7.204 0 sysstate entered=1 parsed=1 scheduled=1 processed=0 successful=0
+c 7.210 0 [stack] In loop. Jobs left: 9
+c 7.219 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 7.219 0 TRY REDUCE 63 0 0 2 2
+c 7.219 0 REDUCE
+c 7.220 1 BROADCAST
+c 7.220 1 TRY REDUCE 64 0 0 2 2
+c 7.220 1 BROADCAST
+c 7.222 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 7.222 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 7.222 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 7.229 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 7.229 1 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 7.229 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 7.230 1 [stack] In loop. Jobs left: 9
+c 7.294 0 [stack] In loop. Jobs left: 8
+c 7.302 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 7.314 1 [stack] In loop. Jobs left: 8
+c 7.320 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 7.320 0 TRY REDUCE 63 0 0 2 2
+c 7.320 0 REDUCE
+c 7.320 1 BROADCAST
+c 7.320 1 TRY REDUCE 64 0 0 2 2
+c 7.320 1 BROADCAST
+c 7.322 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 7.322 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 7.322 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 7.330 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 7.330 1 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 7.330 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 7.379 0 [stack] In loop. Jobs left: 8
+c 7.399 1 [stack] In loop. Jobs left: 9
+c 7.403 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 7.421 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 7.421 0 TRY REDUCE 63 0 0 2 2
+c 7.421 0 REDUCE
+c 7.421 1 BROADCAST
+c 7.421 1 TRY REDUCE 64 0 0 2 2
+c 7.421 1 BROADCAST
+c 7.423 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 7.423 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 7.423 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 7.431 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 7.431 1 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 7.431 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 7.463 0 [stack] In loop. Jobs left: 14
+c 7.483 1 [stack] In loop. Jobs left: 9
+c 7.504 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 7.521 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 7.521 0 TRY REDUCE 63 0 0 2 2
+c 7.521 0 REDUCE
+c 7.522 1 BROADCAST
+c 7.522 1 TRY REDUCE 64 0 0 2 2
+c 7.522 1 BROADCAST
+c 7.524 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 7.524 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 7.524 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 7.531 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 7.531 1 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 7.531 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 7.548 0 [stack] In loop. Jobs left: 12
+c 7.567 1 [stack] In loop. Jobs left: 9
+c 7.574 1 [stack] Stack empty. Stopping Loop
+c 7.592 1 [msg] Requested work stealing from: 0
+c 7.592 0 [msg] Message 31 with Payload 0 from 1 received.
+c 7.592 0 [msg] Processing work stealing query from 1
+c 7.592 0 [steal] I am sending work
+c 7.592 0 [msg] Message returned to sender 1 with payload[0] = 0 and _sent_work = 1
+c 7.592 1 [msg] Message 32 with Payload 0 from 0 received.
+c 7.592 1 [msg] Work stealing query successful. Filling work stack.
+c 7.592 1 [adding] Adding starting now
+c 7.592 1 [adding] Adding ending now
+c 7.592 1 [msg] Work stack is filled.
+c 7.592 1 [stack] Restarting loop: 1
+c 7.592 1 [msg] Message returned to sender 0.
+c 7.592 0 [msg] Message 33 with Payload 0 from 1 received.
+c 7.604 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 7.622 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 7.622 0 TRY REDUCE 63 0 0 2 2
+c 7.622 0 REDUCE
+c 7.623 1 BROADCAST
+c 7.623 1 TRY REDUCE 64 0 0 2 2
+c 7.623 1 BROADCAST
+c 7.625 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 7.625 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 7.625 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 7.632 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 10, 38}.
+c 7.632 1 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 7.632 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 7.633 0 [stack] In loop. Jobs left: 12
+c 7.671 1 [stack] In loop. Jobs left: 9
+c 7.684 0 [stack] Stack empty. Stopping Loop
+c 7.695 0 [msg] Requested work stealing from: 1
+c 7.695 1 [msg] Message 31 with Payload 0 from 0 received.
+c 7.695 1 [msg] Processing work stealing query from 0
+c 7.695 1 [steal] I am sending work
+c 7.695 1 [msg] Message returned to sender 0 with payload[0] = 0 and _sent_work = 1
+c 7.695 0 [msg] Message 32 with Payload 0 from 1 received.
+c 7.695 0 [msg] Work stealing query successful. Filling work stack.
+c 7.695 0 [adding] Adding starting now
+c 7.695 0 [adding] Adding ending now
+c 7.695 0 [msg] Work stack is filled.
+c 7.695 0 c [msg] Message returned to sender 1.
+7.695 0 [stack] Restarting loop: 1
+c 7.695 1 [msg] Message 33 with Payload 0 from 0 received.
+c 7.703 1 [stack] Stack empty. Stopping Loop
+c 7.705 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 10, 38} to all-reduction.
+c 7.723 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {0, 10, 38} to all-reduction.
+c 7.729 0 [stack] In loop. Jobs left: 9
+c 7.733 0 TRY REDUCE 63 0 0 2 2
+c 7.733 0 REDUCE
+c 7.733 1 BROADCAST
+c 7.733 1 TRY REDUCE 64 0 0 2 2
+c 7.733 1 BROADCAST
+c 7.735 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 10, 38}.
+c 7.735 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 7.735 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 7.743 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 10, 38}.
+c 7.743 1 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 7.743 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 7.753 1 [msg] Requested work stealing from: 0
+c 7.753 0 [msg] Message 31 with Payload 0 from 1 received.
+c 7.753 0 [msg] Processing work stealing query from 1
+c 7.753 0 [steal] I am sending work
+c 7.753 0 [msg] Message returned to sender 1 with payload[0] = 0 and _sent_work = 1
+c 7.753 1 [msg] Message 32 with Payload 0 from 0 received.
+c 7.753 1 [msg] Work stealing query successful. Filling work stack.
+c 7.753 1 [adding] Adding starting now
+c 7.753 1 [adding] Adding ending now
+c 7.754 1 [msg] Work stack is filled.
+c 7.754 1 [msg] Message returned to sender 0.
+c 7.754 1 [stack] Restarting loop: 1
+c 7.754 0 [msg] Message 33 with Payload 0 from 1 received.
+c 7.779 0 [stack] Stack empty. Stopping Loop
+c 7.782 1 [stack] Stack empty. Stopping Loop
+c 7.783 1 [msg] Requested work stealing from: 0
+c 7.784 0 [msg] Message 31 with Payload 0 from 1 received.
+c 7.784 0 [msg] Processing work stealing query from 1
+c 7.784 0 [steal] I am not sending work: _work_list.size() = 0
+c 7.784 0 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 7.784 1 [msg] Message 32 with Payload -1 from 0 received.
+c 7.786 0 [msg] Requested work stealing from: 1
+c 7.786 1 [msg] Message 31 with Payload 0 from 0 received.
+c 7.786 1 [msg] Processing work stealing query from 0
+c 7.786 1 [steal] I am not sending work: _work_list.size() = 0
+c 7.786 1 [msg] Message returned to sender 0 with payload[0] = -1 and _sent_work = 0
+c 7.786 0 [msg] Message 32 with Payload -1 from 1 received.
+c 7.796 0 [msg] Requested work stealing from: 1
+c 7.796 1 [msg] Message 31 with Payload 0 from 0 received.
+c 7.796 1 [msg] Processing work stealing query from 0
+c 7.796 1 [steal] I am not sending work: _work_list.size() = 0
+c 7.796 1 [msg] Message returned to sender 0 with payload[0] = -1 and _sent_work = 0
+c 7.796 0 [msg] Message 32 with Payload -1 from 1 received.
+c 7.806 0 [msg] Requested work stealing from: 1
+c 7.806 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {0, 10, 38} to all-reduction.
+c 7.806 1 [msg] Message 31 with Payload 0 from 0 received.
+c 7.806 1 [msg] Processing work stealing query from 0
+c 7.806 1 [steal] I am not sending work: _work_list.size() = 0
+c 7.806 1 [msg] Message returned to sender 0 with payload[0] = -1 and _sent_work = 0
+c 7.806 0 [msg] Message 32 with Payload -1 from 1 received.
+c 7.814 1 [msg] Requested work stealing from: 0
+c 7.814 0 [msg] Message 31 with Payload 0 from 1 received.
+c 7.814 0 [msg] Processing work stealing query from 1
+c 7.814 0 [steal] I am not sending work: _work_list.size() = 0
+c 7.814 0 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 7.814 1 [msg] Message 32 with Payload -1 from 0 received.
+c 7.824 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {0, 10, 38} to all-reduction.
+c 7.834 1 [msg] Requested work stealing from: 0
+c 7.834 0 [msg] Message 31 with Payload 0 from 1 received.
+c 7.834 0 [msg] Processing work stealing query from 1
+c 7.834 0 [steal] I am not sending work: _work_list.size() = 0
+c 7.834 0 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 7.834 0 TRY REDUCE 63 0 0 2 2
+c 7.834 0 REDUCE
+c 7.834 1 [msg] Message 32 with Payload -1 from 0 received.
+c 7.834 1 BROADCAST
+c 7.834 1 TRY REDUCE 64 0 0 2 2
+c 7.834 1 BROADCAST
+c 7.836 0 [msg] Requested work stealing from: 1
+c 7.836 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {0, 10, 38}.
+c 7.836 0 [red] Thread will stop search: nbActive = 0
+c 7.836 0 [red] & [bou] Thread has reportable solution: upperBound = 38, lowerBound = 10, currSolution = 38
+c 7.836 0 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 7.836 0 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 7.836 0 [stack] Succesfully broken out of loop
+c 7.836 0 [track] End outside & End tracker
+c 7.836 0 [tracking] Number of queries in total: 9 - succesful: 2 - before msgs allowed: 0 - rank invalid: 3 - reply empty: 3
+c 7.836 0 [tracking] Time wait threads: 0 0.007670
+c 7.836 0 [tracking] Time check: 1 0.062018
+c 7.836 0 [tracking] Time wait full: 2 0.060051
+c 7.836 0 [tracking] Time get work: 3 0.192384
+c 7.836 0 [tracking] Time work: 4 0.456089
+c 7.836 0 [tracking] Time compare: 5 0.148285
+c 7.836 0 [tracking] Time outside: 6 0.073502
+c 7.836 0 [track] All time: 1.000000
+c 7.836 1 [msg] Message 31 with Payload 0 from 0 received.
+c 7.836 1 [msg] Processing work stealing query from 0
+c 7.836 1 [steal] I am not sending work: _work_list.size() = 0
+c 7.836 1 [msg] Message returned to sender 0 with payload[0] = -1 and _sent_work = 0
+c 7.836 0 [msg] Message 32 with Payload -1 from 1 received.
+c 7.836 0 [msg] Message will not be entirely processed as program is finished
+c 7.836 0 [msg] Message returned to sender 1 with tag 4
+c 7.836 1 [msg] Message 4 with Payload -1 from 0 received.
+c 7.836 1 [term] Finished set to 1
+c 7.836 1 [stack] Succesfully broken out of loop
+c 7.836 1 [track] End outside & End tracker
+c 7.836 1 [tracking] Number of queries in total: 27 - succesful: 3 - before msgs allowed: 13 - rank invalid: 8 - reply empty: 3
+c 7.836 1 [tracking] Time wait threads: 0 0.000000
+c 7.836 1 [tracking] Time check: 1 0.062228
+c 7.836 1 [tracking] Time wait full: 2 0.074122
+c 7.836 1 [tracking] Time get work: 3 0.192416
+c 7.836 1 [tracking] Time work: 4 0.449572
+c 7.836 1 [tracking] Time compare: 5 0.148483
+c 7.836 1 [tracking] Time outside: 6 0.073179
+c 7.836 1 [track] All time: 1.000000
+c 7.844 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {0, 10, 38}.
+c 7.844 1 [red] Thread will stop search: nbActive = 0
+c 7.844 1 [red] & [bou] Thread has reportable solution: upperBound = 38, lowerBound = 10, currSolution = 38
+c 7.844 1 [bou] Before reduction: {lower, upper, best} = {10, 38, 38}
+c 7.844 1 [bou] After redution: {lower, upper, best} = {10, 38, 38}
+c 7.846 0 [solved] End: (Completion: 1) (Nr Tasks: 25) (Nr Machines: 2) (Tasks:) (Machine Workloads: 37 38) (Machines: 5 5 5 3 3 3 2 2 2 2 1 1 1 1 1 0 5 5 4 4 4 4 4 3 3 2 0)
+c 7.847 0 RESPONSE_TIME #1 7.805045 rev. 0
+c 7.847 0 SOLUTION #1 SATISFIABLE rev. 0
+s SATISFIABLE
+null
+c 7.892 0 Exiting happily
+c 7.892 1 Exiting happily

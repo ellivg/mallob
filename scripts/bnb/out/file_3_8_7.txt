@@ -1,0 +1,1522 @@
+0.000 0 [WARN] Invalid argument "\"
+0.000 0 [WARN] Invalid argument "\"
+0.000 0 [WARN] Invalid argument "\"
+0.000 0 [WARN] Invalid argument "\"
+c 
+c Mallob -- a parallel and distributed platform for job scheduling, load balancing, and SAT solving
+c Copyright (C) 2019-2025 Dominik Schreiber, Karlsruhe Institute of Technology, Germany
+c 
+0.000 0 [WARN] Invalid argument "\"
+0.000 0 [WARN] Invalid argument "\"
+0.000 0 [WARN] Invalid argument "\"
+0.000 0 [WARN] Invalid argument "\"
+c 0.002 0 Program options: -0o=0 -J=0 -SJ=0 -T=300 -adc=0 -aim=1 -ajpc=0 -ans=0 -apidir=.api -ba=4 -bem=1 -bicg=4 -br=0 -c=1 -cbbs=0 -cblm=1 -cblp=100000 -cdel=2 -cecpm=0 -cf=0 -cfci=10 -cfm=3 -cg=1 -ch=0 -checksums=0 -cjc=0 -client-app-threads=1 -cm=0 -cmp=0 -colors=0 -compact-proof=0 -cpshm=0 -csm=3 -cusv=1 -dc=0 -decay-distr=1 -decay-max=200 -decay-mean=50 -decay-min=1 -decay-stddev=3 -decpm=0 -delaymonkey=0 -div-elim=0 -div-fanout=0 -div-init-shuffle=0 -div-native=1 -div-noise=0 -div-phases=1 -div-reduce=0 -div-seeds=1 -dpa=1 -ds=0 -evpt=350 -evu=0 -extmem-disk-dir=.disk -fapii=0 -fcll=1 -g=0 -gclls=0 -h=0 -huca=0 -iff=0 -ilbd=0 -inotify=1 -interface-fs=0 -interface-ipc=0 -ipm=1 -ivdh=1 -jc=1 -jcl=0 -jcup=0.1 -jjp=0 -jwl=0 -l=1 -latencymonkey=0 -lbdpi=0 -lbdpo=0 -ljpc=32 -log=scripts/bnb/out//3/ -mbt=8388608 -mcips=5 -md=0 -mempanic=1 -mjps=0 -mlbdps=2 -mlpt=50000000 -mmpi=0 -mono=instances/bnb/main_under_300/bnb_n20_m2.cnf -mono-app=bnb -mscf=5 -nec=5 -no-import=0 -os=0 -otfc=0 -otfcm=1 -p=0.1 -pbbm=0 -plain-add-specific=0 -pph=0 -pre-cleanup=1 -prisma=0 -proof-debugging=0 -ps=0 -q=0 -qcll=8 -qlbdl=2 -randlbd=0 -reduce-delta=100 -reduce-max=980 -reduce-mean=700 -reduce-min=300 -reduce-stddev=150 -rlbd=3 -rpa=0 -rs=1 -rspaa=0 -s=0.5 -satsolver=C -scll=60 -scramble-lbds=0 -scsd=0 -seed=0 -sjd=0 -slbdl=60 -sleep=100 -spl=-1 -sswl=0 -t=1 -tmp=scripts/bnb/out//3/tmp/ -trace-dir=scripts/bnb/out//3/ -uninvert-proof=1 -v=2 -w=-1 -wam=10000 -warmup=0 -watchdog=1 -y=1 -yield=0 
+c 0.002 0 Cleaning up pre-execution
+c 0.002 0 Killing old subprocesses: "killall -9 build/mallob_sat_process 2>/dev/null"
+c 0.002 5 Cleaning up pre-execution
+c 0.002 5 Killing old subprocesses: "killall -9 build/mallob_sat_process 2>/dev/null"
+c 0.002 7 Cleaning up pre-execution
+c 0.002 7 Killing old subprocesses: "killall -9 build/mallob_sat_process 2>/dev/null"
+c 0.002 1 Cleaning up pre-execution
+c 0.002 1 Killing old subprocesses: "killall -9 build/mallob_sat_process 2>/dev/null"
+c 0.002 2 Cleaning up pre-execution
+c 0.002 2 Killing old subprocesses: "killall -9 build/mallob_sat_process 2>/dev/null"
+c 0.002 3 Cleaning up pre-execution
+c 0.002 3 Killing old subprocesses: "killall -9 build/mallob_sat_process 2>/dev/null"
+c 0.003 4 Cleaning up pre-execution
+c 0.003 4 Killing old subprocesses: "killall -9 build/mallob_sat_process 2>/dev/null"
+c 0.003 6 Cleaning up pre-execution
+c 0.003 6 Killing old subprocesses: "killall -9 build/mallob_sat_process 2>/dev/null"
+c 0.018 6 Killing old subprocesses: "killall -9 build/impcheck_parse 2>/dev/null"
+c 0.018 1 Killing old subprocesses: "killall -9 build/impcheck_parse 2>/dev/null"
+c 0.018 2 Killing old subprocesses: "killall -9 build/impcheck_parse 2>/dev/null"
+c 0.018 0 Killing old subprocesses: "killall -9 build/impcheck_parse 2>/dev/null"
+c 0.018 5 Killing old subprocesses: "killall -9 build/impcheck_parse 2>/dev/null"
+c 0.018 7 Killing old subprocesses: "killall -9 build/impcheck_parse 2>/dev/null"
+c 0.018 3 Killing old subprocesses: "killall -9 build/impcheck_parse 2>/dev/null"
+c 0.018 4 Killing old subprocesses: "killall -9 build/impcheck_parse 2>/dev/null"
+c 0.022 6 Killing old subprocesses: "killall -9 build/impcheck_check 2>/dev/null"
+c 0.022 0 Killing old subprocesses: "killall -9 build/impcheck_check 2>/dev/null"
+c 0.022 1 Killing old subprocesses: "killall -9 build/impcheck_check 2>/dev/null"
+c 0.022 5 Killing old subprocesses: "killall -9 build/impcheck_check 2>/dev/null"
+c 0.022 2 Killing old subprocesses: "killall -9 build/impcheck_check 2>/dev/null"
+c 0.022 7 Killing old subprocesses: "killall -9 build/impcheck_check 2>/dev/null"
+c 0.022 3 Killing old subprocesses: "killall -9 build/impcheck_check 2>/dev/null"
+c 0.022 4 Killing old subprocesses: "killall -9 build/impcheck_check 2>/dev/null"
+c 0.025 6 Killing old subprocesses: "killall -9 build/impcheck_confirm 2>/dev/null"
+c 0.026 0 Killing old subprocesses: "killall -9 build/impcheck_confirm 2>/dev/null"
+c 0.026 1 Killing old subprocesses: "killall -9 build/impcheck_confirm 2>/dev/null"
+c 0.026 3 Killing old subprocesses: "killall -9 build/impcheck_confirm 2>/dev/null"
+c 0.026 7 Killing old subprocesses: "killall -9 build/impcheck_confirm 2>/dev/null"
+c 0.026 2 Killing old subprocesses: "killall -9 build/impcheck_confirm 2>/dev/null"
+c 0.026 5 Killing old subprocesses: "killall -9 build/impcheck_confirm 2>/dev/null"
+c 0.026 4 Killing old subprocesses: "killall -9 build/impcheck_confirm 2>/dev/null"
+c 0.043 0 Set up API connector
+c 0.044 0 Machine color 0 with 8 total workers (my rank: 0)
+c 0.044 0 Assuming application "BNB" for mono job
+c 0.044 3 Machine color 0 with 8 total workers (my rank: 3)
+c 0.044 6 Machine color 0 with 8 total workers (my rank: 6)
+c 0.044 2 Machine color 0 with 8 total workers (my rank: 2)
+c 0.044 4 Machine color 0 with 8 total workers (my rank: 4)
+c 0.044 1 Machine color 0 with 8 total workers (my rank: 1)
+c 0.044 7 Machine color 0 with 8 total workers (my rank: 7)
+c 0.044 5 Machine color 0 with 8 total workers (my rank: 5)
+c 0.045 0 Introducing job #1 rev. 0 : r.#1:0 rev. 0 <- [0] born=0.045 hops=0 epoch=-1 matchId=-1 => [0]
+c 0.047 0 [bou] Initiliased to {lower, upper, best} = {6, -1, -1}.
+c 0.047 0 [start] Beginning: (Completion: 0) (Nr Tasks: 20) (Nr Machines: 2) (Tasks: 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3) (Machine Workloads: 0 0) (Machines: 0 0)
+c 0.047 0 [stack] Start waiting for other threads: 0
+c 0.057 2 [stack] Stack empty. Stopping Loop
+c 0.057 1 [stack] Stack empty. Stopping Loop
+c 0.057 4 [stack] Stack empty. Stopping Loop
+c 0.057 6 [stack] Stack empty. Stopping Loop
+c 0.057 3 [stack] Stack empty. Stopping Loop
+c 0.057 5 [stack] Stack empty. Stopping Loop
+c 0.057 7 [stack] Stack empty. Stopping Loop
+c 0.107 0 [WARN] #1:0 job tree has size 0/8
+c 0.115 1 [msg] Requested work stealing from: 0
+c 0.115 0 [msg] Message 31 with Payload 0 from 1 received.
+c 0.115 0 [msg] Processing work stealing query from 1
+c 0.115 0 [steal] I am not sending work: _work_list.size() = 1
+c 0.115 0 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.115 1 [msg] Message 32 with Payload -1 from 0 received.
+c 0.116 0 [stack] End waiting: 1
+c 0.116 0 [stack] In loop. Jobs left: 1
+c 0.116 0 [bou] Updated to {lower, upper, best} = {6, 30, 30}.
+c 0.116 2 [msg] Requested work stealing from: 0
+c 0.116 0 [msg] Message 31 with Payload 0 from 2 received.
+c 0.116 0 [msg] Processing work stealing query from 2
+c 0.116 0 [steal] I am sending work
+c 0.116 0 [msg] Message returned to sender 2 with payload[0] = 0 and _sent_work = 1
+c 0.116 2 [msg] Message 32 with Payload 0 from 0 received.
+c 0.116 2 [msg] Work stealing query successful. Filling work stack.
+c 0.116 2 [adding] Adding starting now
+c 0.116 2 [adding] Adding ending now
+c 0.116 2 c [msg] Work stack is filled.
+c 0.116 2 0.116 2 [stack] Restarting loop: 1
+[msg] Message returned to sender 0.
+c 0.116 2 [stack] In loop. Jobs left: 1
+c 0.116 4 [msg] Requested work stealing from: 0
+c 0.116 7 [msg] Requested work stealing from: 0
+c 0.116 2 [bou] Updated to {lower, upper, best} = {-1, 30, 30}.
+c 0.116 0 [msg] Message 33 with Payload 0 from 2 received.
+c 0.116 0 [msg] Message 31 with Payload 0 from 4 received.
+c 0.116 0 [msg] Processing work stealing query from 4
+c 0.116 0 [steal] I am sending work
+c 0.116 0 [msg] Message returned to sender 4 with payload[0] = 0 and _sent_work = 1
+c 0.116 0 [msg] Message 31 with Payload 0 from 7 received.
+c 0.116 0 [msg] Processing work stealing query from 7
+c 0.116 0 [steal] I am sending work
+c 0.116 0 [msg] Message returned to sender 7 with payload[0] = 0 and _sent_work = 1
+c 0.116 4 [msg] Message 32 with Payload 0 from 0 received.
+c 0.116 4 [msg] Work stealing query successful. Filling work stack.
+c 0.116 4 [adding] Adding starting now
+c 0.116 7 [msg] Message 32 with Payload 0 from 0 received.
+c 0.116 7 [msg] Work stealing query successful. Filling work stack.
+c 0.116 7 [adding] Adding starting now
+c 0.116 7 [adding] Adding ending now
+c 0.116 7 [msg] Work stack is filled.
+c 0.116 4 [adding] Adding ending now
+c 0.116 4 [msg] Work stack is filled.
+c 0.116 4 [stack] Restarting loop: 1
+c 0.116 7 [stack] Restarting loop: 1
+c 0.116 7 [msg] Message returned to sender 0.
+c 0.116 7 [stack] In loop. Jobs left: 1
+c 0.116 4 [msg] Message returned to sender 0.
+c 0.116 4 [stack] In loop. Jobs left: 1
+c 0.116 6 [msg] Requested work stealing from: 0
+c 0.116 3 [msg] Requested work stealing from: 0
+c 0.116 7 [bou] Updated to {lower, upper, best} = {-1, 30, 30}.
+c 0.117 4 [bou] Updated to {lower, upper, best} = {-1, 30, 30}.
+c 0.117 0 [msg] Message 33 with Payload 0 from 7 received.
+c 0.117 0 [msg] Message 31 with Payload 0 from 3 received.
+c 0.117 0 [msg] Processing work stealing query from 3
+c 0.117 0 [steal] I am sending work
+c 0.117 0 [msg] Message returned to sender 3 with payload[0] = 0 and _sent_work = 1
+c 0.117 0 [msg] Message 33 with Payload 0 from 4 received.
+c 0.117 0 [msg] Message 31 with Payload 0 from 6 received.
+c 0.117 0 [msg] Processing work stealing query from 6
+c 0.117 0 [steal] I am sending work
+c 0.117 0 [msg] Message returned to sender 6 with payload[0] = 0 and _sent_work = 1
+c 0.117 6 [msg] Message 32 with Payload 0 from 0 received.
+c 0.117 6 [msg] Work stealing query successful. Filling work stack.
+c 0.117 6 [adding] Adding starting now
+c 0.117 3 [msg] Message 32 with Payload 0 from 0 received.
+c 0.117 3 [msg] Work stealing query successful. Filling work stack.
+c 0.117 3 [adding] Adding starting now
+c 0.117 3 [adding] Adding ending now
+c 0.117 6 [adding] Adding ending now
+c 0.117 6 [msg] Work stack is filled.
+c 0.117 3 [msg] Work stack is filled.
+c 0.117 3 c [stack] Restarting loop: 1
+c 0.117 6 [stack] Restarting loop: 1
+0.117 3 c [msg] Message returned to sender 0.
+c 0.117 6 [msg] Message returned to sender 0.
+c 0.117 6 [stack] In loop. Jobs left: 1
+c 0.117 5 [msg] Requested work stealing from: 0
+0.117 3 [stack] In loop. Jobs left: 1
+c 0.117 0 [stack] Stack empty. Stopping Loop
+c 0.117 6 [bou] Updated to {lower, upper, best} = {-1, 30, 30}.
+c 0.117 3 [bou] Updated to {lower, upper, best} = {-1, 30, 30}.
+c 0.117 0 [msg] Message 33 with Payload 0 from 6 received.
+c 0.117 0 [msg] Message 33 with Payload 0 from 3 received.
+c 0.117 0 [msg] Message 31 with Payload 0 from 5 received.
+c 0.117 0 [msg] Processing work stealing query from 5
+c 0.117 0 [steal] I am not sending work: _work_list.size() = 0
+c 0.117 0 [msg] Message returned to sender 5 with payload[0] = -1 and _sent_work = 0
+c 0.117 5 [msg] Message 32 with Payload -1 from 0 received.
+c 0.117 6 [stack] Stack empty. Stopping Loop
+c 0.121 3 [stack] Stack empty. Stopping Loop
+c 0.125 1 [msg] Requested work stealing from: 7
+c 0.125 7 [msg] Message 31 with Payload 0 from 1 received.
+c 0.125 7 [msg] Processing work stealing query from 1
+c 0.125 7 [steal] I am sending work
+c 0.125 7 [msg] Message returned to sender 1 with payload[0] = 0 and _sent_work = 1
+c 0.125 1 [msg] Message 32 with Payload 0 from 7 received.
+c 0.125 1 [msg] Work stealing query successful. Filling work stack.
+c 0.125 1 [adding] Adding starting now
+c 0.125 1 [adding] Adding ending now
+c 0.125 1 [msg] Work stack is filled.
+c 0.125 1 [stack] Restarting loop: 1
+c 0.125 1 c [stack] In loop. Jobs left: 1
+0.125 1 [msg] Message returned to sender 7.
+c 0.126 1 [bou] Updated to {lower, upper, best} = {-1, 30, 30}.
+c 0.126 7 [msg] Message 33 with Payload 0 from 1 received.
+c 0.126 0 [msg] Requested work stealing from: 7
+c 0.126 7 [msg] Message 31 with Payload 0 from 0 received.
+c 0.126 7 [msg] Processing work stealing query from 0
+c 0.126 7 [steal] I am sending work
+c 0.126 7 [msg] Message returned to sender 0 with payload[0] = 0 and _sent_work = 1
+c 0.126 7 [stack] Stack empty. Stopping Loop
+c 0.126 0 [msg] Message 32 with Payload 0 from 7 received.
+c 0.126 0 [msg] Work stealing query successful. Filling work stack.
+c 0.126 0 [adding] Adding starting now
+c 0.126 0 [adding] Adding ending now
+c 0.126 0 [msg] Work stack is filled.
+c 0.126 0 c [msg] Message returned to sender 7.
+0.126 0 [stack] Restarting loop: 1
+c 0.126 7 [msg] Message 33 with Payload 0 from 0 received.
+c 0.126 3 [msg] Requested work stealing from: 7
+c 0.127 6 [msg] Requested work stealing from: 7
+c 0.127 7 [msg] Message 31 with Payload 0 from 3 received.
+c 0.127 7 [msg] Processing work stealing query from 3
+c 0.127 7 [steal] I am not sending work: _work_list.size() = 0
+c 0.127 7 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 0.127 7 [msg] Message 31 with Payload 0 from 6 received.
+c 0.127 7 [msg] Processing work stealing query from 6
+c 0.127 7 [steal] I am not sending work: _work_list.size() = 0
+c 0.127 7 [msg] Message returned to sender 6 with payload[0] = -1 and _sent_work = 0
+c 0.127 5 [msg] Requested work stealing from: 7
+c 0.127 6 [msg] Message 32 with Payload -1 from 7 received.
+c 0.127 3 [msg] Message 32 with Payload -1 from 7 received.
+c 0.127 7 [msg] Message 31 with Payload 0 from 5 received.
+c 0.127 7 [msg] Processing work stealing query from 5
+c 0.127 7 [steal] I am not sending work: _work_list.size() = 0
+c 0.127 0 [stack] Stack empty. Stopping Loop
+c 0.127 7 [msg] Message returned to sender 5 with payload[0] = -1 and _sent_work = 0
+c 0.127 5 [msg] Message 32 with Payload -1 from 7 received.
+c 0.131 1 [stack] Stack empty. Stopping Loop
+c 0.135 1 [msg] Requested work stealing from: 6
+c 0.135 6 [msg] Message 31 with Payload 0 from 1 received.
+c 0.135 6 [msg] Processing work stealing query from 1
+c 0.135 6 [steal] I am not sending work: _work_list.size() = 0
+c 0.135 6 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.135 1 [msg] Message 32 with Payload -1 from 6 received.
+c 0.136 0 [msg] Requested work stealing from: 6
+c 0.136 6 [msg] Message 31 with Payload 0 from 0 received.
+c 0.136 6 [msg] Processing work stealing query from 0
+c 0.136 6 [steal] I am not sending work: _work_list.size() = 0
+c 0.136 6 [msg] Message returned to sender 0 with payload[0] = -1 and _sent_work = 0
+c 0.136 0 [msg] Message 32 with Payload -1 from 6 received.
+c 0.136 7 [msg] Requested work stealing from: 6
+c 0.136 6 [msg] Message 31 with Payload 0 from 7 received.
+c 0.136 6 [msg] Processing work stealing query from 7
+c 0.136 6 [steal] I am not sending work: _work_list.size() = 0
+c 0.136 6 [msg] Message returned to sender 7 with payload[0] = -1 and _sent_work = 0
+c 0.136 3 [msg] Requested work stealing from: 6
+c 0.137 7 [msg] Message 32 with Payload -1 from 6 received.
+c 0.137 6 [msg] Message 31 with Payload 0 from 3 received.
+c 0.137 6 [msg] Processing work stealing query from 3
+c 0.137 6 [steal] I am not sending work: _work_list.size() = 0
+c 0.137 6 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 0.137 5 [msg] Requested work stealing from: 6
+c 0.137 3 [msg] Message 32 with Payload -1 from 6 received.
+c 0.137 6 [msg] Message 31 with Payload 0 from 5 received.
+c 0.137 6 [msg] Processing work stealing query from 5
+c 0.137 6 [steal] I am not sending work: _work_list.size() = 0
+c 0.137 6 [msg] Message returned to sender 5 with payload[0] = -1 and _sent_work = 0
+c 0.137 5 [msg] Message 32 with Payload -1 from 6 received.
+c 0.146 0 [msg] Requested work stealing from: 1
+c 0.146 1 [msg] Message 31 with Payload 0 from 0 received.
+c 0.146 1 [msg] Processing work stealing query from 0
+c 0.146 1 [steal] I am not sending work: _work_list.size() = 0
+c 0.146 1 [msg] Message returned to sender 0 with payload[0] = -1 and _sent_work = 0
+c 0.146 0 [msg] Message 32 with Payload -1 from 1 received.
+c 0.147 7 [msg] Requested work stealing from: 1
+c 0.147 1 [msg] Message 31 with Payload 0 from 7 received.
+c 0.147 1 [msg] Processing work stealing query from 7
+c 0.147 1 [steal] I am not sending work: _work_list.size() = 0
+c 0.147 1 [msg] Message returned to sender 7 with payload[0] = -1 and _sent_work = 0
+c 0.147 3 [msg] Requested work stealing from: 1
+c 0.147 6 [msg] Requested work stealing from: 1
+c 0.147 7 [msg] Message 32 with Payload -1 from 1 received.
+c 0.147 1 [msg] Message 31 with Payload 0 from 3 received.
+c 0.147 1 [msg] Processing work stealing query from 3
+c 0.147 1 [steal] I am not sending work: _work_list.size() = 0
+c 0.147 1 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 0.147 1 [msg] Message 31 with Payload 0 from 6 received.
+c 0.147 5 [msg] Requested work stealing from: 1
+c 0.147 1 [msg] Processing work stealing query from 6
+c 0.147 1 [steal] I am not sending work: _work_list.size() = 0
+c 0.147 1 [msg] Message returned to sender 6 with payload[0] = -1 and _sent_work = 0
+c 0.147 1 [msg] Message 31 with Payload 0 from 5 received.
+c 0.147 1 [msg] Processing work stealing query from 5
+c 0.147 3 [msg] Message 32 with Payload -1 from 1 received.
+c 0.147 1 [steal] I am not sending work: _work_list.size() = 0
+c 0.147 1 [msg] Message returned to sender 5 with payload[0] = -1 and _sent_work = 0
+c 0.147 6 [msg] Message 32 with Payload -1 from 1 received.
+c 0.147 5 [msg] Message 32 with Payload -1 from 1 received.
+c 0.155 1 [msg] Requested work stealing from: 3
+c 0.155 3 [msg] Message 31 with Payload 0 from 1 received.
+c 0.155 3 [msg] Processing work stealing query from 1
+c 0.155 3 [steal] I am not sending work: _work_list.size() = 0
+c 0.155 3 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.156 1 [msg] Message 32 with Payload -1 from 3 received.
+c 0.156 0 [msg] Requested work stealing from: 3
+c 0.156 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {0, 6, 30} to all-reduction.
+c 0.156 3 [msg] Message 31 with Payload 0 from 0 received.
+c 0.156 3 [msg] Processing work stealing query from 0
+c 0.156 3 [steal] I am not sending work: _work_list.size() = 0
+c 0.156 3 [msg] Message returned to sender 0 with payload[0] = -1 and _sent_work = 0
+c 0.156 0 [msg] Message 32 with Payload -1 from 3 received.
+c 0.156 2 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, -1, 30} to all-reduction.
+c 0.157 4 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, -1, 30} to all-reduction.
+c 0.157 6 [msg] Requested work stealing from: 3
+c 0.157 6 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {0, -1, 30} to all-reduction.
+c 0.157 7 [msg] Requested work stealing from: 3
+c 0.157 3 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {0, -1, 30} to all-reduction.
+c 0.157 3 [msg] Message 31 with Payload 0 from 6 received.
+c 0.157 3 [msg] Processing work stealing query from 6
+c 0.157 3 [steal] I am not sending work: _work_list.size() = 0
+c 0.157 3 [msg] Message returned to sender 6 with payload[0] = -1 and _sent_work = 0
+c 0.157 3 [msg] Message 31 with Payload 0 from 7 received.
+c 0.157 3 [msg] Processing work stealing query from 7
+c 0.157 3 [steal] I am not sending work: _work_list.size() = 0
+c 0.157 3 [msg] Message returned to sender 7 with payload[0] = -1 and _sent_work = 0
+c 0.157 4 TRY REDUCE 63 0 0 2 2
+c 0.157 4 REDUCE returnedToSender
+c 0.157 5 [msg] Requested work stealing from: 3
+c 0.157 5 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {0, -1, -1} to all-reduction.
+c 0.157 7 [msg] Message 32 with Payload -1 from 3 received.
+c 0.157 6 [msg] Message 32 with Payload -1 from 3 received.
+c 0.157 3 [msg] Message 31 with Payload 0 from 5 received.
+c 0.157 3 [msg] Processing work stealing query from 5
+c 0.157 3 [steal] I am not sending work: _work_list.size() = 0
+c 0.157 3 [msg] Message returned to sender 5 with payload[0] = -1 and _sent_work = 0
+c 0.157 5 [msg] Message 32 with Payload -1 from 3 received.
+c 0.166 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {0, -1, 30} to all-reduction.
+c 0.166 0 [msg] Requested work stealing from: 1
+c 0.166 1 [msg] Message 31 with Payload 0 from 0 received.
+c 0.166 1 [msg] Processing work stealing query from 0
+c 0.166 1 [steal] I am not sending work: _work_list.size() = 0
+c 0.166 1 [msg] Message returned to sender 0 with payload[0] = -1 and _sent_work = 0
+c 0.166 0 [msg] Message 32 with Payload -1 from 1 received.
+c 0.167 3 [msg] Requested work stealing from: 1
+c 0.167 7 [msg] Requested work stealing from: 1
+c 0.167 7 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {0, -1, 30} to all-reduction.
+c 0.167 6 [msg] Requested work stealing from: 1
+c 0.167 1 [msg] Message 31 with Payload 0 from 3 received.
+c 0.167 1 [msg] Processing work stealing query from 3
+c 0.167 1 [steal] I am not sending work: _work_list.size() = 0
+c 0.167 1 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 0.167 1 [msg] Message 31 with Payload 0 from 7 received.
+c 0.167 1 [msg] Processing work stealing query from 7
+c 0.167 1 [steal] I am not sending work: _work_list.size() = 0
+c 0.167 1 [msg] Message returned to sender 7 with payload[0] = -1 and _sent_work = 0
+c 0.167 1 [msg] Message 31 with Payload 0 from 6 received.
+c 0.167 1 [msg] Processing work stealing query from 6
+c 0.167 1 [steal] I am not sending work: _work_list.size() = 0
+c 0.167 1 [msg] Message returned to sender 6 with payload[0] = -1 and _sent_work = 0
+c 0.167 1 [msg] Message 31 with Payload 0 from 5 received.
+c 0.167 5 [msg] Requested work stealing from: 1
+c 0.167 3 [msg] Message 32 with Payload -1 from 1 received.
+c 0.167 2 TRY REDUCE 63 0 0 2 2
+c 0.167 2 REDUCE
+c 0.167 2 TRY REDUCE 63 0 0 2 2
+c 0.167 2 REDUCE
+c 0.167 7 [msg] Message 32 with Payload -1 from 1 received.
+c 0.167 1 [msg] Processing work stealing query from 5
+c 0.167 1 [steal] I am not sending work: _work_list.size() = 0
+c 0.167 1 [msg] Message returned to sender 5 with payload[0] = -1 and _sent_work = 0
+c 0.167 5 [msg] Message 32 with Payload -1 from 1 received.
+c 0.167 6 [msg] Message 32 with Payload -1 from 1 received.
+c 0.176 1 [msg] Requested work stealing from: 7
+c 0.176 7 [msg] Message 31 with Payload 0 from 1 received.
+c 0.176 7 [msg] Processing work stealing query from 1
+c 0.176 7 [steal] I am not sending work: _work_list.size() = 0
+c 0.176 7 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.176 1 [msg] Message 32 with Payload -1 from 7 received.
+c 0.176 0 [msg] Requested work stealing from: 7
+c 0.176 7 [msg] Message 31 with Payload 0 from 0 received.
+c 0.176 7 [msg] Processing work stealing query from 0
+c 0.176 7 [steal] I am not sending work: _work_list.size() = 0
+c 0.176 7 [msg] Message returned to sender 0 with payload[0] = -1 and _sent_work = 0
+c 0.176 0 [msg] Message 32 with Payload -1 from 7 received.
+c 0.177 0 TRY REDUCE 63 0 0 2 2
+c 0.177 0 REDUCE
+c 0.177 3 [msg] Requested work stealing from: 7
+c 0.177 7 [msg] Message 31 with Payload 0 from 3 received.
+c 0.177 7 [msg] Processing work stealing query from 3
+c 0.177 7 [steal] I am not sending work: _work_list.size() = 0
+c 0.177 4 [stack] Stack empty. Stopping Loop
+c 0.177 7 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 0.177 6 [msg] Requested work stealing from: 7
+c 0.177 5 [msg] Requested work stealing from: 7
+c 0.177 3 TRY REDUCE 63 0 0 2 2
+c 0.177 3 REDUCE
+c 0.177 3 [msg] Message 32 with Payload -1 from 7 received.
+c 0.177 7 [msg] Message 31 with Payload 0 from 6 received.
+c 0.177 7 [msg] Processing work stealing query from 6
+c 0.177 7 [steal] I am not sending work: _work_list.size() = 0
+c 0.177 7 [msg] Message returned to sender 6 with payload[0] = -1 and _sent_work = 0
+c 0.177 7 [msg] Message 31 with Payload 0 from 5 received.
+c 0.177 7 [msg] Processing work stealing query from 5
+c 0.177 7 [steal] I am not sending work: _work_list.size() = 0
+c 0.177 7 [msg] Message returned to sender 5 with payload[0] = -1 and _sent_work = 0
+c 0.177 6 [msg] Message 32 with Payload -1 from 7 received.
+c 0.177 5 [msg] Message 32 with Payload -1 from 7 received.
+c 0.186 1 [msg] Requested work stealing from: 2
+c 0.186 2 [msg] Message 31 with Payload 0 from 1 received.
+c 0.186 2 [msg] Processing work stealing query from 1
+c 0.186 2 [steal] I am sending work
+c 0.186 2 [msg] Message returned to sender 1 with payload[0] = 0 and _sent_work = 1
+c 0.186 1 [msg] Message 32 with Payload 0 from 2 received.
+c 0.186 1 [msg] Work stealing query successful. Filling work stack.
+c 0.186 1 [adding] Adding starting now
+c 0.186 1 [adding] Adding ending now
+c 0.186 1 [msg] Work stack is filled.
+c 0.186 1 [msg] Message returned to sender 2.
+c 0.186 1 [stack] Restarting loop: 1
+c 0.186 2 [msg] Message 33 with Payload 0 from 1 received.
+c 0.186 0 [msg] Requested work stealing from: 2
+c 0.186 2 [msg] Message 31 with Payload 0 from 0 received.
+c 0.186 2 [msg] Processing work stealing query from 0
+c 0.186 2 [steal] I am sending work
+c 0.186 2 [msg] Message returned to sender 0 with payload[0] = 0 and _sent_work = 1
+c 0.187 0 [msg] Message 32 with Payload 0 from 2 received.
+c 0.187 0 [msg] Work stealing query successful. Filling work stack.
+c 0.187 0 [adding] Adding starting now
+c 0.187 0 [adding] Adding ending now
+c 0.187 0 [msg] Work stack is filled.
+c 0.187 0 [msg] Message returned to sender 2.
+c 0.187 2 [msg] Message 33 with Payload 0 from 0 received.
+c 0.187 0 [stack] Restarting loop: 1
+c 0.187 4 [msg] Requested work stealing from: 7
+c 0.187 7 [msg] Requested work stealing from: 2
+c 0.187 7 [msg] Message 31 with Payload 0 from 4 received.
+c 0.187 7 [msg] Processing work stealing query from 4
+c 0.187 7 [steal] I am not sending work: _work_list.size() = 0
+c 0.187 7 [msg] Message returned to sender 4 with payload[0] = -1 and _sent_work = 0
+c 0.187 3 [msg] Requested work stealing from: 2
+c 0.187 4 [msg] Message 32 with Payload -1 from 7 received.
+c 0.187 2 [msg] Message 31 with Payload 0 from 7 received.
+c 0.187 2 [msg] Processing work stealing query from 7
+c 0.187 2 [steal] I am sending work
+c 0.187 2 [msg] Message returned to sender 7 with payload[0] = 0 and _sent_work = 1
+c 0.187 2 [msg] Message 31 with Payload 0 from 3 received.
+c 0.187 2 [msg] Processing work stealing query from 3
+c 0.187 1 TRY REDUCE 63 0 0 2 2
+c 0.187 1 REDUCE
+c 0.187 7 [msg] Message 32 with Payload 0 from 2 received.
+c 0.187 7 [msg] Work stealing query successful. Filling work stack.
+c 0.187 7 [adding] Adding starting now
+c 0.187 7 [adding] Adding ending now
+c 0.187 7 [msg] Work stack is filled.
+c 0.187 2 [steal] I am sending work
+c 0.187 2 [msg] Message returned to sender 3 with payload[0] = 0 and _sent_work = 1
+c 0.187 7 c [msg] Message returned to sender 2.
+0.187 7 [stack] Restarting loop: 1
+c 0.187 5 [msg] Requested work stealing from: 2
+c 0.187 6 [msg] Requested work stealing from: 2
+c 0.187 3 [msg] Message 32 with Payload 0 from 2 received.
+c 0.187 3 [msg] Work stealing query successful. Filling work stack.
+c 0.187 3 [adding] Adding starting now
+c 0.187 3 [adding] Adding ending now
+c 0.187 3 [msg] Work stack is filled.
+c 0.187 3 c [msg] Message returned to sender 2.
+0.187 3 [stack] Restarting loop: 1
+c 0.187 2 [stack] Stack empty. Stopping Loop
+c 0.187 2 [msg] Message 33 with Payload 0 from 7 received.
+c 0.187 2 [msg] Message 31 with Payload 0 from 5 received.
+c 0.187 2 [msg] Processing work stealing query from 5
+c 0.187 2 [steal] I am not sending work: _work_list.size() = 0
+c 0.187 2 [msg] Message returned to sender 5 with payload[0] = -1 and _sent_work = 0
+c 0.187 2 [msg] Message 31 with Payload 0 from 6 received.
+c 0.187 2 [msg] Processing work stealing query from 6
+c 0.187 2 [steal] I am not sending work: _work_list.size() = 0
+c 0.187 2 [msg] Message returned to sender 6 with payload[0] = -1 and _sent_work = 0
+c 0.187 5 [msg] Message 32 with Payload -1 from 2 received.
+c 0.187 2 [msg] Message 33 with Payload 0 from 3 received.
+c 0.187 6 [msg] Message 32 with Payload -1 from 2 received.
+c 0.189 3 [stack] Stack empty. Stopping Loop
+c 0.190 7 [stack] Stack empty. Stopping Loop
+c 0.193 0 [stack] Stack empty. Stopping Loop
+c 0.196 0 [msg] Requested work stealing from: 4
+c 0.196 4 [msg] Message 31 with Payload 0 from 0 received.
+c 0.196 4 [msg] Processing work stealing query from 0
+c 0.196 4 [steal] I am not sending work: _work_list.size() = 0
+c 0.196 4 [msg] Message returned to sender 0 with payload[0] = -1 and _sent_work = 0
+c 0.197 0 [msg] Message 32 with Payload -1 from 4 received.
+c 0.197 2 [msg] Requested work stealing from: 7
+c 0.197 7 [msg] Message 31 with Payload 0 from 2 received.
+c 0.197 7 [msg] Processing work stealing query from 2
+c 0.197 7 [steal] I am not sending work: _work_list.size() = 0
+c 0.197 7 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 0.197 4 [msg] Requested work stealing from: 6
+c 0.197 6 [msg] Message 31 with Payload 0 from 4 received.
+c 0.197 6 [msg] Processing work stealing query from 4
+c 0.197 6 [steal] I am not sending work: _work_list.size() = 0
+c 0.197 6 [msg] Message returned to sender 4 with payload[0] = -1 and _sent_work = 0
+c 0.197 2 [msg] Message 32 with Payload -1 from 7 received.
+c 0.197 7 [msg] Requested work stealing from: 4
+c 0.197 4 [msg] Message 32 with Payload -1 from 6 received.
+c 0.197 4 [msg] Message 31 with Payload 0 from 7 received.
+c 0.197 4 [msg] Processing work stealing query from 7
+c 0.197 4 [steal] I am not sending work: _work_list.size() = 0
+c 0.197 4 [msg] Message returned to sender 7 with payload[0] = -1 and _sent_work = 0
+c 0.197 3 [msg] Requested work stealing from: 4
+c 0.197 5 [msg] Requested work stealing from: 4
+c 0.197 6 [msg] Requested work stealing from: 4
+c 0.197 7 [msg] Message 32 with Payload -1 from 4 received.
+c 0.197 4 [msg] Message 31 with Payload 0 from 3 received.
+c 0.197 4 [msg] Processing work stealing query from 3
+c 0.197 4 [steal] I am not sending work: _work_list.size() = 0
+c 0.197 4 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 0.197 4 [msg] Message 31 with Payload 0 from 5 received.
+c 0.197 4 [msg] Processing work stealing query from 5
+c 0.197 3 [msg] Message 32 with Payload -1 from 4 received.
+c 0.197 4 [steal] I am not sending work: _work_list.size() = 0
+c 0.197 4 [msg] Message returned to sender 5 with payload[0] = -1 and _sent_work = 0
+c 0.197 4 [msg] Message 31 with Payload 0 from 6 received.
+c 0.197 4 [msg] Processing work stealing query from 6
+c 0.197 4 [steal] I am not sending work: _work_list.size() = 0
+c 0.197 4 [msg] Message returned to sender 6 with payload[0] = -1 and _sent_work = 0
+c 0.197 5 [msg] Message 32 with Payload -1 from 4 received.
+c 0.197 6 [msg] Message 32 with Payload -1 from 4 received.
+c 0.207 0 [msg] Requested work stealing from: 1
+c 0.207 1 [msg] Message 31 with Payload 0 from 0 received.
+c 0.207 1 [msg] Processing work stealing query from 0
+c 0.207 1 [steal] I am sending work
+c 0.207 1 [msg] Message returned to sender 0 with payload[0] = 0 and _sent_work = 1
+c 0.207 0 [msg] Message 32 with Payload 0 from 1 received.
+c 0.207 0 [msg] Work stealing query successful. Filling work stack.
+c 0.207 0 [adding] Adding starting now
+c 0.207 0 [adding] Adding ending now
+c 0.207 0 [msg] Work stack is filled.
+c 0.207 0 c [msg] Message returned to sender 1.
+0.207 0 [stack] Restarting loop: 1
+c 0.207 1 [msg] Message 33 with Payload 0 from 0 received.
+c 0.207 2 [msg] Requested work stealing from: 6
+c 0.207 6 [msg] Message 31 with Payload 0 from 2 received.
+c 0.207 6 [msg] Processing work stealing query from 2
+c 0.207 6 [steal] I am not sending work: _work_list.size() = 0
+c 0.207 6 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 0.207 4 [msg] Requested work stealing from: 1
+c 0.207 2 [msg] Message 32 with Payload -1 from 6 received.
+c 0.207 7 [msg] Requested work stealing from: 1
+c 0.207 1 [msg] Message 31 with Payload 0 from 7 received.
+c 0.207 1 [msg] Processing work stealing query from 7
+c 0.207 1 [steal] I am sending work
+c 0.207 1 [msg] Message returned to sender 7 with payload[0] = 0 and _sent_work = 1
+c 0.207 1 [msg] Message 31 with Payload 0 from 4 received.
+c 0.207 1 [msg] Processing work stealing query from 4
+c 0.207 1 [steal] I am sending work
+c 0.207 1 [msg] Message returned to sender 4 with payload[0] = 0 and _sent_work = 1
+c 0.207 3 [msg] Requested work stealing from: 1
+c 0.207 7 [msg] Message 32 with Payload 0 from 1 received.
+c 0.207 7 [msg] Work stealing query successful. Filling work stack.
+c 0.207 7 [adding] Adding starting now
+c 0.207 1 [stack] Stack empty. Stopping Loop
+c 0.207 6 [msg] Requested work stealing from: 1
+c 0.207 7 [adding] Adding ending now
+c 0.207 7 [msg] Work stack is filled.
+c 0.207 7 c [msg] Message returned to sender 1.
+0.207 7 [stack] Restarting loop: 1
+c 0.207 5 [msg] Requested work stealing from: 1
+c 0.207 4 [msg] Message 32 with Payload 0 from 1 received.
+c 0.207 4 [msg] Work stealing query successful. Filling work stack.
+c 0.207 4 [adding] Adding starting now
+c 0.207 4 [adding] Adding ending now
+c 0.207 4 [msg] Work stack is filled.
+c 0.207 4 c [msg] Message returned to sender 1.
+0.207 4 [stack] Restarting loop: 1
+c 0.207 1 [msg] Message 31 with Payload 0 from 3 received.
+c 0.207 1 [msg] Processing work stealing query from 3
+c 0.207 1 [steal] I am not sending work: _work_list.size() = 0
+c 0.207 1 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 1
+c 0.207 1 [msg] Message 31 with Payload 0 from 5 received.
+c 0.207 1 [msg] Processing work stealing query from 5
+c 0.207 1 [steal] I am not sending work: _work_list.size() = 0
+c 0.207 1 [msg] Message returned to sender 5 with payload[0] = -1 and _sent_work = 1
+c 0.207 1 [msg] Message 31 with Payload 0 from 6 received.
+c 0.207 1 [msg] Processing work stealing query from 6
+c 0.207 1 [steal] I am not sending work: _work_list.size() = 0
+c 0.207 1 [msg] Message returned to sender 6 with payload[0] = -1 and _sent_work = 1
+c 0.207 1 [msg] Message 33 with Payload 0 from 7 received.
+c 0.208 1 [msg] Message 33 with Payload 0 from 4 received.
+c 0.207 5 [msg] Message 32 with Payload -1 from 1 received.
+c 0.207 3 [msg] Message 32 with Payload -1 from 1 received.
+c 0.208 6 [msg] Message 32 with Payload -1 from 1 received.
+c 0.208 4 [stack] Stack empty. Stopping Loop
+c 0.216 1 [msg] Requested work stealing from: 4
+c 0.216 4 [msg] Message 31 with Payload 0 from 1 received.
+c 0.216 4 [msg] Processing work stealing query from 1
+c 0.216 4 [steal] I am not sending work: _work_list.size() = 0
+c 0.216 4 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.216 1 [msg] Message 32 with Payload -1 from 4 received.
+c 0.217 2 [msg] Requested work stealing from: 1
+c 0.217 4 [msg] Requested work stealing from: 3
+c 0.217 1 [msg] Message 31 with Payload 0 from 2 received.
+c 0.217 1 [msg] Processing work stealing query from 2
+c 0.217 1 [steal] I am not sending work: _work_list.size() = 0
+c 0.217 1 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 0.217 3 [msg] Message 31 with Payload 0 from 4 received.
+c 0.217 3 [msg] Processing work stealing query from 4
+c 0.217 3 [steal] I am not sending work: _work_list.size() = 0
+c 0.217 3 [msg] Message returned to sender 4 with payload[0] = -1 and _sent_work = 0
+c 0.217 4 [msg] Message 32 with Payload -1 from 3 received.
+c 0.217 2 [msg] Message 32 with Payload -1 from 1 received.
+c 0.217 6 [msg] Requested work stealing from: 5
+c 0.217 3 [msg] Requested work stealing from: 5
+c 0.217 5 [msg] Message 31 with Payload 0 from 6 received.
+c 0.217 5 [msg] Processing work stealing query from 6
+c 0.217 5 [steal] I am not sending work: _work_list.size() = 0
+c 0.217 5 [msg] Message returned to sender 6 with payload[0] = -1 and _sent_work = 0
+c 0.217 5 [msg] Message 31 with Payload 0 from 3 received.
+c 0.217 5 [msg] Processing work stealing query from 3
+c 0.218 5 [steal] I am not sending work: _work_list.size() = 0
+c 0.218 5 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 0.217 3 [msg] Message 32 with Payload -1 from 5 received.
+c 0.218 6 [msg] Message 32 with Payload -1 from 5 received.
+c 0.227 2 [msg] Requested work stealing from: 3
+c 0.227 3 [msg] Message 31 with Payload 0 from 2 received.
+c 0.227 3 [msg] Processing work stealing query from 2
+c 0.227 3 [steal] I am not sending work: _work_list.size() = 0
+c 0.227 3 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 0.227 4 [msg] Requested work stealing from: 1
+c 0.227 1 [msg] Message 31 with Payload 0 from 4 received.
+c 0.227 1 [msg] Processing work stealing query from 4
+c 0.227 1 [steal] I am not sending work: _work_list.size() = 0
+c 0.227 1 [msg] Message returned to sender 4 with payload[0] = -1 and _sent_work = 0
+c 0.227 2 [msg] Message 32 with Payload -1 from 3 received.
+c 0.227 6 [msg] Requested work stealing from: 2
+c 0.227 4 [msg] Message 32 with Payload -1 from 1 received.
+c 0.227 2 [msg] Message 31 with Payload 0 from 6 received.
+c 0.227 2 [msg] Processing work stealing query from 6
+c 0.227 2 [steal] I am not sending work: _work_list.size() = 0
+c 0.227 2 [msg] Message returned to sender 6 with payload[0] = -1 and _sent_work = 0
+c 0.228 5 [msg] Requested work stealing from: 2
+c 0.228 6 [msg] Message 32 with Payload -1 from 2 received.
+c 0.227 3 [msg] Requested work stealing from: 2
+c 0.228 2 [msg] Message 31 with Payload 0 from 5 received.
+c 0.228 2 [msg] Processing work stealing query from 5
+c 0.228 2 [steal] I am not sending work: _work_list.size() = 0
+c 0.228 2 [msg] Message returned to sender 5 with payload[0] = -1 and _sent_work = 0
+c 0.228 2 [msg] Message 31 with Payload 0 from 3 received.
+c 0.228 2 [msg] Processing work stealing query from 3
+c 0.228 2 [steal] I am not sending work: _work_list.size() = 0
+c 0.228 2 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 0.228 5 [msg] Message 32 with Payload -1 from 2 received.
+c 0.228 3 [msg] Message 32 with Payload -1 from 2 received.
+c 0.236 1 [msg] Requested work stealing from: 5
+c 0.236 5 [msg] Message 31 with Payload 0 from 1 received.
+c 0.236 5 [msg] Processing work stealing query from 1
+c 0.236 5 [steal] I am not sending work: _work_list.size() = 0
+c 0.236 5 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.236 1 [msg] Message 32 with Payload -1 from 5 received.
+c 0.237 2 [msg] Requested work stealing from: 1
+c 0.237 1 [msg] Message 31 with Payload 0 from 2 received.
+c 0.237 1 [msg] Processing work stealing query from 2
+c 0.237 1 [steal] I am not sending work: _work_list.size() = 0
+c 0.237 1 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 0.237 2 [msg] Message 32 with Payload -1 from 1 received.
+c 0.237 4 [msg] Requested work stealing from: 7
+c 0.238 7 [msg] Message 31 with Payload 0 from 4 received.
+c 0.238 7 [msg] Processing work stealing query from 4
+c 0.238 7 [steal] I am sending work
+c 0.238 7 [msg] Message returned to sender 4 with payload[0] = 0 and _sent_work = 1
+c 0.238 6 [msg] Requested work stealing from: 3
+c 0.238 4 [msg] Message 32 with Payload 0 from 7 received.
+c 0.238 4 [msg] Work stealing query successful. Filling work stack.
+c 0.238 4 [adding] Adding starting now
+c 0.238 4 [adding] Adding ending now
+c 0.238 4 c [msg] Work stack is filled.
+c 0.238 4 0.238 4 [stack] Restarting loop: 1
+[msg] Message returned to sender 7.
+c 0.238 7 [msg] Message 33 with Payload 0 from 4 received.
+c 0.238 5 [msg] Requested work stealing from: 3
+c 0.238 3 [msg] Message 31 with Payload 0 from 6 received.
+c 0.238 3 [msg] Processing work stealing query from 6
+c 0.238 3 [steal] I am not sending work: _work_list.size() = 0
+c 0.238 3 [msg] Message returned to sender 6 with payload[0] = -1 and _sent_work = 0
+c 0.238 3 [msg] Message 31 with Payload 0 from 5 received.
+c 0.238 3 [msg] Processing work stealing query from 5
+c 0.238 3 [steal] I am not sending work: _work_list.size() = 0
+c 0.238 3 [msg] Message returned to sender 5 with payload[0] = -1 and _sent_work = 0
+c 0.238 6 [msg] Message 32 with Payload -1 from 3 received.
+c 0.238 5 [msg] Message 32 with Payload -1 from 3 received.
+c 0.239 7 [stack] Stack empty. Stopping Loop
+c 0.244 4 [stack] Stack empty. Stopping Loop
+c 0.246 1 [msg] Requested work stealing from: 2
+c 0.246 2 [msg] Message 31 with Payload 0 from 1 received.
+c 0.246 2 [msg] Processing work stealing query from 1
+c 0.246 2 [steal] I am not sending work: _work_list.size() = 0
+c 0.246 2 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.247 1 [msg] Message 32 with Payload -1 from 2 received.
+c 0.247 2 [msg] Requested work stealing from: 7
+c 0.247 7 [msg] Requested work stealing from: 5
+c 0.247 7 [msg] Message 31 with Payload 0 from 2 received.
+c 0.247 7 [msg] Processing work stealing query from 2
+c 0.247 7 [steal] I am not sending work: _work_list.size() = 0
+c 0.247 7 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 0.248 4 [msg] Requested work stealing from: 2
+c 0.248 6 [msg] Requested work stealing from: 2
+c 0.248 2 [msg] Message 32 with Payload -1 from 7 received.
+c 0.248 2 [msg] Message 31 with Payload 0 from 4 received.
+c 0.248 2 [msg] Processing work stealing query from 4
+c 0.248 2 [steal] I am not sending work: _work_list.size() = 0
+c 0.248 2 [msg] Message returned to sender 4 with payload[0] = -1 and _sent_work = 0
+c 0.248 2 [msg] Message 31 with Payload 0 from 6 received.
+c 0.248 2 [msg] Processing work stealing query from 6
+c 0.248 2 [steal] I am not sending work: _work_list.size() = 0
+c 0.248 2 [msg] Message returned to sender 6 with payload[0] = -1 and _sent_work = 0
+c 0.248 5 [msg] Message 31 with Payload 0 from 7 received.
+c 0.248 5 [msg] Processing work stealing query from 7
+c 0.248 5 [steal] I am not sending work: _work_list.size() = 0
+c 0.248 5 [msg] Message returned to sender 7 with payload[0] = -1 and _sent_work = 0
+c 0.248 7 [msg] Message 32 with Payload -1 from 5 received.
+c 0.248 4 [msg] Message 32 with Payload -1 from 2 received.
+c 0.248 6 [msg] Message 32 with Payload -1 from 2 received.
+c 0.248 5 [msg] Requested work stealing from: 2
+c 0.248 2 [msg] Message 31 with Payload 0 from 5 received.
+c 0.248 2 [msg] Processing work stealing query from 5
+c 0.248 2 [steal] I am not sending work: _work_list.size() = 0
+c 0.248 2 [msg] Message returned to sender 5 with payload[0] = -1 and _sent_work = 0
+c 0.248 3 [msg] Requested work stealing from: 2
+c 0.248 5 [msg] Message 32 with Payload -1 from 2 received.
+c 0.248 2 [msg] Message 31 with Payload 0 from 3 received.
+c 0.248 2 [msg] Processing work stealing query from 3
+c 0.248 2 [steal] I am not sending work: _work_list.size() = 0
+c 0.248 2 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 0.248 3 [msg] Message 32 with Payload -1 from 2 received.
+c 0.257 1 [msg] Requested work stealing from: 3
+c 0.257 3 [msg] Message 31 with Payload 0 from 1 received.
+c 0.257 3 [msg] Processing work stealing query from 1
+c 0.257 3 [steal] I am not sending work: _work_list.size() = 0
+c 0.257 3 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.257 1 [msg] Message 32 with Payload -1 from 3 received.
+c 0.257 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {1, 6, 30} to all-reduction.
+c 0.257 2 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {0, -1, 30} to all-reduction.
+c 0.257 7 [msg] Requested work stealing from: 2
+c 0.257 2 [msg] Message 31 with Payload 0 from 7 received.
+c 0.257 2 [msg] Processing work stealing query from 7
+c 0.257 2 [steal] I am not sending work: _work_list.size() = 0
+c 0.257 2 [msg] Message returned to sender 7 with payload[0] = -1 and _sent_work = 0
+c 0.258 7 [msg] Message 32 with Payload -1 from 2 received.
+c 0.258 4 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {0, -1, 30} to all-reduction.
+c 0.258 6 [msg] Requested work stealing from: 3
+c 0.258 6 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {0, -1, 30} to all-reduction.
+c 0.258 5 [msg] Requested work stealing from: 3
+c 0.258 5 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {0, -1, -1} to all-reduction.
+c 0.258 3 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {0, -1, 30} to all-reduction.
+c 0.258 3 [msg] Message 31 with Payload 0 from 6 received.
+c 0.258 3 [msg] Processing work stealing query from 6
+c 0.258 3 [steal] I am not sending work: _work_list.size() = 0
+c 0.258 3 [msg] Message returned to sender 6 with payload[0] = -1 and _sent_work = 0
+c 0.258 3 [msg] Message 31 with Payload 0 from 5 received.
+c 0.258 3 [msg] Processing work stealing query from 5
+c 0.258 3 [steal] I am not sending work: _work_list.size() = 0
+c 0.258 3 [msg] Message returned to sender 5 with payload[0] = -1 and _sent_work = 0
+c 0.258 5 [msg] Message 32 with Payload -1 from 3 received.
+c 0.258 6 [msg] Message 32 with Payload -1 from 3 received.
+c 0.267 1 [msg] Requested work stealing from: 2
+c 0.267 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {0, -1, 30} to all-reduction.
+c 0.267 2 [msg] Message 31 with Payload 0 from 1 received.
+c 0.267 2 [msg] Processing work stealing query from 1
+c 0.267 2 [steal] I am not sending work: _work_list.size() = 0
+c 0.267 2 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.267 1 [msg] Message 32 with Payload -1 from 2 received.
+c 0.267 2 [msg] Requested work stealing from: 4
+c 0.268 4 [msg] Message 31 with Payload 0 from 2 received.
+c 0.268 4 [msg] Processing work stealing query from 2
+c 0.268 4 [steal] I am not sending work: _work_list.size() = 0
+c 0.267 2 [msg] Message 32 with Payload -1 from 4 received.
+c 0.268 4 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 0.268 7 [msg] Requested work stealing from: 3
+c 0.268 7 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {0, -1, 30} to all-reduction.
+c 0.268 3 [msg] Message 31 with Payload 0 from 7 received.
+c 0.268 3 [msg] Processing work stealing query from 7
+c 0.268 3 [steal] I am not sending work: _work_list.size() = 0
+c 0.268 3 [msg] Message returned to sender 7 with payload[0] = -1 and _sent_work = 0
+c 0.268 4 [msg] Requested work stealing from: 1
+c 0.268 6 [msg] Requested work stealing from: 3
+c 0.268 7 [msg] Message 32 with Payload -1 from 3 received.
+c 0.268 5 [msg] Requested work stealing from: 3
+c 0.268 3 [msg] Message 31 with Payload 0 from 6 received.
+c 0.268 3 [msg] Processing work stealing query from 6
+c 0.268 3 [steal] I am not sending work: _work_list.size() = 0
+c 0.268 1 [msg] Message 31 with Payload 0 from 4 received.
+c 0.268 1 [msg] Processing work stealing query from 4
+c 0.268 1 [steal] I am not sending work: _work_list.size() = 0
+c 0.268 1 [msg] Message returned to sender 4 with payload[0] = -1 and _sent_work = 0
+c 0.268 3 [msg] Message returned to sender 6 with payload[0] = -1 and _sent_work = 0
+c 0.268 3 [msg] Message 31 with Payload 0 from 5 received.
+c 0.268 3 [msg] Processing work stealing query from 5
+c 0.268 3 [steal] I am not sending work: _work_list.size() = 0
+c 0.268 3 [msg] Message returned to sender 5 with payload[0] = -1 and _sent_work = 0
+c 0.268 2 TRY REDUCE 63 0 0 2 2
+c 0.268 2 REDUCE
+c 0.268 2 TRY REDUCE 63 0 0 2 2
+c 0.268 2 REDUCE
+c 0.268 4 [msg] Message 32 with Payload -1 from 1 received.
+c 0.268 1 TRY REDUCE 63 0 0 2 2
+c 0.268 1 REDUCE
+c 0.268 6 [msg] Message 32 with Payload -1 from 3 received.
+c 0.268 5 [msg] Message 32 with Payload -1 from 3 received.
+c 0.277 1 [msg] Requested work stealing from: 3
+c 0.277 3 [msg] Message 31 with Payload 0 from 1 received.
+c 0.277 3 [msg] Processing work stealing query from 1
+c 0.277 3 [steal] I am not sending work: _work_list.size() = 0
+c 0.277 3 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.277 1 [msg] Message 32 with Payload -1 from 3 received.
+c 0.277 2 [msg] Requested work stealing from: 1
+c 0.278 1 [msg] Message 31 with Payload 0 from 2 received.
+c 0.278 1 [msg] Processing work stealing query from 2
+c 0.278 0 TRY REDUCE 63 0 0 2 2
+c 0.278 0 REDUCE
+c 0.278 1 [steal] I am not sending work: _work_list.size() = 0
+c 0.278 1 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 0.278 7 [msg] Requested work stealing from: 2
+c 0.278 4 [msg] Requested work stealing from: 5
+c 0.278 2 [msg] Message 32 with Payload -1 from 1 received.
+c 0.278 2 [msg] Message 31 with Payload 0 from 7 received.
+c 0.278 2 [msg] Processing work stealing query from 7
+c 0.278 2 [steal] I am not sending work: _work_list.size() = 0
+c 0.278 2 [msg] Message returned to sender 7 with payload[0] = -1 and _sent_work = 0
+c 0.278 5 [msg] Message 31 with Payload 0 from 4 received.
+c 0.278 5 [msg] Processing work stealing query from 4
+c 0.278 5 [steal] I am not sending work: _work_list.size() = 0
+c 0.278 5 [msg] Message returned to sender 4 with payload[0] = -1 and _sent_work = 0
+c 0.278 3 TRY REDUCE 63 0 0 2 2
+c 0.278 3 REDUCE
+c 0.278 7 [msg] Message 32 with Payload -1 from 2 received.
+c 0.278 4 [msg] Message 32 with Payload -1 from 5 received.
+c 0.278 5 [msg] Requested work stealing from: 6
+c 0.278 6 [msg] Message 31 with Payload 0 from 5 received.
+c 0.278 6 [msg] Processing work stealing query from 5
+c 0.278 6 [steal] I am not sending work: _work_list.size() = 0
+c 0.278 3 [msg] Requested work stealing from: 6
+c 0.278 6 [msg] Message returned to sender 5 with payload[0] = -1 and _sent_work = 0
+c 0.278 6 [msg] Message 31 with Payload 0 from 3 received.
+c 0.278 6 [msg] Processing work stealing query from 3
+c 0.278 6 [steal] I am not sending work: _work_list.size() = 0
+c 0.278 6 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 0.278 1 TRY REDUCE 63 0 0 2 2
+c 0.278 1 REDUCE
+c 0.278 5 [msg] Message 32 with Payload -1 from 6 received.
+c 0.278 3 [msg] Message 32 with Payload -1 from 6 received.
+c 0.281 0 [stack] In loop. Jobs left: 10
+c 0.287 1 [msg] Requested work stealing from: 3
+c 0.287 3 [msg] Message 31 with Payload 0 from 1 received.
+c 0.287 3 [msg] Processing work stealing query from 1
+c 0.287 3 [steal] I am not sending work: _work_list.size() = 0
+c 0.287 3 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.287 1 [msg] Message 32 with Payload -1 from 3 received.
+c 0.287 0 TRY REDUCE 63 0 0 2 2
+c 0.287 0 REDUCE
+c 0.287 1 BROADCAST
+c 0.287 1 TRY REDUCE 64 0 0 2 2
+c 0.287 1 BROADCAST
+c 0.287 2 BROADCAST
+c 0.287 2 TRY REDUCE 64 0 0 2 2
+c 0.287 2 BROADCAST
+c 0.287 4 BROADCAST
+c 0.287 4 TRY REDUCE 64 0 0 2 2
+c 0.287 4 BROADCAST
+c 0.287 3 BROADCAST
+c 0.287 3 TRY REDUCE 64 0 0 2 2
+c 0.287 3 BROADCAST
+c 0.287 5 BROADCAST
+c 0.287 5 TRY REDUCE 64 0 0 2 2
+c 0.287 5 BROADCAST
+c 0.287 6 BROADCAST
+c 0.287 6 TRY REDUCE 64 0 0 2 2
+c 0.287 6 BROADCAST
+c 0.287 7 BROADCAST
+c 0.287 7 TRY REDUCE 64 0 0 2 2
+c 0.287 7 BROADCAST
+c 0.287 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 30}.
+c 0.287 0 [bou] Before reduction: {lower, upper, best} = {6, 30, 30}
+c 0.287 0 [bou] After redution: {lower, upper, best} = {6, 30, 30}
+c 0.287 2 [msg] Requested work stealing from: 5
+c 0.287 2 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 30}.
+c 0.287 2 [bou] Before reduction: {lower, upper, best} = {-1, 30, 30}
+c 0.287 2 [bou] After redution: {lower, upper, best} = {6, 30, 30}
+c 0.287 5 [msg] Message 31 with Payload 0 from 2 received.
+c 0.287 5 [msg] Processing work stealing query from 2
+c 0.288 5 [steal] I am not sending work: _work_list.size() = 0
+c 0.288 5 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 0.288 2 [msg] Message 32 with Payload -1 from 5 received.
+c 0.288 4 [msg] Requested work stealing from: 2
+c 0.288 4 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 30}.
+c 0.288 4 [bou] Before reduction: {lower, upper, best} = {-1, 30, 30}
+c 0.288 4 [bou] After redution: {lower, upper, best} = {6, 30, 30}
+c 0.288 2 [msg] Message 31 with Payload 0 from 4 received.
+c 0.288 2 [msg] Processing work stealing query from 4
+c 0.288 2 [steal] I am not sending work: _work_list.size() = 0
+c 0.288 2 [msg] Message returned to sender 4 with payload[0] = -1 and _sent_work = 0
+c 0.288 7 [msg] Requested work stealing from: 3
+c 0.288 7 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 30}.
+c 0.288 7 [bou] Before reduction: {lower, upper, best} = {-1, 30, 30}
+c 0.288 7 [bou] After redution: {lower, upper, best} = {6, 30, 30}
+c 0.288 6 [msg] Requested work stealing from: 4
+c 0.288 6 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 30}.
+c 0.288 6 [bou] Before reduction: {lower, upper, best} = {-1, 30, 30}
+c 0.288 6 [bou] After redution: {lower, upper, best} = {6, 30, 30}
+c 0.288 4 [msg] Message 32 with Payload -1 from 2 received.
+c 0.288 4 [msg] Message 31 with Payload 0 from 6 received.
+c 0.288 4 [msg] Processing work stealing query from 6
+c 0.288 4 [steal] I am not sending work: _work_list.size() = 0
+c 0.288 4 [msg] Message returned to sender 6 with payload[0] = -1 and _sent_work = 0
+c 0.288 5 [msg] Requested work stealing from: 4
+c 0.288 5 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 30}.
+c 0.288 5 [bou] Before reduction: {lower, upper, best} = {-1, -1, -1}
+c 0.288 5 [bou] After redution: {lower, upper, best} = {6, 30, -1}
+c 0.288 3 [msg] Message 31 with Payload 0 from 7 received.
+c 0.288 3 [msg] Processing work stealing query from 7
+c 0.288 3 [steal] I am not sending work: _work_list.size() = 0
+c 0.288 3 [msg] Message returned to sender 7 with payload[0] = -1 and _sent_work = 0
+c 0.288 7 [msg] Message 32 with Payload -1 from 3 received.
+c 0.288 6 [msg] Message 32 with Payload -1 from 4 received.
+c 0.288 4 [msg] Message 31 with Payload 0 from 5 received.
+c 0.288 4 [msg] Processing work stealing query from 5
+c 0.288 4 [steal] I am not sending work: _work_list.size() = 0
+c 0.288 4 [msg] Message returned to sender 5 with payload[0] = -1 and _sent_work = 0
+c 0.288 5 [msg] Message 32 with Payload -1 from 4 received.
+c 0.288 3 [msg] Requested work stealing from: 4
+c 0.288 3 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 30}.
+c 0.288 3 [bou] Before reduction: {lower, upper, best} = {-1, 30, 30}
+c 0.288 3 [bou] After redution: {lower, upper, best} = {6, 30, 30}
+c 0.288 4 [msg] Message 31 with Payload 0 from 3 received.
+c 0.288 4 [msg] Processing work stealing query from 3
+c 0.288 4 [steal] I am not sending work: _work_list.size() = 0
+c 0.288 4 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 0.288 3 [msg] Message 32 with Payload -1 from 4 received.
+c 0.294 0 [stack] Stack empty. Stopping Loop
+c 0.297 1 [msg] Requested work stealing from: 6
+c 0.297 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 30}.
+c 0.297 1 [bou] Before reduction: {lower, upper, best} = {-1, 30, 30}
+c 0.297 1 [bou] After redution: {lower, upper, best} = {6, 30, 30}
+c 0.297 6 [msg] Message 31 with Payload 0 from 1 received.
+c 0.297 6 [msg] Processing work stealing query from 1
+c 0.297 6 [steal] I am not sending work: _work_list.size() = 0
+c 0.297 6 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.297 1 [msg] Message 32 with Payload -1 from 6 received.
+c 0.297 0 [msg] Requested work stealing from: 5
+c 0.297 5 [msg] Message 31 with Payload 0 from 0 received.
+c 0.297 5 [msg] Processing work stealing query from 0
+c 0.297 5 [steal] I am not sending work: _work_list.size() = 0
+c 0.297 5 [msg] Message returned to sender 0 with payload[0] = -1 and _sent_work = 0
+c 0.298 0 [msg] Message 32 with Payload -1 from 5 received.
+c 0.298 4 [msg] Requested work stealing from: 3
+c 0.298 7 [msg] Requested work stealing from: 3
+c 0.298 3 [msg] Message 31 with Payload 0 from 4 received.
+c 0.298 3 [msg] Processing work stealing query from 4
+c 0.298 3 [steal] I am not sending work: _work_list.size() = 0
+c 0.298 3 [msg] Message returned to sender 4 with payload[0] = -1 and _sent_work = 0
+c 0.298 3 [msg] Message 31 with Payload 0 from 7 received.
+c 0.298 3 [msg] Processing work stealing query from 7
+c 0.298 3 [steal] I am not sending work: _work_list.size() = 0
+c 0.298 6 [msg] Requested work stealing from: 2
+c 0.298 3 [msg] Message returned to sender 7 with payload[0] = -1 and _sent_work = 0
+c 0.298 5 [msg] Requested work stealing from: 2
+c 0.298 7 [msg] Message 32 with Payload -1 from 3 received.
+c 0.298 2 [msg] Message 31 with Payload 0 from 6 received.
+c 0.298 2 [msg] Processing work stealing query from 6
+c 0.298 2 [steal] I am not sending work: _work_list.size() = 0
+c 0.298 2 [msg] Message returned to sender 6 with payload[0] = -1 and _sent_work = 0
+c 0.298 4 [msg] Message 32 with Payload -1 from 3 received.
+c 0.298 2 [msg] Message 31 with Payload 0 from 5 received.
+c 0.298 2 [msg] Processing work stealing query from 5
+c 0.298 2 [steal] I am not sending work: _work_list.size() = 0
+c 0.298 2 [msg] Message returned to sender 5 with payload[0] = -1 and _sent_work = 0
+c 0.298 6 [msg] Message 32 with Payload -1 from 2 received.
+c 0.298 5 [msg] Message 32 with Payload -1 from 2 received.
+c 0.298 3 [msg] Requested work stealing from: 2
+c 0.298 2 [msg] Message 31 with Payload 0 from 3 received.
+c 0.298 2 [msg] Processing work stealing query from 3
+c 0.298 2 [steal] I am not sending work: _work_list.size() = 0
+c 0.298 2 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 0.299 3 [msg] Message 32 with Payload -1 from 2 received.
+c 0.307 1 [msg] Requested work stealing from: 4
+c 0.307 4 [msg] Message 31 with Payload 0 from 1 received.
+c 0.307 4 [msg] Processing work stealing query from 1
+c 0.307 4 [steal] I am not sending work: _work_list.size() = 0
+c 0.307 4 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.307 1 [msg] Message 32 with Payload -1 from 4 received.
+c 0.307 0 [msg] Requested work stealing from: 2
+c 0.308 2 [msg] Requested work stealing from: 3
+c 0.308 2 [msg] Message 31 with Payload 0 from 0 received.
+c 0.308 2 [msg] Processing work stealing query from 0
+c 0.308 2 [steal] I am not sending work: _work_list.size() = 0
+c 0.307 3 [msg] Message 31 with Payload 0 from 2 received.
+c 0.307 3 [msg] Processing work stealing query from 2
+c 0.307 3 [steal] I am not sending work: _work_list.size() = 0
+c 0.307 3 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 0.308 2 [msg] Message returned to sender 0 with payload[0] = -1 and _sent_work = 0
+c 0.308 2 [msg] Message 32 with Payload -1 from 3 received.
+c 0.308 0 [msg] Message 32 with Payload -1 from 2 received.
+c 0.308 4 [msg] Requested work stealing from: 2
+c 0.308 2 [msg] Message 31 with Payload 0 from 4 received.
+c 0.308 2 [msg] Processing work stealing query from 4
+c 0.308 2 [steal] I am not sending work: _work_list.size() = 0
+c 0.308 2 [msg] Message returned to sender 4 with payload[0] = -1 and _sent_work = 0
+c 0.308 7 [msg] Requested work stealing from: 6
+c 0.308 4 [msg] Message 32 with Payload -1 from 2 received.
+c 0.308 4 [msg] Message 31 with Payload 0 from 6 received.
+c 0.308 4 [msg] Processing work stealing query from 6
+c 0.308 6 [msg] Requested work stealing from: 4
+c 0.308 6 [msg] Message 31 with Payload 0 from 7 received.
+c 0.308 6 [msg] Processing work stealing query from 7
+c 0.308 4 [steal] I am not sending work: _work_list.size() = 0
+c 0.308 4 [msg] Message returned to sender 6 with payload[0] = -1 and _sent_work = 0
+c 0.308 6 [steal] I am not sending work: _work_list.size() = 0
+c 0.308 6 [msg] Message returned to sender 7 with payload[0] = -1 and _sent_work = 0
+c 0.308 6 [msg] Message 32 with Payload -1 from 4 received.
+c 0.308 7 [msg] Message 32 with Payload -1 from 6 received.
+c 0.308 5 [msg] Requested work stealing from: 4
+c 0.308 4 [msg] Message 31 with Payload 0 from 5 received.
+c 0.308 4 [msg] Processing work stealing query from 5
+c 0.308 4 [steal] I am not sending work: _work_list.size() = 0
+c 0.308 4 [msg] Message returned to sender 5 with payload[0] = -1 and _sent_work = 0
+c 0.308 5 [msg] Message 32 with Payload -1 from 4 received.
+c 0.308 3 [msg] Requested work stealing from: 4
+c 0.308 4 [msg] Message 31 with Payload 0 from 3 received.
+c 0.308 4 [msg] Processing work stealing query from 3
+c 0.308 4 [steal] I am not sending work: _work_list.size() = 0
+c 0.308 4 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 0.308 3 [msg] Message 32 with Payload -1 from 4 received.
+c 0.317 1 [msg] Requested work stealing from: 2
+c 0.317 2 [msg] Message 31 with Payload 0 from 1 received.
+c 0.317 2 [msg] Processing work stealing query from 1
+c 0.317 2 [steal] I am not sending work: _work_list.size() = 0
+c 0.317 2 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.317 1 [msg] Message 32 with Payload -1 from 2 received.
+c 0.318 0 [msg] Requested work stealing from: 3
+c 0.318 3 [msg] Message 31 with Payload 0 from 0 received.
+c 0.318 3 [msg] Processing work stealing query from 0
+c 0.318 3 [steal] I am not sending work: _work_list.size() = 0
+c 0.318 3 [msg] Message returned to sender 0 with payload[0] = -1 and _sent_work = 0
+c 0.318 0 [msg] Message 32 with Payload -1 from 3 received.
+c 0.318 7 [msg] Requested work stealing from: 4
+c 0.318 4 [msg] Requested work stealing from: 3
+c 0.318 4 [msg] Message 31 with Payload 0 from 7 received.
+c 0.318 4 [msg] Processing work stealing query from 7
+c 0.318 4 [steal] I am not sending work: _work_list.size() = 0
+c 0.318 3 [msg] Message 31 with Payload 0 from 4 received.
+c 0.318 3 [msg] Processing work stealing query from 4
+c 0.318 3 [steal] I am not sending work: _work_list.size() = 0
+c 0.318 3 [msg] Message returned to sender 4 with payload[0] = -1 and _sent_work = 0
+c 0.318 4 [msg] Message returned to sender 7 with payload[0] = -1 and _sent_work = 0
+c 0.318 6 [msg] Requested work stealing from: 0
+c 0.318 7 [msg] Message 32 with Payload -1 from 4 received.
+c 0.318 0 [msg] Message 31 with Payload 0 from 6 received.
+c 0.318 0 [msg] Processing work stealing query from 6
+c 0.318 0 [steal] I am not sending work: _work_list.size() = 0
+c 0.318 0 [msg] Message returned to sender 6 with payload[0] = -1 and _sent_work = 0
+c 0.318 4 [msg] Message 32 with Payload -1 from 3 received.
+c 0.318 5 [msg] Requested work stealing from: 0
+c 0.318 6 [msg] Message 32 with Payload -1 from 0 received.
+c 0.318 0 [msg] Message 31 with Payload 0 from 5 received.
+c 0.318 0 [msg] Processing work stealing query from 5
+c 0.318 0 [steal] I am not sending work: _work_list.size() = 0
+c 0.318 0 [msg] Message returned to sender 5 with payload[0] = -1 and _sent_work = 0
+c 0.318 5 [msg] Message 32 with Payload -1 from 0 received.
+c 0.318 3 [msg] Requested work stealing from: 0
+c 0.319 0 [msg] Message 31 with Payload 0 from 3 received.
+c 0.319 0 [msg] Processing work stealing query from 3
+c 0.319 0 [steal] I am not sending work: _work_list.size() = 0
+c 0.319 0 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 0.319 3 [msg] Message 32 with Payload -1 from 0 received.
+c 0.327 1 [msg] Requested work stealing from: 4
+c 0.327 4 [msg] Message 31 with Payload 0 from 1 received.
+c 0.327 4 [msg] Processing work stealing query from 1
+c 0.327 4 [steal] I am not sending work: _work_list.size() = 0
+c 0.327 4 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.327 1 [msg] Message 32 with Payload -1 from 4 received.
+c 0.328 0 [msg] Requested work stealing from: 2
+c 0.328 2 [msg] Message 31 with Payload 0 from 0 received.
+c 0.328 2 [msg] Processing work stealing query from 0
+c 0.328 2 [steal] I am not sending work: _work_list.size() = 0
+c 0.328 2 [msg] Message returned to sender 0 with payload[0] = -1 and _sent_work = 0
+c 0.328 0 [msg] Message 32 with Payload -1 from 2 received.
+c 0.328 2 [msg] Requested work stealing from: 3
+c 0.328 7 [msg] Requested work stealing from: 2
+c 0.328 3 [msg] Message 31 with Payload 0 from 2 received.
+c 0.328 3 [msg] Processing work stealing query from 2
+c 0.328 3 [steal] I am not sending work: _work_list.size() = 0
+c 0.328 3 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 0.328 4 [msg] Requested work stealing from: 3
+c 0.328 2 [msg] Message 32 with Payload -1 from 3 received.
+c 0.328 2 [msg] Message 31 with Payload 0 from 7 received.
+c 0.328 2 [msg] Processing work stealing query from 7
+c 0.328 2 [steal] I am not sending work: _work_list.size() = 0
+c 0.328 2 [msg] Message returned to sender 7 with payload[0] = -1 and _sent_work = 0
+c 0.328 6 [msg] Requested work stealing from: 3
+c 0.328 7 [msg] Message 32 with Payload -1 from 2 received.
+c 0.328 3 [msg] Message 31 with Payload 0 from 4 received.
+c 0.328 3 [msg] Processing work stealing query from 4
+c 0.328 3 [steal] I am not sending work: _work_list.size() = 0
+c 0.328 3 [msg] Message returned to sender 4 with payload[0] = -1 and _sent_work = 0
+c 0.328 3 [msg] Message 31 with Payload 0 from 6 received.
+c 0.328 4 [msg] Message 32 with Payload -1 from 3 received.
+c 0.328 3 [msg] Processing work stealing query from 6
+c 0.328 3 [steal] I am not sending work: _work_list.size() = 0
+c 0.328 3 [msg] Message returned to sender 6 with payload[0] = -1 and _sent_work = 0
+c 0.328 5 [msg] Requested work stealing from: 3
+c 0.328 6 [msg] Message 32 with Payload -1 from 3 received.
+c 0.328 3 [msg] Message 31 with Payload 0 from 5 received.
+c 0.328 3 [msg] Processing work stealing query from 5
+c 0.328 3 [steal] I am not sending work: _work_list.size() = 0
+c 0.328 3 [msg] Message returned to sender 5 with payload[0] = -1 and _sent_work = 0
+c 0.328 5 [msg] Message 32 with Payload -1 from 3 received.
+c 0.337 1 [msg] Requested work stealing from: 0
+c 0.337 0 [msg] Message 31 with Payload 0 from 1 received.
+c 0.337 0 [msg] Processing work stealing query from 1
+c 0.337 0 [steal] I am not sending work: _work_list.size() = 0
+c 0.337 0 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.337 1 [msg] Message 32 with Payload -1 from 0 received.
+c 0.338 0 [msg] Requested work stealing from: 3
+c 0.338 3 [msg] Message 31 with Payload 0 from 0 received.
+c 0.338 3 [msg] Processing work stealing query from 0
+c 0.338 3 [steal] I am not sending work: _work_list.size() = 0
+c 0.338 3 [msg] Message returned to sender 0 with payload[0] = -1 and _sent_work = 0
+c 0.338 0 [msg] Message 32 with Payload -1 from 3 received.
+c 0.338 2 [msg] Requested work stealing from: 3
+c 0.338 3 [msg] Message 31 with Payload 0 from 2 received.
+c 0.338 3 [msg] Processing work stealing query from 2
+c 0.338 3 [steal] I am not sending work: _work_list.size() = 0
+c 0.338 3 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 0.338 7 [msg] Requested work stealing from: 4
+c 0.338 4 [msg] Requested work stealing from: 6
+c 0.338 4 [msg] Message 31 with Payload 0 from 7 received.
+c 0.338 4 [msg] Processing work stealing query from 7
+c 0.338 2 [msg] Message 32 with Payload -1 from 3 received.
+c 0.338 4 [steal] I am not sending work: _work_list.size() = 0
+c 0.338 4 [msg] Message returned to sender 7 with payload[0] = -1 and _sent_work = 0
+c 0.338 6 [msg] Requested work stealing from: 0
+c 0.338 6 [msg] Message 31 with Payload 0 from 4 received.
+c 0.338 6 [msg] Processing work stealing query from 4
+c 0.338 6 [steal] I am not sending work: _work_list.size() = 0
+c 0.338 6 [msg] Message returned to sender 4 with payload[0] = -1 and _sent_work = 0
+c 0.338 7 [msg] Message 32 with Payload -1 from 4 received.
+c 0.338 0 [msg] Message 31 with Payload 0 from 6 received.
+c 0.338 0 [msg] Processing work stealing query from 6
+c 0.338 0 [steal] I am not sending work: _work_list.size() = 0
+c 0.338 4 [msg] Message 32 with Payload -1 from 6 received.
+c 0.338 0 [msg] Message returned to sender 6 with payload[0] = -1 and _sent_work = 0
+c 0.338 6 [msg] Message 32 with Payload -1 from 0 received.
+c 0.338 5 [msg] Requested work stealing from: 0
+c 0.339 0 [msg] Message 31 with Payload 0 from 5 received.
+c 0.339 0 [msg] Processing work stealing query from 5
+c 0.339 0 [steal] I am not sending work: _work_list.size() = 0
+c 0.339 0 [msg] Message returned to sender 5 with payload[0] = -1 and _sent_work = 0
+c 0.339 5 [msg] Message 32 with Payload -1 from 0 received.
+c 0.339 3 [msg] Requested work stealing from: 0
+c 0.339 0 [msg] Message 31 with Payload 0 from 3 received.
+c 0.339 0 [msg] Processing work stealing query from 3
+c 0.339 0 [steal] I am not sending work: _work_list.size() = 0
+c 0.339 0 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 0.339 3 [msg] Message 32 with Payload -1 from 0 received.
+c 0.347 1 [msg] Requested work stealing from: 3
+c 0.347 3 [msg] Message 31 with Payload 0 from 1 received.
+c 0.347 3 [msg] Processing work stealing query from 1
+c 0.347 3 [steal] I am not sending work: _work_list.size() = 0
+c 0.347 3 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.347 1 [msg] Message 32 with Payload -1 from 3 received.
+c 0.348 0 [msg] Requested work stealing from: 3
+c 0.348 3 [msg] Message 31 with Payload 0 from 0 received.
+c 0.348 3 [msg] Processing work stealing query from 0
+c 0.348 3 [steal] I am not sending work: _work_list.size() = 0
+c 0.348 3 [msg] Message returned to sender 0 with payload[0] = -1 and _sent_work = 0
+c 0.348 0 [msg] Message 32 with Payload -1 from 3 received.
+c 0.348 2 [msg] Requested work stealing from: 6
+c 0.348 6 [msg] Message 31 with Payload 0 from 2 received.
+c 0.348 6 [msg] Processing work stealing query from 2
+c 0.348 6 [steal] I am not sending work: _work_list.size() = 0
+c 0.348 6 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 0.348 2 [msg] Message 32 with Payload -1 from 6 received.
+c 0.348 7 [msg] Requested work stealing from: 0
+c 0.348 0 [msg] Message 31 with Payload 0 from 7 received.
+c 0.348 0 [msg] Processing work stealing query from 7
+c 0.348 0 [steal] I am not sending work: _work_list.size() = 0
+c 0.348 0 [msg] Message returned to sender 7 with payload[0] = -1 and _sent_work = 0
+c 0.348 7 [msg] Message 32 with Payload -1 from 0 received.
+c 0.348 6 [msg] Requested work stealing from: 7
+c 0.349 7 [msg] Message 31 with Payload 0 from 6 received.
+c 0.349 7 [msg] Processing work stealing query from 6
+c 0.349 7 [steal] I am not sending work: _work_list.size() = 0
+c 0.349 7 [msg] Message returned to sender 6 with payload[0] = -1 and _sent_work = 0
+c 0.349 6 [msg] Message 32 with Payload -1 from 7 received.
+c 0.349 5 [msg] Requested work stealing from: 7
+c 0.349 3 [msg] Requested work stealing from: 7
+c 0.349 7 [msg] Message 31 with Payload 0 from 3 received.
+c 0.349 7 [msg] Processing work stealing query from 3
+c 0.349 7 [steal] I am not sending work: _work_list.size() = 0
+c 0.349 7 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 0.349 7 [msg] Message 31 with Payload 0 from 5 received.
+c 0.349 7 [msg] Processing work stealing query from 5
+c 0.349 7 [steal] I am not sending work: _work_list.size() = 0
+c 0.349 7 [msg] Message returned to sender 5 with payload[0] = -1 and _sent_work = 0
+c 0.349 3 [msg] Message 32 with Payload -1 from 7 received.
+c 0.349 5 [msg] Message 32 with Payload -1 from 7 received.
+c 0.357 1 [msg] Requested work stealing from: 0
+c 0.357 0 [msg] Message 31 with Payload 0 from 1 received.
+c 0.357 0 [msg] Processing work stealing query from 1
+c 0.357 0 [steal] I am not sending work: _work_list.size() = 0
+c 0.357 0 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.358 1 [msg] Message 32 with Payload -1 from 0 received.
+c 0.358 0 [msg] Requested work stealing from: 6
+c 0.358 0 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {0, 6, 30} to all-reduction.
+c 0.358 6 [msg] Message 31 with Payload 0 from 0 received.
+c 0.358 6 [msg] Processing work stealing query from 0
+c 0.358 6 [steal] I am not sending work: _work_list.size() = 0
+c 0.358 6 [msg] Message returned to sender 0 with payload[0] = -1 and _sent_work = 0
+c 0.358 0 [msg] Message 32 with Payload -1 from 6 received.
+c 0.358 2 [msg] Requested work stealing from: 4
+c 0.358 2 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {0, 6, 30} to all-reduction.
+c 0.358 4 [msg] Message 31 with Payload 0 from 2 received.
+c 0.358 4 [msg] Processing work stealing query from 2
+c 0.358 4 [steal] I am not sending work: _work_list.size() = 0
+c 0.358 4 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 0.358 7 [msg] Requested work stealing from: 3
+c 0.358 2 [msg] Message 32 with Payload -1 from 4 received.
+c 0.358 4 [msg] Requested work stealing from: 2
+c 0.358 4 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {0, 6, 30} to all-reduction.
+c 0.358 3 [msg] Message 31 with Payload 0 from 7 received.
+c 0.358 3 [msg] Processing work stealing query from 7
+c 0.358 3 [steal] I am not sending work: _work_list.size() = 0
+c 0.358 3 [msg] Message returned to sender 7 with payload[0] = -1 and _sent_work = 0
+c 0.358 6 [msg] Requested work stealing from: 5
+c 0.358 6 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {0, 6, 30} to all-reduction.
+c 0.358 7 [msg] Message 32 with Payload -1 from 3 received.
+c 0.358 2 [msg] Message 31 with Payload 0 from 4 received.
+c 0.358 2 [msg] Processing work stealing query from 4
+c 0.358 2 [steal] I am not sending work: _work_list.size() = 0
+c 0.358 2 [msg] Message returned to sender 4 with payload[0] = -1 and _sent_work = 0
+c 0.359 5 [msg] Message 31 with Payload 0 from 6 received.
+c 0.359 5 [msg] Processing work stealing query from 6
+c 0.359 5 [steal] I am not sending work: _work_list.size() = 0
+c 0.359 5 [msg] Message returned to sender 6 with payload[0] = -1 and _sent_work = 0
+c 0.359 4 [msg] Message 32 with Payload -1 from 2 received.
+c 0.359 6 [msg] Message 32 with Payload -1 from 5 received.
+c 0.359 5 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {0, 6, 30} to all-reduction.
+c 0.359 3 [msg] Requested work stealing from: 5
+c 0.359 3 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {0, 6, 30} to all-reduction.
+c 0.359 5 [msg] Message 31 with Payload 0 from 3 received.
+c 0.359 5 [msg] Processing work stealing query from 3
+c 0.359 5 [steal] I am not sending work: _work_list.size() = 0
+c 0.359 5 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 0.359 3 [msg] Message 32 with Payload -1 from 5 received.
+c 0.367 1 [msg] Requested work stealing from: 7
+c 0.367 1 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {0, 6, 30} to all-reduction.
+c 0.367 7 [msg] Message 31 with Payload 0 from 1 received.
+c 0.368 7 [msg] Processing work stealing query from 1
+c 0.368 7 [steal] I am not sending work: _work_list.size() = 0
+c 0.368 7 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.368 1 [msg] Message 32 with Payload -1 from 7 received.
+c 0.368 0 [msg] Requested work stealing from: 4
+c 0.368 4 [msg] Message 31 with Payload 0 from 0 received.
+c 0.368 4 [msg] Processing work stealing query from 0
+c 0.368 4 [steal] I am not sending work: _work_list.size() = 0
+c 0.368 4 [msg] Message returned to sender 0 with payload[0] = -1 and _sent_work = 0
+c 0.368 0 [msg] Message 32 with Payload -1 from 4 received.
+c 0.368 7 [msg] Requested work stealing from: 0
+c 0.368 7 [red] & [bou] Contributed {finished, lowerBound, upperBound} = {0, 6, 30} to all-reduction.
+c 0.368 1 TRY REDUCE 63 0 0 2 2
+c 0.368 1 REDUCE
+c 0.368 0 [msg] Message 31 with Payload 0 from 7 received.
+c 0.368 0 [msg] Processing work stealing query from 7
+c 0.368 0 [steal] I am not sending work: _work_list.size() = 0
+c 0.368 0 [msg] Message returned to sender 7 with payload[0] = -1 and _sent_work = 0
+c 0.368 7 [msg] Message 32 with Payload -1 from 0 received.
+c 0.369 2 TRY REDUCE 63 0 0 2 2
+c 0.369 2 REDUCE
+c 0.369 5 [msg] Requested work stealing from: 6
+c 0.369 3 [msg] Requested work stealing from: 6
+c 0.369 2 TRY REDUCE 63 0 0 2 2
+c 0.369 2 REDUCE
+c 0.369 6 [msg] Message 31 with Payload 0 from 5 received.
+c 0.369 6 [msg] Processing work stealing query from 5
+c 0.369 6 [steal] I am not sending work: _work_list.size() = 0
+c 0.369 6 [msg] Message returned to sender 5 with payload[0] = -1 and _sent_work = 0
+c 0.369 6 [msg] Message 31 with Payload 0 from 3 received.
+c 0.369 6 [msg] Processing work stealing query from 3
+c 0.369 6 [steal] I am not sending work: _work_list.size() = 0
+c 0.369 6 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 0.369 3 [msg] Message 32 with Payload -1 from 6 received.
+c 0.369 5 [msg] Message 32 with Payload -1 from 6 received.
+c 0.377 1 [msg] Requested work stealing from: 5
+c 0.377 5 [msg] Message 31 with Payload 0 from 1 received.
+c 0.377 5 [msg] Processing work stealing query from 1
+c 0.377 5 [steal] I am not sending work: _work_list.size() = 0
+c 0.377 5 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.378 1 [msg] Message 32 with Payload -1 from 5 received.
+c 0.378 0 [msg] Requested work stealing from: 2
+c 0.378 2 [msg] Message 31 with Payload 0 from 0 received.
+c 0.378 2 [msg] Processing work stealing query from 0
+c 0.378 2 [steal] I am not sending work: _work_list.size() = 0
+c 0.378 2 [msg] Message returned to sender 0 with payload[0] = -1 and _sent_work = 0
+c 0.378 0 [msg] Message 32 with Payload -1 from 2 received.
+c 0.378 2 [msg] Requested work stealing from: 4
+c 0.378 4 [msg] Requested work stealing from: 0
+c 0.378 4 [msg] Message 31 with Payload 0 from 2 received.
+c 0.378 4 [msg] Processing work stealing query from 2
+c 0.378 4 [steal] I am not sending work: _work_list.size() = 0
+c 0.378 0 TRY REDUCE 63 0 0 2 2
+c 0.378 0 REDUCE
+c 0.378 0 [msg] Message 31 with Payload 0 from 4 received.
+c 0.378 0 [msg] Processing work stealing query from 4
+c 0.378 0 [steal] I am not sending work: _work_list.size() = 0
+c 0.378 0 [msg] Message returned to sender 4 with payload[0] = -1 and _sent_work = 0
+c 0.378 4 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 0.378 2 [msg] Message 32 with Payload -1 from 4 received.
+c 0.378 3 TRY REDUCE 63 0 0 2 2
+c 0.378 3 REDUCE
+c 0.378 6 [msg] Requested work stealing from: 2
+c 0.379 4 [msg] Message 32 with Payload -1 from 0 received.
+c 0.379 2 [msg] Message 31 with Payload 0 from 6 received.
+c 0.379 2 [msg] Processing work stealing query from 6
+c 0.379 2 [steal] I am not sending work: _work_list.size() = 0
+c 0.379 2 [msg] Message returned to sender 6 with payload[0] = -1 and _sent_work = 0
+c 0.379 6 [msg] Message 32 with Payload -1 from 2 received.
+c 0.379 3 [msg] Requested work stealing from: 2
+c 0.379 5 [msg] Requested work stealing from: 2
+c 0.379 2 [msg] Message 31 with Payload 0 from 3 received.
+c 0.379 2 [msg] Processing work stealing query from 3
+c 0.379 2 [steal] I am not sending work: _work_list.size() = 0
+c 0.379 2 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 0.379 2 [msg] Message 31 with Payload 0 from 5 received.
+c 0.379 2 [msg] Processing work stealing query from 5
+c 0.379 2 [steal] I am not sending work: _work_list.size() = 0
+c 0.379 2 [msg] Message returned to sender 5 with payload[0] = -1 and _sent_work = 0
+c 0.379 1 TRY REDUCE 63 0 0 2 2
+c 0.379 1 REDUCE
+c 0.379 3 [msg] Message 32 with Payload -1 from 2 received.
+c 0.379 5 [msg] Message 32 with Payload -1 from 2 received.
+c 0.387 1 [msg] Requested work stealing from: 6
+c 0.388 6 [msg] Message 31 with Payload 0 from 1 received.
+c 0.388 6 [msg] Processing work stealing query from 1
+c 0.388 6 [steal] I am not sending work: _work_list.size() = 0
+c 0.388 6 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.388 0 TRY REDUCE 63 0 0 2 2
+c 0.388 0 REDUCE
+c 0.388 1 [msg] Message 32 with Payload -1 from 6 received.
+c 0.388 0 [msg] Requested work stealing from: 4
+c 0.388 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {0, 6, 30}.
+c 0.388 0 [red] Thread will stop search: nbActive = 0
+c 0.388 0 c [red] & [bou] Thread has reportable solution: upperBound = 30, lowerBound = 6, currSolution = 30
+c 0.388 1 BROADCAST
+c 0.388 1 TRY REDUCE 64 0 0 2 2
+c 0.388 1 BROADCAST
+c 0.388 0 [bou] Before reduction: {lower, upper, best} = {6, 30, 30}
+c 0.388 0 [bou] After redution: {lower, upper, best} = {6, 30, 30}
+c 0.388 3 BROADCAST
+c 0.388 3 TRY REDUCE 64 0 0 2 2
+c 0.388 3 BROADCAST
+0.388 0 [stack] Succesfully broken out of loop
+c 0.388 0 [track] End outside & End tracker
+c 0.388 0 [tracking] Number of queries in total: 19 - succesful: 3 - before msgs allowed: 0 - rank invalid: 0 - reply empty: 15
+c 0.388 0 [tracking] Time wait threads: 0 0.202319
+c 0.388 0 [tracking] Time check: 1 0.018139
+c 0.388 0 [tracking] Time wait full: 2 0.258619
+c 0.388 0 [tracking] Time get work: 3 0.056130
+c 0.388 0 [tracking] Time work: 4 0.127789
+c 0.388 0 [tracking] Time compare: 5 0.042572
+c 0.388 0 [tracking] Time outside: 6 0.294434
+c 0.388 2 BROADCAST
+c 0.388 2 TRY REDUCE 64 0 0 2 2
+c 0.388 2 BROADCAST
+c 0.388 0 [track] All time: 1.000001
+c 0.388 4 [msg] Message 31 with Payload 0 from 0 received.
+c 0.388 4 [msg] Processing work stealing query from 0
+c 0.388 4 [steal] I am not sending work: _work_list.size() = 0
+c 0.388 4 [msg] Message returned to sender 0 with payload[0] = -1 and _sent_work = 0
+c 0.388 4 BROADCAST
+c 0.388 4 TRY REDUCE 64 0 0 2 2
+c 0.388 4 BROADCAST
+c 0.388 6 BROADCAST
+c 0.388 6 TRY REDUCE 64 0 0 2 2
+c 0.388 6 BROADCAST
+c 0.388 7 BROADCAST
+c 0.388 7 TRY REDUCE 64 0 0 2 2
+c 0.388 7 BROADCAST
+c 0.388 5 BROADCAST
+c 0.388 5 TRY REDUCE 64 0 0 2 2
+c 0.388 5 BROADCAST
+c 0.388 0 [msg] Message 32 with Payload -1 from 4 received.
+c 0.388 0 [msg] Message will not be entirely processed as program is finished
+c 0.388 0 [msg] Message returned to sender 4 with tag 4
+c 0.388 4 [msg] Message 4 with Payload -1 from 0 received.
+c 0.388 4 [term] Finished set to 1
+c 0.388 4 [stack] Succesfully broken out of loop
+c 0.388 4 [track] End outside & End tracker
+c 0.388 4 [tracking] Number of queries in total: 34 - succesful: 3 - before msgs allowed: 13 - rank invalid: 3 - reply empty: 15
+c 0.388 4 [tracking] Time wait threads: 0 0.000000
+c 0.388 4 [tracking] Time check: 1 0.013257
+c 0.388 4 [tracking] Time wait full: 2 0.372749
+c 0.388 4 [tracking] Time get work: 3 0.041057
+c 0.388 4 [tracking] Time work: 4 0.093699
+c 0.388 4 [tracking] Time compare: 5 0.030819
+c 0.388 4 [tracking] Time outside: 6 0.448419
+c 0.388 4 [track] All time: 1.000000
+c 0.388 2 [msg] Requested work stealing from: 0
+c 0.388 2 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {0, 6, 30}.
+c 0.388 2 [red] Thread will stop search: nbActive = 0
+c 0.388 2 [red] & [bou] Thread has reportable solution: upperBound = 30, lowerBound = 6, currSolution = 30
+c 0.388 2 [bou] Before reduction: {lower, upper, best} = {6, 30, 30}
+c 0.388 4 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {0, 6, 30}.
+c 0.388 4 [red] Thread will stop search: nbActive = 0
+c 0.388 2 [bou] After redution: {lower, upper, best} = {6, 30, 30}
+c 0.388 2 [stack] Succesfully broken out of loop
+c 0.388 2 [track] End outside & End tracker
+c 0.388 2 [tracking] Number of queries in total: 34 - succesful: 1 - before msgs allowed: 13 - rank invalid: 4 - reply empty: 15
+c 0.388 4 [red] & [bou] Thread has reportable solution: upperBound = 30, lowerBound = 6, currSolution = 30
+c 0.388 4 [bou] Before reduction: {lower, upper, best} = {6, 30, 30}
+c 0.388 4 [bou] After redution: {lower, upper, best} = {6, 30, 30}
+c 0.388 2 [tracking] Time wait threads: 0 0.000000
+c 0.388 2 [tracking] Time check: 1 0.013901
+c 0.388 2 [tracking] Time wait full: 2 0.192647
+c 0.388 2 [tracking] Time get work: 3 0.042675
+c 0.388 2 [tracking] Time work: 4 0.097451
+c 0.388 2 [tracking] Time compare: 5 0.032542
+c 0.388 2 [tracking] Time outside: 6 0.620784
+c 0.388 2 [track] All time: 1.000000
+c 0.388 7 [msg] Requested work stealing from: 5
+c 0.388 7 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {0, 6, 30}.
+c 0.388 7 [red] Thread will stop search: nbActive = 0
+c 0.388 0 [msg] Message 31 with Payload 0 from 2 received.
+c 0.388 0 [msg] Message will not be entirely processed as program is finished
+c 0.388 0 [msg] Message returned to sender 2 with tag 4
+c 0.388 7 [red] & [bou] Thread has reportable solution: upperBound = 30, lowerBound = 6, currSolution = 30
+c 0.388 7 [bou] Before reduction: {lower, upper, best} = {6, 30, 30}
+c 0.388 7 [bou] After redution: {lower, upper, best} = {6, 30, 30}
+c 0.388 7 [stack] Succesfully broken out of loop
+c 0.389 7 [track] End outside & End tracker
+c 0.389 7 [tracking] Number of queries in total: 38 - succesful: 3 - before msgs allowed: 13 - rank invalid: 3 - reply empty: 18
+c 0.389 7 [tracking] Time wait threads: 0 0.000000
+c 0.389 7 [tracking] Time check: 1 0.008827
+c 0.389 7 [tracking] Time wait full: 2 0.422653
+c 0.389 7 [tracking] Time get work: 3 0.026820
+c 0.388 6 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {0, 6, 30}.
+c 0.388 6 [red] Thread will stop search: nbActive = 0
+c 0.389 6 [red] & [bou] Thread has reportable solution: upperBound = 30, lowerBound = 6, currSolution = 30
+c 0.389 7 [tracking] Time work: 4 0.062216
+c 0.389 7 [tracking] Time compare: 5 0.020236
+c 0.389 7 [tracking] Time outside: 6 0.459248
+c 0.389 7 [track] All time: 1.000000
+c 0.389 6 [bou] Before reduction: {lower, upper, best} = {6, 30, 30}
+c 0.389 6 [bou] After redution: {lower, upper, best} = {6, 30, 30}
+c 0.389 6 [stack] Succesfully broken out of loop
+c 0.389 6 [track] End outside & End tracker
+c 0.389 2 [msg] Message 4 with Payload 0 from 0 received.
+c 0.389 2 [term] Finished set to 1
+c 0.389 6 [tracking] Number of queries in total: 41 - succesful: 1 - before msgs allowed: 13 - rank invalid: 4 - reply empty: 23
+c 0.389 6 [tracking] Time wait threads: 0 0.000000
+c 0.389 6 [tracking] Time check: 1 0.000146
+c 0.389 6 [tracking] Time wait full: 2 0.180389
+c 0.389 6 [tracking] Time get work: 3 0.000554
+c 0.389 6 [tracking] Time work: 4 0.001033
+c 0.389 6 [tracking] Time compare: 5 0.000339
+c 0.389 6 [tracking] Time outside: 6 0.817539
+c 0.389 5 [msg] Message 31 with Payload 0 from 7 received.
+c 0.389 5 [msg] Processing work stealing query from 7
+c 0.389 5 [steal] I am not sending work: _work_list.size() = 0
+c 0.389 6 [track] All time: 1.000000
+c 0.389 5 [msg] Message returned to sender 7 with payload[0] = -1 and _sent_work = 0
+c 0.389 7 [msg] Message 32 with Payload -1 from 5 received.
+c 0.389 7 [msg] Message will not be entirely processed as program is finished
+c 0.389 7 [msg] Message returned to sender 5 with tag 4
+c 0.389 5 [msg] Message 4 with Payload -1 from 7 received.
+c 0.389 5 [term] Finished set to 1
+c 0.389 5 [stack] Succesfully broken out of loop
+c 0.389 5 [track] End outside & End tracker
+c 0.389 5 [tracking] Number of queries in total: 40 - succesful: 0 - before msgs allowed: 13 - rank invalid: 2 - reply empty: 25
+c 0.389 5 [tracking] Time wait threads: 0 0.000000
+c 0.389 5 [tracking] Time check: 1 0.000000
+c 0.389 5 [tracking] Time wait full: 2 0.000000
+c 0.389 5 [tracking] Time get work: 3 0.000000
+c 0.389 5 [tracking] Time work: 4 0.000000
+c 0.389 5 [tracking] Time compare: 5 0.000000
+c 0.389 5 [tracking] Time outside: 6 1.000000
+c 0.389 5 [track] All time: 1.000000
+c 0.389 3 [msg] Requested work stealing from: 6
+c 0.389 3 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {0, 6, 30}.
+c 0.389 3 [red] Thread will stop search: nbActive = 0
+c 0.389 3 [red] & [bou] Thread has reportable solution: upperBound = 30, lowerBound = 6, currSolution = 30
+c 0.389 3 [bou] Before reduction: {lower, upper, best} = {6, 30, 30}
+c 0.389 3 [bou] After redution: {lower, upper, best} = {6, 30, 30}
+c 0.389 3 [stack] Succesfully broken out of loop
+c 0.389 5 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {0, 6, 30}.
+c 0.389 5 [red] Thread will stop search: nbActive = 0
+c 0.389 5 [bou] Before reduction: {lower, upper, best} = {6, 30, -1}
+c 0.389 5 [bou] After redution: {lower, upper, best} = {6, 30, -1}
+c 0.389 3 [track] End outside & End tracker
+c 0.389 3 [tracking] Number of queries in total: 41 - succesful: 2 - before msgs allowed: 13 - rank invalid: 5 - reply empty: 20
+c 0.389 3 [tracking] Time wait threads: 0 0.000000
+c 0.389 3 [tracking] Time check: 1 0.001131
+c 0.389 3 [tracking] Time wait full: 2 0.379875
+c 0.389 3 [tracking] Time get work: 3 0.003641
+c 0.389 3 [tracking] Time work: 4 0.008164
+c 0.389 3 [tracking] Time compare: 5 0.002642
+c 0.389 3 [tracking] Time outside: 6 0.604546
+c 0.389 3 [track] All time: 1.000000
+c 0.389 6 [msg] Message 31 with Payload 0 from 3 received.
+c 0.389 6 [msg] Message will not be entirely processed as program is finished
+c 0.389 6 [msg] Message returned to sender 3 with tag 4
+c 0.389 3 [msg] Message 4 with Payload 0 from 6 received.
+c 0.389 3 [term] Finished set to 1
+c 0.398 1 [msg] Requested work stealing from: 2
+c 0.398 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {0, 6, 30}.
+c 0.398 1 [red] Thread will stop search: nbActive = 0
+c 0.398 1 [red] & [bou] Thread has reportable solution: upperBound = 30, lowerBound = 6, currSolution = 30
+c 0.398 1 [bou] Before reduction: {lower, upper, best} = {6, 30, 30}
+c 0.398 1 [bou] After redution: {lower, upper, best} = {6, 30, 30}
+c 0.398 1 [stack] Succesfully broken out of loop
+c 0.398 1 [track] End outside & End tracker
+c 0.398 1 [tracking] Number of queries in total: 40 - succesful: 2 - before msgs allowed: 13 - rank invalid: 3 - reply empty: 21
+c 0.398 1 [tracking] Time wait threads: 0 0.000000
+c 0.398 1 [tracking] Time check: 1 0.005185
+c 0.398 1 [tracking] Time wait full: 2 0.366514
+c 0.398 1 [tracking] Time get work: 3 0.016117
+c 0.398 1 [tracking] Time work: 4 0.036655
+c 0.398 1 [tracking] Time compare: 5 0.011935
+c 0.398 2 [msg] Message 31 with Payload 0 from 1 received.
+c 0.398 2 [msg] Message will not be entirely processed as program is finished
+c 0.398 1 [tracking] Time outside: 6 0.563594
+c 0.398 1 [track] All time: 1.000000
+c 0.398 2 [msg] Message returned to sender 1 with tag 4
+c 0.398 1 [msg] Message 4 with Payload 0 from 2 received.
+c 0.398 1 [term] Finished set to 1
+c 0.398 0 [solved] End: (Completion: 1) (Nr Tasks: 20) (Nr Machines: 2) (Tasks:) (Machine Workloads: 30 30) (Machines: 3 3 3 3 3 3 3 3 3 3 0 3 3 3 3 3 3 3 3 3 3 0)
+c 0.398 0 RESPONSE_TIME #1 0.354289 rev. 0
+c 0.398 0 SOLUTION #1 SATISFIABLE rev. 0
+s SATISFIABLE
+null
+c 0.444 2 Exiting happily
+c 0.444 1 Exiting happily
+c 0.444 7 Exiting happily
+c 0.444 6 Exiting happily
+c 0.444 0 Exiting happily
+c 0.444 4 Exiting happily
+c 0.444 3 Exiting happily
+c 0.444 5 Exiting happily
