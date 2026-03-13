@@ -119,8 +119,6 @@ marker_count = 0
 
 # Plot
 for key, value in values_prune.items():
-    print(key)
-    print(value)
     sorted_keys = sorted(values_noprune[key], key=values_noprune[key].get)
     d1_sorted = {k: values_noprune[key][k] for k in sorted_keys}
     d2_sorted = {k: values_prune[key][k] for k in sorted_keys}
@@ -135,7 +133,7 @@ for key, value in values_prune.items():
     print(value_prune)
     print(value_noprune)
 
-    plt.scatter(value_prune[1], value_prune[1], label=key, marker=marker_rotation[marker_count])
+    plt.scatter(value_noprune[1], value_prune[1], label=key, marker=marker_rotation[marker_count])
 
     marker_count += 1
     marker_count %= len(marker_rotation)
@@ -143,7 +141,7 @@ for key, value in values_prune.items():
 
 plt.plot([0,300], [1,1], color="black")
 
-plt.xlim([0, 3])
+plt.xlim([0, 300])
 plt.ylim([0, 3])
 
 plt.xlabel("time with no pruning")
