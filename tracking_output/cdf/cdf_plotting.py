@@ -8,7 +8,7 @@ import os
 #
 
 # Assign directory
-directory = r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/all_in9"
+directory = r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/out"
 
 # Variables
 non_tracking_files = []
@@ -78,7 +78,7 @@ for name in non_tracking_files:
 myList = sorted(values.items())
 x, y = zip(*myList)
 values = list(map(int, x)), list(sorted(y_list) for y_list in y)
-print(values)
+#print(values)
 
 linestyle_str = ['solid', 'dotted', 'dashed', 'dashdot'] 
 
@@ -95,4 +95,4 @@ plt.xlabel("run time")
 plt.legend()
 
 fig_name = "tracking_output/cdf/out/cdf_plot9.png"
-plt.savefig(fig_name)
+#plt.savefig(fig_name)
