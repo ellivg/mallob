@@ -20,7 +20,6 @@ for directory in dir_list:
         tracking_lines = []
         tracking_values = []
         finished_values = []
-        wanted_keyword = "Time"
         file_path = os.path.join(directory, name)
 
         if not os.path.isfile(file_path):
@@ -44,12 +43,11 @@ for directory in dir_list:
         
         # Delete line delimiters and [tracking] keyword
         for line in tracking_lines:
-            if str.casefold(wanted_keyword) in str.casefold(line):
-                line = line[:-1]
-                line = line.split(" ")
-                line = line[1:3] + line[4:]
-                tracking_values.append(line)
-                # print(line)
+            line = line[:-1]
+            line = line.split(" ")
+            line = line[1:3] + line[4:]
+            tracking_values.append(line)
+            # print(line)
 
         # Probably later prettier but in basic the only necessary numbers are the timestamp line[0] and percentage line[-1]
         for line in tracking_values:

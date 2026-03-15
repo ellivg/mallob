@@ -158,7 +158,7 @@ void BnbJob::appl_communicate() {
             int randomIndex = rand() % _num_workers;
             int recvRank = getJobComm().getWorldRankOrMinusOne(randomIndex); // use JobComm to convert tree index into addressable MPI rank
             if (recvRank == -1 || getJobTree().getRank() == randomIndex) {
-                LOG(V5_DEBG, "[msg] Tried requesting work but receiving rank was invalid or my own: %i\n", recvRank);
+                LOG(V2_INFO, "[msg] Tried requesting work but receiving rank was invalid or my own: %i\n", recvRank);
                 tracker.num_nonsucc_rankinvld++;
             } else {
                 //Send
