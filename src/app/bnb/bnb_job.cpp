@@ -377,10 +377,11 @@ void BnbJob::loop() {
             tracker.curr_time = Timer::elapsedSeconds();
             tracker.time_spent_check += tracker.curr_time - tracker.check_time;
             tracker.wait_full_time = tracker.curr_time;
-            // actually log here please
+            // actually here
 
             if(empty) {
                 LOG(V2_INFO, "[track] End check & Start wait full\n");
+
                 LOG(V5_DEBG, "[stack] Stack empty. Stopping Loop\n");
                 _working = 0;
 
@@ -394,6 +395,7 @@ void BnbJob::loop() {
                 LOG(V2_INFO, "[track] End wait full & Start outside\n");
 
                 if(_stopSearch || _reportableSolution) break;
+                LOG(V5_DEBG, "[stack] Restarting loop: %i\n", _work_list.size());
                 
                 // Switch tracker
                 tracker.curr_time = Timer::elapsedSeconds();
@@ -401,9 +403,7 @@ void BnbJob::loop() {
                 tracker.time_spent_get_work = tracker.curr_time;
                 LOG(V2_INFO, "[track] End outside & Start wait full\n");
 
-                LOG(V5_DEBG, "[stack] Restarting loop: %i\n", _work_list.size());
-
-                LOG(V2_INFO, "[track] End outside & Start wait full\n");
+                LOG(V2_INFO, "[track] End wait full & Start get work\n");
             }
         }
 
@@ -411,7 +411,7 @@ void BnbJob::loop() {
         tracker.curr_time = Timer::elapsedSeconds();
         tracker.time_spent_wait_full += tracker.curr_time - tracker.wait_full_time;
         tracker.get_work_time = tracker.curr_time;
-        // actually log here please
+        // actually here
 
         //else: work
         Work curr_work;
