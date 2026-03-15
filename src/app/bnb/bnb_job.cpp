@@ -386,11 +386,10 @@ void BnbJob::loop() {
 
                 _loop_cond_var.waitWithLockedMutex(lock, [&]() {return (_working || _stopSearch || _reportableSolution);});
                 LOG(V5_DEBG, "[stack] working: %i or finished: %i %i\n", _working, _stopSearch, _reportableSolution);
-                
+                LOG(V2_INFO, "[track] End wait full & End empty & Start get work\n");
                 if(_stopSearch || _reportableSolution) break;
 
                 LOG(V2_INFO, "[stack] Restarting loop: %i\n", _work_list.size());
-                LOG(V2_INFO, "[track] End wait full & End empty & Start get work\n");
             }
         }
 
