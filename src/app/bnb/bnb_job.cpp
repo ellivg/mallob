@@ -400,7 +400,7 @@ void BnbJob::loop() {
                 // Switch tracker
                 tracker.curr_time = Timer::elapsedSeconds();
                 tracker.time_spent_outside += tracker.curr_time - tracker.wait_full_time;
-                tracker.time_spent_get_work = tracker.curr_time;
+                tracker.wait_full_time = tracker.curr_time;
                 LOG(V2_INFO, "[track] End outside & Start wait full\n");
 
                 LOG(V2_INFO, "[track] End wait full & Start get work\n");
