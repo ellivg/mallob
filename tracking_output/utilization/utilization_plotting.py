@@ -4,8 +4,8 @@ import math
 import os
 
 # Assign directory
-dir_list = [r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/all_in_run1",
-            r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/all_in_run2"]
+dir_list = [r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/out"]
+#            r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/all_in_run2"]
 
 # Variables
 non_tracking_files = []
@@ -14,8 +14,8 @@ values = defaultdict(list)
 # Iterate over files in directory
 for directory in dir_list:
     for name in os.listdir(directory):
-        if not "9_32" in name:
-            continue
+        #if not "9_32" in name:
+        #    continue
 
         tracking_lines = []
         tracking_values = []
@@ -63,7 +63,7 @@ for directory in dir_list:
 # Print non solved files
 if not non_tracking_files:
     print("All files were solved")
-for name in non_tracking_files:
+for name in sorted(non_tracking_files):
     print(name+" was not solved")
 
 print(values)
