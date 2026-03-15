@@ -381,15 +381,29 @@ void BnbJob::loop() {
 
             if(empty) {
                 LOG(V2_INFO, "[track] End check & Start wait full\n");
-                LOG(V2_INFO, "[stack] Stack empty. Stopping Loop\n");
+                LOG(V5_DEBG, "[stack] Stack empty. Stopping Loop\n");
                 _working = 0;
 
                 _loop_cond_var.waitWithLockedMutex(lock, [&]() {return (_working || _stopSearch || _reportableSolution);});
                 LOG(V5_DEBG, "[stack] working: %i or finished: %i %i\n", _working, _stopSearch, _reportableSolution);
-                LOG(V2_INFO, "[track] End wait full & End empty & Start get work\n");
-                if(_stopSearch || _reportableSolution) break;
 
-                LOG(V2_INFO, "[stack] Restarting loop: %i\n", _work_list.size());
+                // Switch tracker
+                tracker.curr_time = Timer::elapsedSeconds();
+                tracker.time_spent_wait_full += tracker.curr_time - tracker.wait_full_time;
+                tracker.outside_time = tracker.curr_time;
+                LOG(V2_INFO, "[track] End wait full & Start outside\n");
+
+                if(_stopSearch || _reportableSolution) break;
+                
+                // Switch tracker
+                tracker.curr_time = Timer::elapsedSeconds();
+                tracker.time_spent_outside += tracker.curr_time - tracker.wait_full_time;
+                tracker.time_spent_get_work = tracker.curr_time;
+                LOG(V2_INFO, "[track] End outside & Start wait full\n");
+
+                LOG(V5_DEBG, "[stack] Restarting loop: %i\n", _work_list.size());
+
+                LOG(V2_INFO, "[track] End outside & Start wait full\n");
             }
         }
 
@@ -397,7 +411,7 @@ void BnbJob::loop() {
         tracker.curr_time = Timer::elapsedSeconds();
         tracker.time_spent_wait_full += tracker.curr_time - tracker.wait_full_time;
         tracker.get_work_time = tracker.curr_time;
-        // actually log here
+        // actually log here please
 
         //else: work
         Work curr_work;
