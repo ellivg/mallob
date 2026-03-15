@@ -377,9 +377,10 @@ void BnbJob::loop() {
             tracker.curr_time = Timer::elapsedSeconds();
             tracker.time_spent_check += tracker.curr_time - tracker.check_time;
             tracker.wait_full_time = tracker.curr_time;
-            LOG(V2_INFO, "[track] End check & Start wait full\n");
+            // actually log here please
 
             if(empty) {
+                LOG(V2_INFO, "[track] End check & Start wait full\n");
                 LOG(V2_INFO, "[stack] Stack empty. Stopping Loop\n");
                 _working = 0;
 
@@ -455,7 +456,7 @@ void BnbJob::loop() {
     tracker.curr_time = Timer::elapsedSeconds();
     tracker.time_spent_outside += tracker.curr_time - tracker.outside_time;
     tracker.time_since_activation = tracker.curr_time - tracker.activation_time;
-    LOG(V2_INFO, "[track] End outside & End tracker\n");
+    LOG(V5_DEBG, "[track] End outside & End tracker\n");
     printTracking();
 }
 
