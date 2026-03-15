@@ -4,7 +4,7 @@ import math
 import os
 
 # Assign directory
-dir_list = [r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/out"]
+dir_list = [r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/scripts/bnb/out"]
 #            r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/all_in_run2"]
 
 # Variables
@@ -83,4 +83,4 @@ plt.ylim([0, 1])
 plt.xlabel("")
 plt.ylabel("percentage")
 
-plt.savefig("tracking_output/utilization/utilization_in11_test.pdf", format="pdf")
+plt.savefig("tracking_output/utilization/utilization_in11_test-after.pdf", format="pdf")
