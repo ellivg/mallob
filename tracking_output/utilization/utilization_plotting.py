@@ -4,8 +4,8 @@ import math
 import os
 
 # Assign directory
-dir_list = [r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/scripts/bnb/out"]
-#            r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/all_in_run2"]
+dir_list = [r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/all_in_run1",
+            r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/all_in_run2"]
 
 # Variables
 non_tracking_files = []
@@ -34,6 +34,19 @@ for directory in dir_list:
                 continue
 
             file.seek(0)
+
+            file_in = True
+            for line in file:
+                if "RESPONSE_TIME" in line:
+                    number = line.split(" ")[-3]
+                    if float(number) < 25.0:
+                        file_in = False
+            
+            if not file_in:
+                continue
+
+            file.seek(0)
+            
 
             # Add all lines relevant for tracking
             for line in file:
@@ -81,4 +94,4 @@ plt.ylim([0, 1])
 plt.xlabel("")
 plt.ylabel("percentage")
 
-plt.savefig("tracking_output/utilization/utilization_in11_test-after.pdf", format="pdf")
+plt.savefig("tracking_output/utilization/utilization_in11_test_big.pdf", format="pdf")
