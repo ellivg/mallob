@@ -124,7 +124,7 @@ void BnbJob::appl_communicate() {
         } else if (_waiting) {
             LOG(V5_DEBG, "[msg] Waiting\n");
             tracker.num_queries--; //because were still waiting on the last one to be filled
-        } else if (_first && !getJobTree().isRoot()) { // requesting from root
+/*         } else if (_first && !getJobTree().isRoot()) { // requesting from root
             //Request work
             JobMessage msg = getMessageTemplate();
             msg.tag = MSG_WORK_STEALING_QUERY;
@@ -147,7 +147,7 @@ void BnbJob::appl_communicate() {
                 LOG(V2_INFO, "[msg] Requested work stealing from: %i\n", recvRank);
                 _waiting = 1;
                 _first = 0;
-            }            
+            }  */           
         } else {
             //Request work
             JobMessage msg = getMessageTemplate();

@@ -4,7 +4,8 @@ import math
 import os
 
 # Assign directory
-directory = r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/all_in9"
+dir_list = [r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/all_in_run1",
+            r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/all_in_run2"]
 
 # Variables
 non_tracking_files = []
@@ -14,28 +15,29 @@ tracking_lines = []
 finished_values = defaultdict(list)
 
 # Iterate over files in directory
-for name in os.listdir(directory):
-    tracking_values = []
-    wanted_keyword = "queries"
-    file_path = os.path.join(directory, name)
+for directory in dir_list:
+    for name in os.listdir(directory):
+        tracking_values = []
+        wanted_keyword = "queries"
+        file_path = os.path.join(directory, name)
 
-    if not os.path.isfile(file_path):
-        continue
-    
-    with open(file_path) as file:
-        # Delete non-solved files
-        if not "[solved]" in file.read():
-            non_tracking_files.append(name)
+        if not os.path.isfile(file_path):
             continue
-
-        file.seek(0)
         
-        # Add all lines relevant for tracking
-        for line in file:
-            line.strip()
-            if ("[tracking]" in line) and (str.casefold(wanted_keyword) in str.casefold(line)):
-                line = line.split("Number of queries in ")[1]
-                tracking_lines.append(line)
+        with open(file_path) as file:
+            # Delete non-solved files
+            if not "[solved]" in file.read():
+                non_tracking_files.append(name)
+                continue
+
+            file.seek(0)
+            
+            # Add all lines relevant for tracking
+            for line in file:
+                line.strip()
+                if ("[tracking]" in line) and (str.casefold(wanted_keyword) in str.casefold(line)):
+                    line = line.split("Number of queries in ")[1]
+                    tracking_lines.append(line)
 
 # Delete line delimiters and [tracking] keyword
 for line in tracking_lines:
@@ -83,4 +85,4 @@ plt.ylim([0, 1])
 
 plt.ylabel("Number of queries")
 
-plt.savefig("tracking_output/messages/messages_plot_in9_small.png")
+plt.savefig("tracking_output/messages/messages_plot_in11.pdf", format="pdf")
