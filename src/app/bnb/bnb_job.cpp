@@ -365,7 +365,7 @@ void BnbJob::loop() {
         tracker.curr_time = Timer::elapsedSeconds();
         tracker.time_spent_outside += tracker.curr_time - tracker.outside_time;
         tracker.check_time = tracker.curr_time;
-        LOG(V5_DEBG, "[track] End outside & Start empty & Start check\n");
+        LOG(V2_INFO, "[track] End outside & Start empty & Start check\n");
 
         //check if stack is empty and stop working if necessary
         bool empty;
@@ -382,7 +382,7 @@ void BnbJob::loop() {
             if(empty) {
                 LOG(V2_INFO, "[track] End check & Start wait full\n");
 
-                LOG(V5_DEBG, "[stack] Stack empty. Stopping Loop\n");
+                LOG(V2_INFO, "[stack] Stack empty. Stopping Loop\n");
                 _working = 0;
 
                 _loop_cond_var.waitWithLockedMutex(lock, [&]() {return (_working || _stopSearch || _reportableSolution);});
@@ -392,7 +392,7 @@ void BnbJob::loop() {
                 tracker.curr_time = Timer::elapsedSeconds();
                 tracker.time_spent_wait_full += tracker.curr_time - tracker.wait_full_time;
                 tracker.outside_time = tracker.curr_time;
-                LOG(V2_INFO, "[track] End wait full & Start outside\n");
+                LOG(V5_DEBG, "[track] End wait full & Start outside\n");
 
                 if(_stopSearch || _reportableSolution) break;
                 LOG(V5_DEBG, "[stack] Restarting loop: %i\n", _work_list.size());
@@ -401,9 +401,9 @@ void BnbJob::loop() {
                 tracker.curr_time = Timer::elapsedSeconds();
                 tracker.time_spent_outside += tracker.curr_time - tracker.outside_time;
                 tracker.wait_full_time = tracker.curr_time;
-                LOG(V2_INFO, "[track] End outside & Start wait full\n");
+                LOG(V5_DEBG, "[track] End outside & Start wait full\n");
 
-                LOG(V2_INFO, "[track] End wait full & Start get work\n");
+                LOG(V5_DEBG, "[track] End wait full & Start get work\n");
             }
         }
 
