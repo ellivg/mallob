@@ -76,10 +76,10 @@ for directory in dir_list:
         #print(values)
 
 # Print non solved files
-if not non_tracking_files:
-    print("All files were solved")
-for name in non_tracking_files:
-    print(name+" was not solved")
+#if not non_tracking_files:
+#    print("All files were solved")
+#for name in non_tracking_files:
+#    print(name+" was not solved")
 
 # Convert dict to two lists [labels, [numbers]]
 #print(values)
@@ -104,4 +104,12 @@ plt.xlabel("run time [s]")
 plt.legend()
 
 fig_name = "tracking_output/cdf/cdf_plot21_log.pdf"
-plt.savefig(fig_name, format="pdf")
+#plt.savefig(fig_name, format="pdf")
+
+dir_list = [r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/instances/bnb/cnf/"]
+
+
+# Iterate over files in directory
+for directory in dir_list:
+    for name in os.listdir(directory):
+        print("instances/bnb/cnf/"+str(name))
