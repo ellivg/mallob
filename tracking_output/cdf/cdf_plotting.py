@@ -5,7 +5,9 @@ import os
 
 # Assign directory
 dir_list = [r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/all_in_run1",
-            r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/all_in_run2"]
+            r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/all_in_run2",
+            r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/all_in_run3",
+            r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/scripts/bnb/out"]
 
 # Variables
 non_tracking_files = []
@@ -85,12 +87,13 @@ for i in range(0, len(values[0])):
     linestyle_count = i % len(linestyle_str)
     plt.plot(values[1][i], list(range(0,len(values[1][i]))), label=values[0][i], linestyle=linestyle_str[linestyle_count])
 
-plt.xlim([0, 250]) # max should be 300secs
-plt.ylim([0, 110]) # nr of examples times 10
+plt.xscale('log')
+#plt.xlim([0, 300]) # max should be 300secs
+plt.ylim([0, 120]) # nr of examples times 10
 
 plt.ylabel("# of instances solved")
-plt.xlabel("run time")
+plt.xlabel("run time [s]")
 plt.legend()
 
-fig_name = "tracking_output/cdf/cdf_plot11.pdf"
+fig_name = "tracking_output/cdf/cdf_plot13_log.pdf"
 plt.savefig(fig_name, format="pdf")

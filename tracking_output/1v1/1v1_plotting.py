@@ -6,7 +6,8 @@ import re
 
 # Assign directory
 dir_list = [r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/all_in_run1",
-            r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/all_in_run2"]
+            r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/all_in_run2",
+            r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/all_in_run3",]
 
 # Variables
 non_tracking_files = []
@@ -77,10 +78,10 @@ for name in non_tracking_files:
     print(name+" was not solved")
 
 # Get current compare: 2v4, 4v8
-key1 = 4
-key2 = 8
+key1 = 1
+key2 = 32
 values1 = sorted(values[key1])
-values2 = sorted(values[key2])
+values2 = sorted(values[key2][:-2])
 #print(values1)
 #print(values2)
 

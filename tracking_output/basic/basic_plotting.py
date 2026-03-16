@@ -5,8 +5,8 @@ import os
 
 # Assign directory
 dir_list = [r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/all_in_run1",
-            r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/all_in_run2"]
-
+            r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/all_in_run2",
+            r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/all_in_run3"]
 
 # Variables
 non_tracking_files = []
@@ -76,11 +76,11 @@ for i in range(0, len(values[0])):
     x, y = zip(*sorted(values[1][i]))
     plt.scatter(x, y, label=values[0][i], marker=marker_rotation[i])
 
-plt.xlim([0, 25])
+plt.xlim([0, 300])
 plt.ylim([0, 1])
 
 plt.xlabel("run time")
 plt.ylabel("utilization percentage")
 plt.legend()
 
-plt.savefig("tracking_output/basic/basic_thr_in11_zoom.pdf", format="pdf")
+plt.savefig("tracking_output/basic/basic_thr_in12.pdf", format="pdf")
