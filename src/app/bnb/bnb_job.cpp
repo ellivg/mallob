@@ -158,7 +158,7 @@ void BnbJob::appl_communicate() {
             int randomIndex = rand() % _num_workers;
             int recvRank = getJobComm().getWorldRankOrMinusOne(randomIndex); // use JobComm to convert tree index into addressable MPI rank
             if (recvRank == -1 || getJobTree().getRank() == randomIndex) {
-                LOG(V2_INFO, "[msg] Tried requesting work but receiving rank was invalid or my own: %i\n", recvRank);
+                LOG(V5_DEBG, "[msg] Tried requesting work but receiving rank was invalid or my own: %i\n", recvRank);
                 tracker.num_nonsucc_rankinvld++;
             } else {
                 //Send
@@ -251,7 +251,7 @@ void BnbJob::appl_communicate(int source, int mpiTag, JobMessage& msg) {
         } else {
             LOG(V2_INFO, "[msg] Work stealing query successful. Filling work stack.\n");
             addToQueue(msg.payload);
-            LOG(V2_INFO, "[msg] Work stack is filled.\n", source, msg.tag, msg.payload[0]);
+            LOG(V5_DEBG, "[msg] Work stack is filled.\n", source, msg.tag, msg.payload[0]);
             tracker.num_succ_queries++;
 
         // Confirm work is received
@@ -868,7 +868,7 @@ void BnbJob::tryEndReduction() {
             _stopSearch = true;
         }
         _loop_cond_var.notify();
-        LOG(V2_INFO, "[red] Thread will stop search: nbActive = %i\n", nbActive);
+        LOG(V5_DEBG, "[red] Thread will stop search: nbActive = %i\n", nbActive);
         
         if (upperBound == bounds.curr_best_solution) {
             {
@@ -876,7 +876,7 @@ void BnbJob::tryEndReduction() {
                 _reportableSolution = true;
             }
             _loop_cond_var.notify();
-            LOG(V2_INFO, "[red] & [bou] Thread has reportable solution: upperBound = %i, lowerBound = %i, currSolution = %i\n", upperBound, lowerBound, bounds.curr_best_solution);
+            LOG(V5_DEBG, "[red] & [bou] Thread has reportable solution: upperBound = %i, lowerBound = %i, currSolution = %i\n", upperBound, lowerBound, bounds.curr_best_solution);
         }
     }
 
@@ -892,10 +892,10 @@ void BnbJob::tryEndReduction() {
         LOG(V2_INFO, "[red] & [bou] Thread has reportable solution: upperBound = %i, lowerBound = %i, currSolution = %i\n", upperBound, lowerBound, bounds.curr_best_solution);
     } 
 
-    LOG(V2_INFO, "[bou] Before reduction: {lower, upper, best} = {%i, %i, %i}\n", bounds.curr_lower_bound, bounds.curr_upper_bound, bounds.curr_best_solution);
+    LOG(V5_DEBG, "[bou] Before reduction: {lower, upper, best} = {%i, %i, %i}\n", bounds.curr_lower_bound, bounds.curr_upper_bound, bounds.curr_best_solution);
     bounds.curr_upper_bound = upperBound;
     bounds.curr_lower_bound = lowerBound;
-    LOG(V2_INFO, "[bou] After redution: {lower, upper, best} = {%i, %i, %i}\n", bounds.curr_lower_bound, bounds.curr_upper_bound, bounds.curr_best_solution);
+    LOG(V5_DEBG, "[bou] After redution: {lower, upper, best} = {%i, %i, %i}\n", bounds.curr_lower_bound, bounds.curr_upper_bound, bounds.curr_best_solution);
 
     // Conclude the all-reduction, allowing for this worker to be destructed later
     _red.reset();
