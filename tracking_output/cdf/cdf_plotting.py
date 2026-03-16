@@ -89,7 +89,7 @@ for i in range(0, len(values[0])):
 
 plt.xscale('log')
 #plt.xlim([0, 300]) # max should be 300secs
-plt.ylim([0, 120]) # nr of examples times 10
+plt.ylim([0, 130]) # nr of examples times 10
 
 plt.ylabel("# of instances solved")
 plt.xlabel("run time [s]")
