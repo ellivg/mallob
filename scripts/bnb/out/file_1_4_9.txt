@@ -1,0 +1,1422 @@
+0.000 0 [WARN] Invalid argument "\"
+c 
+c Mallob -- a parallel and distributed platform for job scheduling, load balancing, and SAT solving
+c Copyright (C) 2019-2025 Dominik Schreiber, Karlsruhe Institute of Technology, Germany
+c 
+0.000 0 [WARN] Invalid argument "\"
+0.000 0 [WARN] Invalid argument "\"
+0.000 0 [WARN] Invalid argument "\"
+c 0.002 3 Cleaning up pre-execution
+c 0.002 3 Killing old subprocesses: "killall -9 build/mallob_sat_process 2>/dev/null"
+c 0.002 2 Cleaning up pre-execution
+c 0.002 2 Killing old subprocesses: "killall -9 build/mallob_sat_process 2>/dev/null"
+c 0.002 1 Cleaning up pre-execution
+c 0.002 1 Killing old subprocesses: "killall -9 build/mallob_sat_process 2>/dev/null"
+c 0.002 0 Program options: -0o=0 -J=0 -SJ=0 -T=300 -adc=0 -aim=1 -ajpc=0 -ans=0 -apidir=.api -ba=4 -bem=1 -bicg=4 -br=0 -c=1 -cbbs=0 -cblm=1 -cblp=100000 -cdel=2 -cecpm=0 -cf=0 -cfci=10 -cfm=3 -cg=1 -ch=0 -checksums=0 -cjc=0 -client-app-threads=1 -cm=0 -cmp=0 -colors=0 -compact-proof=0 -cpshm=0 -csm=3 -cusv=1 -dc=0 -decay-distr=1 -decay-max=200 -decay-mean=50 -decay-min=1 -decay-stddev=3 -decpm=0 -delaymonkey=0 -div-elim=0 -div-fanout=0 -div-init-shuffle=0 -div-native=1 -div-noise=0 -div-phases=1 -div-reduce=0 -div-seeds=1 -dpa=1 -ds=0 -evpt=350 -evu=0 -extmem-disk-dir=.disk -fapii=0 -fcll=1 -g=0 -gclls=0 -h=0 -huca=0 -iff=0 -ilbd=0 -inotify=1 -interface-fs=0 -interface-ipc=0 -ipm=1 -ivdh=1 -jc=1 -jcl=0 -jcup=0.1 -jjp=0 -jwl=0 -l=1 -latencymonkey=0 -lbdpi=0 -lbdpo=0 -ljpc=32 -log=scripts/bnb/out//1/ -mbt=8388608 -mcips=5 -md=0 -mempanic=1 -mjps=0 -mlbdps=2 -mlpt=50000000 -mmpi=0 -mono=instances/bnb/main_under_300/bnb_n15_m4_1.cnf -mono-app=bnb -mscf=5 -nec=5 -no-import=0 -os=0 -otfc=0 -otfcm=1 -p=0.1 -pbbm=0 -plain-add-specific=0 -pph=0 -pre-cleanup=1 -prisma=0 -proof-debugging=0 -ps=0 -q=0 -qcll=8 -qlbdl=2 -randlbd=0 -reduce-delta=100 -reduce-max=980 -reduce-mean=700 -reduce-min=300 -reduce-stddev=150 -rlbd=3 -rpa=0 -rs=1 -rspaa=0 -s=0.5 -satsolver=C -scll=60 -scramble-lbds=0 -scsd=0 -seed=0 -sjd=0 -slbdl=60 -sleep=100 -spl=-1 -sswl=0 -t=1 -tmp=scripts/bnb/out//1/tmp/ -trace-dir=scripts/bnb/out//1/ -uninvert-proof=1 -v=2 -w=-1 -wam=10000 -warmup=0 -watchdog=1 -y=1 -yield=0 
+c 0.002 0 Cleaning up pre-execution
+c 0.002 0 Killing old subprocesses: "killall -9 build/mallob_sat_process 2>/dev/null"
+c 0.010 1 Killing old subprocesses: "killall -9 build/impcheck_parse 2>/dev/null"
+c 0.010 0 Killing old subprocesses: "killall -9 build/impcheck_parse 2>/dev/null"
+c 0.010 2 Killing old subprocesses: "killall -9 build/impcheck_parse 2>/dev/null"
+c 0.010 3 Killing old subprocesses: "killall -9 build/impcheck_parse 2>/dev/null"
+c 0.012 1 Killing old subprocesses: "killall -9 build/impcheck_check 2>/dev/null"
+c 0.012 2 Killing old subprocesses: "killall -9 build/impcheck_check 2>/dev/null"
+c 0.012 3 Killing old subprocesses: "killall -9 build/impcheck_check 2>/dev/null"
+c 0.012 0 Killing old subprocesses: "killall -9 build/impcheck_check 2>/dev/null"
+c 0.014 1 Killing old subprocesses: "killall -9 build/impcheck_confirm 2>/dev/null"
+c 0.014 2 Killing old subprocesses: "killall -9 build/impcheck_confirm 2>/dev/null"
+c 0.014 3 Killing old subprocesses: "killall -9 build/impcheck_confirm 2>/dev/null"
+c 0.014 0 Killing old subprocesses: "killall -9 build/impcheck_confirm 2>/dev/null"
+c 0.023 1 [WARN] Num bounce alternatives must be at most half the number of workers!
+c 0.023 1 [WARN] Falling back to safe value r=2.
+c 0.023 3 [WARN] Num bounce alternatives must be at most half the number of workers!
+c 0.023 3 [WARN] Falling back to safe value r=2.
+c 0.023 2 [WARN] Num bounce alternatives must be at most half the number of workers!
+c 0.023 2 [WARN] Falling back to safe value r=2.
+c 0.023 0 [WARN] Num bounce alternatives must be at most half the number of workers!
+c 0.023 0 [WARN] Falling back to safe value r=2.
+c 0.024 0 Set up API connector
+c 0.024 0 Machine color 0 with 4 total workers (my rank: 0)
+c 0.024 0 Assuming application "BNB" for mono job
+c 0.024 1 Machine color 0 with 4 total workers (my rank: 1)
+c 0.024 2 Machine color 0 with 4 total workers (my rank: 2)
+c 0.024 3 Machine color 0 with 4 total workers (my rank: 3)
+c 0.025 0 Introducing job #1 rev. 0 : r.#1:0 rev. 0 <- [0] born=0.025 hops=0 epoch=-1 matchId=-1 => [0]
+c 0.026 0 [start] Beginning: (Completion: 0) (Nr Tasks: 15) (Nr Machines: 4) (Tasks: 3 3 3 3 3 2 2 2 2 2 1 1 1 1 1) (Machine Workloads: 0 0 0 0) (Machines: 0 0 0 0)
+c 0.026 0 [stack] Start waiting for other threads: 0
+c 0.037 2 [stack] Stack empty. Stopping Loop
+c 0.037 1 [stack] Stack empty. Stopping Loop
+c 0.037 3 [stack] Stack empty. Stopping Loop
+c 0.106 0 [WARN] #1:0 job tree has size 0/4
+c 0.115 0 [stack] End waiting: 1
+c 0.115 2 [msg] Requested work stealing from: 3
+c 0.115 1 [msg] Requested work stealing from: 3
+c 0.115 3 [msg] Message 31 with Payload 0 from 2 received.
+c 0.115 3 [msg] Processing work stealing query from 2
+c 0.115 3 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 0.115 3 [msg] Message 31 with Payload 0 from 1 received.
+c 0.115 3 [msg] Processing work stealing query from 1
+c 0.115 3 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.115 2 [msg] Message 32 with Payload -1 from 3 received.
+c 0.116 1 [msg] Message 32 with Payload -1 from 3 received.
+c 0.125 1 [msg] Requested work stealing from: 2
+c 0.125 1 [msg] Message 32 with Payload -1 from 2 received.
+c 0.125 2 [msg] Message 31 with Payload 0 from 1 received.
+c 0.125 2 [msg] Processing work stealing query from 1
+c 0.125 2 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.126 3 [msg] Requested work stealing from: 2
+c 0.126 2 [msg] Message 31 with Payload 0 from 3 received.
+c 0.126 2 [msg] Processing work stealing query from 3
+c 0.126 2 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 0.126 3 [msg] Message 32 with Payload -1 from 2 received.
+c 0.135 2 [msg] Requested work stealing from: 1
+c 0.136 1 [msg] Message 31 with Payload 0 from 2 received.
+c 0.136 1 [msg] Processing work stealing query from 2
+c 0.136 1 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 0.136 2 [msg] Message 32 with Payload -1 from 1 received.
+c 0.136 3 [msg] Requested work stealing from: 1
+c 0.136 1 [msg] Message 31 with Payload 0 from 3 received.
+c 0.136 1 [msg] Processing work stealing query from 3
+c 0.136 1 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 0.136 3 [msg] Message 32 with Payload -1 from 1 received.
+c 0.146 1 [msg] Requested work stealing from: 3
+c 0.146 2 [msg] Requested work stealing from: 3
+c 0.146 3 [msg] Message 31 with Payload 0 from 1 received.
+c 0.146 3 [msg] Processing work stealing query from 1
+c 0.146 3 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.146 3 [msg] Message 31 with Payload 0 from 2 received.
+c 0.146 3 [msg] Processing work stealing query from 2
+c 0.146 3 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 0.146 2 [msg] Message 32 with Payload -1 from 3 received.
+c 0.146 1 [msg] Message 32 with Payload -1 from 3 received.
+c 0.156 2 [msg] Requested work stealing from: 1
+c 0.156 0 TRY REDUCE 63 0 0 2 2
+c 0.156 0 REDUCE
+c 0.156 1 [msg] Message 31 with Payload 0 from 2 received.
+c 0.156 1 [msg] Processing work stealing query from 2
+c 0.156 1 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 0.156 2 [msg] Message 32 with Payload -1 from 1 received.
+c 0.156 3 [msg] Requested work stealing from: 1
+c 0.156 1 [msg] Message 31 with Payload 0 from 3 received.
+c 0.156 1 [msg] Processing work stealing query from 3
+c 0.156 1 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 0.156 1 TRY REDUCE 63 0 0 2 2
+c 0.156 1 REDUCE
+c 0.156 3 [msg] Message 32 with Payload -1 from 1 received.
+c 0.166 2 [msg] Requested work stealing from: 3
+c 0.166 2 BROADCAST
+c 0.166 2 TRY REDUCE 64 0 0 2 2
+c 0.166 2 BROADCAST
+c 0.166 2 [msg] Message 32 with Payload -1 from 3 received.
+c 0.166 1 [msg] Requested work stealing from: 3
+c 0.166 1 BROADCAST
+c 0.166 1 TRY REDUCE 64 0 0 2 2
+c 0.166 1 BROADCAST
+c 0.166 1 [msg] Message 32 with Payload -1 from 3 received.
+c 0.166 3 [msg] Message 31 with Payload 0 from 2 received.
+c 0.166 3 [msg] Processing work stealing query from 2
+c 0.166 3 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 0.166 3 [msg] Message 31 with Payload 0 from 1 received.
+c 0.166 3 [msg] Processing work stealing query from 1
+c 0.166 3 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.166 3 BROADCAST
+c 0.166 3 TRY REDUCE 64 0 0 2 2
+c 0.166 3 BROADCAST
+c 0.166 0 TRY REDUCE 63 0 0 2 2
+c 0.166 0 REDUCE
+c 0.166 3 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 5, 8}.
+c 0.176 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 5, 8}.
+c 0.176 1 [msg] Requested work stealing from: 2
+c 0.176 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 5, 8}.
+c 0.176 2 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 5, 8}.
+c 0.176 2 [msg] Message 31 with Payload 0 from 1 received.
+c 0.176 2 [msg] Processing work stealing query from 1
+c 0.176 2 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.176 1 [msg] Message 32 with Payload -1 from 2 received.
+c 0.176 3 [msg] Requested work stealing from: 2
+c 0.176 2 [msg] Message 31 with Payload 0 from 3 received.
+c 0.176 2 [msg] Processing work stealing query from 3
+c 0.176 2 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 0.176 3 [msg] Message 32 with Payload -1 from 2 received.
+c 0.186 1 [msg] Requested work stealing from: 0
+c 0.186 1 [msg] Message 32 with Payload -1 from 0 received.
+c 0.186 2 [msg] Requested work stealing from: 0
+c 0.186 2 [msg] Message 32 with Payload -1 from 0 received.
+c 0.186 0 [msg] Message 31 with Payload 0 from 1 received.
+c 0.186 0 [msg] Processing work stealing query from 1
+c 0.186 0 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.186 0 [msg] Message 31 with Payload 0 from 2 received.
+c 0.186 0 [msg] Processing work stealing query from 2
+c 0.186 0 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 0.186 3 [msg] Requested work stealing from: 0
+c 0.186 3 [msg] Message 32 with Payload -1 from 0 received.
+c 0.186 0 [msg] Message 31 with Payload 0 from 3 received.
+c 0.186 0 [msg] Processing work stealing query from 3
+c 0.186 0 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 0.196 2 [msg] Requested work stealing from: 1
+c 0.196 1 [msg] Message 31 with Payload 0 from 2 received.
+c 0.196 1 [msg] Processing work stealing query from 2
+c 0.196 1 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 0.196 2 [msg] Message 32 with Payload -1 from 1 received.
+c 0.196 3 [msg] Requested work stealing from: 1
+c 0.196 1 [msg] Message 31 with Payload 0 from 3 received.
+c 0.196 1 [msg] Processing work stealing query from 3
+c 0.196 1 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 0.197 3 [msg] Message 32 with Payload -1 from 1 received.
+c 0.206 2 [msg] Requested work stealing from: 1
+c 0.206 1 [msg] Message 31 with Payload 0 from 2 received.
+c 0.206 1 [msg] Processing work stealing query from 2
+c 0.206 1 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 0.206 2 [msg] Message 32 with Payload -1 from 1 received.
+c 0.206 3 [msg] Requested work stealing from: 1
+c 0.206 1 [msg] Message 31 with Payload 0 from 3 received.
+c 0.206 1 [msg] Processing work stealing query from 3
+c 0.206 1 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 0.207 3 [msg] Message 32 with Payload -1 from 1 received.
+c 0.216 1 [msg] Requested work stealing from: 2
+c 0.216 1 [msg] Message 32 with Payload -1 from 2 received.
+c 0.216 2 [msg] Message 31 with Payload 0 from 1 received.
+c 0.216 2 [msg] Processing work stealing query from 1
+c 0.216 2 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.216 3 [msg] Requested work stealing from: 2
+c 0.216 3 [msg] Message 32 with Payload -1 from 2 received.
+c 0.216 2 [msg] Message 31 with Payload 0 from 3 received.
+c 0.216 2 [msg] Processing work stealing query from 3
+c 0.216 2 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 0.226 2 [msg] Requested work stealing from: 3
+c 0.226 1 [msg] Requested work stealing from: 3
+c 0.226 3 [msg] Message 31 with Payload 0 from 1 received.
+c 0.226 3 [msg] Processing work stealing query from 1
+c 0.226 3 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.226 3 [msg] Message 31 with Payload 0 from 2 received.
+c 0.226 3 [msg] Processing work stealing query from 2
+c 0.226 3 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 0.226 2 [msg] Message 32 with Payload -1 from 3 received.
+c 0.226 1 [msg] Message 32 with Payload -1 from 3 received.
+c 0.236 1 [msg] Requested work stealing from: 2
+c 0.236 1 [msg] Message 32 with Payload -1 from 2 received.
+c 0.236 2 [msg] Message 31 with Payload 0 from 1 received.
+c 0.236 2 [msg] Processing work stealing query from 1
+c 0.236 2 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.237 3 [msg] Requested work stealing from: 2
+c 0.237 2 [msg] Message 31 with Payload 0 from 3 received.
+c 0.237 2 [msg] Processing work stealing query from 3
+c 0.237 2 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 0.237 3 [msg] Message 32 with Payload -1 from 2 received.
+c 0.246 2 [msg] Requested work stealing from: 3
+c 0.246 1 [msg] Requested work stealing from: 3
+c 0.246 3 [msg] Message 31 with Payload 0 from 1 received.
+c 0.246 3 [msg] Processing work stealing query from 1
+c 0.246 3 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.246 3 [msg] Message 31 with Payload 0 from 2 received.
+c 0.246 3 [msg] Processing work stealing query from 2
+c 0.246 3 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 0.246 2 [msg] Message 32 with Payload -1 from 3 received.
+c 0.246 1 [msg] Message 32 with Payload -1 from 3 received.
+c 0.256 2 [msg] Requested work stealing from: 3
+c 0.256 0 TRY REDUCE 63 0 0 2 2
+c 0.256 0 REDUCE
+c 0.256 1 [msg] Requested work stealing from: 3
+c 0.256 3 [msg] Message 31 with Payload 0 from 1 received.
+c 0.256 3 [msg] Processing work stealing query from 1
+c 0.256 3 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.256 3 [msg] Message 31 with Payload 0 from 2 received.
+c 0.256 3 [msg] Processing work stealing query from 2
+c 0.256 3 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 0.256 2 [msg] Message 32 with Payload -1 from 3 received.
+c 0.256 1 [msg] Message 32 with Payload -1 from 3 received.
+c 0.257 1 TRY REDUCE 63 0 0 2 2
+c 0.257 1 REDUCE
+c 0.266 1 [msg] Requested work stealing from: 2
+c 0.266 1 [msg] Message 32 with Payload -1 from 2 received.
+c 0.266 2 [msg] Message 31 with Payload 0 from 1 received.
+c 0.266 2 [msg] Processing work stealing query from 1
+c 0.266 2 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.266 0 TRY REDUCE 63 0 0 2 2
+c 0.266 0 REDUCE
+c 0.267 1 BROADCAST
+c 0.267 1 TRY REDUCE 64 0 0 2 2
+c 0.267 1 BROADCAST
+c 0.267 2 BROADCAST
+c 0.267 2 TRY REDUCE 64 0 0 2 2
+c 0.267 2 BROADCAST
+c 0.267 3 [msg] Requested work stealing from: 2
+c 0.267 3 BROADCAST
+c 0.267 3 TRY REDUCE 64 0 0 2 2
+c 0.267 3 BROADCAST
+c 0.267 2 [msg] Message 31 with Payload 0 from 3 received.
+c 0.267 2 [msg] Processing work stealing query from 3
+c 0.267 2 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 0.267 3 [msg] Message 32 with Payload -1 from 2 received.
+c 0.276 2 [msg] Requested work stealing from: 0
+c 0.276 2 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 5, 8}.
+c 0.276 2 [msg] Message 32 with Payload -1 from 0 received.
+c 0.276 0 [msg] Message 31 with Payload 0 from 2 received.
+c 0.276 0 [msg] Processing work stealing query from 2
+c 0.276 0 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 0.276 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 5, 8}.
+c 0.276 0 [msg] Message 31 with Payload 0 from 1 received.
+c 0.276 0 [msg] Processing work stealing query from 1
+c 0.276 0 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.276 1 [msg] Requested work stealing from: 0
+c 0.276 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 5, 8}.
+c 0.276 1 [msg] Message 32 with Payload -1 from 0 received.
+c 0.277 3 [msg] Requested work stealing from: 0
+c 0.277 3 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 5, 8}.
+c 0.277 0 [msg] Message 31 with Payload 0 from 3 received.
+c 0.277 0 [msg] Processing work stealing query from 3
+c 0.277 0 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 0.277 3 [msg] Message 32 with Payload -1 from 0 received.
+c 0.286 1 [msg] Requested work stealing from: 2
+c 0.286 1 [msg] Message 32 with Payload -1 from 2 received.
+c 0.286 2 [msg] Message 31 with Payload 0 from 1 received.
+c 0.286 2 [msg] Processing work stealing query from 1
+c 0.286 2 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.287 3 [msg] Requested work stealing from: 2
+c 0.287 2 [msg] Message 31 with Payload 0 from 3 received.
+c 0.287 2 [msg] Processing work stealing query from 3
+c 0.287 2 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 0.287 3 [msg] Message 32 with Payload -1 from 2 received.
+c 0.296 2 [msg] Requested work stealing from: 0
+c 0.296 2 [msg] Message 32 with Payload -1 from 0 received.
+c 0.296 1 [msg] Requested work stealing from: 0
+c 0.296 1 [msg] Message 32 with Payload -1 from 0 received.
+c 0.296 0 [msg] Message 31 with Payload 0 from 1 received.
+c 0.296 0 [msg] Processing work stealing query from 1
+c 0.296 0 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.296 0 [msg] Message 31 with Payload 0 from 2 received.
+c 0.296 0 [msg] Processing work stealing query from 2
+c 0.296 0 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 0.297 3 [msg] Requested work stealing from: 0
+c 0.297 3 [msg] Message 32 with Payload -1 from 0 received.
+c 0.297 0 [msg] Message 31 with Payload 0 from 3 received.
+c 0.297 0 [msg] Processing work stealing query from 3
+c 0.297 0 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 0.306 1 [msg] Requested work stealing from: 0
+c 0.306 2 [msg] Requested work stealing from: 0
+c 0.307 2 [msg] Message 32 with Payload -1 from 0 received.
+c 0.306 0 [msg] Message 31 with Payload 0 from 1 received.
+c 0.306 0 [msg] Processing work stealing query from 1
+c 0.306 0 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.306 0 [msg] Message 31 with Payload 0 from 2 received.
+c 0.306 0 [msg] Processing work stealing query from 2
+c 0.306 0 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 0.307 1 [msg] Message 32 with Payload -1 from 0 received.
+c 0.307 3 [msg] Requested work stealing from: 0
+c 0.307 0 [msg] Message 31 with Payload 0 from 3 received.
+c 0.307 0 [msg] Processing work stealing query from 3
+c 0.307 0 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 0.307 3 [msg] Message 32 with Payload -1 from 0 received.
+c 0.316 2 [msg] Requested work stealing from: 3
+c 0.316 1 [msg] Requested work stealing from: 3
+c 0.316 3 [msg] Message 31 with Payload 0 from 1 received.
+c 0.316 3 [msg] Processing work stealing query from 1
+c 0.316 3 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.316 3 [msg] Message 31 with Payload 0 from 2 received.
+c 0.316 3 [msg] Processing work stealing query from 2
+c 0.316 3 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 0.317 1 [msg] Message 32 with Payload -1 from 3 received.
+c 0.317 2 [msg] Message 32 with Payload -1 from 3 received.
+c 0.326 2 [msg] Requested work stealing from: 0
+c 0.327 2 [msg] Message 32 with Payload -1 from 0 received.
+c 0.326 0 [msg] Message 31 with Payload 0 from 2 received.
+c 0.326 0 [msg] Processing work stealing query from 2
+c 0.326 0 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 0.327 0 [msg] Message 31 with Payload 0 from 1 received.
+c 0.327 0 [msg] Processing work stealing query from 1
+c 0.327 0 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.327 1 [msg] Requested work stealing from: 0
+c 0.327 1 [msg] Message 32 with Payload -1 from 0 received.
+c 0.327 3 [msg] Requested work stealing from: 0
+c 0.327 0 [msg] Message 31 with Payload 0 from 3 received.
+c 0.327 0 [msg] Processing work stealing query from 3
+c 0.327 0 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 0.327 3 [msg] Message 32 with Payload -1 from 0 received.
+c 0.336 2 [msg] Requested work stealing from: 3
+c 0.337 2 [msg] Message 32 with Payload -1 from 3 received.
+c 0.336 3 [msg] Message 31 with Payload 0 from 2 received.
+c 0.336 3 [msg] Processing work stealing query from 2
+c 0.336 3 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 0.337 3 [msg] Message 31 with Payload 0 from 1 received.
+c 0.337 3 [msg] Processing work stealing query from 1
+c 0.337 3 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.337 1 [msg] Requested work stealing from: 3
+c 0.337 1 [msg] Message 32 with Payload -1 from 3 received.
+c 0.346 2 [msg] Requested work stealing from: 1
+c 0.347 1 [msg] Message 31 with Payload 0 from 2 received.
+c 0.347 1 [msg] Processing work stealing query from 2
+c 0.347 1 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 0.347 2 [msg] Message 32 with Payload -1 from 1 received.
+c 0.347 3 [msg] Requested work stealing from: 1
+c 0.347 1 [msg] Message 31 with Payload 0 from 3 received.
+c 0.347 1 [msg] Processing work stealing query from 3
+c 0.347 1 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 0.348 3 [msg] Message 32 with Payload -1 from 1 received.
+c 0.357 0 TRY REDUCE 63 0 0 2 2
+c 0.357 0 REDUCE
+c 0.357 1 [msg] Requested work stealing from: 2
+c 0.357 2 [msg] Message 31 with Payload 0 from 1 received.
+c 0.357 2 [msg] Processing work stealing query from 1
+c 0.357 2 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.357 1 [msg] Message 32 with Payload -1 from 2 received.
+c 0.358 3 [msg] Requested work stealing from: 2
+c 0.358 1 TRY REDUCE 63 0 0 2 2
+c 0.358 1 REDUCE
+c 0.358 2 [msg] Message 31 with Payload 0 from 3 received.
+c 0.358 2 [msg] Processing work stealing query from 3
+c 0.358 2 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 0.358 3 [msg] Message 32 with Payload -1 from 2 received.
+c 0.367 1 [msg] Requested work stealing from: 2
+c 0.367 1 BROADCAST
+c 0.367 1 TRY REDUCE 64 0 0 2 2
+c 0.367 1 BROADCAST
+c 0.367 1 [msg] Message 32 with Payload -1 from 2 received.
+c 0.367 2 [msg] Message 31 with Payload 0 from 1 received.
+c 0.367 2 [msg] Processing work stealing query from 1
+c 0.367 2 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.367 2 BROADCAST
+c 0.367 2 TRY REDUCE 64 0 0 2 2
+c 0.367 2 BROADCAST
+c 0.367 0 TRY REDUCE 63 0 0 2 2
+c 0.367 0 REDUCE
+c 0.367 3 BROADCAST
+c 0.367 3 TRY REDUCE 64 0 0 2 2
+c 0.367 3 BROADCAST
+c 0.368 3 [msg] Requested work stealing from: 2
+c 0.368 3 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 5, 8}.
+c 0.368 2 [msg] Message 31 with Payload 0 from 3 received.
+c 0.368 2 [msg] Processing work stealing query from 3
+c 0.368 2 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 0.368 3 [msg] Message 32 with Payload -1 from 2 received.
+c 0.377 2 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 5, 8}.
+c 0.377 2 [msg] Message 31 with Payload 0 from 1 received.
+c 0.377 2 [msg] Processing work stealing query from 1
+c 0.377 2 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.377 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 5, 8}.
+c 0.377 1 [msg] Requested work stealing from: 2
+c 0.377 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 5, 8}.
+c 0.377 1 [msg] Message 32 with Payload -1 from 2 received.
+c 0.378 3 [msg] Requested work stealing from: 2
+c 0.378 3 [msg] Message 32 with Payload -1 from 2 received.
+c 0.378 2 [msg] Message 31 with Payload 0 from 3 received.
+c 0.378 2 [msg] Processing work stealing query from 3
+c 0.378 2 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 0.387 2 [msg] Requested work stealing from: 3
+c 0.387 3 [msg] Message 31 with Payload 0 from 2 received.
+c 0.387 3 [msg] Processing work stealing query from 2
+c 0.387 3 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 0.387 1 [msg] Requested work stealing from: 3
+c 0.387 2 [msg] Message 32 with Payload -1 from 3 received.
+c 0.387 3 [msg] Message 31 with Payload 0 from 1 received.
+c 0.387 3 [msg] Processing work stealing query from 1
+c 0.387 3 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.387 1 [msg] Message 32 with Payload -1 from 3 received.
+c 0.397 2 [msg] Requested work stealing from: 3
+c 0.397 3 [msg] Message 31 with Payload 0 from 2 received.
+c 0.397 3 [msg] Processing work stealing query from 2
+c 0.397 3 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 0.397 1 [msg] Requested work stealing from: 3
+c 0.397 2 [msg] Message 32 with Payload -1 from 3 received.
+c 0.397 3 [msg] Message 31 with Payload 0 from 1 received.
+c 0.397 3 [msg] Processing work stealing query from 1
+c 0.397 3 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.397 1 [msg] Message 32 with Payload -1 from 3 received.
+c 0.407 2 [msg] Requested work stealing from: 3
+c 0.407 3 [msg] Message 31 with Payload 0 from 2 received.
+c 0.407 3 [msg] Processing work stealing query from 2
+c 0.407 3 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 0.407 2 [msg] Message 32 with Payload -1 from 3 received.
+c 0.407 1 [msg] Requested work stealing from: 3
+c 0.407 3 [msg] Message 31 with Payload 0 from 1 received.
+c 0.407 3 [msg] Processing work stealing query from 1
+c 0.407 3 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.407 1 [msg] Message 32 with Payload -1 from 3 received.
+c 0.417 2 [msg] Requested work stealing from: 1
+c 0.417 1 [msg] Message 31 with Payload 0 from 2 received.
+c 0.417 1 [msg] Processing work stealing query from 2
+c 0.417 1 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 0.417 2 [msg] Message 32 with Payload -1 from 1 received.
+c 0.418 3 [msg] Requested work stealing from: 1
+c 0.418 1 [msg] Message 31 with Payload 0 from 3 received.
+c 0.418 1 [msg] Processing work stealing query from 3
+c 0.418 1 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 0.418 3 [msg] Message 32 with Payload -1 from 1 received.
+c 0.427 1 [msg] Requested work stealing from: 2
+c 0.427 1 [msg] Message 32 with Payload -1 from 2 received.
+c 0.427 2 [msg] Message 31 with Payload 0 from 1 received.
+c 0.427 2 [msg] Processing work stealing query from 1
+c 0.427 2 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.428 3 [msg] Requested work stealing from: 2
+c 0.428 2 [msg] Message 31 with Payload 0 from 3 received.
+c 0.428 2 [msg] Processing work stealing query from 3
+c 0.428 2 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 0.428 3 [msg] Message 32 with Payload -1 from 2 received.
+c 0.437 1 [msg] Requested work stealing from: 2
+c 0.437 1 [msg] Message 32 with Payload -1 from 2 received.
+c 0.437 2 [msg] Message 31 with Payload 0 from 1 received.
+c 0.437 2 [msg] Processing work stealing query from 1
+c 0.437 2 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.438 3 [msg] Requested work stealing from: 2
+c 0.438 3 [msg] Message 32 with Payload -1 from 2 received.
+c 0.438 2 [msg] Message 31 with Payload 0 from 3 received.
+c 0.438 2 [msg] Processing work stealing query from 3
+c 0.438 2 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 0.447 1 [msg] Requested work stealing from: 2
+c 0.447 1 [msg] Message 32 with Payload -1 from 2 received.
+c 0.447 2 [msg] Message 31 with Payload 0 from 1 received.
+c 0.447 2 [msg] Processing work stealing query from 1
+c 0.447 2 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.448 3 [msg] Requested work stealing from: 2
+c 0.448 3 [msg] Message 32 with Payload -1 from 2 received.
+c 0.448 2 [msg] Message 31 with Payload 0 from 3 received.
+c 0.448 2 [msg] Processing work stealing query from 3
+c 0.448 2 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 0.457 2 [msg] Requested work stealing from: 1
+c 0.458 0 TRY REDUCE 63 0 0 2 2
+c 0.458 0 REDUCE
+c 0.458 1 [msg] Message 31 with Payload 0 from 2 received.
+c 0.458 1 [msg] Processing work stealing query from 2
+c 0.458 1 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 0.458 2 [msg] Message 32 with Payload -1 from 1 received.
+c 0.458 3 [msg] Requested work stealing from: 1
+c 0.458 1 [msg] Message 31 with Payload 0 from 3 received.
+c 0.458 1 [msg] Processing work stealing query from 3
+c 0.458 1 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 0.458 1 TRY REDUCE 63 0 0 2 2
+c 0.458 1 REDUCE
+c 0.458 3 [msg] Message 32 with Payload -1 from 1 received.
+c 0.467 1 [msg] Requested work stealing from: 3
+c 0.468 1 BROADCAST
+c 0.468 1 TRY REDUCE 64 0 0 2 2
+c 0.468 1 BROADCAST
+c 0.468 1 [msg] Message 32 with Payload -1 from 3 received.
+c 0.467 2 [msg] Requested work stealing from: 3
+c 0.468 2 BROADCAST
+c 0.468 2 TRY REDUCE 64 0 0 2 2
+c 0.468 2 BROADCAST
+c 0.468 2 [msg] Message 32 with Payload -1 from 3 received.
+c 0.467 3 [msg] Message 31 with Payload 0 from 1 received.
+c 0.467 3 [msg] Processing work stealing query from 1
+c 0.467 3 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.467 3 [msg] Message 31 with Payload 0 from 2 received.
+c 0.467 3 [msg] Processing work stealing query from 2
+c 0.467 3 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 0.468 3 BROADCAST
+c 0.468 3 TRY REDUCE 64 0 0 2 2
+c 0.468 3 BROADCAST
+c 0.468 0 TRY REDUCE 63 0 0 2 2
+c 0.468 0 REDUCE
+c 0.468 3 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 5, 8}.
+c 0.478 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 5, 8}.
+c 0.478 2 [msg] Requested work stealing from: 1
+c 0.478 2 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 5, 8}.
+c 0.478 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 5, 8}.
+c 0.478 1 [msg] Message 31 with Payload 0 from 2 received.
+c 0.478 1 [msg] Processing work stealing query from 2
+c 0.478 1 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 0.478 2 [msg] Message 32 with Payload -1 from 1 received.
+c 0.478 3 [msg] Requested work stealing from: 1
+c 0.478 1 [msg] Message 31 with Payload 0 from 3 received.
+c 0.478 1 [msg] Processing work stealing query from 3
+c 0.478 1 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 0.478 3 [msg] Message 32 with Payload -1 from 1 received.
+c 0.488 1 [msg] Requested work stealing from: 0
+c 0.488 1 [msg] Message 32 with Payload -1 from 0 received.
+c 0.488 2 [msg] Requested work stealing from: 0
+c 0.488 2 [msg] Message 32 with Payload -1 from 0 received.
+c 0.488 0 [msg] Message 31 with Payload 0 from 1 received.
+c 0.488 0 [msg] Processing work stealing query from 1
+c 0.488 0 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.488 0 [msg] Message 31 with Payload 0 from 2 received.
+c 0.488 0 [msg] Processing work stealing query from 2
+c 0.488 0 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 0.488 3 [msg] Requested work stealing from: 0
+c 0.488 0 [msg] Message 31 with Payload 0 from 3 received.
+c 0.488 0 [msg] Processing work stealing query from 3
+c 0.488 0 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 0.488 3 [msg] Message 32 with Payload -1 from 0 received.
+c 0.498 2 [msg] Requested work stealing from: 3
+c 0.498 1 [msg] Requested work stealing from: 3
+c 0.498 3 [msg] Message 31 with Payload 0 from 1 received.
+c 0.498 3 [msg] Processing work stealing query from 1
+c 0.498 3 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.498 3 [msg] Message 31 with Payload 0 from 2 received.
+c 0.498 3 [msg] Processing work stealing query from 2
+c 0.498 3 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 0.498 1 [msg] Message 32 with Payload -1 from 3 received.
+c 0.498 2 [msg] Message 32 with Payload -1 from 3 received.
+c 0.508 1 [msg] Requested work stealing from: 2
+c 0.508 1 [msg] Message 32 with Payload -1 from 2 received.
+c 0.508 2 [msg] Message 31 with Payload 0 from 1 received.
+c 0.508 2 [msg] Processing work stealing query from 1
+c 0.508 2 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.508 3 [msg] Requested work stealing from: 2
+c 0.509 2 [msg] Message 31 with Payload 0 from 3 received.
+c 0.509 2 [msg] Processing work stealing query from 3
+c 0.509 2 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 0.509 3 [msg] Message 32 with Payload -1 from 2 received.
+c 0.518 2 [msg] Requested work stealing from: 1
+c 0.518 1 [msg] Message 31 with Payload 0 from 2 received.
+c 0.518 1 [msg] Processing work stealing query from 2
+c 0.518 1 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 0.518 2 [msg] Message 32 with Payload -1 from 1 received.
+c 0.519 3 [msg] Requested work stealing from: 1
+c 0.519 3 [msg] Message 32 with Payload -1 from 1 received.
+c 0.519 1 [msg] Message 31 with Payload 0 from 3 received.
+c 0.519 1 [msg] Processing work stealing query from 3
+c 0.519 1 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 0.528 2 [msg] Requested work stealing from: 1
+c 0.528 1 [msg] Message 31 with Payload 0 from 2 received.
+c 0.528 1 [msg] Processing work stealing query from 2
+c 0.528 1 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 0.528 2 [msg] Message 32 with Payload -1 from 1 received.
+c 0.529 3 [msg] Requested work stealing from: 1
+c 0.529 1 [msg] Message 31 with Payload 0 from 3 received.
+c 0.529 1 [msg] Processing work stealing query from 3
+c 0.529 1 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 0.529 3 [msg] Message 32 with Payload -1 from 1 received.
+c 0.537 3 [WARN] Watchdog: No reset for 501 ms (activity=0 recvtag=0 sendtag=0)
+c 0.538 2 [msg] Requested work stealing from: 1
+c 0.538 1 [msg] Message 31 with Payload 0 from 2 received.
+c 0.538 1 [msg] Processing work stealing query from 2
+c 0.538 1 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 0.538 2 [msg] Message 32 with Payload -1 from 1 received.
+c 0.539 3 [msg] Requested work stealing from: 1
+c 0.539 1 [msg] Message 31 with Payload 0 from 3 received.
+c 0.539 1 [msg] Processing work stealing query from 3
+c 0.539 1 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 0.539 3 [msg] Message 32 with Payload -1 from 1 received.
+c 0.548 2 [msg] Requested work stealing from: 3
+c 0.548 3 [msg] Message 31 with Payload 0 from 2 received.
+c 0.548 3 [msg] Processing work stealing query from 2
+c 0.548 3 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 0.548 2 [msg] Message 32 with Payload -1 from 3 received.
+c 0.548 1 [msg] Requested work stealing from: 3
+c 0.548 3 [msg] Message 31 with Payload 0 from 1 received.
+c 0.548 3 [msg] Processing work stealing query from 1
+c 0.548 3 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.549 1 [msg] Message 32 with Payload -1 from 3 received.
+c 0.558 2 [msg] Requested work stealing from: 0
+c 0.558 2 [msg] Message 32 with Payload -1 from 0 received.
+c 0.558 0 [msg] Message 31 with Payload 0 from 2 received.
+c 0.558 0 [msg] Processing work stealing query from 2
+c 0.558 0 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 0.558 0 TRY REDUCE 63 0 0 2 2
+c 0.558 0 REDUCE
+c 0.558 1 [msg] Requested work stealing from: 0
+c 0.559 0 [msg] Message 31 with Payload 0 from 1 received.
+c 0.559 0 [msg] Processing work stealing query from 1
+c 0.559 0 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.559 1 [msg] Message 32 with Payload -1 from 0 received.
+c 0.559 3 [msg] Requested work stealing from: 0
+c 0.559 1 TRY REDUCE 63 0 0 2 2
+c 0.559 1 REDUCE
+c 0.559 0 [msg] Message 31 with Payload 0 from 3 received.
+c 0.559 0 [msg] Processing work stealing query from 3
+c 0.559 0 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 0.559 3 [msg] Message 32 with Payload -1 from 0 received.
+c 0.568 2 [msg] Requested work stealing from: 1
+c 0.568 1 [msg] Message 31 with Payload 0 from 2 received.
+c 0.568 1 [msg] Processing work stealing query from 2
+c 0.568 1 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 0.568 2 [msg] Message 32 with Payload -1 from 1 received.
+c 0.569 0 TRY REDUCE 63 0 0 2 2
+c 0.569 0 REDUCE
+c 0.569 3 [msg] Requested work stealing from: 1
+c 0.569 2 BROADCAST
+c 0.569 2 TRY REDUCE 64 0 0 2 2
+c 0.569 2 BROADCAST
+c 0.569 1 BROADCAST
+c 0.569 1 TRY REDUCE 64 0 0 2 2
+c 0.569 1 BROADCAST
+c 0.569 1 [msg] Message 31 with Payload 0 from 3 received.
+c 0.569 1 [msg] Processing work stealing query from 3
+c 0.569 1 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 0.569 3 BROADCAST
+c 0.569 3 TRY REDUCE 64 0 0 2 2
+c 0.569 3 BROADCAST
+c 0.569 3 [msg] Message 32 with Payload -1 from 1 received.
+c 0.578 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 5, 8}.
+c 0.578 2 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 5, 8}.
+c 0.579 1 [msg] Requested work stealing from: 2
+c 0.579 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 5, 8}.
+c 0.579 1 [msg] Message 32 with Payload -1 from 2 received.
+c 0.579 2 [msg] Message 31 with Payload 0 from 1 received.
+c 0.579 2 [msg] Processing work stealing query from 1
+c 0.579 2 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.579 3 [msg] Requested work stealing from: 2
+c 0.579 3 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 5, 8}.
+c 0.579 2 [msg] Message 31 with Payload 0 from 3 received.
+c 0.579 2 [msg] Processing work stealing query from 3
+c 0.579 2 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 0.579 3 [msg] Message 32 with Payload -1 from 2 received.
+c 0.588 2 [msg] Requested work stealing from: 0
+c 0.588 0 [msg] Message 31 with Payload 0 from 2 received.
+c 0.588 0 [msg] Processing work stealing query from 2
+c 0.588 0 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 0.588 2 [msg] Message 32 with Payload -1 from 0 received.
+c 0.589 1 [msg] Requested work stealing from: 0
+c 0.589 0 [msg] Message 31 with Payload 0 from 1 received.
+c 0.589 0 [msg] Processing work stealing query from 1
+c 0.589 0 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.589 3 [msg] Requested work stealing from: 0
+c 0.589 1 [msg] Message 32 with Payload -1 from 0 received.
+c 0.589 0 [msg] Message 31 with Payload 0 from 3 received.
+c 0.589 0 [msg] Processing work stealing query from 3
+c 0.589 0 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 0.589 3 [msg] Message 32 with Payload -1 from 0 received.
+c 0.598 2 [msg] Requested work stealing from: 3
+c 0.598 3 [msg] Message 31 with Payload 0 from 2 received.
+c 0.598 3 [msg] Processing work stealing query from 2
+c 0.598 3 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 0.599 2 [msg] Message 32 with Payload -1 from 3 received.
+c 0.599 1 [msg] Requested work stealing from: 3
+c 0.599 3 [msg] Message 31 with Payload 0 from 1 received.
+c 0.599 3 [msg] Processing work stealing query from 1
+c 0.599 3 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.599 1 [msg] Message 32 with Payload -1 from 3 received.
+c 0.609 1 [msg] Requested work stealing from: 2
+c 0.609 1 [msg] Message 32 with Payload -1 from 2 received.
+c 0.609 2 [msg] Message 31 with Payload 0 from 1 received.
+c 0.609 2 [msg] Processing work stealing query from 1
+c 0.609 2 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.609 2 [msg] Message 31 with Payload 0 from 3 received.
+c 0.609 2 [msg] Processing work stealing query from 3
+c 0.609 2 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 0.609 3 [msg] Requested work stealing from: 2
+c 0.609 3 [msg] Message 32 with Payload -1 from 2 received.
+c 0.618 2 [msg] Requested work stealing from: 1
+c 0.619 1 [msg] Message 31 with Payload 0 from 2 received.
+c 0.619 1 [msg] Processing work stealing query from 2
+c 0.619 1 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 0.619 2 [msg] Message 32 with Payload -1 from 1 received.
+c 0.619 3 [msg] Requested work stealing from: 1
+c 0.619 1 [msg] Message 31 with Payload 0 from 3 received.
+c 0.619 1 [msg] Processing work stealing query from 3
+c 0.619 1 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 0.619 3 [msg] Message 32 with Payload -1 from 1 received.
+c 0.629 1 [msg] Requested work stealing from: 2
+c 0.629 1 [msg] Message 32 with Payload -1 from 2 received.
+c 0.629 3 [msg] Requested work stealing from: 2
+c 0.629 3 [msg] Message 32 with Payload -1 from 2 received.
+c 0.629 2 [msg] Message 31 with Payload 0 from 1 received.
+c 0.629 2 [msg] Processing work stealing query from 1
+c 0.629 2 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.629 2 [msg] Message 31 with Payload 0 from 3 received.
+c 0.629 2 [msg] Processing work stealing query from 3
+c 0.629 2 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 0.639 2 [msg] Requested work stealing from: 3
+c 0.639 3 [msg] Message 31 with Payload 0 from 2 received.
+c 0.639 3 [msg] Processing work stealing query from 2
+c 0.639 3 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 0.639 2 [msg] Message 32 with Payload -1 from 3 received.
+c 0.639 1 [msg] Requested work stealing from: 3
+c 0.639 3 [msg] Message 31 with Payload 0 from 1 received.
+c 0.639 3 [msg] Processing work stealing query from 1
+c 0.639 3 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.639 1 [msg] Message 32 with Payload -1 from 3 received.
+c 0.649 2 [msg] Requested work stealing from: 0
+c 0.649 0 [msg] Message 31 with Payload 0 from 2 received.
+c 0.649 0 [msg] Processing work stealing query from 2
+c 0.649 0 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 0.649 2 [msg] Message 32 with Payload -1 from 0 received.
+c 0.649 1 [msg] Requested work stealing from: 0
+c 0.649 0 [msg] Message 31 with Payload 0 from 1 received.
+c 0.649 0 [msg] Processing work stealing query from 1
+c 0.649 0 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.649 3 [msg] Requested work stealing from: 0
+c 0.649 1 [msg] Message 32 with Payload -1 from 0 received.
+c 0.649 0 [msg] Message 31 with Payload 0 from 3 received.
+c 0.649 0 [msg] Processing work stealing query from 3
+c 0.649 0 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 0.649 3 [msg] Message 32 with Payload -1 from 0 received.
+c 0.659 2 [msg] Requested work stealing from: 0
+c 0.659 2 [msg] Message 32 with Payload -1 from 0 received.
+c 0.659 0 [msg] Message 31 with Payload 0 from 2 received.
+c 0.659 0 [msg] Processing work stealing query from 2
+c 0.659 0 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 0.659 0 TRY REDUCE 63 0 0 2 2
+c 0.659 0 REDUCE
+c 0.659 1 [msg] Requested work stealing from: 0
+c 0.659 0 [msg] Message 31 with Payload 0 from 1 received.
+c 0.659 0 [msg] Processing work stealing query from 1
+c 0.659 0 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.659 3 [msg] Requested work stealing from: 0
+c 0.659 1 [msg] Message 32 with Payload -1 from 0 received.
+c 0.659 1 TRY REDUCE 63 0 0 2 2
+c 0.659 1 REDUCE
+c 0.659 0 [msg] Message 31 with Payload 0 from 3 received.
+c 0.659 0 [msg] Processing work stealing query from 3
+c 0.659 0 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 0.659 3 [msg] Message 32 with Payload -1 from 0 received.
+c 0.669 2 [msg] Requested work stealing from: 1
+c 0.669 1 [msg] Message 31 with Payload 0 from 2 received.
+c 0.669 1 [msg] Processing work stealing query from 2
+c 0.669 1 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 0.669 2 [msg] Message 32 with Payload -1 from 1 received.
+c 0.669 2 BROADCAST
+c 0.669 2 TRY REDUCE 64 0 0 2 2
+c 0.669 2 BROADCAST
+c 0.669 3 [msg] Requested work stealing from: 1
+c 0.669 3 [msg] Message 32 with Payload -1 from 1 received.
+c 0.669 1 [msg] Message 31 with Payload 0 from 3 received.
+c 0.669 1 [msg] Processing work stealing query from 3
+c 0.669 1 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 0.669 1 BROADCAST
+c 0.669 1 TRY REDUCE 64 0 0 2 2
+c 0.669 1 BROADCAST
+c 0.669 0 TRY REDUCE 63 0 0 2 2
+c 0.669 0 REDUCE
+c 0.669 3 BROADCAST
+c 0.669 3 TRY REDUCE 64 0 0 2 2
+c 0.669 3 BROADCAST
+c 0.679 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 5, 8}.
+c 0.679 2 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 5, 8}.
+c 0.679 3 [msg] Requested work stealing from: 2
+c 0.679 3 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 5, 8}.
+c 0.679 3 [msg] Message 32 with Payload -1 from 2 received.
+c 0.679 2 [msg] Message 31 with Payload 0 from 3 received.
+c 0.679 2 [msg] Processing work stealing query from 3
+c 0.679 2 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 0.679 2 [msg] Message 31 with Payload 0 from 1 received.
+c 0.679 2 [msg] Processing work stealing query from 1
+c 0.679 2 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.679 1 [msg] Requested work stealing from: 2
+c 0.679 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 5, 8}.
+c 0.679 1 [msg] Message 32 with Payload -1 from 2 received.
+c 0.689 3 [msg] Requested work stealing from: 2
+c 0.689 2 [msg] Message 31 with Payload 0 from 3 received.
+c 0.689 2 [msg] Processing work stealing query from 3
+c 0.689 2 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 0.689 1 [msg] Requested work stealing from: 2
+c 0.689 3 [msg] Message 32 with Payload -1 from 2 received.
+c 0.689 2 [msg] Message 31 with Payload 0 from 1 received.
+c 0.689 2 [msg] Processing work stealing query from 1
+c 0.689 2 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.690 1 [msg] Message 32 with Payload -1 from 2 received.
+c 0.699 2 [msg] Requested work stealing from: 0
+c 0.699 2 [msg] Message 32 with Payload -1 from 0 received.
+c 0.699 0 [msg] Message 31 with Payload 0 from 2 received.
+c 0.699 0 [msg] Processing work stealing query from 2
+c 0.699 0 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 0.699 3 [msg] Requested work stealing from: 0
+c 0.699 0 [msg] Message 31 with Payload 0 from 3 received.
+c 0.699 0 [msg] Processing work stealing query from 3
+c 0.699 0 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 0.699 3 [msg] Message 32 with Payload -1 from 0 received.
+c 0.699 1 [msg] Requested work stealing from: 0
+c 0.700 0 [msg] Message 31 with Payload 0 from 1 received.
+c 0.700 0 [msg] Processing work stealing query from 1
+c 0.700 0 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.700 1 [msg] Message 32 with Payload -1 from 0 received.
+c 0.709 2 [msg] Requested work stealing from: 1
+c 0.709 2 [msg] Message 32 with Payload -1 from 1 received.
+c 0.709 1 [msg] Message 31 with Payload 0 from 2 received.
+c 0.709 1 [msg] Processing work stealing query from 2
+c 0.709 1 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 0.709 1 [msg] Message 31 with Payload 0 from 3 received.
+c 0.709 1 [msg] Processing work stealing query from 3
+c 0.709 1 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 0.709 3 [msg] Requested work stealing from: 1
+c 0.709 3 [msg] Message 32 with Payload -1 from 1 received.
+c 0.719 3 [msg] Requested work stealing from: 1
+c 0.719 3 [msg] Message 32 with Payload -1 from 1 received.
+c 0.719 2 [msg] Requested work stealing from: 1
+c 0.719 1 [msg] Message 31 with Payload 0 from 3 received.
+c 0.719 1 [msg] Processing work stealing query from 3
+c 0.719 1 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 0.719 1 [msg] Message 31 with Payload 0 from 2 received.
+c 0.719 1 [msg] Processing work stealing query from 2
+c 0.719 1 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 0.720 2 [msg] Message 32 with Payload -1 from 1 received.
+c 0.729 3 [msg] Requested work stealing from: 1
+c 0.729 1 [msg] Message 31 with Payload 0 from 3 received.
+c 0.729 1 [msg] Processing work stealing query from 3
+c 0.729 1 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 0.729 1 [msg] Message 31 with Payload 0 from 2 received.
+c 0.729 1 [msg] Processing work stealing query from 2
+c 0.729 1 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 0.729 2 [msg] Requested work stealing from: 1
+c 0.729 3 [msg] Message 32 with Payload -1 from 1 received.
+c 0.730 2 [msg] Message 32 with Payload -1 from 1 received.
+c 0.739 3 [msg] Requested work stealing from: 0
+c 0.739 3 [msg] Message 32 with Payload -1 from 0 received.
+c 0.739 0 [msg] Message 31 with Payload 0 from 3 received.
+c 0.739 0 [msg] Processing work stealing query from 3
+c 0.739 0 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 0.739 2 [msg] Requested work stealing from: 0
+c 0.740 0 [msg] Message 31 with Payload 0 from 2 received.
+c 0.740 0 [msg] Processing work stealing query from 2
+c 0.740 0 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 0.740 2 [msg] Message 32 with Payload -1 from 0 received.
+c 0.740 1 [msg] Requested work stealing from: 0
+c 0.740 0 [msg] Message 31 with Payload 0 from 1 received.
+c 0.740 0 [msg] Processing work stealing query from 1
+c 0.740 0 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.740 1 [msg] Message 32 with Payload -1 from 0 received.
+c 0.750 2 [msg] Requested work stealing from: 3
+c 0.750 3 [msg] Message 31 with Payload 0 from 2 received.
+c 0.750 3 [msg] Processing work stealing query from 2
+c 0.750 3 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 0.750 2 [msg] Message 32 with Payload -1 from 3 received.
+c 0.750 1 [msg] Requested work stealing from: 3
+c 0.750 3 [msg] Message 31 with Payload 0 from 1 received.
+c 0.750 3 [msg] Processing work stealing query from 1
+c 0.750 3 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.750 1 [msg] Message 32 with Payload -1 from 3 received.
+c 0.759 3 [msg] Requested work stealing from: 0
+c 0.759 3 [msg] Message 32 with Payload -1 from 0 received.
+c 0.759 0 [msg] Message 31 with Payload 0 from 3 received.
+c 0.759 0 [msg] Processing work stealing query from 3
+c 0.759 0 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 0.759 1 TRY REDUCE 63 0 0 2 2
+c 0.759 1 REDUCE
+c 0.760 2 [msg] Requested work stealing from: 0
+c 0.760 0 [msg] Message 31 with Payload 0 from 2 received.
+c 0.760 0 [msg] Processing work stealing query from 2
+c 0.760 0 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 0.760 0 TRY REDUCE 63 0 0 2 2
+c 0.760 0 REDUCE
+c 0.760 2 [msg] Message 32 with Payload -1 from 0 received.
+c 0.760 1 [msg] Requested work stealing from: 0
+c 0.760 0 [msg] Message 31 with Payload 0 from 1 received.
+c 0.760 0 [msg] Processing work stealing query from 1
+c 0.760 0 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.760 0 TRY REDUCE 63 0 0 2 2
+c 0.760 0 REDUCE
+c 0.760 1 [msg] Message 32 with Payload -1 from 0 received.
+c 0.760 1 BROADCAST
+c 0.760 1 TRY REDUCE 64 0 0 2 2
+c 0.760 1 BROADCAST
+c 0.760 2 BROADCAST
+c 0.760 2 TRY REDUCE 64 0 0 2 2
+c 0.760 2 BROADCAST
+c 0.760 3 BROADCAST
+c 0.760 3 TRY REDUCE 64 0 0 2 2
+c 0.760 3 BROADCAST
+c 0.769 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 5, 8}.
+c 0.769 3 [msg] Requested work stealing from: 1
+c 0.769 3 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 5, 8}.
+c 0.770 1 [msg] Message 31 with Payload 0 from 3 received.
+c 0.770 1 [msg] Processing work stealing query from 3
+c 0.770 1 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 0.770 3 [msg] Message 32 with Payload -1 from 1 received.
+c 0.770 2 [msg] Requested work stealing from: 1
+c 0.770 2 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 5, 8}.
+c 0.770 1 [msg] Message 31 with Payload 0 from 2 received.
+c 0.770 1 [msg] Processing work stealing query from 2
+c 0.770 1 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 0.770 2 [msg] Message 32 with Payload -1 from 1 received.
+c 0.770 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 5, 8}.
+c 0.779 3 [msg] Requested work stealing from: 2
+c 0.780 3 [msg] Message 32 with Payload -1 from 2 received.
+c 0.779 2 [msg] Message 31 with Payload 0 from 3 received.
+c 0.779 2 [msg] Processing work stealing query from 3
+c 0.779 2 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 0.780 1 [msg] Requested work stealing from: 2
+c 0.780 2 [msg] Message 31 with Payload 0 from 1 received.
+c 0.780 2 [msg] Processing work stealing query from 1
+c 0.780 2 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.780 1 [msg] Message 32 with Payload -1 from 2 received.
+c 0.789 3 [msg] Requested work stealing from: 1
+c 0.790 1 [msg] Message 31 with Payload 0 from 3 received.
+c 0.790 1 [msg] Processing work stealing query from 3
+c 0.790 1 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 0.790 3 [msg] Message 32 with Payload -1 from 1 received.
+c 0.790 2 [msg] Requested work stealing from: 1
+c 0.790 1 [msg] Message 31 with Payload 0 from 2 received.
+c 0.790 1 [msg] Processing work stealing query from 2
+c 0.790 1 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 0.790 2 [msg] Message 32 with Payload -1 from 1 received.
+c 0.799 3 [msg] Requested work stealing from: 1
+c 0.800 1 [msg] Message 31 with Payload 0 from 3 received.
+c 0.800 1 [msg] Processing work stealing query from 3
+c 0.800 1 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 0.800 3 [msg] Message 32 with Payload -1 from 1 received.
+c 0.800 2 [msg] Requested work stealing from: 1
+c 0.800 1 [msg] Message 31 with Payload 0 from 2 received.
+c 0.800 1 [msg] Processing work stealing query from 2
+c 0.800 1 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 0.800 2 [msg] Message 32 with Payload -1 from 1 received.
+c 0.809 3 [msg] Requested work stealing from: 1
+c 0.810 1 [msg] Message 31 with Payload 0 from 3 received.
+c 0.810 1 [msg] Processing work stealing query from 3
+c 0.810 1 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 0.810 3 [msg] Message 32 with Payload -1 from 1 received.
+c 0.810 2 [msg] Requested work stealing from: 1
+c 0.810 1 [msg] Message 31 with Payload 0 from 2 received.
+c 0.810 1 [msg] Processing work stealing query from 2
+c 0.810 1 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 0.810 2 [msg] Message 32 with Payload -1 from 1 received.
+c 0.819 3 [msg] Requested work stealing from: 0
+c 0.820 3 [msg] Message 32 with Payload -1 from 0 received.
+c 0.820 0 [msg] Message 31 with Payload 0 from 3 received.
+c 0.820 0 [msg] Processing work stealing query from 3
+c 0.820 0 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 0.820 2 [msg] Requested work stealing from: 0
+c 0.820 0 [msg] Message 31 with Payload 0 from 2 received.
+c 0.820 0 [msg] Processing work stealing query from 2
+c 0.820 0 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 0.820 2 [msg] Message 32 with Payload -1 from 0 received.
+c 0.820 1 [msg] Requested work stealing from: 0
+c 0.820 1 [msg] Message 32 with Payload -1 from 0 received.
+c 0.820 0 [msg] Message 31 with Payload 0 from 1 received.
+c 0.820 0 [msg] Processing work stealing query from 1
+c 0.820 0 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.830 2 [msg] Requested work stealing from: 3
+c 0.830 1 [msg] Requested work stealing from: 3
+c 0.830 3 [msg] Message 31 with Payload 0 from 1 received.
+c 0.830 3 [msg] Processing work stealing query from 1
+c 0.830 3 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.830 3 [msg] Message 31 with Payload 0 from 2 received.
+c 0.830 3 [msg] Processing work stealing query from 2
+c 0.830 3 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 0.831 2 [msg] Message 32 with Payload -1 from 3 received.
+c 0.831 1 [msg] Message 32 with Payload -1 from 3 received.
+c 0.840 3 [msg] Requested work stealing from: 2
+c 0.840 3 [msg] Message 32 with Payload -1 from 2 received.
+c 0.840 2 [msg] Message 31 with Payload 0 from 3 received.
+c 0.840 2 [msg] Processing work stealing query from 3
+c 0.840 2 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 0.840 1 [msg] Requested work stealing from: 2
+c 0.841 1 [msg] Message 32 with Payload -1 from 2 received.
+c 0.840 2 [msg] Message 31 with Payload 0 from 1 received.
+c 0.840 2 [msg] Processing work stealing query from 1
+c 0.840 2 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.850 3 [msg] Requested work stealing from: 1
+c 0.850 1 [msg] Message 31 with Payload 0 from 3 received.
+c 0.850 1 [msg] Processing work stealing query from 3
+c 0.850 1 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 0.850 3 [msg] Message 32 with Payload -1 from 1 received.
+c 0.850 2 [msg] Requested work stealing from: 1
+c 0.850 1 [msg] Message 31 with Payload 0 from 2 received.
+c 0.850 1 [msg] Processing work stealing query from 2
+c 0.850 1 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 0.851 2 [msg] Message 32 with Payload -1 from 1 received.
+c 0.860 3 [msg] Requested work stealing from: 2
+c 0.860 1 TRY REDUCE 63 0 0 2 2
+c 0.860 1 REDUCE
+c 0.860 2 [msg] Message 31 with Payload 0 from 3 received.
+c 0.860 2 [msg] Processing work stealing query from 3
+c 0.860 2 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 0.860 3 [msg] Message 32 with Payload -1 from 2 received.
+c 0.860 0 TRY REDUCE 63 0 0 2 2
+c 0.860 0 REDUCE
+c 0.861 1 [msg] Requested work stealing from: 2
+c 0.861 2 [msg] Message 31 with Payload 0 from 1 received.
+c 0.861 2 [msg] Processing work stealing query from 1
+c 0.861 2 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.861 0 TRY REDUCE 63 0 0 2 2
+c 0.861 0 REDUCE
+c 0.861 1 BROADCAST
+c 0.861 1 TRY REDUCE 64 0 0 2 2
+c 0.861 1 BROADCAST
+c 0.861 1 [msg] Message 32 with Payload -1 from 2 received.
+c 0.861 2 BROADCAST
+c 0.861 2 TRY REDUCE 64 0 0 2 2
+c 0.861 2 BROADCAST
+c 0.861 3 BROADCAST
+c 0.861 3 TRY REDUCE 64 0 0 2 2
+c 0.861 3 BROADCAST
+c 0.870 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 5, 8}.
+c 0.870 3 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 5, 8}.
+c 0.871 2 [msg] Requested work stealing from: 3
+c 0.871 2 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 5, 8}.
+c 0.871 1 [msg] Requested work stealing from: 3
+c 0.871 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 5, 8}.
+c 0.871 1 [msg] Message 32 with Payload -1 from 3 received.
+c 0.871 3 [msg] Message 31 with Payload 0 from 1 received.
+c 0.871 3 [msg] Processing work stealing query from 1
+c 0.871 3 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.871 3 [msg] Message 31 with Payload 0 from 2 received.
+c 0.871 3 [msg] Processing work stealing query from 2
+c 0.871 3 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 0.871 2 [msg] Message 32 with Payload -1 from 3 received.
+c 0.880 3 [msg] Requested work stealing from: 2
+c 0.880 2 [msg] Message 31 with Payload 0 from 3 received.
+c 0.880 2 [msg] Processing work stealing query from 3
+c 0.880 2 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 0.880 3 [msg] Message 32 with Payload -1 from 2 received.
+c 0.881 1 [msg] Requested work stealing from: 2
+c 0.881 2 [msg] Message 31 with Payload 0 from 1 received.
+c 0.881 2 [msg] Processing work stealing query from 1
+c 0.881 2 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.881 1 [msg] Message 32 with Payload -1 from 2 received.
+c 0.890 3 [msg] Requested work stealing from: 0
+c 0.890 0 [msg] Message 31 with Payload 0 from 3 received.
+c 0.890 0 [msg] Processing work stealing query from 3
+c 0.890 0 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 0.890 3 [msg] Message 32 with Payload -1 from 0 received.
+c 0.891 1 [msg] Requested work stealing from: 0
+c 0.891 0 [msg] Message 31 with Payload 0 from 1 received.
+c 0.891 0 [msg] Processing work stealing query from 1
+c 0.891 0 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.891 2 [msg] Requested work stealing from: 0
+c 0.891 1 [msg] Message 32 with Payload -1 from 0 received.
+c 0.891 0 [msg] Message 31 with Payload 0 from 2 received.
+c 0.891 0 [msg] Processing work stealing query from 2
+c 0.891 0 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 0.891 2 [msg] Message 32 with Payload -1 from 0 received.
+c 0.901 1 [msg] Requested work stealing from: 3
+c 0.901 3 [msg] Message 31 with Payload 0 from 1 received.
+c 0.901 3 [msg] Processing work stealing query from 1
+c 0.901 3 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.901 3 [msg] Message 31 with Payload 0 from 2 received.
+c 0.901 3 [msg] Processing work stealing query from 2
+c 0.901 3 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 0.901 2 [msg] Requested work stealing from: 3
+c 0.901 1 [msg] Message 32 with Payload -1 from 3 received.
+c 0.901 2 [msg] Message 32 with Payload -1 from 3 received.
+c 0.910 3 [msg] Requested work stealing from: 2
+c 0.910 3 [msg] Message 32 with Payload -1 from 2 received.
+c 0.910 2 [msg] Message 31 with Payload 0 from 3 received.
+c 0.910 2 [msg] Processing work stealing query from 3
+c 0.910 2 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 0.911 1 [msg] Requested work stealing from: 2
+c 0.911 1 [msg] Message 32 with Payload -1 from 2 received.
+c 0.911 2 [msg] Message 31 with Payload 0 from 1 received.
+c 0.911 2 [msg] Processing work stealing query from 1
+c 0.911 2 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.921 1 [msg] Requested work stealing from: 3
+c 0.921 1 [msg] Message 32 with Payload -1 from 3 received.
+c 0.921 3 [msg] Message 31 with Payload 0 from 1 received.
+c 0.921 3 [msg] Processing work stealing query from 1
+c 0.921 3 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.921 3 [msg] Message 31 with Payload 0 from 2 received.
+c 0.921 3 [msg] Processing work stealing query from 2
+c 0.921 3 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 0.921 2 [msg] Requested work stealing from: 3
+c 0.921 2 [msg] Message 32 with Payload -1 from 3 received.
+c 0.930 3 [msg] Requested work stealing from: 0
+c 0.930 3 [msg] Message 32 with Payload -1 from 0 received.
+c 0.930 0 [msg] Message 31 with Payload 0 from 3 received.
+c 0.930 0 [msg] Processing work stealing query from 3
+c 0.930 0 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 0.931 1 [msg] Requested work stealing from: 0
+c 0.931 0 [msg] Message 31 with Payload 0 from 1 received.
+c 0.931 0 [msg] Processing work stealing query from 1
+c 0.931 0 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.931 2 [msg] Requested work stealing from: 0
+c 0.931 1 [msg] Message 32 with Payload -1 from 0 received.
+c 0.931 0 [msg] Message 31 with Payload 0 from 2 received.
+c 0.931 0 [msg] Processing work stealing query from 2
+c 0.931 0 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 0.931 2 [msg] Message 32 with Payload -1 from 0 received.
+c 0.940 3 [msg] Requested work stealing from: 0
+c 0.940 3 [msg] Message 32 with Payload -1 from 0 received.
+c 0.940 0 [msg] Message 31 with Payload 0 from 3 received.
+c 0.940 0 [msg] Processing work stealing query from 3
+c 0.940 0 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 0.941 1 [msg] Requested work stealing from: 0
+c 0.941 1 [msg] Message 32 with Payload -1 from 0 received.
+c 0.941 0 [msg] Message 31 with Payload 0 from 1 received.
+c 0.941 0 [msg] Processing work stealing query from 1
+c 0.941 0 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.941 0 [msg] Message 31 with Payload 0 from 2 received.
+c 0.941 0 [msg] Processing work stealing query from 2
+c 0.941 0 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 0.941 2 [msg] Requested work stealing from: 0
+c 0.941 2 [msg] Message 32 with Payload -1 from 0 received.
+c 0.950 3 [msg] Requested work stealing from: 2
+c 0.950 3 [msg] Message 32 with Payload -1 from 2 received.
+c 0.950 2 [msg] Message 31 with Payload 0 from 3 received.
+c 0.950 2 [msg] Processing work stealing query from 3
+c 0.950 2 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 0.951 1 [msg] Requested work stealing from: 2
+c 0.951 2 [msg] Message 31 with Payload 0 from 1 received.
+c 0.951 2 [msg] Processing work stealing query from 1
+c 0.951 2 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.951 1 [msg] Message 32 with Payload -1 from 2 received.
+c 0.960 3 [msg] Requested work stealing from: 0
+c 0.960 0 [msg] Message 31 with Payload 0 from 3 received.
+c 0.960 0 [msg] Processing work stealing query from 3
+c 0.960 0 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 0.960 1 TRY REDUCE 63 0 0 2 2
+c 0.960 1 REDUCE
+c 0.960 3 [msg] Message 32 with Payload -1 from 0 received.
+c 0.961 1 [msg] Requested work stealing from: 0
+c 0.961 0 [msg] Message 31 with Payload 0 from 1 received.
+c 0.961 0 [msg] Processing work stealing query from 1
+c 0.961 0 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.961 0 TRY REDUCE 63 0 0 2 2
+c 0.961 0 REDUCE
+c 0.961 0 [stack] Stack empty. Stopping Loop
+c 0.961 1 [msg] Message 32 with Payload -1 from 0 received.
+c 0.961 2 [msg] Requested work stealing from: 0
+c 0.961 0 [msg] Message 31 with Payload 0 from 2 received.
+c 0.961 0 [msg] Processing work stealing query from 2
+c 0.961 0 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 0.961 0 TRY REDUCE 63 0 0 2 2
+c 0.961 0 REDUCE
+c 0.961 2 [msg] Message 32 with Payload -1 from 0 received.
+c 0.961 2 BROADCAST
+c 0.961 2 TRY REDUCE 64 0 0 2 2
+c 0.961 2 BROADCAST
+c 0.961 1 BROADCAST
+c 0.961 1 TRY REDUCE 64 0 0 2 2
+c 0.961 1 BROADCAST
+c 0.961 3 BROADCAST
+c 0.961 3 TRY REDUCE 64 0 0 2 2
+c 0.961 3 BROADCAST
+c 0.970 0 [msg] Requested work stealing from: 3
+c 0.970 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 5, 8}.
+c 0.970 3 [msg] Requested work stealing from: 0
+c 0.970 3 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 5, 8}.
+c 0.970 3 [msg] Message 31 with Payload 0 from 0 received.
+c 0.970 3 [msg] Processing work stealing query from 0
+c 0.970 3 [msg] Message returned to sender 0 with payload[0] = -1 and _sent_work = 0
+c 0.970 0 [msg] Message 31 with Payload 0 from 3 received.
+c 0.970 0 [msg] Processing work stealing query from 3
+c 0.970 0 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 0.970 0 [msg] Message 32 with Payload -1 from 3 received.
+c 0.970 3 [msg] Message 32 with Payload -1 from 0 received.
+c 0.971 1 [msg] Requested work stealing from: 0
+c 0.971 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 5, 8}.
+c 0.971 0 [msg] Message 31 with Payload 0 from 1 received.
+c 0.971 0 [msg] Processing work stealing query from 1
+c 0.971 0 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.971 1 [msg] Message 32 with Payload -1 from 0 received.
+c 0.971 2 [msg] Requested work stealing from: 0
+c 0.971 2 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 5, 8}.
+c 0.971 0 [msg] Message 31 with Payload 0 from 2 received.
+c 0.971 0 [msg] Processing work stealing query from 2
+c 0.971 0 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 0.971 2 [msg] Message 32 with Payload -1 from 0 received.
+c 0.980 0 [msg] Requested work stealing from: 2
+c 0.980 2 [msg] Message 31 with Payload 0 from 0 received.
+c 0.980 2 [msg] Processing work stealing query from 0
+c 0.980 2 [msg] Message returned to sender 0 with payload[0] = -1 and _sent_work = 0
+c 0.980 0 [msg] Message 32 with Payload -1 from 2 received.
+c 0.981 1 [msg] Requested work stealing from: 3
+c 0.981 3 [msg] Message 31 with Payload 0 from 1 received.
+c 0.981 3 [msg] Processing work stealing query from 1
+c 0.981 3 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.981 2 [msg] Requested work stealing from: 3
+c 0.981 1 [msg] Message 32 with Payload -1 from 3 received.
+c 0.981 3 [msg] Message 31 with Payload 0 from 2 received.
+c 0.981 3 [msg] Processing work stealing query from 2
+c 0.981 3 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 0.981 2 [msg] Message 32 with Payload -1 from 3 received.
+c 0.990 0 [msg] Requested work stealing from: 1
+c 0.990 1 [msg] Message 31 with Payload 0 from 0 received.
+c 0.990 1 [msg] Processing work stealing query from 0
+c 0.990 1 [msg] Message returned to sender 0 with payload[0] = -1 and _sent_work = 0
+c 0.990 0 [msg] Message 32 with Payload -1 from 1 received.
+c 0.991 1 [msg] Requested work stealing from: 3
+c 0.991 3 [msg] Message 31 with Payload 0 from 1 received.
+c 0.991 3 [msg] Processing work stealing query from 1
+c 0.991 3 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 0.991 1 [msg] Message 32 with Payload -1 from 3 received.
+c 0.991 2 [msg] Requested work stealing from: 3
+c 0.991 3 [msg] Message 31 with Payload 0 from 2 received.
+c 0.991 3 [msg] Processing work stealing query from 2
+c 0.991 3 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 0.991 2 [msg] Message 32 with Payload -1 from 3 received.
+c 1.000 0 [msg] Requested work stealing from: 3
+c 1.000 3 [msg] Message 31 with Payload 0 from 0 received.
+c 1.000 3 [msg] Processing work stealing query from 0
+c 1.000 3 [msg] Message returned to sender 0 with payload[0] = -1 and _sent_work = 0
+c 1.000 0 [msg] Message 32 with Payload -1 from 3 received.
+c 1.000 3 [msg] Requested work stealing from: 2
+c 1.001 2 [msg] Message 31 with Payload 0 from 3 received.
+c 1.001 2 [msg] Processing work stealing query from 3
+c 1.001 2 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 1.001 3 [msg] Message 32 with Payload -1 from 2 received.
+c 1.001 1 [msg] Requested work stealing from: 2
+c 1.001 2 [msg] Message 31 with Payload 0 from 1 received.
+c 1.001 2 [msg] Processing work stealing query from 1
+c 1.001 2 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 1.001 1 [msg] Message 32 with Payload -1 from 2 received.
+c 1.010 0 [msg] Requested work stealing from: 1
+c 1.010 0 [msg] Message 32 with Payload -1 from 1 received.
+c 1.010 1 [msg] Message 31 with Payload 0 from 0 received.
+c 1.010 1 [msg] Processing work stealing query from 0
+c 1.010 1 [msg] Message returned to sender 0 with payload[0] = -1 and _sent_work = 0
+c 1.011 1 [msg] Requested work stealing from: 3
+c 1.011 3 [msg] Message 31 with Payload 0 from 1 received.
+c 1.011 3 [msg] Processing work stealing query from 1
+c 1.011 3 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 1.011 1 [msg] Message 32 with Payload -1 from 3 received.
+c 1.011 2 [msg] Requested work stealing from: 3
+c 1.011 3 [msg] Message 31 with Payload 0 from 2 received.
+c 1.011 3 [msg] Processing work stealing query from 2
+c 1.011 3 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 1.012 2 [msg] Message 32 with Payload -1 from 3 received.
+c 1.020 0 [msg] Requested work stealing from: 3
+c 1.020 0 [msg] Message 32 with Payload -1 from 3 received.
+c 1.020 3 [msg] Message 31 with Payload 0 from 0 received.
+c 1.020 3 [msg] Processing work stealing query from 0
+c 1.020 3 [msg] Message returned to sender 0 with payload[0] = -1 and _sent_work = 0
+c 1.021 3 [msg] Requested work stealing from: 0
+c 1.021 0 [msg] Message 31 with Payload 0 from 3 received.
+c 1.021 0 [msg] Processing work stealing query from 3
+c 1.021 0 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 1.021 3 [msg] Message 32 with Payload -1 from 0 received.
+c 1.021 1 [msg] Requested work stealing from: 0
+c 1.021 0 [msg] Message 31 with Payload 0 from 1 received.
+c 1.021 0 [msg] Processing work stealing query from 1
+c 1.021 0 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 1.021 1 [msg] Message 32 with Payload -1 from 0 received.
+c 1.022 2 [msg] Requested work stealing from: 0
+c 1.022 0 [msg] Message 31 with Payload 0 from 2 received.
+c 1.022 0 [msg] Processing work stealing query from 2
+c 1.022 0 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 1.022 2 [msg] Message 32 with Payload -1 from 0 received.
+c 1.030 0 [msg] Requested work stealing from: 2
+c 1.030 2 [msg] Message 31 with Payload 0 from 0 received.
+c 1.030 2 [msg] Processing work stealing query from 0
+c 1.030 2 [msg] Message returned to sender 0 with payload[0] = -1 and _sent_work = 0
+c 1.030 0 [msg] Message 32 with Payload -1 from 2 received.
+c 1.031 3 [msg] Requested work stealing from: 0
+c 1.031 0 [msg] Message 31 with Payload 0 from 3 received.
+c 1.031 0 [msg] Processing work stealing query from 3
+c 1.031 0 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 1.031 3 [msg] Message 32 with Payload -1 from 0 received.
+c 1.031 1 [msg] Requested work stealing from: 0
+c 1.031 0 [msg] Message 31 with Payload 0 from 1 received.
+c 1.031 0 [msg] Processing work stealing query from 1
+c 1.031 0 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 1.031 1 [msg] Message 32 with Payload -1 from 0 received.
+c 1.032 2 [msg] Requested work stealing from: 0
+c 1.032 0 [msg] Message 31 with Payload 0 from 2 received.
+c 1.032 0 [msg] Processing work stealing query from 2
+c 1.032 0 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 1.032 2 [msg] Message 32 with Payload -1 from 0 received.
+c 1.037 2 [WARN] Watchdog: No reset for 1000 ms (activity=0 recvtag=0 sendtag=0)
+c 1.037 1 [WARN] Watchdog: No reset for 1000 ms (activity=0 recvtag=0 sendtag=0)
+c 1.037 3 [WARN] Watchdog: No reset for 1001 ms (activity=0 recvtag=0 sendtag=0)
+c 1.041 3 [msg] Requested work stealing from: 0
+c 1.041 0 [msg] Message 31 with Payload 0 from 3 received.
+c 1.041 0 [msg] Processing work stealing query from 3
+c 1.041 0 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 1.041 3 [msg] Message 32 with Payload -1 from 0 received.
+c 1.041 1 [msg] Requested work stealing from: 0
+c 1.041 0 [msg] Message 31 with Payload 0 from 1 received.
+c 1.041 0 [msg] Processing work stealing query from 1
+c 1.041 0 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 1.042 1 [msg] Message 32 with Payload -1 from 0 received.
+c 1.042 2 [msg] Requested work stealing from: 0
+c 1.042 0 [msg] Message 31 with Payload 0 from 2 received.
+c 1.042 0 [msg] Processing work stealing query from 2
+c 1.042 0 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 1.042 2 [msg] Message 32 with Payload -1 from 0 received.
+c 1.050 0 [msg] Requested work stealing from: 1
+c 1.050 1 [msg] Message 31 with Payload 0 from 0 received.
+c 1.050 1 [msg] Processing work stealing query from 0
+c 1.050 1 [msg] Message returned to sender 0 with payload[0] = -1 and _sent_work = 0
+c 1.051 0 [msg] Message 32 with Payload -1 from 1 received.
+c 1.051 3 [msg] Requested work stealing from: 0
+c 1.051 0 [msg] Message 31 with Payload 0 from 3 received.
+c 1.051 0 [msg] Processing work stealing query from 3
+c 1.051 0 [msg] Message returned to sender 3 with payload[0] = -1 and _sent_work = 0
+c 1.051 3 [msg] Message 32 with Payload -1 from 0 received.
+c 1.051 1 [msg] Requested work stealing from: 0
+c 1.052 0 [msg] Message 31 with Payload 0 from 1 received.
+c 1.052 0 [msg] Processing work stealing query from 1
+c 1.052 0 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 1.052 1 [msg] Message 32 with Payload -1 from 0 received.
+c 1.052 2 [msg] Requested work stealing from: 0
+c 1.052 0 [msg] Message 31 with Payload 0 from 2 received.
+c 1.052 0 [msg] Processing work stealing query from 2
+c 1.052 0 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 1.052 2 [msg] Message 32 with Payload -1 from 0 received.
+c 1.060 0 [msg] Requested work stealing from: 1
+c 1.061 1 [msg] Message 31 with Payload 0 from 0 received.
+c 1.061 1 [msg] Processing work stealing query from 0
+c 1.061 1 [msg] Message returned to sender 0 with payload[0] = -1 and _sent_work = 0
+c 1.061 0 [msg] Message 32 with Payload -1 from 1 received.
+c 1.061 1 TRY REDUCE 63 0 0 2 2
+c 1.061 1 REDUCE
+c 1.061 1 [msg] Requested work stealing from: 3
+c 1.062 3 [msg] Message 31 with Payload 0 from 1 received.
+c 1.062 3 [msg] Processing work stealing query from 1
+c 1.062 3 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 1.062 0 TRY REDUCE 63 0 0 2 2
+c 1.062 0 REDUCE
+c 1.062 1 [msg] Message 32 with Payload -1 from 3 received.
+c 1.062 2 [msg] Requested work stealing from: 3
+c 1.062 3 [msg] Message 31 with Payload 0 from 2 received.
+c 1.062 3 [msg] Processing work stealing query from 2
+c 1.062 3 [msg] Message returned to sender 2 with payload[0] = -1 and _sent_work = 0
+c 1.062 0 TRY REDUCE 63 0 0 2 2
+c 1.062 0 REDUCE
+c 1.062 2 BROADCAST
+c 1.062 2 TRY REDUCE 64 0 0 2 2
+c 1.062 2 BROADCAST
+c 1.062 2 [msg] Message 32 with Payload -1 from 3 received.
+c 1.062 1 BROADCAST
+c 1.062 1 TRY REDUCE 64 0 0 2 2
+c 1.062 1 BROADCAST
+c 1.062 3 BROADCAST
+c 1.062 3 TRY REDUCE 64 0 0 2 2
+c 1.062 3 BROADCAST
+c 1.071 0 [msg] Requested work stealing from: 2
+c 1.071 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {0, 5, 8}.
+c 1.071 0 [tracking] Number of queries in total: 11 - succesful: 0 - before msgs allowed: 0 - rank invalid: 1 - reply empty: 9
+c 1.071 0 [tracking] Time wait threads: 0 0.085845
+c 1.071 0 [tracking] Time check: 1 0.034848
+c 1.071 0 [tracking] Time wait full: 2 0.138664
+c 1.071 0 [tracking] Time get work: 3 0.108283
+c 1.071 0 [tracking] Time work: 4 0.508208
+c 1.071 0 [tracking] Time compare: 5 0.085179
+c 1.071 0 [tracking] Time outside: 6 0.038974
+c 1.071 0 [track] All time: 1.000000
+c 1.071 0 [msg] Message 32 with Payload -1 from 2 received.
+c 1.071 0 [msg] Message will not be entirely processed as program is finished
+c 1.071 0 [msg] Message returned to sender 2 with tag 4
+c 1.071 2 [msg] Message 31 with Payload 0 from 0 received.
+c 1.071 2 [msg] Processing work stealing query from 0
+c 1.071 2 [msg] Message returned to sender 0 with payload[0] = -1 and _sent_work = 0
+c 1.071 2 [msg] Message 4 with Payload -1 from 0 received.
+c 1.071 2 [term] Finished set to 1
+c 1.071 2 [tracking] Number of queries in total: 110 - succesful: 0 - before msgs allowed: 15 - rank invalid: 25 - reply empty: 70
+c 1.071 2 [tracking] Time wait threads: 0 0.000000
+c 1.071 2 [tracking] Time check: 1 0.000000
+c 1.071 2 [tracking] Time wait full: 2 0.999999
+c 1.071 2 [tracking] Time get work: 3 0.000000
+c 1.071 2 [tracking] Time work: 4 0.000000
+c 1.071 2 [tracking] Time compare: 5 0.000000
+c 1.071 2 [tracking] Time outside: 6 0.000001
+c 1.071 2 [track] All time: 1.000000
+c 1.071 3 [msg] Requested work stealing from: 0
+c 1.071 3 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {0, 5, 8}.
+c 1.071 3 [tracking] Number of queries in total: 111 - succesful: 0 - before msgs allowed: 15 - rank invalid: 25 - reply empty: 70
+c 1.071 3 [tracking] Time wait threads: 0 0.000000
+c 1.071 3 [tracking] Time check: 1 0.000000
+c 1.071 3 [tracking] Time wait full: 2 0.999999
+c 1.071 3 [tracking] Time get work: 3 0.000000
+c 1.071 3 [tracking] Time work: 4 0.000000
+c 1.071 3 [tracking] Time compare: 5 0.000000
+c 1.071 3 [tracking] Time outside: 6 0.000001
+c 1.071 3 [track] All time: 1.000000
+c 1.071 0 [msg] Message 31 with Payload 0 from 3 received.
+c 1.071 0 [msg] Message will not be entirely processed as program is finished
+c 1.071 0 [msg] Message returned to sender 3 with tag 4
+c 1.071 3 [msg] Message 4 with Payload 0 from 0 received.
+c 1.071 3 [term] Finished set to 1
+c 1.072 1 [msg] Requested work stealing from: 0
+c 1.072 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {0, 5, 8}.
+c 1.072 1 [tracking] Number of queries in total: 111 - succesful: 0 - before msgs allowed: 15 - rank invalid: 22 - reply empty: 73
+c 1.072 1 [tracking] Time wait threads: 0 0.000000
+c 1.072 1 [tracking] Time check: 1 0.000000
+c 1.072 1 [tracking] Time wait full: 2 1.000000
+c 1.072 1 [tracking] Time get work: 3 0.000000
+c 1.072 0 [msg] Message 31 with Payload 0 from 1 received.
+c 1.072 0 [msg] Message will not be entirely processed as program is finished
+c 1.072 0 [msg] Message returned to sender 1 with tag 4
+c 1.072 1 [tracking] Time work: 4 0.000000
+c 1.072 1 [tracking] Time compare: 5 0.000000
+c 1.072 1 [tracking] Time outside: 6 0.000000
+c 1.072 1 [track] All time: 1.000000
+c 1.072 1 [msg] Message 4 with Payload 0 from 0 received.
+c 1.072 1 [term] Finished set to 1
+c 1.072 2 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {0, 5, 8}.
+c 1.081 0 [solved] End: (Completion: 1) (Nr Tasks: 15) (Nr Machines: 4) (Tasks:) (Machine Workloads: 7 7 8 8) (Machines: 3 2 1 1 0 3 2 2 0 3 3 1 1 0 3 2 2 1 0)
+c 1.081 0 RESPONSE_TIME #1 1.056696 rev. 0
+c 1.081 0 SOLUTION #1 SATISFIABLE rev. 0
+s SATISFIABLE
+null
+c 1.128 1 Exiting happily
+c 1.128 3 Exiting happily
+c 1.128 2 Exiting happily
+c 1.128 0 Exiting happily
