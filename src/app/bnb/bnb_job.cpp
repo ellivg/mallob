@@ -322,7 +322,7 @@ void BnbJob::init() {
 
         int possible_lower_bound = tasks[_nr_machines] + tasks[_nr_machines+1];
         if(bounds.curr_lower_bound < possible_lower_bound) bounds.curr_lower_bound = possible_lower_bound;
-        LOG(V2_INFO, "[bou] Initiliased to {lower, upper, best} = {%i, %i, %i}.\n", bounds.curr_lower_bound, bounds.curr_upper_bound, bounds.curr_best_solution);
+        LOG(V5_DEBG, "[bou] Initiliased to {lower, upper, best} = {%i, %i, %i}.\n", bounds.curr_lower_bound, bounds.curr_upper_bound, bounds.curr_best_solution);
 
         LOG(V2_INFO, "%s", transform_for_log("[start] Beginning", work).c_str());
     }
@@ -365,7 +365,7 @@ void BnbJob::loop() {
         tracker.curr_time = Timer::elapsedSeconds();
         tracker.time_spent_outside += tracker.curr_time - tracker.outside_time;
         tracker.check_time = tracker.curr_time;
-        LOG(V2_INFO, "[track] End outside & Start empty & Start check\n");
+        LOG(V5_DEBG, "[track] End outside & Start empty & Start check\n");
 
         //check if stack is empty and stop working if necessary
         bool empty;
@@ -395,7 +395,7 @@ void BnbJob::loop() {
                 LOG(V5_DEBG, "[track] End wait full & Start outside\n");
 
                 if(_stopSearch || _reportableSolution) break;
-                LOG(V5_DEBG, "[stack] Restarting loop: %i\n", _work_list.size());
+                LOG(V2_INFO, "[stack] Restarting loop: %i\n", _work_list.size());
                 
                 // Switch tracker
                 tracker.curr_time = Timer::elapsedSeconds();
@@ -619,14 +619,14 @@ std::vector<int> BnbJob::splitQueue() {
     std::vector<int> sendQueue;
     
     if (_work_list.size() < 2) {
-        LOG(V2_INFO, "[steal] I am not sending work: _work_list.size() = %i\n", _work_list.size());
+        LOG(V5_DEBG, "[steal] I am not sending work: _work_list.size() = %i\n", _work_list.size());
         sendQueue.push_back(-1);
     } else if ((appr_amount_of_expl - num_expl_nodes) < 100) {
-        LOG(V2_INFO, "[steal] I am not sending work: appr_amount_of_expl = %i, num_explored_nodes = %i\n", appr_amount_of_expl, num_expl_nodes);
+        LOG(V5_DEBG, "[steal] I am not sending work: appr_amount_of_expl = %i, num_explored_nodes = %i\n", appr_amount_of_expl, num_expl_nodes);
         sendQueue.push_back(-1);
     } else {
         // Send the search tree that has been explored the least (aka stack element 0)
-        LOG(V2_INFO, "[steal] I am sending work\n");
+        LOG(V5_DEBG, "[steal] I am sending work\n");
 
         Work work_front = _work_list.front();
         _work_list.pop_front();
@@ -649,7 +649,7 @@ std::vector<int> BnbJob::splitQueue() {
 }
 
 void BnbJob::addToQueue(std::vector<int>& message) {
-    LOG(V2_INFO, "[adding] Adding starting now\n");
+    LOG(V5_DEBG, "[adding] Adding starting now\n");
     auto lock = list_mtx.getLock();
     int next;
 
@@ -713,7 +713,7 @@ void BnbJob::addToQueue(std::vector<int>& message) {
     _working = 1;
     _waiting = 0;
     _loop_cond_var.notify();
-    LOG(V2_INFO, "[adding] Adding ending now\n");
+    LOG(V5_DEBG, "[adding] Adding ending now\n");
 }
 
 // Mark the job as done, with the provided result code and solution.
@@ -845,7 +845,7 @@ void BnbJob::tryStartReduction() {
     const int contrib0 = !((!_working) && (!_sent_work));
     const int contrib1 = bounds.curr_lower_bound;
     const int contrib2 = bounds.curr_upper_bound;
-    LOG(V2_INFO, "[red] & [bou] Contributed {finished, lowerBound, upperBound} = {%i, %i, %i} to all-reduction.\n", contrib0, contrib1, contrib2);
+    LOG(V5_DEBG, "[red] & [bou] Contributed {finished, lowerBound, upperBound} = {%i, %i, %i} to all-reduction.\n", contrib0, contrib1, contrib2);
     _red->contribute({contrib0, contrib1, contrib2});
 }
 
@@ -889,7 +889,7 @@ void BnbJob::tryEndReduction() {
             _reportableSolution = true;
         }
         _loop_cond_var.notify();
-        LOG(V2_INFO, "[red] & [bou] Thread has reportable solution: upperBound = %i, lowerBound = %i, currSolution = %i\n", upperBound, lowerBound, bounds.curr_best_solution);
+        LOG(V5_DEBG, "[red] & [bou] Thread has reportable solution: upperBound = %i, lowerBound = %i, currSolution = %i\n", upperBound, lowerBound, bounds.curr_best_solution);
     } 
 
     LOG(V5_DEBG, "[bou] Before reduction: {lower, upper, best} = {%i, %i, %i}\n", bounds.curr_lower_bound, bounds.curr_upper_bound, bounds.curr_best_solution);
