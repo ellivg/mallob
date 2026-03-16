@@ -380,7 +380,7 @@ void BnbJob::loop() {
             // actually here
 
             if(empty) {
-                LOG(V2_INFO, "[track] End check & Start wait full\n");
+                LOG(V5_DEBG, "[track] End check & Start wait full\n");
 
                 LOG(V2_INFO, "[stack] Stack empty. Stopping Loop\n");
                 _working = 0;
@@ -422,7 +422,7 @@ void BnbJob::loop() {
         }
 
         LOG(V5_DEBG, "%s", transform_for_log("[stack] In Loop. Currently at:", curr_work).c_str());
-        if (num_expl_nodes % 100000 == 0) LOG(V2_INFO, "[stack] In loop. Jobs left: %i\n", _work_list.size()+1);
+        if (num_expl_nodes % 100000 == 0) LOG(V5_DEBG, "[stack] In loop. Jobs left: %i\n", _work_list.size()+1);
 
         // Switch tracker
         tracker.curr_time = Timer::elapsedSeconds();
@@ -452,7 +452,7 @@ void BnbJob::loop() {
                 bounds.curr_best_solution = new_length;
                 if (bounds.curr_lower_bound > bounds.curr_best_solution) bounds.curr_lower_bound = bounds.curr_best_solution;
                 if (bounds.curr_upper_bound == -1 || bounds.curr_upper_bound > bounds.curr_best_solution) bounds.curr_upper_bound = bounds.curr_best_solution;
-                LOG(V2_INFO, "[bou] Updated to {lower, upper, best} = {%i, %i, %i}.\n", bounds.curr_lower_bound, bounds.curr_upper_bound, bounds.curr_best_solution);
+                LOG(V5_DEBG, "[bou] Updated to {lower, upper, best} = {%i, %i, %i}.\n", bounds.curr_lower_bound, bounds.curr_upper_bound, bounds.curr_best_solution);
             }        
         }
 
@@ -464,7 +464,7 @@ void BnbJob::loop() {
         tracker.outside_time = tracker.curr_time;
         LOG(V5_DEBG, "[track] End compare & Start outside\n");
     } while(_working && !_stopSearch && !_reportableSolution);
-    LOG(V2_INFO, "[stack] Succesfully broken out of loop\n");
+    LOG(V5_DEBG, "[stack] Succesfully broken out of loop\n");
 
     // Finish tracker
     tracker.curr_time = Timer::elapsedSeconds();
