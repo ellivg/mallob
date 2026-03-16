@@ -67,7 +67,7 @@ for ((i=1; i<=INSTANCES; i++)); do
   echo "" 
   echo ""
 
-  for ((j=0; j<=5; j++)); do
+  for ((j=5; j<=5; j++)); do
     ((MPI_PROCESSES=2**$j)) #TODO: Set to desired number 
 
     echo "MPI_PROCESSES: $MPI_PROCESSES"
