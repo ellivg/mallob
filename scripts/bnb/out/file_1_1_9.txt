@@ -1,0 +1,532 @@
+0.000 0 [WARN] Invalid argument "\"
+c 
+c Mallob -- a parallel and distributed platform for job scheduling, load balancing, and SAT solving
+c Copyright (C) 2019-2025 Dominik Schreiber, Karlsruhe Institute of Technology, Germany
+c 
+c 0.002 0 Program options: -0o=0 -J=0 -SJ=0 -T=300 -adc=0 -aim=1 -ajpc=0 -ans=0 -apidir=.api -ba=4 -bem=1 -bicg=4 -br=0 -c=1 -cbbs=0 -cblm=1 -cblp=100000 -cdel=2 -cecpm=0 -cf=0 -cfci=10 -cfm=3 -cg=1 -ch=0 -checksums=0 -cjc=0 -client-app-threads=1 -cm=0 -cmp=0 -colors=0 -compact-proof=0 -cpshm=0 -csm=3 -cusv=1 -dc=0 -decay-distr=1 -decay-max=200 -decay-mean=50 -decay-min=1 -decay-stddev=3 -decpm=0 -delaymonkey=0 -div-elim=0 -div-fanout=0 -div-init-shuffle=0 -div-native=1 -div-noise=0 -div-phases=1 -div-reduce=0 -div-seeds=1 -dpa=1 -ds=0 -evpt=350 -evu=0 -extmem-disk-dir=.disk -fapii=0 -fcll=1 -g=0 -gclls=0 -h=0 -huca=0 -iff=0 -ilbd=0 -inotify=1 -interface-fs=0 -interface-ipc=0 -ipm=1 -ivdh=1 -jc=1 -jcl=0 -jcup=0.1 -jjp=0 -jwl=0 -l=1 -latencymonkey=0 -lbdpi=0 -lbdpo=0 -ljpc=32 -log=scripts/bnb/out//1/ -mbt=8388608 -mcips=5 -md=0 -mempanic=1 -mjps=0 -mlbdps=2 -mlpt=50000000 -mmpi=0 -mono=instances/bnb/main_under_300/bnb_n20_m3.cnf -mono-app=bnb -mscf=5 -nec=5 -no-import=0 -os=0 -otfc=0 -otfcm=1 -p=0.1 -pbbm=0 -plain-add-specific=0 -pph=0 -pre-cleanup=1 -prisma=0 -proof-debugging=0 -ps=0 -q=0 -qcll=8 -qlbdl=2 -randlbd=0 -reduce-delta=100 -reduce-max=980 -reduce-mean=700 -reduce-min=300 -reduce-stddev=150 -rlbd=3 -rpa=0 -rs=1 -rspaa=0 -s=0.5 -satsolver=C -scll=60 -scramble-lbds=0 -scsd=0 -seed=0 -sjd=0 -slbdl=60 -sleep=100 -spl=-1 -sswl=0 -t=1 -tmp=scripts/bnb/out//1/tmp/ -trace-dir=scripts/bnb/out//1/ -uninvert-proof=1 -v=2 -w=-1 -wam=10000 -warmup=0 -watchdog=1 -y=1 -yield=0 
+c 0.002 0 Cleaning up pre-execution
+c 0.002 0 Killing old subprocesses: "killall -9 build/mallob_sat_process 2>/dev/null"
+c 0.011 0 Killing old subprocesses: "killall -9 build/impcheck_parse 2>/dev/null"
+c 0.012 0 Killing old subprocesses: "killall -9 build/impcheck_check 2>/dev/null"
+c 0.014 0 Killing old subprocesses: "killall -9 build/impcheck_confirm 2>/dev/null"
+c 0.022 0 [WARN] Num bounce alternatives must be at most half the number of workers!
+c 0.022 0 [WARN] Falling back to safe value r=1.
+c 0.022 0 Set up API connector
+c 0.022 0 Machine color 0 with 1 total workers (my rank: 0)
+c 0.022 0 Assuming application "BNB" for mono job
+c 0.023 0 Introducing job #1 rev. 0 : r.#1:0 rev. 0 <- [0] born=0.023 hops=0 epoch=-1 matchId=-1 => [0]
+c 0.024 0 [start] Beginning: (Completion: 0) (Nr Tasks: 20) (Nr Machines: 3) (Tasks: 4 4 3 3 3 3 3 3 3 3 2 2 2 2 2 1 1 1 1 1) (Machine Workloads: 0 0 0) (Machines: 0 0 0)
+c 0.024 0 [stack] Start waiting for other threads: 0
+c 0.103 0 [stack] End waiting: 1
+c 0.134 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 21}.
+c 0.234 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 0.325 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 0.426 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 0.527 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 0.627 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 0.728 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 0.828 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 0.929 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 1.029 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 1.130 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 1.201 0 sysstate busyratio=1.000 cmtdratio=0.000 jobs=1 globmem=0.00GB newreqs=0 hops=1
+c 1.201 0 sysstate entered=1 parsed=1 scheduled=1 processed=0 successful=0
+c 1.231 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 1.332 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 1.432 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 1.533 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 1.634 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 1.734 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 1.835 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 1.936 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 2.036 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 2.137 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 2.201 0 sysstate busyratio=1.000 cmtdratio=0.000 jobs=1 globmem=0.05GB newreqs=0 hops=0
+c 2.201 0 sysstate entered=1 parsed=1 scheduled=1 processed=0 successful=0
+c 2.238 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 2.338 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 2.439 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 2.540 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 2.641 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 2.741 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 2.843 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 2.944 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 3.044 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 3.145 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 3.201 0 sysstate busyratio=1.000 cmtdratio=0.000 jobs=1 globmem=0.05GB newreqs=0 hops=0
+c 3.201 0 sysstate entered=1 parsed=1 scheduled=1 processed=0 successful=0
+c 3.246 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 3.347 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 3.448 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 3.548 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 3.649 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 3.750 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 3.851 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 3.952 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 4.052 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 4.153 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 4.202 0 sysstate busyratio=1.000 cmtdratio=0.000 jobs=1 globmem=0.05GB newreqs=0 hops=0
+c 4.202 0 sysstate entered=1 parsed=1 scheduled=1 processed=0 successful=0
+c 4.253 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 4.354 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 4.455 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 4.556 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 4.657 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 4.758 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 4.859 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 4.959 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 5.060 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 5.161 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 5.202 0 sysstate busyratio=1.000 cmtdratio=0.000 jobs=1 globmem=0.05GB newreqs=0 hops=0
+c 5.202 0 sysstate entered=1 parsed=1 scheduled=1 processed=0 successful=0
+c 5.261 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 5.362 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 5.463 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 5.563 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 5.664 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 5.764 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 5.865 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 5.965 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 6.066 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 6.167 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 6.202 0 sysstate busyratio=1.000 cmtdratio=0.000 jobs=1 globmem=0.05GB newreqs=0 hops=0
+c 6.202 0 sysstate entered=1 parsed=1 scheduled=1 processed=0 successful=0
+c 6.267 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 6.368 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 6.468 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 6.569 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 6.670 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 6.771 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 6.872 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 6.973 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 7.073 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 7.174 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 7.203 0 sysstate busyratio=1.000 cmtdratio=0.000 jobs=1 globmem=0.05GB newreqs=0 hops=0
+c 7.203 0 sysstate entered=1 parsed=1 scheduled=1 processed=0 successful=0
+c 7.275 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 7.376 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 7.477 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 7.578 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 7.679 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 7.780 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 7.881 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 7.982 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 8.083 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 8.183 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 8.203 0 sysstate busyratio=1.000 cmtdratio=0.000 jobs=1 globmem=0.05GB newreqs=0 hops=0
+c 8.203 0 sysstate entered=1 parsed=1 scheduled=1 processed=0 successful=0
+c 8.284 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 8.384 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 8.485 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 8.586 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 8.686 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 8.787 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 8.888 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 8.988 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 9.089 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 9.189 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 9.203 0 sysstate busyratio=1.000 cmtdratio=0.000 jobs=1 globmem=0.05GB newreqs=0 hops=0
+c 9.203 0 sysstate entered=1 parsed=1 scheduled=1 processed=0 successful=0
+c 9.290 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 9.391 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 9.491 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 9.592 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 9.692 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 9.792 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 9.893 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 9.994 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 10.094 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 10.195 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 10.204 0 sysstate busyratio=1.000 cmtdratio=0.000 jobs=1 globmem=0.05GB newreqs=0 hops=0
+c 10.204 0 sysstate entered=1 parsed=1 scheduled=1 processed=0 successful=0
+c 10.296 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 10.396 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 10.497 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 10.597 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 10.698 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 10.799 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 10.900 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 11.001 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 11.101 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 11.201 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 11.204 0 sysstate busyratio=1.000 cmtdratio=0.000 jobs=1 globmem=0.05GB newreqs=0 hops=0
+c 11.204 0 sysstate entered=1 parsed=1 scheduled=1 processed=0 successful=0
+c 11.302 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 11.402 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 11.503 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 11.603 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 11.704 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 11.804 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 11.905 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 12.005 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 12.106 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 12.204 0 sysstate busyratio=1.000 cmtdratio=0.000 jobs=1 globmem=0.05GB newreqs=0 hops=0
+c 12.204 0 sysstate entered=1 parsed=1 scheduled=1 processed=0 successful=0
+c 12.206 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 12.307 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 12.407 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 12.508 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 12.608 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 12.709 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 12.810 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 12.911 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 13.011 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 13.112 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 13.204 0 sysstate busyratio=1.000 cmtdratio=0.000 jobs=1 globmem=0.05GB newreqs=0 hops=0
+c 13.204 0 sysstate entered=1 parsed=1 scheduled=1 processed=0 successful=0
+c 13.213 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 13.313 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 13.414 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 13.515 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 13.615 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 13.716 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 13.816 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 13.917 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 14.018 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 14.119 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 14.205 0 sysstate busyratio=1.000 cmtdratio=0.000 jobs=1 globmem=0.05GB newreqs=0 hops=0
+c 14.205 0 sysstate entered=1 parsed=1 scheduled=1 processed=0 successful=0
+c 14.219 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 14.320 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 14.421 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 14.521 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 14.622 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 14.723 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 14.823 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 14.924 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 15.024 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 15.125 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 15.205 0 sysstate busyratio=1.000 cmtdratio=0.000 jobs=1 globmem=0.05GB newreqs=0 hops=0
+c 15.205 0 sysstate entered=1 parsed=1 scheduled=1 processed=0 successful=0
+c 15.225 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 15.326 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 15.427 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 15.527 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 15.627 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 15.728 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 15.829 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 15.929 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 16.030 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 16.130 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 16.205 0 sysstate busyratio=1.000 cmtdratio=0.000 jobs=1 globmem=0.05GB newreqs=0 hops=0
+c 16.205 0 sysstate entered=1 parsed=1 scheduled=1 processed=0 successful=0
+c 16.231 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 16.331 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 16.431 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 16.532 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 16.632 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 16.732 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 16.833 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 16.933 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 17.034 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 17.134 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 17.206 0 sysstate busyratio=1.000 cmtdratio=0.000 jobs=1 globmem=0.05GB newreqs=0 hops=0
+c 17.206 0 sysstate entered=1 parsed=1 scheduled=1 processed=0 successful=0
+c 17.235 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 17.335 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 17.435 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 17.536 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 17.637 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 17.737 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 17.838 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 17.938 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 18.039 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 18.139 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 18.206 0 sysstate busyratio=1.000 cmtdratio=0.000 jobs=1 globmem=0.05GB newreqs=0 hops=0
+c 18.206 0 sysstate entered=1 parsed=1 scheduled=1 processed=0 successful=0
+c 18.239 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 18.340 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 18.440 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 18.541 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 18.641 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 18.742 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 18.842 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 18.943 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 19.044 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 19.144 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 19.206 0 sysstate busyratio=1.000 cmtdratio=0.000 jobs=1 globmem=0.05GB newreqs=0 hops=0
+c 19.206 0 sysstate entered=1 parsed=1 scheduled=1 processed=0 successful=0
+c 19.245 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 19.346 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 19.447 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 19.547 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 19.648 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 19.749 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 19.849 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 19.950 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 20.051 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 20.151 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 20.207 0 sysstate busyratio=1.000 cmtdratio=0.000 jobs=1 globmem=0.05GB newreqs=0 hops=0
+c 20.207 0 sysstate entered=1 parsed=1 scheduled=1 processed=0 successful=0
+c 20.252 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 20.352 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 20.452 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 20.553 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 20.653 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 20.754 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 20.855 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 20.955 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 21.056 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 21.157 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 21.207 0 sysstate busyratio=1.000 cmtdratio=0.000 jobs=1 globmem=0.05GB newreqs=0 hops=0
+c 21.207 0 sysstate entered=1 parsed=1 scheduled=1 processed=0 successful=0
+c 21.257 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 21.357 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 21.458 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 21.558 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 21.659 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 21.759 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 21.859 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 21.960 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 22.060 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 22.160 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 22.207 0 sysstate busyratio=1.000 cmtdratio=0.000 jobs=1 globmem=0.05GB newreqs=0 hops=0
+c 22.207 0 sysstate entered=1 parsed=1 scheduled=1 processed=0 successful=0
+c 22.260 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 22.361 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 22.461 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 22.561 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 22.662 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 22.762 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 22.862 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 22.963 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 23.063 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 23.164 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 23.207 0 sysstate busyratio=1.000 cmtdratio=0.000 jobs=1 globmem=0.05GB newreqs=0 hops=0
+c 23.207 0 sysstate entered=1 parsed=1 scheduled=1 processed=0 successful=0
+c 23.264 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 23.365 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 23.465 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 23.566 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 23.667 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 23.767 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 23.868 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 23.969 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 24.070 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 24.171 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 24.208 0 sysstate busyratio=1.000 cmtdratio=0.000 jobs=1 globmem=0.05GB newreqs=0 hops=0
+c 24.208 0 sysstate entered=1 parsed=1 scheduled=1 processed=0 successful=0
+c 24.272 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 24.372 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 24.473 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 24.574 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 24.674 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 24.775 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 24.875 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 24.975 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 25.076 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 25.177 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 25.208 0 sysstate busyratio=1.000 cmtdratio=0.000 jobs=1 globmem=0.05GB newreqs=0 hops=0
+c 25.208 0 sysstate entered=1 parsed=1 scheduled=1 processed=0 successful=0
+c 25.277 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 25.377 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 25.478 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 25.578 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 25.679 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 25.779 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 25.880 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 25.981 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 26.082 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 26.182 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 26.209 0 sysstate busyratio=1.000 cmtdratio=0.000 jobs=1 globmem=0.05GB newreqs=0 hops=0
+c 26.209 0 sysstate entered=1 parsed=1 scheduled=1 processed=0 successful=0
+c 26.283 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 26.384 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 26.485 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 26.586 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 26.687 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 26.787 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 26.888 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 26.988 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 27.089 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 27.189 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 27.209 0 sysstate busyratio=1.000 cmtdratio=0.000 jobs=1 globmem=0.05GB newreqs=0 hops=0
+c 27.209 0 sysstate entered=1 parsed=1 scheduled=1 processed=0 successful=0
+c 27.290 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 27.391 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 27.491 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 27.591 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 27.692 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 27.792 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 27.893 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 27.994 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 28.094 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 28.195 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 28.209 0 sysstate busyratio=1.000 cmtdratio=0.000 jobs=1 globmem=0.05GB newreqs=0 hops=0
+c 28.209 0 sysstate entered=1 parsed=1 scheduled=1 processed=0 successful=0
+c 28.296 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 28.397 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 28.497 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 28.598 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 28.699 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 28.800 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 28.901 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 29.001 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 29.102 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 29.202 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 29.210 0 sysstate busyratio=1.000 cmtdratio=0.000 jobs=1 globmem=0.05GB newreqs=0 hops=0
+c 29.210 0 sysstate entered=1 parsed=1 scheduled=1 processed=0 successful=0
+c 29.303 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 29.404 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 29.505 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 29.605 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 29.706 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 29.807 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 29.908 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 30.008 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 30.109 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 30.210 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 30.210 0 sysstate busyratio=1.000 cmtdratio=0.000 jobs=1 globmem=0.05GB newreqs=0 hops=0
+c 30.210 0 sysstate entered=1 parsed=1 scheduled=1 processed=0 successful=0
+c 30.310 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 30.411 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 30.511 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 30.612 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 30.713 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 30.813 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 30.913 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 31.014 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 31.115 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 31.211 0 sysstate busyratio=1.000 cmtdratio=0.000 jobs=1 globmem=0.05GB newreqs=0 hops=0
+c 31.211 0 sysstate entered=1 parsed=1 scheduled=1 processed=0 successful=0
+c 31.215 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 31.316 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 31.417 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 31.517 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 31.618 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 31.718 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 31.819 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 31.920 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 32.021 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 32.122 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 32.211 0 sysstate busyratio=1.000 cmtdratio=0.000 jobs=1 globmem=0.05GB newreqs=0 hops=0
+c 32.211 0 sysstate entered=1 parsed=1 scheduled=1 processed=0 successful=0
+c 32.223 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 32.323 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 32.424 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 32.525 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 32.626 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 32.726 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 32.827 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 32.928 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 33.029 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 33.130 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 33.211 0 sysstate busyratio=1.000 cmtdratio=0.000 jobs=1 globmem=0.05GB newreqs=0 hops=0
+c 33.211 0 sysstate entered=1 parsed=1 scheduled=1 processed=0 successful=0
+c 33.230 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 33.331 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 33.432 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 33.533 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 33.633 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 33.734 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 33.835 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 33.936 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 34.036 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 34.137 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 34.211 0 sysstate busyratio=1.000 cmtdratio=0.000 jobs=1 globmem=0.05GB newreqs=0 hops=0
+c 34.211 0 sysstate entered=1 parsed=1 scheduled=1 processed=0 successful=0
+c 34.238 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 34.339 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 34.439 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 34.540 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 34.641 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 34.742 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 34.843 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 34.944 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 35.045 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 35.146 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 35.212 0 sysstate busyratio=1.000 cmtdratio=0.000 jobs=1 globmem=0.05GB newreqs=0 hops=0
+c 35.212 0 sysstate entered=1 parsed=1 scheduled=1 processed=0 successful=0
+c 35.247 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 35.348 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 35.449 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 35.550 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 35.651 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 35.752 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 35.853 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 35.953 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 36.054 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 36.155 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 36.212 0 sysstate busyratio=1.000 cmtdratio=0.000 jobs=1 globmem=0.05GB newreqs=0 hops=0
+c 36.212 0 sysstate entered=1 parsed=1 scheduled=1 processed=0 successful=0
+c 36.256 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 36.357 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 36.458 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 36.559 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 36.660 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 36.761 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 36.862 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 36.963 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 37.064 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 37.165 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 37.212 0 sysstate busyratio=1.000 cmtdratio=0.000 jobs=1 globmem=0.05GB newreqs=0 hops=0
+c 37.212 0 sysstate entered=1 parsed=1 scheduled=1 processed=0 successful=0
+c 37.265 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 37.366 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 37.467 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 37.568 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 37.669 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 37.770 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 37.871 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 37.972 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 38.073 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 38.174 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 38.212 0 sysstate busyratio=1.000 cmtdratio=0.000 jobs=1 globmem=0.05GB newreqs=0 hops=0
+c 38.212 0 sysstate entered=1 parsed=1 scheduled=1 processed=0 successful=0
+c 38.275 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 38.376 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 38.477 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 38.578 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 38.679 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 38.779 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 38.880 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 38.981 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 39.082 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 39.183 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 39.213 0 sysstate busyratio=1.000 cmtdratio=0.000 jobs=1 globmem=0.05GB newreqs=0 hops=0
+c 39.213 0 sysstate entered=1 parsed=1 scheduled=1 processed=0 successful=0
+c 39.284 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 39.384 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 39.485 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 39.586 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 39.687 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 39.787 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 39.888 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 39.989 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 40.090 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 40.191 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 40.213 0 sysstate busyratio=1.000 cmtdratio=0.000 jobs=1 globmem=0.05GB newreqs=0 hops=0
+c 40.213 0 sysstate entered=1 parsed=1 scheduled=1 processed=0 successful=0
+c 40.291 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 40.392 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 40.493 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 40.593 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 40.694 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 40.795 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 40.896 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 40.997 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 41.098 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 41.199 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 41.213 0 sysstate busyratio=1.000 cmtdratio=0.000 jobs=1 globmem=0.05GB newreqs=0 hops=0
+c 41.213 0 sysstate entered=1 parsed=1 scheduled=1 processed=0 successful=0
+c 41.300 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 41.401 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 41.502 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 41.603 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 41.662 0 [stack] Stack empty. Stopping Loop
+c 41.704 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {0, 6, 16}.
+c 41.704 0 [tracking] Number of queries in total: 5 - succesful: 0 - before msgs allowed: 0 - rank invalid: 5 - reply empty: 0
+c 41.704 0 [tracking] Time wait threads: 0 0.001911
+c 41.704 0 [tracking] Time check: 1 0.049407
+c 41.704 0 [tracking] Time wait full: 2 0.048639
+c 41.704 0 [tracking] Time get work: 3 0.135367
+c 41.704 0 [tracking] Time work: 4 0.595875
+c 41.704 0 [tracking] Time compare: 5 0.117604
+c 41.704 0 [tracking] Time outside: 6 0.051197
+c 41.704 0 [track] All time: 1.000000
+c 41.714 0 [solved] End: (Completion: 1) (Nr Tasks: 20) (Nr Machines: 3) (Tasks:) (Machine Workloads: 15 16 16) (Machines: 4 3 3 2 1 1 1 0 4 3 2 2 2 2 1 0 3 3 3 3 3 1 0)
+c 41.714 0 RESPONSE_TIME #1 41.691841 rev. 0
+c 41.714 0 SOLUTION #1 SATISFIABLE rev. 0
+s SATISFIABLE
+null
+c 41.759 0 Exiting happily

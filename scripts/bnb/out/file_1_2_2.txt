@@ -1,0 +1,1849 @@
+0.000 0 [WARN] Invalid argument "\"
+c 
+c Mallob -- a parallel and distributed platform for job scheduling, load balancing, and SAT solving
+c Copyright (C) 2019-2025 Dominik Schreiber, Karlsruhe Institute of Technology, Germany
+c 
+0.000 0 [WARN] Invalid argument "\"
+c 0.001 1 Cleaning up pre-execution
+c 0.001 1 Killing old subprocesses: "killall -9 build/mallob_sat_process 2>/dev/null"
+c 0.002 0 Program options: -0o=0 -J=0 -SJ=0 -T=300 -adc=0 -aim=1 -ajpc=0 -ans=0 -apidir=.api -ba=4 -bem=1 -bicg=4 -br=0 -c=1 -cbbs=0 -cblm=1 -cblp=100000 -cdel=2 -cecpm=0 -cf=0 -cfci=10 -cfm=3 -cg=1 -ch=0 -checksums=0 -cjc=0 -client-app-threads=1 -cm=0 -cmp=0 -colors=0 -compact-proof=0 -cpshm=0 -csm=3 -cusv=1 -dc=0 -decay-distr=1 -decay-max=200 -decay-mean=50 -decay-min=1 -decay-stddev=3 -decpm=0 -delaymonkey=0 -div-elim=0 -div-fanout=0 -div-init-shuffle=0 -div-native=1 -div-noise=0 -div-phases=1 -div-reduce=0 -div-seeds=1 -dpa=1 -ds=0 -evpt=350 -evu=0 -extmem-disk-dir=.disk -fapii=0 -fcll=1 -g=0 -gclls=0 -h=0 -huca=0 -iff=0 -ilbd=0 -inotify=1 -interface-fs=0 -interface-ipc=0 -ipm=1 -ivdh=1 -jc=1 -jcl=0 -jcup=0.1 -jjp=0 -jwl=0 -l=1 -latencymonkey=0 -lbdpi=0 -lbdpo=0 -ljpc=32 -log=scripts/bnb/out//1/ -mbt=8388608 -mcips=5 -md=0 -mempanic=1 -mjps=0 -mlbdps=2 -mlpt=50000000 -mmpi=0 -mono=instances/bnb/main_under_300/bnb_n20_m3.cnf -mono-app=bnb -mscf=5 -nec=5 -no-import=0 -os=0 -otfc=0 -otfcm=1 -p=0.1 -pbbm=0 -plain-add-specific=0 -pph=0 -pre-cleanup=1 -prisma=0 -proof-debugging=0 -ps=0 -q=0 -qcll=8 -qlbdl=2 -randlbd=0 -reduce-delta=100 -reduce-max=980 -reduce-mean=700 -reduce-min=300 -reduce-stddev=150 -rlbd=3 -rpa=0 -rs=1 -rspaa=0 -s=0.5 -satsolver=C -scll=60 -scramble-lbds=0 -scsd=0 -seed=0 -sjd=0 -slbdl=60 -sleep=100 -spl=-1 -sswl=0 -t=1 -tmp=scripts/bnb/out//1/tmp/ -trace-dir=scripts/bnb/out//1/ -uninvert-proof=1 -v=2 -w=-1 -wam=10000 -warmup=0 -watchdog=1 -y=1 -yield=0 
+c 0.002 0 Cleaning up pre-execution
+c 0.002 0 Killing old subprocesses: "killall -9 build/mallob_sat_process 2>/dev/null"
+c 0.010 1 Killing old subprocesses: "killall -9 build/impcheck_parse 2>/dev/null"
+c 0.010 0 Killing old subprocesses: "killall -9 build/impcheck_parse 2>/dev/null"
+c 0.012 1 Killing old subprocesses: "killall -9 build/impcheck_check 2>/dev/null"
+c 0.012 0 Killing old subprocesses: "killall -9 build/impcheck_check 2>/dev/null"
+c 0.014 1 Killing old subprocesses: "killall -9 build/impcheck_confirm 2>/dev/null"
+c 0.014 0 Killing old subprocesses: "killall -9 build/impcheck_confirm 2>/dev/null"
+c 0.023 0 [WARN] Num bounce alternatives must be at most half the number of workers!
+c 0.023 0 [WARN] Falling back to safe value r=1.
+c 0.023 1 [WARN] Num bounce alternatives must be at most half the number of workers!
+c 0.023 1 [WARN] Falling back to safe value r=1.
+c 0.023 0 Set up API connector
+c 0.023 0 Machine color 0 with 2 total workers (my rank: 0)
+c 0.024 0 Assuming application "BNB" for mono job
+c 0.023 1 Machine color 0 with 2 total workers (my rank: 1)
+c 0.024 0 Introducing job #1 rev. 0 : r.#1:0 rev. 0 <- [0] born=0.024 hops=0 epoch=-1 matchId=-1 => [0]
+c 0.025 0 [start] Beginning: (Completion: 0) (Nr Tasks: 20) (Nr Machines: 3) (Tasks: 4 4 3 3 3 3 3 3 3 3 2 2 2 2 2 1 1 1 1 1) (Machine Workloads: 0 0 0) (Machines: 0 0 0)
+c 0.025 0 [stack] Start waiting for other threads: 0
+c 0.035 1 [stack] Stack empty. Stopping Loop
+c 0.104 0 [WARN] #1:0 job tree has size 0/2
+c 0.105 0 [stack] End waiting: 1
+c 0.124 1 [msg] Requested work stealing from: 0
+c 0.124 0 [msg] Message 31 with Payload 0 from 1 received.
+c 0.124 0 [msg] Processing work stealing query from 1
+c 0.124 0 [msg] Message returned to sender 1 with payload[0] = 0 and _sent_work = 1
+c 0.124 1 [msg] Message 32 with Payload 0 from 0 received.
+c 0.124 1 [msg] Work stealing query successful. Filling work stack.
+c 0.124 1 [msg] Message returned to sender 0.
+c 0.124 1 [stack] Restarting loop: 1
+c 0.124 0 [msg] Message 33 with Payload 0 from 1 received.
+c 0.144 0 TRY REDUCE 63 0 0 2 2
+c 0.144 0 REDUCE
+c 0.145 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 21}.
+c 0.145 1 BROADCAST
+c 0.145 1 TRY REDUCE 64 0 0 2 2
+c 0.145 1 BROADCAST
+c 0.154 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 21}.
+c 0.245 0 TRY REDUCE 63 0 0 2 2
+c 0.245 0 REDUCE
+c 0.246 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 0.246 1 BROADCAST
+c 0.246 1 TRY REDUCE 64 0 0 2 2
+c 0.246 1 BROADCAST
+c 0.255 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 0.346 0 TRY REDUCE 63 0 0 2 2
+c 0.346 0 REDUCE
+c 0.346 1 BROADCAST
+c 0.346 1 TRY REDUCE 64 0 0 2 2
+c 0.346 1 BROADCAST
+c 0.347 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 0.355 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 0.446 0 TRY REDUCE 63 0 0 2 2
+c 0.446 0 REDUCE
+c 0.446 1 BROADCAST
+c 0.446 1 TRY REDUCE 64 0 0 2 2
+c 0.446 1 BROADCAST
+c 0.447 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 0.456 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 0.547 0 TRY REDUCE 63 0 0 2 2
+c 0.547 0 REDUCE
+c 0.547 1 BROADCAST
+c 0.547 1 TRY REDUCE 64 0 0 2 2
+c 0.547 1 BROADCAST
+c 0.548 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 0.557 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 0.648 0 TRY REDUCE 63 0 0 2 2
+c 0.648 0 REDUCE
+c 0.648 1 BROADCAST
+c 0.648 1 TRY REDUCE 64 0 0 2 2
+c 0.648 1 BROADCAST
+c 0.649 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 0.657 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 0.748 0 TRY REDUCE 63 0 0 2 2
+c 0.748 0 REDUCE
+c 0.748 1 BROADCAST
+c 0.748 1 TRY REDUCE 64 0 0 2 2
+c 0.748 1 BROADCAST
+c 0.749 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 0.758 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 0.849 0 TRY REDUCE 63 0 0 2 2
+c 0.849 0 REDUCE
+c 0.849 1 BROADCAST
+c 0.849 1 TRY REDUCE 64 0 0 2 2
+c 0.849 1 BROADCAST
+c 0.850 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 0.859 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 0.950 0 TRY REDUCE 63 0 0 2 2
+c 0.950 0 REDUCE
+c 0.950 1 BROADCAST
+c 0.950 1 TRY REDUCE 64 0 0 2 2
+c 0.950 1 BROADCAST
+c 0.951 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 0.960 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 1.050 0 TRY REDUCE 63 0 0 2 2
+c 1.051 0 REDUCE
+c 1.051 1 BROADCAST
+c 1.051 1 TRY REDUCE 64 0 0 2 2
+c 1.051 1 BROADCAST
+c 1.052 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 1.060 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 1.151 0 TRY REDUCE 63 0 0 2 2
+c 1.151 0 REDUCE
+c 1.151 1 BROADCAST
+c 1.151 1 TRY REDUCE 64 0 0 2 2
+c 1.151 1 BROADCAST
+c 1.152 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 1.161 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 1.201 0 sysstate busyratio=1.000 cmtdratio=0.000 jobs=1 globmem=0.00GB newreqs=1 hops=1
+c 1.201 0 sysstate entered=1 parsed=1 scheduled=1 processed=0 successful=0
+c 1.252 0 TRY REDUCE 63 0 0 2 2
+c 1.252 0 REDUCE
+c 1.252 1 BROADCAST
+c 1.252 1 TRY REDUCE 64 0 0 2 2
+c 1.252 1 BROADCAST
+c 1.253 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 1.262 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 1.353 0 TRY REDUCE 63 0 0 2 2
+c 1.353 0 REDUCE
+c 1.353 1 BROADCAST
+c 1.353 1 TRY REDUCE 64 0 0 2 2
+c 1.353 1 BROADCAST
+c 1.354 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 1.363 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 1.453 0 TRY REDUCE 63 0 0 2 2
+c 1.453 0 REDUCE
+c 1.453 1 BROADCAST
+c 1.453 1 TRY REDUCE 64 0 0 2 2
+c 1.453 1 BROADCAST
+c 1.455 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 1.463 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 1.554 0 TRY REDUCE 63 0 0 2 2
+c 1.554 0 REDUCE
+c 1.554 1 BROADCAST
+c 1.554 1 TRY REDUCE 64 0 0 2 2
+c 1.554 1 BROADCAST
+c 1.555 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 1.564 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 1.655 0 TRY REDUCE 63 0 0 2 2
+c 1.655 0 REDUCE
+c 1.655 1 BROADCAST
+c 1.655 1 TRY REDUCE 64 0 0 2 2
+c 1.655 1 BROADCAST
+c 1.656 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 1.665 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 1.756 0 TRY REDUCE 63 0 0 2 2
+c 1.756 0 REDUCE
+c 1.756 1 BROADCAST
+c 1.756 1 TRY REDUCE 64 0 0 2 2
+c 1.756 1 BROADCAST
+c 1.757 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 1.766 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 1.856 0 TRY REDUCE 63 0 0 2 2
+c 1.856 0 REDUCE
+c 1.856 1 BROADCAST
+c 1.856 1 TRY REDUCE 64 0 0 2 2
+c 1.856 1 BROADCAST
+c 1.857 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 1.866 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 1.957 0 TRY REDUCE 63 0 0 2 2
+c 1.957 0 REDUCE
+c 1.957 1 BROADCAST
+c 1.957 1 TRY REDUCE 64 0 0 2 2
+c 1.957 1 BROADCAST
+c 1.958 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 1.967 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 2.058 0 TRY REDUCE 63 0 0 2 2
+c 2.058 0 REDUCE
+c 2.058 1 BROADCAST
+c 2.058 1 TRY REDUCE 64 0 0 2 2
+c 2.058 1 BROADCAST
+c 2.059 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 2.068 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 2.159 0 TRY REDUCE 63 0 0 2 2
+c 2.159 0 REDUCE
+c 2.159 1 BROADCAST
+c 2.159 1 TRY REDUCE 64 0 0 2 2
+c 2.159 1 BROADCAST
+c 2.160 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 2.169 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 2.201 0 sysstate busyratio=1.000 cmtdratio=0.000 jobs=1 globmem=0.11GB newreqs=0 hops=0
+c 2.201 0 sysstate entered=1 parsed=1 scheduled=1 processed=0 successful=0
+c 2.259 0 TRY REDUCE 63 0 0 2 2
+c 2.259 0 REDUCE
+c 2.259 1 BROADCAST
+c 2.259 1 TRY REDUCE 64 0 0 2 2
+c 2.259 1 BROADCAST
+c 2.260 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 2.269 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 2.360 0 TRY REDUCE 63 0 0 2 2
+c 2.360 0 REDUCE
+c 2.360 1 BROADCAST
+c 2.360 1 TRY REDUCE 64 0 0 2 2
+c 2.360 1 BROADCAST
+c 2.361 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 2.370 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 2.461 0 TRY REDUCE 63 0 0 2 2
+c 2.461 0 REDUCE
+c 2.461 1 BROADCAST
+c 2.461 1 TRY REDUCE 64 0 0 2 2
+c 2.461 1 BROADCAST
+c 2.462 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 2.471 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 2.562 0 TRY REDUCE 63 0 0 2 2
+c 2.562 0 REDUCE
+c 2.562 1 BROADCAST
+c 2.562 1 TRY REDUCE 64 0 0 2 2
+c 2.562 1 BROADCAST
+c 2.563 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 2.572 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 2.662 0 TRY REDUCE 63 0 0 2 2
+c 2.662 0 REDUCE
+c 2.662 1 BROADCAST
+c 2.662 1 TRY REDUCE 64 0 0 2 2
+c 2.662 1 BROADCAST
+c 2.664 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 2.672 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 2.763 0 TRY REDUCE 63 0 0 2 2
+c 2.763 0 REDUCE
+c 2.763 1 BROADCAST
+c 2.763 1 TRY REDUCE 64 0 0 2 2
+c 2.763 1 BROADCAST
+c 2.764 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 2.773 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 2.864 0 TRY REDUCE 63 0 0 2 2
+c 2.864 0 REDUCE
+c 2.864 1 BROADCAST
+c 2.864 1 TRY REDUCE 64 0 0 2 2
+c 2.864 1 BROADCAST
+c 2.865 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 2.874 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 2.965 0 TRY REDUCE 63 0 0 2 2
+c 2.965 0 REDUCE
+c 2.965 1 BROADCAST
+c 2.965 1 TRY REDUCE 64 0 0 2 2
+c 2.965 1 BROADCAST
+c 2.966 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 2.975 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 3.066 0 TRY REDUCE 63 0 0 2 2
+c 3.066 0 REDUCE
+c 3.066 1 BROADCAST
+c 3.066 1 TRY REDUCE 64 0 0 2 2
+c 3.066 1 BROADCAST
+c 3.067 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 3.075 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 3.166 0 TRY REDUCE 63 0 0 2 2
+c 3.166 0 REDUCE
+c 3.166 1 BROADCAST
+c 3.166 1 TRY REDUCE 64 0 0 2 2
+c 3.166 1 BROADCAST
+c 3.168 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 3.176 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 3.201 0 sysstate busyratio=1.000 cmtdratio=0.000 jobs=1 globmem=0.11GB newreqs=0 hops=0
+c 3.201 0 sysstate entered=1 parsed=1 scheduled=1 processed=0 successful=0
+c 3.267 0 TRY REDUCE 63 0 0 2 2
+c 3.267 0 REDUCE
+c 3.267 1 BROADCAST
+c 3.267 1 TRY REDUCE 64 0 0 2 2
+c 3.267 1 BROADCAST
+c 3.268 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 3.277 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 3.368 0 TRY REDUCE 63 0 0 2 2
+c 3.368 0 REDUCE
+c 3.369 1 BROADCAST
+c 3.369 1 TRY REDUCE 64 0 0 2 2
+c 3.369 1 BROADCAST
+c 3.369 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 3.378 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 3.469 0 TRY REDUCE 63 0 0 2 2
+c 3.469 0 REDUCE
+c 3.469 1 BROADCAST
+c 3.469 1 TRY REDUCE 64 0 0 2 2
+c 3.469 1 BROADCAST
+c 3.470 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 3.479 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 3.570 0 TRY REDUCE 63 0 0 2 2
+c 3.570 0 REDUCE
+c 3.570 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 3.570 1 BROADCAST
+c 3.570 1 TRY REDUCE 64 0 0 2 2
+c 3.570 1 BROADCAST
+c 3.580 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 3.671 0 TRY REDUCE 63 0 0 2 2
+c 3.671 0 REDUCE
+c 3.671 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 3.671 1 BROADCAST
+c 3.671 1 TRY REDUCE 64 0 0 2 2
+c 3.671 1 BROADCAST
+c 3.681 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 3.772 0 TRY REDUCE 63 0 0 2 2
+c 3.772 0 REDUCE
+c 3.772 1 BROADCAST
+c 3.772 1 TRY REDUCE 64 0 0 2 2
+c 3.772 1 BROADCAST
+c 3.782 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 3.782 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 3.873 0 TRY REDUCE 63 0 0 2 2
+c 3.873 0 REDUCE
+c 3.873 1 BROADCAST
+c 3.873 1 TRY REDUCE 64 0 0 2 2
+c 3.873 1 BROADCAST
+c 3.882 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 3.883 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 3.974 0 TRY REDUCE 63 0 0 2 2
+c 3.974 0 REDUCE
+c 3.974 1 BROADCAST
+c 3.974 1 TRY REDUCE 64 0 0 2 2
+c 3.974 1 BROADCAST
+c 3.983 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 3.984 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 4.075 0 TRY REDUCE 63 0 0 2 2
+c 4.075 0 REDUCE
+c 4.075 1 BROADCAST
+c 4.075 1 TRY REDUCE 64 0 0 2 2
+c 4.075 1 BROADCAST
+c 4.083 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 4.085 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 4.175 0 TRY REDUCE 63 0 0 2 2
+c 4.175 0 REDUCE
+c 4.176 1 BROADCAST
+c 4.176 1 TRY REDUCE 64 0 0 2 2
+c 4.176 1 BROADCAST
+c 4.184 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 4.185 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 4.202 0 sysstate busyratio=1.000 cmtdratio=0.000 jobs=1 globmem=0.11GB newreqs=0 hops=0
+c 4.202 0 sysstate entered=1 parsed=1 scheduled=1 processed=0 successful=0
+c 4.276 0 TRY REDUCE 63 0 0 2 2
+c 4.276 0 REDUCE
+c 4.276 1 BROADCAST
+c 4.276 1 TRY REDUCE 64 0 0 2 2
+c 4.276 1 BROADCAST
+c 4.285 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 4.286 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 4.377 0 TRY REDUCE 63 0 0 2 2
+c 4.377 0 REDUCE
+c 4.377 1 BROADCAST
+c 4.377 1 TRY REDUCE 64 0 0 2 2
+c 4.377 1 BROADCAST
+c 4.385 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 4.387 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 4.478 0 TRY REDUCE 63 0 0 2 2
+c 4.478 0 REDUCE
+c 4.478 1 BROADCAST
+c 4.478 1 TRY REDUCE 64 0 0 2 2
+c 4.478 1 BROADCAST
+c 4.486 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 4.488 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 4.579 0 TRY REDUCE 63 0 0 2 2
+c 4.579 0 REDUCE
+c 4.579 1 BROADCAST
+c 4.579 1 TRY REDUCE 64 0 0 2 2
+c 4.579 1 BROADCAST
+c 4.587 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 4.589 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 4.680 0 TRY REDUCE 63 0 0 2 2
+c 4.680 0 REDUCE
+c 4.680 1 BROADCAST
+c 4.680 1 TRY REDUCE 64 0 0 2 2
+c 4.680 1 BROADCAST
+c 4.688 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 4.690 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 4.781 0 TRY REDUCE 63 0 0 2 2
+c 4.781 0 REDUCE
+c 4.781 1 BROADCAST
+c 4.781 1 TRY REDUCE 64 0 0 2 2
+c 4.781 1 BROADCAST
+c 4.788 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 4.791 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 4.882 0 TRY REDUCE 63 0 0 2 2
+c 4.882 0 REDUCE
+c 4.882 1 BROADCAST
+c 4.882 1 TRY REDUCE 64 0 0 2 2
+c 4.882 1 BROADCAST
+c 4.888 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 4.892 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 4.983 0 TRY REDUCE 63 0 0 2 2
+c 4.983 0 REDUCE
+c 4.983 1 BROADCAST
+c 4.983 1 TRY REDUCE 64 0 0 2 2
+c 4.983 1 BROADCAST
+c 4.989 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 4.993 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 5.084 0 TRY REDUCE 63 0 0 2 2
+c 5.084 0 REDUCE
+c 5.084 1 BROADCAST
+c 5.084 1 TRY REDUCE 64 0 0 2 2
+c 5.084 1 BROADCAST
+c 5.089 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 5.094 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 5.185 0 TRY REDUCE 63 0 0 2 2
+c 5.185 0 REDUCE
+c 5.185 1 BROADCAST
+c 5.185 1 TRY REDUCE 64 0 0 2 2
+c 5.185 1 BROADCAST
+c 5.190 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 5.195 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 5.203 0 sysstate busyratio=1.000 cmtdratio=0.000 jobs=1 globmem=0.11GB newreqs=0 hops=0
+c 5.203 0 sysstate entered=1 parsed=1 scheduled=1 processed=0 successful=0
+c 5.286 0 TRY REDUCE 63 0 0 2 2
+c 5.286 0 REDUCE
+c 5.286 1 BROADCAST
+c 5.286 1 TRY REDUCE 64 0 0 2 2
+c 5.286 1 BROADCAST
+c 5.291 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 5.296 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 5.387 0 TRY REDUCE 63 0 0 2 2
+c 5.387 0 REDUCE
+c 5.387 1 BROADCAST
+c 5.387 1 TRY REDUCE 64 0 0 2 2
+c 5.387 1 BROADCAST
+c 5.392 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 5.397 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 5.488 0 TRY REDUCE 63 0 0 2 2
+c 5.488 0 REDUCE
+c 5.488 1 BROADCAST
+c 5.488 1 TRY REDUCE 64 0 0 2 2
+c 5.488 1 BROADCAST
+c 5.493 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 5.497 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 5.588 0 TRY REDUCE 63 0 0 2 2
+c 5.588 0 REDUCE
+c 5.588 1 BROADCAST
+c 5.588 1 TRY REDUCE 64 0 0 2 2
+c 5.588 1 BROADCAST
+c 5.594 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 5.598 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 5.689 0 TRY REDUCE 63 0 0 2 2
+c 5.689 0 REDUCE
+c 5.689 1 BROADCAST
+c 5.689 1 TRY REDUCE 64 0 0 2 2
+c 5.689 1 BROADCAST
+c 5.694 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 5.699 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 5.790 0 TRY REDUCE 63 0 0 2 2
+c 5.790 0 REDUCE
+c 5.790 1 BROADCAST
+c 5.790 1 TRY REDUCE 64 0 0 2 2
+c 5.790 1 BROADCAST
+c 5.795 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 5.800 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 5.891 0 TRY REDUCE 63 0 0 2 2
+c 5.891 0 REDUCE
+c 5.891 1 BROADCAST
+c 5.891 1 TRY REDUCE 64 0 0 2 2
+c 5.891 1 BROADCAST
+c 5.896 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 5.901 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 5.992 0 TRY REDUCE 63 0 0 2 2
+c 5.992 0 REDUCE
+c 5.992 1 BROADCAST
+c 5.992 1 TRY REDUCE 64 0 0 2 2
+c 5.992 1 BROADCAST
+c 5.996 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 6.002 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 6.092 0 TRY REDUCE 63 0 0 2 2
+c 6.092 0 REDUCE
+c 6.092 1 BROADCAST
+c 6.092 1 TRY REDUCE 64 0 0 2 2
+c 6.092 1 BROADCAST
+c 6.097 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 6.102 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 6.193 0 TRY REDUCE 63 0 0 2 2
+c 6.193 0 REDUCE
+c 6.193 1 BROADCAST
+c 6.193 1 TRY REDUCE 64 0 0 2 2
+c 6.193 1 BROADCAST
+c 6.198 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 6.203 0 sysstate busyratio=1.000 cmtdratio=0.000 jobs=1 globmem=0.11GB newreqs=0 hops=0
+c 6.203 0 sysstate entered=1 parsed=1 scheduled=1 processed=0 successful=0
+c 6.203 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 6.294 0 TRY REDUCE 63 0 0 2 2
+c 6.294 0 REDUCE
+c 6.294 1 BROADCAST
+c 6.294 1 TRY REDUCE 64 0 0 2 2
+c 6.294 1 BROADCAST
+c 6.298 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 6.304 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 6.395 0 TRY REDUCE 63 0 0 2 2
+c 6.395 0 REDUCE
+c 6.395 1 BROADCAST
+c 6.395 1 TRY REDUCE 64 0 0 2 2
+c 6.395 1 BROADCAST
+c 6.399 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 6.405 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 6.496 0 TRY REDUCE 63 0 0 2 2
+c 6.496 0 REDUCE
+c 6.496 1 BROADCAST
+c 6.496 1 TRY REDUCE 64 0 0 2 2
+c 6.496 1 BROADCAST
+c 6.500 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 6.506 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 6.597 0 TRY REDUCE 63 0 0 2 2
+c 6.597 0 REDUCE
+c 6.597 1 BROADCAST
+c 6.597 1 TRY REDUCE 64 0 0 2 2
+c 6.597 1 BROADCAST
+c 6.600 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 6.607 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 6.698 0 TRY REDUCE 63 0 0 2 2
+c 6.698 0 REDUCE
+c 6.698 1 BROADCAST
+c 6.698 1 TRY REDUCE 64 0 0 2 2
+c 6.698 1 BROADCAST
+c 6.701 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 6.708 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 6.799 0 TRY REDUCE 63 0 0 2 2
+c 6.799 0 REDUCE
+c 6.799 1 BROADCAST
+c 6.799 1 TRY REDUCE 64 0 0 2 2
+c 6.799 1 BROADCAST
+c 6.801 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 6.809 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 6.900 0 TRY REDUCE 63 0 0 2 2
+c 6.900 0 REDUCE
+c 6.900 1 BROADCAST
+c 6.900 1 TRY REDUCE 64 0 0 2 2
+c 6.900 1 BROADCAST
+c 6.902 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 6.910 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 7.001 0 TRY REDUCE 63 0 0 2 2
+c 7.001 0 REDUCE
+c 7.001 1 BROADCAST
+c 7.001 1 TRY REDUCE 64 0 0 2 2
+c 7.001 1 BROADCAST
+c 7.002 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 7.011 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 7.102 0 TRY REDUCE 63 0 0 2 2
+c 7.102 0 REDUCE
+c 7.102 1 BROADCAST
+c 7.102 1 TRY REDUCE 64 0 0 2 2
+c 7.102 1 BROADCAST
+c 7.103 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 7.112 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 7.203 0 TRY REDUCE 63 0 0 2 2
+c 7.203 0 REDUCE
+c 7.203 1 BROADCAST
+c 7.203 1 TRY REDUCE 64 0 0 2 2
+c 7.203 1 BROADCAST
+c 7.203 0 sysstate busyratio=1.000 cmtdratio=0.000 jobs=1 globmem=0.11GB newreqs=0 hops=0
+c 7.203 0 sysstate entered=1 parsed=1 scheduled=1 processed=0 successful=0
+c 7.204 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 7.213 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 7.304 0 TRY REDUCE 63 0 0 2 2
+c 7.304 0 REDUCE
+c 7.304 1 BROADCAST
+c 7.304 1 TRY REDUCE 64 0 0 2 2
+c 7.304 1 BROADCAST
+c 7.304 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 7.314 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 7.405 0 TRY REDUCE 63 0 0 2 2
+c 7.405 0 REDUCE
+c 7.405 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 7.405 1 BROADCAST
+c 7.405 1 TRY REDUCE 64 0 0 2 2
+c 7.405 1 BROADCAST
+c 7.414 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 7.506 0 TRY REDUCE 63 0 0 2 2
+c 7.506 0 REDUCE
+c 7.506 1 BROADCAST
+c 7.506 1 TRY REDUCE 64 0 0 2 2
+c 7.506 1 BROADCAST
+c 7.515 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 7.516 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 7.607 0 TRY REDUCE 63 0 0 2 2
+c 7.607 0 REDUCE
+c 7.607 1 BROADCAST
+c 7.607 1 TRY REDUCE 64 0 0 2 2
+c 7.607 1 BROADCAST
+c 7.616 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 7.617 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 7.708 0 TRY REDUCE 63 0 0 2 2
+c 7.708 0 REDUCE
+c 7.708 1 BROADCAST
+c 7.708 1 TRY REDUCE 64 0 0 2 2
+c 7.708 1 BROADCAST
+c 7.717 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 7.718 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 7.809 0 TRY REDUCE 63 0 0 2 2
+c 7.809 0 REDUCE
+c 7.809 1 BROADCAST
+c 7.809 1 TRY REDUCE 64 0 0 2 2
+c 7.809 1 BROADCAST
+c 7.818 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 7.819 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 7.910 0 TRY REDUCE 63 0 0 2 2
+c 7.910 0 REDUCE
+c 7.910 1 BROADCAST
+c 7.910 1 TRY REDUCE 64 0 0 2 2
+c 7.910 1 BROADCAST
+c 7.919 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 7.920 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 8.011 0 TRY REDUCE 63 0 0 2 2
+c 8.011 0 REDUCE
+c 8.011 1 BROADCAST
+c 8.011 1 TRY REDUCE 64 0 0 2 2
+c 8.011 1 BROADCAST
+c 8.019 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 8.020 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 8.111 0 TRY REDUCE 63 0 0 2 2
+c 8.111 0 REDUCE
+c 8.111 1 BROADCAST
+c 8.111 1 TRY REDUCE 64 0 0 2 2
+c 8.111 1 BROADCAST
+c 8.120 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 8.121 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 8.204 0 sysstate busyratio=1.000 cmtdratio=0.000 jobs=1 globmem=0.11GB newreqs=0 hops=0
+c 8.204 0 sysstate entered=1 parsed=1 scheduled=1 processed=0 successful=0
+c 8.212 0 TRY REDUCE 63 0 0 2 2
+c 8.212 0 REDUCE
+c 8.212 1 BROADCAST
+c 8.212 1 TRY REDUCE 64 0 0 2 2
+c 8.212 1 BROADCAST
+c 8.220 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 8.222 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 8.313 0 TRY REDUCE 63 0 0 2 2
+c 8.313 0 REDUCE
+c 8.313 1 BROADCAST
+c 8.313 1 TRY REDUCE 64 0 0 2 2
+c 8.313 1 BROADCAST
+c 8.321 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 8.323 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 8.414 0 TRY REDUCE 63 0 0 2 2
+c 8.414 0 REDUCE
+c 8.414 1 BROADCAST
+c 8.414 1 TRY REDUCE 64 0 0 2 2
+c 8.414 1 BROADCAST
+c 8.421 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 8.424 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 8.515 0 TRY REDUCE 63 0 0 2 2
+c 8.515 0 REDUCE
+c 8.515 1 BROADCAST
+c 8.515 1 TRY REDUCE 64 0 0 2 2
+c 8.515 1 BROADCAST
+c 8.522 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 8.525 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 8.616 0 TRY REDUCE 63 0 0 2 2
+c 8.616 0 REDUCE
+c 8.616 1 BROADCAST
+c 8.616 1 TRY REDUCE 64 0 0 2 2
+c 8.616 1 BROADCAST
+c 8.623 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 8.626 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 8.717 0 TRY REDUCE 63 0 0 2 2
+c 8.717 0 REDUCE
+c 8.717 1 BROADCAST
+c 8.717 1 TRY REDUCE 64 0 0 2 2
+c 8.717 1 BROADCAST
+c 8.724 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 8.727 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 8.817 0 TRY REDUCE 63 0 0 2 2
+c 8.817 0 REDUCE
+c 8.817 1 BROADCAST
+c 8.817 1 TRY REDUCE 64 0 0 2 2
+c 8.817 1 BROADCAST
+c 8.824 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 8.827 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 8.918 0 TRY REDUCE 63 0 0 2 2
+c 8.918 0 REDUCE
+c 8.918 1 BROADCAST
+c 8.918 1 TRY REDUCE 64 0 0 2 2
+c 8.918 1 BROADCAST
+c 8.925 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 8.928 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 9.019 0 TRY REDUCE 63 0 0 2 2
+c 9.019 0 REDUCE
+c 9.019 1 BROADCAST
+c 9.019 1 TRY REDUCE 64 0 0 2 2
+c 9.019 1 BROADCAST
+c 9.025 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 9.029 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 9.120 0 TRY REDUCE 63 0 0 2 2
+c 9.120 0 REDUCE
+c 9.120 1 BROADCAST
+c 9.120 1 TRY REDUCE 64 0 0 2 2
+c 9.120 1 BROADCAST
+c 9.125 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 9.130 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 9.204 0 sysstate busyratio=1.000 cmtdratio=0.000 jobs=1 globmem=0.11GB newreqs=0 hops=0
+c 9.204 0 sysstate entered=1 parsed=1 scheduled=1 processed=0 successful=0
+c 9.221 0 TRY REDUCE 63 0 0 2 2
+c 9.221 0 REDUCE
+c 9.221 1 BROADCAST
+c 9.221 1 TRY REDUCE 64 0 0 2 2
+c 9.221 1 BROADCAST
+c 9.226 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 9.231 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 9.322 0 TRY REDUCE 63 0 0 2 2
+c 9.322 0 REDUCE
+c 9.322 1 BROADCAST
+c 9.322 1 TRY REDUCE 64 0 0 2 2
+c 9.322 1 BROADCAST
+c 9.326 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 9.331 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 9.423 0 TRY REDUCE 63 0 0 2 2
+c 9.423 0 REDUCE
+c 9.423 1 BROADCAST
+c 9.423 1 TRY REDUCE 64 0 0 2 2
+c 9.423 1 BROADCAST
+c 9.427 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 9.432 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 9.523 0 TRY REDUCE 63 0 0 2 2
+c 9.523 0 REDUCE
+c 9.524 1 BROADCAST
+c 9.524 1 TRY REDUCE 64 0 0 2 2
+c 9.524 1 BROADCAST
+c 9.528 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 9.534 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 9.624 0 TRY REDUCE 63 0 0 2 2
+c 9.624 0 REDUCE
+c 9.624 1 BROADCAST
+c 9.624 1 TRY REDUCE 64 0 0 2 2
+c 9.624 1 BROADCAST
+c 9.628 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 9.634 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 9.725 0 TRY REDUCE 63 0 0 2 2
+c 9.725 0 REDUCE
+c 9.725 1 BROADCAST
+c 9.725 1 TRY REDUCE 64 0 0 2 2
+c 9.725 1 BROADCAST
+c 9.729 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 9.735 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 9.826 0 TRY REDUCE 63 0 0 2 2
+c 9.826 0 REDUCE
+c 9.826 1 BROADCAST
+c 9.826 1 TRY REDUCE 64 0 0 2 2
+c 9.826 1 BROADCAST
+c 9.830 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 9.836 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 9.927 0 TRY REDUCE 63 0 0 2 2
+c 9.927 0 REDUCE
+c 9.927 1 BROADCAST
+c 9.927 1 TRY REDUCE 64 0 0 2 2
+c 9.927 1 BROADCAST
+c 9.930 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 9.937 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 10.028 0 TRY REDUCE 63 0 0 2 2
+c 10.028 0 REDUCE
+c 10.028 1 BROADCAST
+c 10.028 1 TRY REDUCE 64 0 0 2 2
+c 10.028 1 BROADCAST
+c 10.031 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 10.038 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 10.129 0 TRY REDUCE 63 0 0 2 2
+c 10.129 0 REDUCE
+c 10.129 1 BROADCAST
+c 10.129 1 TRY REDUCE 64 0 0 2 2
+c 10.129 1 BROADCAST
+c 10.131 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 10.139 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 10.204 0 sysstate busyratio=1.000 cmtdratio=0.000 jobs=1 globmem=0.11GB newreqs=0 hops=0
+c 10.204 0 sysstate entered=1 parsed=1 scheduled=1 processed=0 successful=0
+c 10.230 0 TRY REDUCE 63 0 0 2 2
+c 10.230 0 REDUCE
+c 10.230 1 BROADCAST
+c 10.230 1 TRY REDUCE 64 0 0 2 2
+c 10.230 1 BROADCAST
+c 10.232 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 10.240 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 10.331 0 TRY REDUCE 63 0 0 2 2
+c 10.331 0 REDUCE
+c 10.331 1 BROADCAST
+c 10.331 1 TRY REDUCE 64 0 0 2 2
+c 10.331 1 BROADCAST
+c 10.332 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 10.340 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 10.431 0 TRY REDUCE 63 0 0 2 2
+c 10.431 0 REDUCE
+c 10.431 1 BROADCAST
+c 10.431 1 TRY REDUCE 64 0 0 2 2
+c 10.431 1 BROADCAST
+c 10.433 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 10.441 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 10.532 0 TRY REDUCE 63 0 0 2 2
+c 10.532 0 REDUCE
+c 10.532 1 BROADCAST
+c 10.532 1 TRY REDUCE 64 0 0 2 2
+c 10.532 1 BROADCAST
+c 10.533 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 10.542 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 10.633 0 TRY REDUCE 63 0 0 2 2
+c 10.633 0 REDUCE
+c 10.633 1 BROADCAST
+c 10.633 1 TRY REDUCE 64 0 0 2 2
+c 10.633 1 BROADCAST
+c 10.634 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 10.643 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 10.734 0 TRY REDUCE 63 0 0 2 2
+c 10.734 0 REDUCE
+c 10.734 1 BROADCAST
+c 10.734 1 TRY REDUCE 64 0 0 2 2
+c 10.734 1 BROADCAST
+c 10.734 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 10.743 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 10.834 0 TRY REDUCE 63 0 0 2 2
+c 10.834 0 REDUCE
+c 10.834 1 BROADCAST
+c 10.834 1 TRY REDUCE 64 0 0 2 2
+c 10.834 1 BROADCAST
+c 10.835 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 10.844 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 10.935 0 TRY REDUCE 63 0 0 2 2
+c 10.935 0 REDUCE
+c 10.935 1 BROADCAST
+c 10.935 1 TRY REDUCE 64 0 0 2 2
+c 10.935 1 BROADCAST
+c 10.935 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 10.945 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 11.036 0 TRY REDUCE 63 0 0 2 2
+c 11.036 0 REDUCE
+c 11.036 1 BROADCAST
+c 11.036 1 TRY REDUCE 64 0 0 2 2
+c 11.036 1 BROADCAST
+c 11.045 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 11.046 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 11.137 0 TRY REDUCE 63 0 0 2 2
+c 11.137 0 REDUCE
+c 11.137 1 BROADCAST
+c 11.137 1 TRY REDUCE 64 0 0 2 2
+c 11.137 1 BROADCAST
+c 11.146 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 11.146 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 11.205 0 sysstate busyratio=1.000 cmtdratio=0.000 jobs=1 globmem=0.11GB newreqs=0 hops=0
+c 11.205 0 sysstate entered=1 parsed=1 scheduled=1 processed=0 successful=0
+c 11.237 0 TRY REDUCE 63 0 0 2 2
+c 11.237 0 REDUCE
+c 11.237 1 BROADCAST
+c 11.237 1 TRY REDUCE 64 0 0 2 2
+c 11.237 1 BROADCAST
+c 11.247 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 11.247 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 11.338 0 TRY REDUCE 63 0 0 2 2
+c 11.338 0 REDUCE
+c 11.338 1 BROADCAST
+c 11.338 1 TRY REDUCE 64 0 0 2 2
+c 11.338 1 BROADCAST
+c 11.348 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 11.348 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 11.439 0 TRY REDUCE 63 0 0 2 2
+c 11.439 0 REDUCE
+c 11.439 1 BROADCAST
+c 11.439 1 TRY REDUCE 64 0 0 2 2
+c 11.439 1 BROADCAST
+c 11.448 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 11.449 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 11.540 0 TRY REDUCE 63 0 0 2 2
+c 11.540 0 REDUCE
+c 11.540 1 BROADCAST
+c 11.540 1 TRY REDUCE 64 0 0 2 2
+c 11.540 1 BROADCAST
+c 11.549 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 11.550 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 11.641 0 TRY REDUCE 63 0 0 2 2
+c 11.641 0 REDUCE
+c 11.641 1 BROADCAST
+c 11.641 1 TRY REDUCE 64 0 0 2 2
+c 11.641 1 BROADCAST
+c 11.650 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 11.650 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 11.741 0 TRY REDUCE 63 0 0 2 2
+c 11.741 0 REDUCE
+c 11.741 1 BROADCAST
+c 11.741 1 TRY REDUCE 64 0 0 2 2
+c 11.741 1 BROADCAST
+c 11.751 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 11.751 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 11.842 0 TRY REDUCE 63 0 0 2 2
+c 11.842 0 REDUCE
+c 11.842 1 BROADCAST
+c 11.842 1 TRY REDUCE 64 0 0 2 2
+c 11.842 1 BROADCAST
+c 11.851 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 11.852 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 11.943 0 TRY REDUCE 63 0 0 2 2
+c 11.943 0 REDUCE
+c 11.943 1 BROADCAST
+c 11.943 1 TRY REDUCE 64 0 0 2 2
+c 11.943 1 BROADCAST
+c 11.952 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 11.953 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 12.044 0 TRY REDUCE 63 0 0 2 2
+c 12.044 0 REDUCE
+c 12.044 1 BROADCAST
+c 12.044 1 TRY REDUCE 64 0 0 2 2
+c 12.044 1 BROADCAST
+c 12.053 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 12.054 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 12.145 0 TRY REDUCE 63 0 0 2 2
+c 12.145 0 REDUCE
+c 12.145 1 BROADCAST
+c 12.145 1 TRY REDUCE 64 0 0 2 2
+c 12.145 1 BROADCAST
+c 12.153 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 12.155 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 12.205 0 sysstate busyratio=1.000 cmtdratio=0.000 jobs=1 globmem=0.11GB newreqs=0 hops=0
+c 12.205 0 sysstate entered=1 parsed=1 scheduled=1 processed=0 successful=0
+c 12.246 0 TRY REDUCE 63 0 0 2 2
+c 12.246 0 REDUCE
+c 12.246 1 BROADCAST
+c 12.246 1 TRY REDUCE 64 0 0 2 2
+c 12.246 1 BROADCAST
+c 12.254 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 12.255 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 12.346 0 TRY REDUCE 63 0 0 2 2
+c 12.346 0 REDUCE
+c 12.346 1 BROADCAST
+c 12.346 1 TRY REDUCE 64 0 0 2 2
+c 12.346 1 BROADCAST
+c 12.355 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 12.356 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 12.448 0 TRY REDUCE 63 0 0 2 2
+c 12.448 0 REDUCE
+c 12.448 1 BROADCAST
+c 12.448 1 TRY REDUCE 64 0 0 2 2
+c 12.448 1 BROADCAST
+c 12.455 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 12.457 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 12.548 0 TRY REDUCE 63 0 0 2 2
+c 12.548 0 REDUCE
+c 12.548 1 BROADCAST
+c 12.548 1 TRY REDUCE 64 0 0 2 2
+c 12.548 1 BROADCAST
+c 12.556 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 12.558 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 12.649 0 TRY REDUCE 63 0 0 2 2
+c 12.649 0 REDUCE
+c 12.649 1 BROADCAST
+c 12.649 1 TRY REDUCE 64 0 0 2 2
+c 12.649 1 BROADCAST
+c 12.657 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 12.659 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 12.750 0 TRY REDUCE 63 0 0 2 2
+c 12.750 0 REDUCE
+c 12.750 1 BROADCAST
+c 12.750 1 TRY REDUCE 64 0 0 2 2
+c 12.750 1 BROADCAST
+c 12.758 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 12.760 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 12.851 0 TRY REDUCE 63 0 0 2 2
+c 12.851 0 REDUCE
+c 12.851 1 BROADCAST
+c 12.851 1 TRY REDUCE 64 0 0 2 2
+c 12.851 1 BROADCAST
+c 12.859 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 12.860 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 12.951 0 TRY REDUCE 63 0 0 2 2
+c 12.951 0 REDUCE
+c 12.951 1 BROADCAST
+c 12.951 1 TRY REDUCE 64 0 0 2 2
+c 12.951 1 BROADCAST
+c 12.959 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 12.961 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 13.052 0 TRY REDUCE 63 0 0 2 2
+c 13.052 0 REDUCE
+c 13.052 1 BROADCAST
+c 13.052 1 TRY REDUCE 64 0 0 2 2
+c 13.052 1 BROADCAST
+c 13.060 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 13.062 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 13.153 0 TRY REDUCE 63 0 0 2 2
+c 13.153 0 REDUCE
+c 13.153 1 BROADCAST
+c 13.153 1 TRY REDUCE 64 0 0 2 2
+c 13.153 1 BROADCAST
+c 13.161 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 13.163 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 13.205 0 sysstate busyratio=1.000 cmtdratio=0.000 jobs=1 globmem=0.11GB newreqs=0 hops=0
+c 13.205 0 sysstate entered=1 parsed=1 scheduled=1 processed=0 successful=0
+c 13.253 0 TRY REDUCE 63 0 0 2 2
+c 13.253 0 REDUCE
+c 13.253 1 BROADCAST
+c 13.253 1 TRY REDUCE 64 0 0 2 2
+c 13.253 1 BROADCAST
+c 13.261 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 13.263 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 13.354 0 TRY REDUCE 63 0 0 2 2
+c 13.354 0 REDUCE
+c 13.354 1 BROADCAST
+c 13.354 1 TRY REDUCE 64 0 0 2 2
+c 13.354 1 BROADCAST
+c 13.362 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 13.364 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 13.455 0 TRY REDUCE 63 0 0 2 2
+c 13.455 0 REDUCE
+c 13.455 1 BROADCAST
+c 13.455 1 TRY REDUCE 64 0 0 2 2
+c 13.455 1 BROADCAST
+c 13.463 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 13.465 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 13.556 0 TRY REDUCE 63 0 0 2 2
+c 13.556 0 REDUCE
+c 13.556 1 BROADCAST
+c 13.556 1 TRY REDUCE 64 0 0 2 2
+c 13.556 1 BROADCAST
+c 13.563 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 13.566 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 13.657 0 TRY REDUCE 63 0 0 2 2
+c 13.657 0 REDUCE
+c 13.657 1 BROADCAST
+c 13.657 1 TRY REDUCE 64 0 0 2 2
+c 13.657 1 BROADCAST
+c 13.664 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 13.666 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 13.757 0 TRY REDUCE 63 0 0 2 2
+c 13.757 0 REDUCE
+c 13.757 1 BROADCAST
+c 13.757 1 TRY REDUCE 64 0 0 2 2
+c 13.757 1 BROADCAST
+c 13.765 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 13.767 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 13.858 0 TRY REDUCE 63 0 0 2 2
+c 13.858 0 REDUCE
+c 13.858 1 BROADCAST
+c 13.858 1 TRY REDUCE 64 0 0 2 2
+c 13.858 1 BROADCAST
+c 13.866 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 13.868 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 13.959 0 TRY REDUCE 63 0 0 2 2
+c 13.959 0 REDUCE
+c 13.959 1 BROADCAST
+c 13.959 1 TRY REDUCE 64 0 0 2 2
+c 13.959 1 BROADCAST
+c 13.966 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 13.968 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 14.059 0 TRY REDUCE 63 0 0 2 2
+c 14.059 0 REDUCE
+c 14.059 1 BROADCAST
+c 14.059 1 TRY REDUCE 64 0 0 2 2
+c 14.059 1 BROADCAST
+c 14.067 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 14.069 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 14.160 0 TRY REDUCE 63 0 0 2 2
+c 14.160 0 REDUCE
+c 14.160 1 BROADCAST
+c 14.160 1 TRY REDUCE 64 0 0 2 2
+c 14.160 1 BROADCAST
+c 14.168 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 14.170 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 14.206 0 sysstate busyratio=1.000 cmtdratio=0.000 jobs=1 globmem=0.11GB newreqs=0 hops=0
+c 14.206 0 sysstate entered=1 parsed=1 scheduled=1 processed=0 successful=0
+c 14.261 0 TRY REDUCE 63 0 0 2 2
+c 14.261 0 REDUCE
+c 14.261 1 BROADCAST
+c 14.261 1 TRY REDUCE 64 0 0 2 2
+c 14.261 1 BROADCAST
+c 14.268 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 14.271 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 14.362 0 TRY REDUCE 63 0 0 2 2
+c 14.362 0 REDUCE
+c 14.362 1 BROADCAST
+c 14.362 1 TRY REDUCE 64 0 0 2 2
+c 14.362 1 BROADCAST
+c 14.369 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 14.372 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 14.463 0 TRY REDUCE 63 0 0 2 2
+c 14.463 0 REDUCE
+c 14.463 1 BROADCAST
+c 14.463 1 TRY REDUCE 64 0 0 2 2
+c 14.463 1 BROADCAST
+c 14.470 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 14.473 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 14.564 0 TRY REDUCE 63 0 0 2 2
+c 14.564 0 REDUCE
+c 14.564 1 BROADCAST
+c 14.564 1 TRY REDUCE 64 0 0 2 2
+c 14.564 1 BROADCAST
+c 14.570 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 14.573 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 14.665 0 TRY REDUCE 63 0 0 2 2
+c 14.665 0 REDUCE
+c 14.665 1 BROADCAST
+c 14.665 1 TRY REDUCE 64 0 0 2 2
+c 14.665 1 BROADCAST
+c 14.670 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 14.674 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 14.765 0 TRY REDUCE 63 0 0 2 2
+c 14.765 0 REDUCE
+c 14.765 1 BROADCAST
+c 14.765 1 TRY REDUCE 64 0 0 2 2
+c 14.765 1 BROADCAST
+c 14.771 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 14.775 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 14.866 0 TRY REDUCE 63 0 0 2 2
+c 14.866 0 REDUCE
+c 14.866 1 BROADCAST
+c 14.866 1 TRY REDUCE 64 0 0 2 2
+c 14.866 1 BROADCAST
+c 14.871 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 14.876 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 14.967 0 TRY REDUCE 63 0 0 2 2
+c 14.967 0 REDUCE
+c 14.967 1 BROADCAST
+c 14.967 1 TRY REDUCE 64 0 0 2 2
+c 14.967 1 BROADCAST
+c 14.972 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 14.977 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 15.068 0 TRY REDUCE 63 0 0 2 2
+c 15.068 0 REDUCE
+c 15.068 1 BROADCAST
+c 15.068 1 TRY REDUCE 64 0 0 2 2
+c 15.068 1 BROADCAST
+c 15.073 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 15.077 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 15.168 0 TRY REDUCE 63 0 0 2 2
+c 15.168 0 REDUCE
+c 15.168 1 BROADCAST
+c 15.168 1 TRY REDUCE 64 0 0 2 2
+c 15.168 1 BROADCAST
+c 15.174 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 15.178 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 15.206 0 sysstate busyratio=1.000 cmtdratio=0.000 jobs=1 globmem=0.11GB newreqs=0 hops=0
+c 15.206 0 sysstate entered=1 parsed=1 scheduled=1 processed=0 successful=0
+c 15.269 0 TRY REDUCE 63 0 0 2 2
+c 15.269 0 REDUCE
+c 15.269 1 BROADCAST
+c 15.269 1 TRY REDUCE 64 0 0 2 2
+c 15.269 1 BROADCAST
+c 15.274 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 15.279 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 15.370 0 TRY REDUCE 63 0 0 2 2
+c 15.370 0 REDUCE
+c 15.370 1 BROADCAST
+c 15.370 1 TRY REDUCE 64 0 0 2 2
+c 15.370 1 BROADCAST
+c 15.375 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 15.380 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 15.471 0 TRY REDUCE 63 0 0 2 2
+c 15.471 0 REDUCE
+c 15.471 1 BROADCAST
+c 15.471 1 TRY REDUCE 64 0 0 2 2
+c 15.471 1 BROADCAST
+c 15.476 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 15.480 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 15.572 0 TRY REDUCE 63 0 0 2 2
+c 15.572 0 REDUCE
+c 15.572 1 BROADCAST
+c 15.572 1 TRY REDUCE 64 0 0 2 2
+c 15.572 1 BROADCAST
+c 15.576 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 15.581 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 15.672 0 TRY REDUCE 63 0 0 2 2
+c 15.672 0 REDUCE
+c 15.672 1 BROADCAST
+c 15.672 1 TRY REDUCE 64 0 0 2 2
+c 15.672 1 BROADCAST
+c 15.677 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 15.682 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 15.773 0 TRY REDUCE 63 0 0 2 2
+c 15.773 0 REDUCE
+c 15.773 1 BROADCAST
+c 15.773 1 TRY REDUCE 64 0 0 2 2
+c 15.773 1 BROADCAST
+c 15.778 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 15.783 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 15.874 0 TRY REDUCE 63 0 0 2 2
+c 15.874 0 REDUCE
+c 15.874 1 BROADCAST
+c 15.874 1 TRY REDUCE 64 0 0 2 2
+c 15.874 1 BROADCAST
+c 15.878 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 15.884 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 15.975 0 TRY REDUCE 63 0 0 2 2
+c 15.975 0 REDUCE
+c 15.975 1 BROADCAST
+c 15.975 1 TRY REDUCE 64 0 0 2 2
+c 15.975 1 BROADCAST
+c 15.979 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 15.985 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 16.076 0 TRY REDUCE 63 0 0 2 2
+c 16.076 0 REDUCE
+c 16.076 1 BROADCAST
+c 16.076 1 TRY REDUCE 64 0 0 2 2
+c 16.076 1 BROADCAST
+c 16.080 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 16.086 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 16.177 0 TRY REDUCE 63 0 0 2 2
+c 16.177 0 REDUCE
+c 16.177 1 BROADCAST
+c 16.177 1 TRY REDUCE 64 0 0 2 2
+c 16.177 1 BROADCAST
+c 16.180 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 16.187 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 16.207 0 sysstate busyratio=1.000 cmtdratio=0.000 jobs=1 globmem=0.11GB newreqs=0 hops=0
+c 16.207 0 sysstate entered=1 parsed=1 scheduled=1 processed=0 successful=0
+c 16.278 0 TRY REDUCE 63 0 0 2 2
+c 16.278 0 REDUCE
+c 16.278 1 BROADCAST
+c 16.278 1 TRY REDUCE 64 0 0 2 2
+c 16.278 1 BROADCAST
+c 16.281 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 16.288 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 16.379 0 TRY REDUCE 63 0 0 2 2
+c 16.379 0 REDUCE
+c 16.379 1 BROADCAST
+c 16.379 1 TRY REDUCE 64 0 0 2 2
+c 16.379 1 BROADCAST
+c 16.382 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 16.389 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 16.479 0 TRY REDUCE 63 0 0 2 2
+c 16.479 0 REDUCE
+c 16.480 1 BROADCAST
+c 16.480 1 TRY REDUCE 64 0 0 2 2
+c 16.480 1 BROADCAST
+c 16.482 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 16.489 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 16.580 0 TRY REDUCE 63 0 0 2 2
+c 16.580 0 REDUCE
+c 16.580 1 BROADCAST
+c 16.580 1 TRY REDUCE 64 0 0 2 2
+c 16.580 1 BROADCAST
+c 16.582 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 16.590 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 16.681 0 TRY REDUCE 63 0 0 2 2
+c 16.681 0 REDUCE
+c 16.681 1 BROADCAST
+c 16.681 1 TRY REDUCE 64 0 0 2 2
+c 16.681 1 BROADCAST
+c 16.683 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 16.691 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 16.782 0 TRY REDUCE 63 0 0 2 2
+c 16.782 0 REDUCE
+c 16.782 1 BROADCAST
+c 16.782 1 TRY REDUCE 64 0 0 2 2
+c 16.782 1 BROADCAST
+c 16.784 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 16.792 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 16.883 0 TRY REDUCE 63 0 0 2 2
+c 16.883 0 REDUCE
+c 16.883 1 BROADCAST
+c 16.883 1 TRY REDUCE 64 0 0 2 2
+c 16.883 1 BROADCAST
+c 16.884 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 16.893 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 16.984 0 TRY REDUCE 63 0 0 2 2
+c 16.984 0 REDUCE
+c 16.984 1 BROADCAST
+c 16.984 1 TRY REDUCE 64 0 0 2 2
+c 16.984 1 BROADCAST
+c 16.984 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 16.994 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 17.085 0 TRY REDUCE 63 0 0 2 2
+c 17.085 0 REDUCE
+c 17.085 1 BROADCAST
+c 17.085 1 TRY REDUCE 64 0 0 2 2
+c 17.085 1 BROADCAST
+c 17.085 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 17.094 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 17.185 0 TRY REDUCE 63 0 0 2 2
+c 17.185 0 REDUCE
+c 17.185 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 17.185 1 BROADCAST
+c 17.185 1 TRY REDUCE 64 0 0 2 2
+c 17.185 1 BROADCAST
+c 17.195 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 17.207 0 sysstate busyratio=1.000 cmtdratio=0.000 jobs=1 globmem=0.11GB newreqs=0 hops=0
+c 17.207 0 sysstate entered=1 parsed=1 scheduled=1 processed=0 successful=0
+c 17.286 0 TRY REDUCE 63 0 0 2 2
+c 17.286 0 REDUCE
+c 17.286 1 BROADCAST
+c 17.286 1 TRY REDUCE 64 0 0 2 2
+c 17.286 1 BROADCAST
+c 17.295 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 17.296 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 17.387 0 TRY REDUCE 63 0 0 2 2
+c 17.387 0 REDUCE
+c 17.387 1 BROADCAST
+c 17.387 1 TRY REDUCE 64 0 0 2 2
+c 17.387 1 BROADCAST
+c 17.395 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 17.397 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 17.488 0 TRY REDUCE 63 0 0 2 2
+c 17.488 0 REDUCE
+c 17.488 1 BROADCAST
+c 17.488 1 TRY REDUCE 64 0 0 2 2
+c 17.488 1 BROADCAST
+c 17.496 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 17.498 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 17.588 0 TRY REDUCE 63 0 0 2 2
+c 17.588 0 REDUCE
+c 17.588 1 BROADCAST
+c 17.588 1 TRY REDUCE 64 0 0 2 2
+c 17.588 1 BROADCAST
+c 17.597 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 17.598 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 17.689 0 TRY REDUCE 63 0 0 2 2
+c 17.689 0 REDUCE
+c 17.690 1 BROADCAST
+c 17.690 1 TRY REDUCE 64 0 0 2 2
+c 17.690 1 BROADCAST
+c 17.697 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 17.699 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 17.790 0 TRY REDUCE 63 0 0 2 2
+c 17.790 0 REDUCE
+c 17.790 1 BROADCAST
+c 17.790 1 TRY REDUCE 64 0 0 2 2
+c 17.790 1 BROADCAST
+c 17.797 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 17.800 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 17.891 0 TRY REDUCE 63 0 0 2 2
+c 17.891 0 REDUCE
+c 17.891 1 BROADCAST
+c 17.891 1 TRY REDUCE 64 0 0 2 2
+c 17.891 1 BROADCAST
+c 17.898 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 17.900 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 17.992 0 TRY REDUCE 63 0 0 2 2
+c 17.992 0 REDUCE
+c 17.992 1 BROADCAST
+c 17.992 1 TRY REDUCE 64 0 0 2 2
+c 17.992 1 BROADCAST
+c 17.999 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 18.001 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 18.092 0 TRY REDUCE 63 0 0 2 2
+c 18.092 0 REDUCE
+c 18.092 1 BROADCAST
+c 18.092 1 TRY REDUCE 64 0 0 2 2
+c 18.092 1 BROADCAST
+c 18.099 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 18.102 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 18.193 0 TRY REDUCE 63 0 0 2 2
+c 18.193 0 REDUCE
+c 18.193 1 BROADCAST
+c 18.193 1 TRY REDUCE 64 0 0 2 2
+c 18.193 1 BROADCAST
+c 18.200 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 18.203 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 18.207 0 sysstate busyratio=1.000 cmtdratio=0.000 jobs=1 globmem=0.11GB newreqs=0 hops=0
+c 18.207 0 sysstate entered=1 parsed=1 scheduled=1 processed=0 successful=0
+c 18.294 0 TRY REDUCE 63 0 0 2 2
+c 18.294 0 REDUCE
+c 18.294 1 BROADCAST
+c 18.294 1 TRY REDUCE 64 0 0 2 2
+c 18.294 1 BROADCAST
+c 18.300 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 18.304 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 18.394 0 TRY REDUCE 63 0 0 2 2
+c 18.394 0 REDUCE
+c 18.394 1 BROADCAST
+c 18.394 1 TRY REDUCE 64 0 0 2 2
+c 18.394 1 BROADCAST
+c 18.401 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 18.404 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 18.495 0 TRY REDUCE 63 0 0 2 2
+c 18.495 0 REDUCE
+c 18.495 1 BROADCAST
+c 18.495 1 TRY REDUCE 64 0 0 2 2
+c 18.495 1 BROADCAST
+c 18.501 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 18.505 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 18.596 0 TRY REDUCE 63 0 0 2 2
+c 18.596 0 REDUCE
+c 18.596 1 BROADCAST
+c 18.596 1 TRY REDUCE 64 0 0 2 2
+c 18.596 1 BROADCAST
+c 18.601 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 18.606 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 18.697 0 TRY REDUCE 63 0 0 2 2
+c 18.697 0 REDUCE
+c 18.697 1 BROADCAST
+c 18.697 1 TRY REDUCE 64 0 0 2 2
+c 18.697 1 BROADCAST
+c 18.702 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 18.706 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 18.797 0 TRY REDUCE 63 0 0 2 2
+c 18.797 0 REDUCE
+c 18.797 1 BROADCAST
+c 18.797 1 TRY REDUCE 64 0 0 2 2
+c 18.797 1 BROADCAST
+c 18.802 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 18.807 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 18.898 0 TRY REDUCE 63 0 0 2 2
+c 18.898 0 REDUCE
+c 18.898 1 BROADCAST
+c 18.898 1 TRY REDUCE 64 0 0 2 2
+c 18.898 1 BROADCAST
+c 18.902 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 18.908 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 18.999 0 TRY REDUCE 63 0 0 2 2
+c 18.999 0 REDUCE
+c 18.999 1 BROADCAST
+c 18.999 1 TRY REDUCE 64 0 0 2 2
+c 18.999 1 BROADCAST
+c 19.003 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 19.009 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 19.099 0 TRY REDUCE 63 0 0 2 2
+c 19.099 0 REDUCE
+c 19.099 1 BROADCAST
+c 19.099 1 TRY REDUCE 64 0 0 2 2
+c 19.099 1 BROADCAST
+c 19.103 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 19.109 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 19.200 0 TRY REDUCE 63 0 0 2 2
+c 19.200 0 REDUCE
+c 19.200 1 BROADCAST
+c 19.200 1 TRY REDUCE 64 0 0 2 2
+c 19.200 1 BROADCAST
+c 19.204 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 19.208 0 sysstate busyratio=1.000 cmtdratio=0.000 jobs=1 globmem=0.11GB newreqs=0 hops=0
+c 19.208 0 sysstate entered=1 parsed=1 scheduled=1 processed=0 successful=0
+c 19.210 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 19.301 0 TRY REDUCE 63 0 0 2 2
+c 19.301 0 REDUCE
+c 19.301 1 BROADCAST
+c 19.301 1 TRY REDUCE 64 0 0 2 2
+c 19.301 1 BROADCAST
+c 19.304 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 19.311 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 19.402 0 TRY REDUCE 63 0 0 2 2
+c 19.402 0 REDUCE
+c 19.402 1 BROADCAST
+c 19.402 1 TRY REDUCE 64 0 0 2 2
+c 19.402 1 BROADCAST
+c 19.405 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 19.412 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 19.503 0 TRY REDUCE 63 0 0 2 2
+c 19.503 0 REDUCE
+c 19.503 1 BROADCAST
+c 19.503 1 TRY REDUCE 64 0 0 2 2
+c 19.503 1 BROADCAST
+c 19.505 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 19.512 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 19.603 0 TRY REDUCE 63 0 0 2 2
+c 19.603 0 REDUCE
+c 19.604 1 BROADCAST
+c 19.604 1 TRY REDUCE 64 0 0 2 2
+c 19.604 1 BROADCAST
+c 19.605 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 19.613 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 19.704 0 TRY REDUCE 63 0 0 2 2
+c 19.704 0 REDUCE
+c 19.704 1 BROADCAST
+c 19.704 1 TRY REDUCE 64 0 0 2 2
+c 19.704 1 BROADCAST
+c 19.706 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 19.714 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 19.805 0 TRY REDUCE 63 0 0 2 2
+c 19.805 0 REDUCE
+c 19.805 1 BROADCAST
+c 19.805 1 TRY REDUCE 64 0 0 2 2
+c 19.805 1 BROADCAST
+c 19.807 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 19.815 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 19.906 0 TRY REDUCE 63 0 0 2 2
+c 19.906 0 REDUCE
+c 19.906 1 BROADCAST
+c 19.906 1 TRY REDUCE 64 0 0 2 2
+c 19.906 1 BROADCAST
+c 19.907 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 19.916 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 20.007 0 TRY REDUCE 63 0 0 2 2
+c 20.007 0 REDUCE
+c 20.007 1 BROADCAST
+c 20.007 1 TRY REDUCE 64 0 0 2 2
+c 20.007 1 BROADCAST
+c 20.008 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 20.017 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 20.108 0 TRY REDUCE 63 0 0 2 2
+c 20.108 0 REDUCE
+c 20.108 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 20.108 1 BROADCAST
+c 20.108 1 TRY REDUCE 64 0 0 2 2
+c 20.108 1 BROADCAST
+c 20.118 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 20.208 0 sysstate busyratio=1.000 cmtdratio=0.000 jobs=1 globmem=0.11GB newreqs=0 hops=0
+c 20.208 0 sysstate entered=1 parsed=1 scheduled=1 processed=0 successful=0
+c 20.208 0 TRY REDUCE 63 0 0 2 2
+c 20.208 0 REDUCE
+c 20.208 1 BROADCAST
+c 20.208 1 TRY REDUCE 64 0 0 2 2
+c 20.208 1 BROADCAST
+c 20.209 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 20.218 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 20.309 0 TRY REDUCE 63 0 0 2 2
+c 20.309 0 REDUCE
+c 20.309 1 BROADCAST
+c 20.309 1 TRY REDUCE 64 0 0 2 2
+c 20.309 1 BROADCAST
+c 20.309 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 20.319 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 20.399 0 [stack] Stack empty. Stopping Loop
+c 20.400 0 [msg] Requested work stealing from: 1
+c 20.400 0 [msg] Message 32 with Payload -1 from 1 received.
+c 20.400 1 [msg] Message 31 with Payload 0 from 0 received.
+c 20.400 1 [msg] Processing work stealing query from 0
+c 20.400 1 [msg] Message returned to sender 0 with payload[0] = -1 and _sent_work = 0
+c 20.409 0 TRY REDUCE 63 0 0 2 2
+c 20.409 0 REDUCE
+c 20.409 1 BROADCAST
+c 20.409 1 TRY REDUCE 64 0 0 2 2
+c 20.409 1 BROADCAST
+c 20.410 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 20.419 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {2, 6, 16}.
+c 20.420 0 [msg] Requested work stealing from: 1
+c 20.420 0 [msg] Message 32 with Payload -1 from 1 received.
+c 20.420 1 [msg] Message 31 with Payload 0 from 0 received.
+c 20.420 1 [msg] Processing work stealing query from 0
+c 20.420 1 [msg] Message returned to sender 0 with payload[0] = -1 and _sent_work = 0
+c 20.430 0 [msg] Requested work stealing from: 1
+c 20.430 0 [msg] Message 32 with Payload -1 from 1 received.
+c 20.430 1 [msg] Message 31 with Payload 0 from 0 received.
+c 20.430 1 [msg] Processing work stealing query from 0
+c 20.430 1 [msg] Message returned to sender 0 with payload[0] = -1 and _sent_work = 0
+c 20.440 0 [msg] Requested work stealing from: 1
+c 20.440 0 [msg] Message 32 with Payload -1 from 1 received.
+c 20.440 1 [msg] Message 31 with Payload 0 from 0 received.
+c 20.440 1 [msg] Processing work stealing query from 0
+c 20.440 1 [msg] Message returned to sender 0 with payload[0] = -1 and _sent_work = 0
+c 20.450 0 [msg] Requested work stealing from: 1
+c 20.450 0 [msg] Message 32 with Payload -1 from 1 received.
+c 20.450 1 [msg] Message 31 with Payload 0 from 0 received.
+c 20.450 1 [msg] Processing work stealing query from 0
+c 20.450 1 [msg] Message returned to sender 0 with payload[0] = -1 and _sent_work = 0
+c 20.480 0 [msg] Requested work stealing from: 1
+c 20.480 0 [msg] Message 32 with Payload -1 from 1 received.
+c 20.480 1 [msg] Message 31 with Payload 0 from 0 received.
+c 20.480 1 [msg] Processing work stealing query from 0
+c 20.480 1 [msg] Message returned to sender 0 with payload[0] = -1 and _sent_work = 0
+c 20.490 0 [msg] Requested work stealing from: 1
+c 20.490 0 [msg] Message 32 with Payload -1 from 1 received.
+c 20.490 1 [msg] Message 31 with Payload 0 from 0 received.
+c 20.490 1 [msg] Processing work stealing query from 0
+c 20.490 1 [msg] Message returned to sender 0 with payload[0] = -1 and _sent_work = 0
+c 20.509 0 TRY REDUCE 63 0 0 2 2
+c 20.509 0 REDUCE
+c 20.510 1 BROADCAST
+c 20.510 1 TRY REDUCE 64 0 0 2 2
+c 20.510 1 BROADCAST
+c 20.510 0 [msg] Requested work stealing from: 1
+c 20.510 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 20.510 1 [msg] Message 31 with Payload 0 from 0 received.
+c 20.510 1 [msg] Processing work stealing query from 0
+c 20.510 1 [msg] Message returned to sender 0 with payload[0] = -1 and _sent_work = 0
+c 20.510 0 [msg] Message 32 with Payload -1 from 1 received.
+c 20.519 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 20.530 0 [msg] Requested work stealing from: 1
+c 20.531 0 [msg] Message 32 with Payload -1 from 1 received.
+c 20.530 1 [msg] Message 31 with Payload 0 from 0 received.
+c 20.530 1 [msg] Processing work stealing query from 0
+c 20.530 1 [msg] Message returned to sender 0 with payload[0] = -1 and _sent_work = 0
+c 20.540 0 [msg] Requested work stealing from: 1
+c 20.541 0 [msg] Message 32 with Payload -1 from 1 received.
+c 20.540 1 [msg] Message 31 with Payload 0 from 0 received.
+c 20.540 1 [msg] Processing work stealing query from 0
+c 20.540 1 [msg] Message returned to sender 0 with payload[0] = -1 and _sent_work = 0
+c 20.601 0 [msg] Requested work stealing from: 1
+c 20.601 0 [msg] Message 32 with Payload -1 from 1 received.
+c 20.601 1 [msg] Message 31 with Payload 0 from 0 received.
+c 20.601 1 [msg] Processing work stealing query from 0
+c 20.601 1 [msg] Message returned to sender 0 with payload[0] = -1 and _sent_work = 0
+c 20.609 0 TRY REDUCE 63 0 0 2 2
+c 20.609 0 REDUCE
+c 20.611 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 20.611 1 BROADCAST
+c 20.611 1 TRY REDUCE 64 0 0 2 2
+c 20.611 1 BROADCAST
+c 20.619 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 20.621 0 [msg] Requested work stealing from: 1
+c 20.621 0 [msg] Message 32 with Payload -1 from 1 received.
+c 20.621 1 [msg] Message 31 with Payload 0 from 0 received.
+c 20.621 1 [msg] Processing work stealing query from 0
+c 20.621 1 [msg] Message returned to sender 0 with payload[0] = -1 and _sent_work = 0
+c 20.631 0 [msg] Requested work stealing from: 1
+c 20.631 0 [msg] Message 32 with Payload -1 from 1 received.
+c 20.631 1 [msg] Message 31 with Payload 0 from 0 received.
+c 20.631 1 [msg] Processing work stealing query from 0
+c 20.631 1 [msg] Message returned to sender 0 with payload[0] = -1 and _sent_work = 0
+c 20.671 0 [msg] Requested work stealing from: 1
+c 20.671 0 [msg] Message 32 with Payload -1 from 1 received.
+c 20.671 1 [msg] Message 31 with Payload 0 from 0 received.
+c 20.671 1 [msg] Processing work stealing query from 0
+c 20.671 1 [msg] Message returned to sender 0 with payload[0] = -1 and _sent_work = 0
+c 20.681 0 [msg] Requested work stealing from: 1
+c 20.681 0 [msg] Message 32 with Payload -1 from 1 received.
+c 20.681 1 [msg] Message 31 with Payload 0 from 0 received.
+c 20.681 1 [msg] Processing work stealing query from 0
+c 20.681 1 [msg] Message returned to sender 0 with payload[0] = -1 and _sent_work = 0
+c 20.691 0 [msg] Requested work stealing from: 1
+c 20.691 1 [msg] Message 31 with Payload 0 from 0 received.
+c 20.691 1 [msg] Processing work stealing query from 0
+c 20.691 1 [msg] Message returned to sender 0 with payload[0] = -1 and _sent_work = 0
+c 20.691 0 [msg] Message 32 with Payload -1 from 1 received.
+c 20.701 0 [msg] Requested work stealing from: 1
+c 20.701 1 [msg] Message 31 with Payload 0 from 0 received.
+c 20.701 1 [msg] Processing work stealing query from 0
+c 20.701 1 [msg] Message returned to sender 0 with payload[0] = -1 and _sent_work = 0
+c 20.701 0 [msg] Message 32 with Payload -1 from 1 received.
+c 20.710 0 TRY REDUCE 63 0 0 2 2
+c 20.710 0 REDUCE
+c 20.710 1 BROADCAST
+c 20.710 1 TRY REDUCE 64 0 0 2 2
+c 20.710 1 BROADCAST
+c 20.711 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 20.720 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 20.741 0 [msg] Requested work stealing from: 1
+c 20.741 1 [msg] Message 31 with Payload 0 from 0 received.
+c 20.741 1 [msg] Processing work stealing query from 0
+c 20.741 1 [msg] Message returned to sender 0 with payload[0] = -1 and _sent_work = 0
+c 20.741 0 [msg] Message 32 with Payload -1 from 1 received.
+c 20.751 0 [msg] Requested work stealing from: 1
+c 20.752 1 [msg] Message 31 with Payload 0 from 0 received.
+c 20.752 1 [msg] Processing work stealing query from 0
+c 20.752 1 [msg] Message returned to sender 0 with payload[0] = -1 and _sent_work = 0
+c 20.752 0 [msg] Message 32 with Payload -1 from 1 received.
+c 20.761 0 [msg] Requested work stealing from: 1
+c 20.762 1 [msg] Message 31 with Payload 0 from 0 received.
+c 20.762 1 [msg] Processing work stealing query from 0
+c 20.762 1 [msg] Message returned to sender 0 with payload[0] = -1 and _sent_work = 0
+c 20.762 0 [msg] Message 32 with Payload -1 from 1 received.
+c 20.781 0 [msg] Requested work stealing from: 1
+c 20.782 0 [msg] Message 32 with Payload -1 from 1 received.
+c 20.781 1 [msg] Message 31 with Payload 0 from 0 received.
+c 20.781 1 [msg] Processing work stealing query from 0
+c 20.781 1 [msg] Message returned to sender 0 with payload[0] = -1 and _sent_work = 0
+c 20.802 0 [msg] Requested work stealing from: 1
+c 20.802 0 [msg] Message 32 with Payload -1 from 1 received.
+c 20.802 1 [msg] Message 31 with Payload 0 from 0 received.
+c 20.802 1 [msg] Processing work stealing query from 0
+c 20.802 1 [msg] Message returned to sender 0 with payload[0] = -1 and _sent_work = 0
+c 20.811 0 TRY REDUCE 63 0 0 2 2
+c 20.811 0 REDUCE
+c 20.812 0 [msg] Requested work stealing from: 1
+c 20.812 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 20.812 1 [msg] Message 31 with Payload 0 from 0 received.
+c 20.812 1 [msg] Processing work stealing query from 0
+c 20.812 1 [msg] Message returned to sender 0 with payload[0] = -1 and _sent_work = 0
+c 20.812 1 BROADCAST
+c 20.812 1 TRY REDUCE 64 0 0 2 2
+c 20.812 1 BROADCAST
+c 20.812 0 [msg] Message 32 with Payload -1 from 1 received.
+c 20.821 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 20.822 0 [msg] Requested work stealing from: 1
+c 20.822 1 [msg] Message 31 with Payload 0 from 0 received.
+c 20.822 1 [msg] Processing work stealing query from 0
+c 20.822 1 [msg] Message returned to sender 0 with payload[0] = -1 and _sent_work = 0
+c 20.822 0 [msg] Message 32 with Payload -1 from 1 received.
+c 20.832 0 [msg] Requested work stealing from: 1
+c 20.832 0 [msg] Message 32 with Payload -1 from 1 received.
+c 20.832 1 [msg] Message 31 with Payload 0 from 0 received.
+c 20.832 1 [msg] Processing work stealing query from 0
+c 20.832 1 [msg] Message returned to sender 0 with payload[0] = -1 and _sent_work = 0
+c 20.852 0 [msg] Requested work stealing from: 1
+c 20.852 0 [msg] Message 32 with Payload -1 from 1 received.
+c 20.852 1 [msg] Message 31 with Payload 0 from 0 received.
+c 20.852 1 [msg] Processing work stealing query from 0
+c 20.852 1 [msg] Message returned to sender 0 with payload[0] = -1 and _sent_work = 0
+c 20.882 0 [msg] Requested work stealing from: 1
+c 20.882 0 [msg] Message 32 with Payload -1 from 1 received.
+c 20.882 1 [msg] Message 31 with Payload 0 from 0 received.
+c 20.882 1 [msg] Processing work stealing query from 0
+c 20.882 1 [msg] Message returned to sender 0 with payload[0] = -1 and _sent_work = 0
+c 20.902 0 [msg] Requested work stealing from: 1
+c 20.902 0 [msg] Message 32 with Payload -1 from 1 received.
+c 20.902 1 [msg] Message 31 with Payload 0 from 0 received.
+c 20.902 1 [msg] Processing work stealing query from 0
+c 20.902 1 [msg] Message returned to sender 0 with payload[0] = -1 and _sent_work = 0
+c 20.912 0 TRY REDUCE 63 0 0 2 2
+c 20.912 0 REDUCE
+c 20.912 1 BROADCAST
+c 20.912 1 TRY REDUCE 64 0 0 2 2
+c 20.912 1 BROADCAST
+c 20.912 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 20.922 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 20.922 0 [msg] Requested work stealing from: 1
+c 20.922 0 [msg] Message 32 with Payload -1 from 1 received.
+c 20.922 1 [msg] Message 31 with Payload 0 from 0 received.
+c 20.922 1 [msg] Processing work stealing query from 0
+c 20.922 1 [msg] Message returned to sender 0 with payload[0] = -1 and _sent_work = 0
+c 20.952 0 [msg] Requested work stealing from: 1
+c 20.953 0 [msg] Message 32 with Payload -1 from 1 received.
+c 20.952 1 [msg] Message 31 with Payload 0 from 0 received.
+c 20.952 1 [msg] Processing work stealing query from 0
+c 20.952 1 [msg] Message returned to sender 0 with payload[0] = -1 and _sent_work = 0
+c 20.993 0 [msg] Requested work stealing from: 1
+c 20.993 0 [msg] Message 32 with Payload -1 from 1 received.
+c 20.993 1 [msg] Message 31 with Payload 0 from 0 received.
+c 20.993 1 [msg] Processing work stealing query from 0
+c 20.993 1 [msg] Message returned to sender 0 with payload[0] = -1 and _sent_work = 0
+c 21.003 0 [msg] Requested work stealing from: 1
+c 21.003 1 [msg] Message 31 with Payload 0 from 0 received.
+c 21.003 1 [msg] Processing work stealing query from 0
+c 21.003 1 [msg] Message returned to sender 0 with payload[0] = -1 and _sent_work = 0
+c 21.003 0 [msg] Message 32 with Payload -1 from 1 received.
+c 21.012 0 TRY REDUCE 63 0 0 2 2
+c 21.012 0 REDUCE
+c 21.012 1 BROADCAST
+c 21.012 1 TRY REDUCE 64 0 0 2 2
+c 21.012 1 BROADCAST
+c 21.013 0 [msg] Requested work stealing from: 1
+c 21.013 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 21.013 1 [msg] Message 31 with Payload 0 from 0 received.
+c 21.013 1 [msg] Processing work stealing query from 0
+c 21.013 1 [msg] Message returned to sender 0 with payload[0] = -1 and _sent_work = 0
+c 21.013 0 [msg] Message 32 with Payload -1 from 1 received.
+c 21.022 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 21.027 0 [WARN] Watchdog: No reset for 629 ms (activity=0 recvtag=0 sendtag=0)
+c 21.033 0 [msg] Requested work stealing from: 1
+c 21.033 1 [msg] Message 31 with Payload 0 from 0 received.
+c 21.033 1 [msg] Processing work stealing query from 0
+c 21.033 1 [msg] Message returned to sender 0 with payload[0] = -1 and _sent_work = 0
+c 21.033 0 [msg] Message 32 with Payload -1 from 1 received.
+c 21.053 0 [msg] Requested work stealing from: 1
+c 21.053 0 [msg] Message 32 with Payload -1 from 1 received.
+c 21.053 1 [msg] Message 31 with Payload 0 from 0 received.
+c 21.053 1 [msg] Processing work stealing query from 0
+c 21.053 1 [msg] Message returned to sender 0 with payload[0] = -1 and _sent_work = 0
+c 21.073 0 [msg] Requested work stealing from: 1
+c 21.073 0 [msg] Message 32 with Payload -1 from 1 received.
+c 21.073 1 [msg] Message 31 with Payload 0 from 0 received.
+c 21.073 1 [msg] Processing work stealing query from 0
+c 21.073 1 [msg] Message returned to sender 0 with payload[0] = -1 and _sent_work = 0
+c 21.083 0 [msg] Requested work stealing from: 1
+c 21.083 1 [msg] Message 31 with Payload 0 from 0 received.
+c 21.083 1 [msg] Processing work stealing query from 0
+c 21.083 1 [msg] Message returned to sender 0 with payload[0] = -1 and _sent_work = 0
+c 21.083 0 [msg] Message 32 with Payload -1 from 1 received.
+c 21.093 0 [msg] Requested work stealing from: 1
+c 21.093 0 [msg] Message 32 with Payload -1 from 1 received.
+c 21.093 1 [msg] Message 31 with Payload 0 from 0 received.
+c 21.093 1 [msg] Processing work stealing query from 0
+c 21.093 1 [msg] Message returned to sender 0 with payload[0] = -1 and _sent_work = 0
+c 21.113 0 TRY REDUCE 63 0 0 2 2
+c 21.113 0 REDUCE
+c 21.113 1 BROADCAST
+c 21.113 1 TRY REDUCE 64 0 0 2 2
+c 21.113 1 BROADCAST
+c 21.113 0 [msg] Requested work stealing from: 1
+c 21.113 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 21.113 1 [msg] Message 31 with Payload 0 from 0 received.
+c 21.113 1 [msg] Processing work stealing query from 0
+c 21.113 1 [msg] Message returned to sender 0 with payload[0] = -1 and _sent_work = 0
+c 21.113 0 [msg] Message 32 with Payload -1 from 1 received.
+c 21.123 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 21.133 0 [msg] Requested work stealing from: 1
+c 21.133 0 [msg] Message 32 with Payload -1 from 1 received.
+c 21.133 1 [msg] Message 31 with Payload 0 from 0 received.
+c 21.133 1 [msg] Processing work stealing query from 0
+c 21.133 1 [msg] Message returned to sender 0 with payload[0] = -1 and _sent_work = 0
+c 21.153 0 [msg] Requested work stealing from: 1
+c 21.153 0 [msg] Message 32 with Payload -1 from 1 received.
+c 21.153 1 [msg] Message 31 with Payload 0 from 0 received.
+c 21.153 1 [msg] Processing work stealing query from 0
+c 21.153 1 [msg] Message returned to sender 0 with payload[0] = -1 and _sent_work = 0
+c 21.183 0 [msg] Requested work stealing from: 1
+c 21.183 0 [msg] Message 32 with Payload -1 from 1 received.
+c 21.183 1 [msg] Message 31 with Payload 0 from 0 received.
+c 21.183 1 [msg] Processing work stealing query from 0
+c 21.183 1 [msg] Message returned to sender 0 with payload[0] = -1 and _sent_work = 0
+c 21.203 0 [msg] Requested work stealing from: 1
+c 21.203 0 [msg] Message 32 with Payload -1 from 1 received.
+c 21.203 1 [msg] Message 31 with Payload 0 from 0 received.
+c 21.203 1 [msg] Processing work stealing query from 0
+c 21.203 1 [msg] Message returned to sender 0 with payload[0] = -1 and _sent_work = 0
+c 21.208 0 sysstate busyratio=1.000 cmtdratio=0.000 jobs=1 globmem=0.11GB newreqs=0 hops=0
+c 21.208 0 sysstate entered=1 parsed=1 scheduled=1 processed=0 successful=0
+c 21.213 0 TRY REDUCE 63 0 0 2 2
+c 21.213 0 REDUCE
+c 21.213 1 BROADCAST
+c 21.213 1 TRY REDUCE 64 0 0 2 2
+c 21.213 1 BROADCAST
+c 21.213 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 21.223 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 21.264 0 [msg] Requested work stealing from: 1
+c 21.264 0 [msg] Message 32 with Payload -1 from 1 received.
+c 21.264 1 [msg] Message 31 with Payload 0 from 0 received.
+c 21.264 1 [msg] Processing work stealing query from 0
+c 21.264 1 [msg] Message returned to sender 0 with payload[0] = -1 and _sent_work = 0
+c 21.274 0 [msg] Requested work stealing from: 1
+c 21.274 0 [msg] Message 32 with Payload -1 from 1 received.
+c 21.274 1 [msg] Message 31 with Payload 0 from 0 received.
+c 21.274 1 [msg] Processing work stealing query from 0
+c 21.274 1 [msg] Message returned to sender 0 with payload[0] = -1 and _sent_work = 0
+c 21.294 0 [msg] Requested work stealing from: 1
+c 21.294 0 [msg] Message 32 with Payload -1 from 1 received.
+c 21.294 1 [msg] Message 31 with Payload 0 from 0 received.
+c 21.294 1 [msg] Processing work stealing query from 0
+c 21.294 1 [msg] Message returned to sender 0 with payload[0] = -1 and _sent_work = 0
+c 21.314 0 TRY REDUCE 63 0 0 2 2
+c 21.314 0 REDUCE
+c 21.314 1 BROADCAST
+c 21.314 1 TRY REDUCE 64 0 0 2 2
+c 21.314 1 BROADCAST
+c 21.324 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 21.324 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {1, 6, 16}.
+c 21.344 0 [msg] Requested work stealing from: 1
+c 21.344 0 [msg] Message 32 with Payload -1 from 1 received.
+c 21.344 1 [msg] Message 31 with Payload 0 from 0 received.
+c 21.344 1 [msg] Processing work stealing query from 0
+c 21.344 1 [msg] Message returned to sender 0 with payload[0] = -1 and _sent_work = 0
+c 21.356 1 [stack] Stack empty. Stopping Loop
+c 21.394 0 [msg] Requested work stealing from: 1
+c 21.394 0 [msg] Message 32 with Payload -1 from 1 received.
+c 21.394 1 [msg] Message 31 with Payload 0 from 0 received.
+c 21.394 1 [msg] Processing work stealing query from 0
+c 21.394 1 [msg] Message returned to sender 0 with payload[0] = -1 and _sent_work = 0
+c 21.404 0 [msg] Requested work stealing from: 1
+c 21.404 0 [msg] Message 32 with Payload -1 from 1 received.
+c 21.404 1 [msg] Message 31 with Payload 0 from 0 received.
+c 21.404 1 [msg] Processing work stealing query from 0
+c 21.404 1 [msg] Message returned to sender 0 with payload[0] = -1 and _sent_work = 0
+c 21.404 1 [msg] Requested work stealing from: 0
+c 21.404 1 [msg] Message 32 with Payload -1 from 0 received.
+c 21.404 0 [msg] Message 31 with Payload 0 from 1 received.
+c 21.404 0 [msg] Processing work stealing query from 1
+c 21.404 0 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 21.414 1 [msg] Requested work stealing from: 0
+c 21.414 1 [msg] Message 32 with Payload -1 from 0 received.
+c 21.414 0 [msg] Message 31 with Payload 0 from 1 received.
+c 21.414 0 [msg] Processing work stealing query from 1
+c 21.414 0 [msg] Message returned to sender 1 with payload[0] = -1 and _sent_work = 0
+c 21.425 0 TRY REDUCE 63 0 0 2 2
+c 21.425 0 REDUCE
+c 21.425 1 BROADCAST
+c 21.425 1 TRY REDUCE 64 0 0 2 2
+c 21.425 1 BROADCAST
+c 21.434 0 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {0, 6, 16}.
+c 21.434 0 [tracking] Number of queries in total: 104 - succesful: 0 - before msgs allowed: 0 - rank invalid: 55 - reply empty: 49
+c 21.434 0 [tracking] Time wait threads: 0 0.003723
+c 21.434 0 [tracking] Time check: 1 0.047078
+c 21.434 0 [tracking] Time wait full: 2 0.093853
+c 21.434 0 [tracking] Time get work: 3 0.128971
+c 21.434 0 [tracking] Time work: 4 0.565149
+c 21.434 0 [tracking] Time compare: 5 0.112378
+c 21.434 0 [tracking] Time outside: 6 0.048848
+c 21.434 0 [track] All time: 1.000000
+c 21.434 1 [red] & [bou] All-Reduction resulted in {finished, lowerBound, upperBound} = {0, 6, 16}.
+c 21.434 1 [tracking] Number of queries in total: 25 - succesful: 1 - before msgs allowed: 15 - rank invalid: 7 - reply empty: 2
+c 21.434 1 [tracking] Time wait threads: 0 0.000000
+c 21.434 1 [tracking] Time check: 1 0.049308
+c 21.434 1 [tracking] Time wait full: 2 0.055414
+c 21.434 1 [tracking] Time get work: 3 0.134735
+c 21.434 1 [tracking] Time work: 4 0.591564
+c 21.434 1 [tracking] Time compare: 5 0.117671
+c 21.434 1 [tracking] Time outside: 6 0.051307
+c 21.434 1 [track] All time: 1.000000
+c 21.444 0 [solved] End: (Completion: 1) (Nr Tasks: 20) (Nr Machines: 3) (Tasks:) (Machine Workloads: 15 16 16) (Machines: 4 3 3 2 1 1 1 0 4 3 2 2 2 2 1 0 3 3 3 3 3 1 0)
+c 21.444 0 RESPONSE_TIME #1 21.420902 rev. 0
+c 21.444 0 SOLUTION #1 SATISFIABLE rev. 0
+s SATISFIABLE
+null
+c 21.490 1 Exiting happily
+c 21.490 0 Exiting happily
