@@ -12,7 +12,8 @@ dir_list = [r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_ou
             r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/all_in_run6",
             r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/all_in_run7",
             r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/all_in_run8",
-            r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/all_in_run9"]
+            r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/all_in_run9",
+            r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/all_in_run10"]
 
 # Variables
 non_tracking_files = []
@@ -94,11 +95,11 @@ for i in range(0, len(values[0])):
 
 plt.xscale('log')
 #plt.xlim([0, 300]) # max should be 300secs
-plt.ylim([0, 180]) # nr of examples times 10
+plt.ylim([0, 190]) # nr of examples times 10
 
 plt.ylabel("# of instances solved")
 plt.xlabel("run time [s]")
 plt.legend()
 
-fig_name = "tracking_output/cdf/cdf_plot18_log.pdf"
+fig_name = "tracking_output/cdf/cdf_plot19_log.pdf"
 plt.savefig(fig_name, format="pdf")
