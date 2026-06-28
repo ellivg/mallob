@@ -99,12 +99,12 @@ plt.xscale('log')
 #plt.xlim([0, 300]) # max should be 300secs
 plt.ylim([0, 200]) # nr of examples times 10
 
-plt.ylabel("# of instances solved")
-plt.xlabel("run time [s]")
+plt.ylabel("# of instances solved",  fontsize=14)
+plt.xlabel("run time [s]",  fontsize=14)
 plt.legend()
 
-fig_name = "tracking_output/cdf/cdf_plot21_log.pdf"
-#plt.savefig(fig_name, format="pdf")
+fig_name = "tracking_output/cdf/cdf_plot21_log_big.pdf"
+plt.savefig(fig_name, format="pdf")
 
 dir_list = [r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/instances/bnb/cnf/"]
 

@@ -140,10 +140,18 @@ plt.xscale('log')
 #plt.xlim([0, 300])
 plt.ylim([0, 30])
 
-plt.xlabel("T_sequential")
-plt.ylabel("Speedup")
+plt.xlabel("T_sequential",  fontsize=14)
+plt.ylabel("Speedup",  fontsize=14)
 
-plt.legend()
+handles, labels = plt.gca().get_legend_handles_labels()
 
-fig_name = "tracking_output/speedup/out/speedup_in12.pdf"
+# Suppose you extract numeric values from labels
+sizes = [int(label) for label in labels]
+
+sorted_items = sorted(zip(sizes, handles, labels), key=lambda t: t[0])
+_, handles, labels = zip(*sorted_items)
+
+plt.legend(handles, labels)
+
+fig_name = "tracking_output/speedup/out/speedup_in12_sort.pdf"
 plt.savefig(fig_name, format="pdf")

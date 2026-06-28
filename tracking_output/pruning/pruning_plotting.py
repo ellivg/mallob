@@ -5,8 +5,8 @@ import math
 import os
 
 # Assign directory
-dir_list = [r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/all_in9",
-            r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/all_in10_pruning"]
+dir_list = [r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/all_in_run1",
+            r"/home/eliane/Documents/Bachelorarbeit/MY MALLOB/mallob/tracking_output/all_in_pruning"]
 
 # Variables
 non_tracking_files = []
@@ -144,10 +144,18 @@ plt.plot([0,300], [1,1], color="black")
 plt.xlim([0, 300])
 plt.ylim([0, 3])
 
-plt.xlabel("time with no pruning")
-plt.ylabel("speedup")
+plt.xlabel("time with no pruning",  fontsize=14)
+plt.ylabel("speedup",  fontsize=14)
 
-plt.legend()
+handles, labels = plt.gca().get_legend_handles_labels()
 
-fig_name = "tracking_output/pruning/pruning_in9.pdf"
+# Suppose you extract numeric values from labels
+sizes = [int(label) for label in labels]
+
+sorted_items = sorted(zip(sizes, handles, labels), key=lambda t: t[0])
+_, handles, labels = zip(*sorted_items)
+
+plt.legend(handles, labels)
+
+fig_name = "tracking_output/pruning/pruning_in9_new.pdf"
 plt.savefig(fig_name, format="pdf")

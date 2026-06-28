@@ -99,8 +99,8 @@ plt.scatter(values1, values2, color="red")
 plt.xscale('log')
 plt.yscale('log')
 
-plt.xlabel(str(key1)+" threads")
-plt.ylabel(str(key2)+" threads")
+plt.xlabel(str(key1)+" thread",  fontsize=14)
+plt.ylabel(str(key2)+" threads",  fontsize=14)
 
-fig_name = "tracking_output/1v1/"+str(key1)+"v"+str(key2)+"/1v1_"+str(key1)+"v"+str(key2)+"_in11.pdf"
+fig_name = "tracking_output/1v1/"+str(key1)+"v"+str(key2)+"/1v1_"+str(key1)+"v"+str(key2)+"_in11_big.pdf"
 plt.savefig(fig_name, format="pdf")

@@ -79,8 +79,8 @@ for i in range(0, len(values[0])):
 plt.xlim([0, 300])
 plt.ylim([0, 1])
 
-plt.xlabel("run time")
-plt.ylabel("utilization percentage")
+plt.xlabel("run time [s]",  fontsize=14)
+plt.ylabel("utilization percentage",  fontsize=14)
 plt.legend()
 
-plt.savefig("tracking_output/basic/basic_thr_in12.pdf", format="pdf")
+plt.savefig("tracking_output/basic/basic_thr_in12_big.pdf", format="pdf")
